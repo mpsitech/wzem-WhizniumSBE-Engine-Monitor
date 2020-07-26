@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN" "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<head>
+		<title>Mon_bcont</title>
+		<script>
+			function handleButPrdExpandClick() {parent.parent.window.handleButExpandClick("LstPrd");};
+			function handleButPrdCollapseClick() {parent.parent.window.handleButCollapseClick("LstPrd");};
+			function handleButPrdViewClick() {parent.parent.window.handleButCrdopenClick("ButPrdView");};
+			function handleButPrdNewcrdClick() {parent.parent.window.handleButCrdopenClick("ButPrdNewcrd");};
+			function handleButEvtExpandClick() {parent.parent.window.handleButExpandClick("LstEvt");};
+			function handleButEvtCollapseClick() {parent.parent.window.handleButCollapseClick("LstEvt");};
+			function handleButEvtViewClick() {parent.parent.window.handleButCrdopenClick("ButEvtView");};
+			function handleButEvtNewcrdClick() {parent.parent.window.handleButCrdopenClick("ButEvtNewcrd");};
+			function handleButJobExpandClick() {parent.parent.window.handleButExpandClick("LstJob");};
+			function handleButJobCollapseClick() {parent.parent.window.handleButCollapseClick("LstJob");};
+			function handleButJobViewClick() {parent.parent.window.handleButCrdopenClick("ButJobView");};
+			function handleButJobNewcrdClick() {parent.parent.window.handleButCrdopenClick("ButJobNewcrd");};
+			function handleButCalExpandClick() {parent.parent.window.handleButExpandClick("LstCal");};
+			function handleButCalCollapseClick() {parent.parent.window.handleButCollapseClick("LstCal");};
+			function handleButCalViewClick() {parent.parent.window.handleButCrdopenClick("ButCalView");};
+			function handleButCalNewcrdClick() {parent.parent.window.handleButCrdopenClick("ButCalNewcrd");};
+			function handleButClnExpandClick() {parent.parent.window.handleButExpandClick("LstCln");};
+			function handleButClnCollapseClick() {parent.parent.window.handleButCollapseClick("LstCln");};
+			function handleButClnViewClick() {parent.parent.window.handleButCrdopenClick("ButClnView");};
+			function handleButClnNewcrdClick() {parent.parent.window.handleButCrdopenClick("ButClnNewcrd");};
+			function handleButOpxExpandClick() {parent.parent.window.handleButExpandClick("LstOpx");};
+			function handleButOpxCollapseClick() {parent.parent.window.handleButCollapseClick("LstOpx");};
+			function handleButOpxViewClick() {parent.parent.window.handleButCrdopenClick("ButOpxView");};
+			function handleButOpxNewcrdClick() {parent.parent.window.handleButCrdopenClick("ButOpxNewcrd");};
+			function handleButPstExpandClick() {parent.parent.window.handleButExpandClick("LstPst");};
+			function handleButPstCollapseClick() {parent.parent.window.handleButCollapseClick("LstPst");};
+			function handleButPstViewClick() {parent.parent.window.handleButCrdopenClick("ButPstView");};
+			function handleButPstNewcrdClick() {parent.parent.window.handleButCrdopenClick("ButPstNewcrd");};
+			function handleButNdeExpandClick() {parent.parent.window.handleButExpandClick("LstNde");};
+			function handleButNdeCollapseClick() {parent.parent.window.handleButCollapseClick("LstNde");};
+			function handleButNdeViewClick() {parent.parent.window.handleButCrdopenClick("ButNdeView");};
+			function handleButNdeNewcrdClick() {parent.parent.window.handleButCrdopenClick("ButNdeNewcrd");};
+			<!-- IP custScript - INSERT -->
+		</script>
+		<link href="../style/pnlDetail3_2.css" rel="styleSheet" type="text/css"/>
+		<!-- IP custStyle - INSERT -->
+	</head>
+	<body marginwidth="0" marginheight="0">
+		<table cellspacing="0" border="0" cellpadding="0"><form action="">
+			<colgroup>
+				<col width="5"/>
+				<col width="215"/>
+				<col width="5"/>
+				<col width="138"/>
+				<col width="2"/>
+				<col width="68"/>
+				<col width="2"/>
+				<col width="138"/>
+				<col width="2"/>
+				<col width="1"/>
+				<col width="114"/>
+			</colgroup>
+			<tbody id="tbl">
+				<tr><td colspan="11" height="5"></td></tr>
+				<tr id="trPrd" class="show">
+					<td height="25"></td>
+					<td id="ldynPrd" align="right">
+					</td>
+					<td></td>
+					<td id="dynPrd" rowspan="1" colspan="5">
+					</td>
+					<td></td>
+					<td id="rdynPrd" colspan="2" align="left">
+					</td>
+				</tr>
+				<tr id="trPrd2" class="hide">
+					<td colspan="3" height="67"></td>
+					<td colspan="3"></td>
+				</tr>
+				<tr id="trEvt" class="show">
+					<td height="25"></td>
+					<td id="ldynEvt" align="right">
+					</td>
+					<td></td>
+					<td id="dynEvt" rowspan="1" colspan="5">
+					</td>
+					<td></td>
+					<td id="rdynEvt" colspan="2" align="left">
+					</td>
+				</tr>
+				<tr id="trEvt2" class="hide">
+					<td colspan="3" height="67"></td>
+					<td colspan="3"></td>
+				</tr>
+				<tr id="trJob" class="show">
+					<td height="25"></td>
+					<td id="ldynJob" align="right">
+					</td>
+					<td></td>
+					<td id="dynJob" rowspan="1" colspan="5">
+					</td>
+					<td></td>
+					<td id="rdynJob" colspan="2" align="left">
+					</td>
+				</tr>
+				<tr id="trJob2" class="hide">
+					<td colspan="3" height="67"></td>
+					<td colspan="3"></td>
+				</tr>
+				<tr id="trCal" class="show">
+					<td height="25"></td>
+					<td id="ldynCal" align="right">
+					</td>
+					<td></td>
+					<td id="dynCal" rowspan="1" colspan="5">
+					</td>
+					<td></td>
+					<td id="rdynCal" colspan="2" align="left">
+					</td>
+				</tr>
+				<tr id="trCal2" class="hide">
+					<td colspan="3" height="67"></td>
+					<td colspan="3"></td>
+				</tr>
+				<tr id="trCln" class="show">
+					<td height="25"></td>
+					<td id="ldynCln" align="right">
+					</td>
+					<td></td>
+					<td id="dynCln" rowspan="1" colspan="5">
+					</td>
+					<td></td>
+					<td id="rdynCln" colspan="2" align="left">
+					</td>
+				</tr>
+				<tr id="trCln2" class="hide">
+					<td colspan="3" height="67"></td>
+					<td colspan="3"></td>
+				</tr>
+				<tr id="trOpx" class="show">
+					<td height="25"></td>
+					<td id="ldynOpx" align="right">
+					</td>
+					<td></td>
+					<td id="dynOpx" rowspan="1" colspan="5">
+					</td>
+					<td></td>
+					<td id="rdynOpx" colspan="2" align="left">
+					</td>
+				</tr>
+				<tr id="trOpx2" class="hide">
+					<td colspan="3" height="67"></td>
+					<td colspan="3"></td>
+				</tr>
+				<tr id="trPst" class="show">
+					<td height="25"></td>
+					<td id="ldynPst" align="right">
+					</td>
+					<td></td>
+					<td id="dynPst" rowspan="1" colspan="5">
+					</td>
+					<td></td>
+					<td id="rdynPst" colspan="2" align="left">
+					</td>
+				</tr>
+				<tr id="trPst2" class="hide">
+					<td colspan="3" height="67"></td>
+					<td colspan="3"></td>
+				</tr>
+				<tr id="trNde" class="show">
+					<td height="25"></td>
+					<td id="ldynNde" align="right">
+					</td>
+					<td></td>
+					<td id="dynNde" rowspan="1" colspan="5">
+					</td>
+					<td></td>
+					<td id="rdynNde" colspan="2" align="left">
+					</td>
+				</tr>
+				<tr id="trNde2" class="hide">
+					<td colspan="3" height="67"></td>
+					<td colspan="3"></td>
+				</tr>
+				<tr><td colspan="11" height="4"></td></tr>
+			</tbody>
+		</form></table>
+	</body>
+</html>
+

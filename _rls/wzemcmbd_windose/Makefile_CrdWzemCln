@@ -1,0 +1,38 @@
+# file Makefile
+# make file for CrdWzemCln card job handler, release wzemcmbd_windose
+# author Alexander Wirthmueller
+# date created: 4 Jun 2020
+# modified: 4 Jun 2020
+
+include ../Makefile.inc
+
+CPP = g++
+CPPFLAGS = -std=gnu++11 -g -Wall -Os -pthread -DWZEMCMBD
+
+STATLIB = ar
+STATLIBFLAGS = rcs
+
+INCPATH = -I$(SRCROOT)/dbswzem -I$(SRCROOT)/wzemcmbd/VecWzem -I$(SRCROOT)/wzemcmbd/IexWzem -I$(SRCROOT)/wzemcmbd
+INCPATH += -I/usr/include -I/usr/include/libxml2 -I/usr/local/include
+
+OBJS = CrdWzemCln.o PnlWzemClnList.o QryWzemClnList.o PnlWzemClnHeadbar.o PnlWzemClnRec.o PnlWzemClnDetail.o
+
+LIB = libcrdwzemcln
+
+.SUFFIXES: .cpp
+
+.cpp.o :
+	$(CPP) $(CPPFLAGS) $(INCPATH) -o $@ -c $<
+
+all:	$(LIB)
+
+$(LIB):	$(OBJS)
+	$(STATLIB) $(STATLIBFLAGS) $(LIB).a $(OBJS)
+	rm -f *.o
+
+install:
+	mv $(LIB).a $(LIBROOT)/wzemcmbd/
+
+clean:
+	rm -f *.o
+

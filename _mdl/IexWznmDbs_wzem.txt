@@ -1,0 +1,946 @@
+- IexWznmDbs v0.9.26												
+- ImeIMTable.srefIxVBasetype	srefRefIxVTbl	irefRefUref	sref	Short	unqSrefsWznmMTablecol	Comment						
+- main	void	0	TblWzemMCall	cal								
+	- ImeIAMTableTitle.srefX1IxVType	srefX2RefWznmMLocale	srefIxWznmVGender	Title								
+	- sngfull	enus	n	call								
+	- plfull	enus	n	calls								
+	- ImeIAMTableTitle.end											
+	- ImeIMTablecol.srefIxVBasetype	srefRefWznmMSubset	irefRefWznmMRelation	srefFctIxVTbl	srefFctUref	sref	Short	srefIxVSubtype	srefIxVAxisfct	srefsKOption	Principal	Eponymous
+	- idref		0	void		ref	ref	void	void		false	false
+	- dblval		0	void		x1Startu	sta	void	spt	idx	true	false
+		- ImeIAMTablecolTitle.srefX1IxVType	srefX2RefWznmMLocale	Title								
+		- full	enus	added								
+		- ImeIAMTablecolTitle.end										
+	- dblval		0	void		x1Stopu	sto	void	ept	idx	true	false
+		- ImeIAMTablecolTitle.srefX1IxVType	srefX2RefWznmMLocale	Title								
+		- full	enus	removed								
+		- ImeIAMTablecolTitle.end										
+	- tblref		72	tbl	TblWzemMJob	refWzemMJob	job	trefspec	void		true	true
+	- txtval		0	void		srefIxVCall	cal	txt192	void		true	true
+		- ImeIAMTablecolTitle.srefX1IxVType	srefX2RefWznmMLocale	Title								
+		- full	enus	type								
+		- ImeIAMTablecolTitle.end										
+	- txtval		0	void		argInv	inv	txt192	void		false	false
+		- ImeIAMTablecolTitle.srefX1IxVType	srefX2RefWznmMLocale	Title								
+		- short	enus	inv. arg.								
+		- full	enus	invocation arguments								
+		- ImeIAMTablecolTitle.end										
+	- txtval		0	void		argRet	ret	txt192	void		false	false
+		- ImeIAMTablecolTitle.srefX1IxVType	srefX2RefWznmMLocale	Title								
+		- short	enus	ret. arg.								
+		- full	enus	return arguments								
+		- ImeIAMTablecolTitle.end										
+	- ImeIMTablecol.end											
+- main	void	0	TblWzemMClstn	cln								
+	- ImeIAMTableTitle.srefX1IxVType	srefX2RefWznmMLocale	srefIxWznmVGender	Title								
+	- sngfull	enus	n	call listener								
+	- plfull	enus	n	call listeners								
+	- ImeIAMTableTitle.end											
+	- ImeIMVector2.srefIxVBasetype	sref	osrefWznmKTaggrp	srefsKOption								
+	- or	VecWzemWMClstnArgmask		noloc;notit;filfed								
+		- ImeIAMVectorTitle2.srefX1IxVType	srefX2RefWznmMLocale	Title								
+		- full	enus	argument mask								
+		- ImeIAMVectorTitle2.end										
+		- ImeIMVectoritem2.sref	Avail	Implied	Title	Comment						
+		- ix										
+		- ref										
+		- refs										
+		- sref										
+		- intval										
+		- dblval										
+		- boolval										
+		- txtval										
+		- ImeIMVectoritem2.end										
+	- lin	VecWzemVMClstnJactype		noloc;notit;filfed								
+		- ImeIAMVectorTitle2.srefX1IxVType	srefX2RefWznmMLocale	Title								
+		- full	enus	job access type								
+		- ImeIAMVectorTitle2.end										
+		- ImeIMVectoritem2.sref	Avail	Implied	Title	Comment						
+		- lock										
+		- try										
+		- weak										
+		- ImeIMVectoritem2.end										
+	- lin	VecWzemVMClstnJobmask		noloc;notit;filfed								
+		- ImeIAMVectorTitle2.srefX1IxVType	srefX2RefWznmMLocale	Title								
+		- full	enus	job mask								
+		- ImeIAMVectorTitle2.end										
+		- ImeIMVectoritem2.sref	Avail	Implied	Title	Comment						
+		- all										
+		- imm										
+		- mast										
+		- self										
+		- slv										
+		- spec										
+		- tree										
+		- ImeIMVectoritem2.end										
+	- lin	VecWzemVMClstnTarget		noloc;notit;filfed								
+		- ImeIAMVectorTitle2.srefX1IxVType	srefX2RefWznmMLocale	Title								
+		- full	enus	target								
+		- ImeIAMVectorTitle2.end										
+		- ImeIMVectoritem2.sref	Avail	Implied	Title	Comment						
+		- job										
+		- stmgr										
+		- ddspub										
+		- uasrv										
+		- ImeIMVectoritem2.end										
+	- ImeIMVector2.end											
+	- ImeIMTablecol.srefIxVBasetype	srefRefWznmMSubset	irefRefWznmMRelation	srefFctIxVTbl	srefFctUref	sref	Short	srefIxVSubtype	srefIxVAxisfct	srefsKOption	Principal	Eponymous
+	- idref		0	void		ref	ref	void	void		false	false
+	- dblval		0	void		x1Startu	sta	void	spt	idx	true	false
+		- ImeIAMTablecolTitle.srefX1IxVType	srefX2RefWznmMLocale	Title								
+		- full	enus	added								
+		- ImeIAMTablecolTitle.end										
+	- dblval		0	void		x1Stopu	sto	void	ept	idx	true	false
+		- ImeIAMTablecolTitle.srefX1IxVType	srefX2RefWznmMLocale	Title								
+		- full	enus	removed								
+		- ImeIAMTablecolTitle.end										
+	- tblref		60	tbl	TblWzemMJob	refWzemMJob	job	trefspec	void		true	true
+	- txtval		0	void		srefIxVCall	cal	txt192	void		true	true
+		- ImeIAMTablecolTitle.srefX1IxVType	srefX2RefWznmMLocale	Title								
+		- full	enus	type								
+		- ImeIAMTablecolTitle.end										
+	- vecref		0	vec	VecWzemVMClstnTarget	ixVTarget	trg	vreflin	void		false	false
+	- vecref		0	vec	VecWzemVMClstnJobmask	ixVJobmask	jms	vreflin	void		false	false
+	- tblref		61	tbl	TblWzemMJob	tjbRefWzemMJob	tjb	trefmin	void		false	false
+	- vecref		0	vec	VecWzemWMClstnArgmask	ixVArgmask	ams	vrefand	void		false	false
+	- txtval		0	void		arg	arg	txt192	void		false	false
+		- ImeIAMTablecolTitle.srefX1IxVType	srefX2RefWznmMLocale	Title								
+		- full	enus	argument								
+		- ImeIAMTablecolTitle.end										
+	- txtval		0	void		srefIxVSge	sge	txt192	void		true	true
+		- ImeIAMTablecolTitle.srefX1IxVType	srefX2RefWznmMLocale	Title								
+		- full	enus	stage								
+		- ImeIAMTablecolTitle.end										
+	- vecref		0	vec	VecWzemVMClstnJactype	ixVJactype	jat	vreflin	void		false	false
+	- ImeIMTablecol.end											
+- main	void	0	TblWzemMDpch	dch								
+	- ImeIAMTableTitle.srefX1IxVType	srefX2RefWznmMLocale	srefIxWznmVGender	Title								
+	- sngfull	enus	n	dispatch								
+	- plfull	enus	n	dispatches								
+	- ImeIAMTableTitle.end											
+	- ImeIMTablecol.srefIxVBasetype	srefRefWznmMSubset	irefRefWznmMRelation	srefFctIxVTbl	srefFctUref	sref	Short	srefIxVSubtype	srefIxVAxisfct	srefsKOption	Principal	Eponymous
+	- idref		0	void		ref	ref	void	void		false	false
+	- tblref		52	tbl	TblWzemMEvent	refWzemMEvent	evt	trefspec	void		true	true
+	- txtval		0	void		srefIxVDpch	dch	txt192	void		true	true
+		- ImeIAMTablecolTitle.srefX1IxVType	srefX2RefWznmMLocale	Title								
+		- full	enus	type								
+		- ImeIAMTablecolTitle.end										
+	- txtval		0	void		srefsMask	msk	txt192	void		false	false
+		- ImeIAMTablecolTitle.srefX1IxVType	srefX2RefWznmMLocale	Title								
+		- full	enus	mask								
+		- ImeIAMTablecolTitle.end										
+	- txtval		0	void		Content	cnt	txtlong	void		false	false
+		- ImeIAMTablecolTitle.srefX1IxVType	srefX2RefWznmMLocale	Title								
+		- full	enus	content								
+		- ImeIAMTablecolTitle.end										
+	- ImeIMTablecol.end											
+- main	void	0	TblWzemMEvent	evt								
+	- ImeIAMTableTitle.srefX1IxVType	srefX2RefWznmMLocale	srefIxWznmVGender	Title								
+	- sngfull	enus	n	event								
+	- plfull	enus	n	events								
+	- ImeIAMTableTitle.end											
+	- ImeIMVector2.srefIxVBasetype	sref	osrefWznmKTaggrp	srefsKOption								
+	- lin	VecWzemVMEventBasetype		noloc;notit;filfed								
+		- ImeIAMVectorTitle2.srefX1IxVType	srefX2RefWznmMLocale	Title								
+		- full	enus	type								
+		- ImeIAMVectorTitle2.end										
+		- ImeIMVectoritem2.sref	Avail	Implied	Title	Comment						
+		- addJob										
+		- removeJob										
+		- addDcol										
+		- removeDcol										
+		- addStmgr										
+		- removeStmgr										
+		- addClstn										
+		- changeClstnArg										
+		- removeClstn										
+		- addPreset										
+		- changePreset										
+		- removePreset										
+		- addNode										
+		- removeNode										
+		- triggerCall										
+		- handleCall										
+		- retCall										
+		- finalizeCall										
+		- handleReqCmd										
+		- handleReqDpchapp										
+		- replyReqDpchapp										
+		- handleReqUpload										
+		- handleReqDownload										
+		- replyReqDownload										
+		- handleReqDpchret										
+		- handleReqMethod										
+		- handleReqTimer										
+		- submitDpch										
+		- addInv										
+		- ImeIMVectoritem2.end										
+	- ImeIMVector2.end											
+	- ImeIMTablecol.srefIxVBasetype	srefRefWznmMSubset	irefRefWznmMRelation	srefFctIxVTbl	srefFctUref	sref	Short	srefIxVSubtype	srefIxVAxisfct	srefsKOption	Principal	Eponymous
+	- idref		0	void		ref	ref	void	void		false	false
+	- vecref		0	vec	VecWzemVMEventBasetype	ixVBasetype	typ	vreflin	void	idx	true	true
+	- tblref		49	tbl	TblWzemCEvent	refWzemCEvent	clu	trefclu	void		true	false
+	- tblref		50	tbl	TblWzemMPeriod	refWzemMPeriod	prd	trefspec	void		true	true
+	- tblref		52	tbl	TblWzemMDpch	refWzemMDpch	dch	trefspec	void		true	false
+	- dblval		0	void		startu	sta	void	void	idx	true	true
+		- ImeIAMTablecolTitle.srefX1IxVType	srefX2RefWznmMLocale	Title								
+		- full	enus	time stamp								
+		- ImeIAMTablecolTitle.end										
+	- tblref		51	tbl	TblWzemMCall	refWzemMCall	cal	trefmin	void		true	false
+	- tblref		53	tbl	TblWzemMClstn	refWzemMClstn	cln	trefmin	void		true	false
+	- tblref		54	tbl	TblWzemMJob	refWzemMJob	job	trefmin	void		true	false
+	- tblref		55	tbl	TblWzemMNode	refWzemMNode	nde	trefmin	void		true	false
+	- tblref		69	tbl	TblWzemMOp	refWzemMOp	opx	trefmin	void		true	false
+	- tblref		56	tbl	TblWzemMPreset	refWzemMPreset	pst	trefmin	void		true	false
+	- txtval		0	void		Cmd	cmd	txt192	void		true	false
+		- ImeIAMTablecolTitle.srefX1IxVType	srefX2RefWznmMLocale	Title								
+		- full	enus	command								
+		- ImeIAMTablecolTitle.end										
+	- txtval		0	void		Filename	fnm	txtlong	void		true	false
+		- ImeIAMTablecolTitle.srefX1IxVType	srefX2RefWznmMLocale	Title								
+		- full	enus	file name								
+		- ImeIAMTablecolTitle.end										
+	- txtval		0	void		srefIxVFeatgroup	feg	txt192	void		true	false
+		- ImeIAMTablecolTitle.srefX1IxVType	srefX2RefWznmMLocale	Title								
+		- full	enus	feature group								
+		- ImeIAMTablecolTitle.end										
+	- txtval		0	void		srefIxVMethod	mtd	txt192	void		true	false
+		- ImeIAMTablecolTitle.srefX1IxVType	srefX2RefWznmMLocale	Title								
+		- full	enus	method								
+		- ImeIAMTablecolTitle.end										
+	- txtval		0	void		xsref	xsr	txt192	void		true	false
+		- ImeIAMTablecolTitle.srefX1IxVType	srefX2RefWznmMLocale	Title								
+		- short	enus	string ref.								
+		- full	enus	string reference								
+		- ImeIAMTablecolTitle.end										
+	- ImeIMTablecol.end											
+- main	void	0	TblWzemMJob	job								
+	- ImeIAMTableTitle.srefX1IxVType	srefX2RefWznmMLocale	srefIxWznmVGender	Title								
+	- sngfull	enus	n	job								
+	- plfull	enus	n	jobs								
+	- ImeIAMTableTitle.end											
+	- ImeIMTablecol.srefIxVBasetype	srefRefWznmMSubset	irefRefWznmMRelation	srefFctIxVTbl	srefFctUref	sref	Short	srefIxVSubtype	srefIxVAxisfct	srefsKOption	Principal	Eponymous
+	- idref		0	void		ref	ref	void	void		false	false
+	- dblval		0	void		x1Startu	sta	void	spt	idx	true	false
+		- ImeIAMTablecolTitle.srefX1IxVType	srefX2RefWznmMLocale	Title								
+		- full	enus	added								
+		- ImeIAMTablecolTitle.end										
+	- dblval		0	void		x1Stopu	sto	void	ept	idx	true	false
+		- ImeIAMTablecolTitle.srefX1IxVType	srefX2RefWznmMLocale	Title								
+		- full	enus	removed								
+		- ImeIAMTablecolTitle.end										
+	- tblref		58	tbl	TblWzemMPeriod	refWzemMPeriod	prd	trefspec	void		true	true
+	- tblref		59	tbl	TblWzemMJob	supRefWzemMJob	sup	trefspec	void		true	false
+	- txtval		0	void		srefIxVJob	job	txt192	void		true	true
+		- ImeIAMTablecolTitle.srefX1IxVType	srefX2RefWznmMLocale	Title								
+		- full	enus	type								
+		- ImeIAMTablecolTitle.end										
+	- intval		0	void		xjref	xjr	ubigint	void		true	true
+		- ImeIAMTablecolTitle.srefX1IxVType	srefX2RefWznmMLocale	Title								
+		- full	enus	reference								
+		- ImeIAMTablecolTitle.end										
+	- boolval		0	void		Clisrv	cls	void	void		false	false
+		- ImeIAMTablecolTitle.srefX1IxVType	srefX2RefWznmMLocale	Title								
+		- full	enus	client/server								
+		- ImeIAMTablecolTitle.end										
+	- boolval		0	void		srvNotCli	snc	void	void		false	false
+		- ImeIAMTablecolTitle.srefX1IxVType	srefX2RefWznmMLocale	Title								
+		- full	enus	client								
+		- ImeIAMTablecolTitle.end										
+	- boolval		0	void		Dcol	dcl	void	void		false	false
+		- ImeIAMTablecolTitle.srefX1IxVType	srefX2RefWznmMLocale	Title								
+		- full	enus	dispatch collector								
+		- ImeIAMTablecolTitle.end										
+	- boolval		0	void		Stmgr	stm	void	void		false	false
+		- ImeIAMTablecolTitle.srefX1IxVType	srefX2RefWznmMLocale	Title								
+		- full	enus	stub manager								
+		- ImeIAMTablecolTitle.end										
+	- ImeIMTablecol.end											
+- main	void	0	TblWzemMOp	opx								
+	- ImeIAMTableTitle.srefX1IxVType	srefX2RefWznmMLocale	srefIxWznmVGender	Title								
+	- sngfull	enus	n	operation								
+	- plfull	enus	n	operations								
+	- ImeIAMTableTitle.end											
+	- ImeIMTablecol.srefIxVBasetype	srefRefWznmMSubset	irefRefWznmMRelation	srefFctIxVTbl	srefFctUref	sref	Short	srefIxVSubtype	srefIxVAxisfct	srefsKOption	Principal	Eponymous
+	- idref		0	void		ref	ref	void	void		false	false
+	- dblval		0	void		x1Startu	sta	void	spt	idx	true	false
+		- ImeIAMTablecolTitle.srefX1IxVType	srefX2RefWznmMLocale	Title								
+		- full	enus	added								
+		- ImeIAMTablecolTitle.end										
+	- dblval		0	void		x1Stopu	sto	void	ept	idx	true	false
+		- ImeIAMTablecolTitle.srefX1IxVType	srefX2RefWznmMLocale	Title								
+		- full	enus	removed								
+		- ImeIAMTablecolTitle.end										
+	- tblref		73	tbl	TblWzemMJob	refWzemMJob	job	trefspec	void		true	true
+	- intval		0	void		xoref	xor	ubigint	void		true	true
+		- ImeIAMTablecolTitle.srefX1IxVType	srefX2RefWznmMLocale	Title								
+		- full	enus	reference								
+		- ImeIAMTablecolTitle.end										
+	- ImeIMTablecol.end											
+- main	void	0	TblWzemMNode	nde								
+	- ImeIAMTableTitle.srefX1IxVType	srefX2RefWznmMLocale	srefIxWznmVGender	Title								
+	- sngfull	enus	n	node								
+	- plfull	enus	n	nodes								
+	- ImeIAMTableTitle.end											
+	- ImeIMTablecol.srefIxVBasetype	srefRefWznmMSubset	irefRefWznmMRelation	srefFctIxVTbl	srefFctUref	sref	Short	srefIxVSubtype	srefIxVAxisfct	srefsKOption	Principal	Eponymous
+	- idref		0	void		ref	ref	void	void		false	false
+	- dblval		0	void		x1Startu	sta	void	spt	idx	true	false
+		- ImeIAMTablecolTitle.srefX1IxVType	srefX2RefWznmMLocale	Title								
+		- full	enus	added								
+		- ImeIAMTablecolTitle.end										
+	- dblval		0	void		x1Stopu	sto	void	ept	idx	true	false
+		- ImeIAMTablecolTitle.srefX1IxVType	srefX2RefWznmMLocale	Title								
+		- full	enus	removed								
+		- ImeIAMTablecolTitle.end										
+	- tblref		57	tbl	TblWzemMPeriod	refWzemMPeriod	prd	trefspec	void		true	true
+	- intval		0	void		xnref	xnr	ubigint	void		true	true
+		- ImeIAMTablecolTitle.srefX1IxVType	srefX2RefWznmMLocale	Title								
+		- full	enus	reference								
+		- ImeIAMTablecolTitle.end										
+	- txtval		0	void		Ip	ip	txt30	void		true	true
+		- ImeIAMTablecolTitle.srefX1IxVType	srefX2RefWznmMLocale	Title								
+		- short	enus	IP								
+		- full	enus	IP address								
+		- ImeIAMTablecolTitle.end										
+	- intval		0	void		Port	prt	usmallint	void		true	false
+		- ImeIAMTablecolTitle.srefX1IxVType	srefX2RefWznmMLocale	Title								
+		- full	enus	port								
+		- ImeIAMTablecolTitle.end										
+	- intval		0	void		Opprcn	orn	utinyint	void		true	false
+		- ImeIAMTablecolTitle.srefX1IxVType	srefX2RefWznmMLocale	Title								
+		- short	enus	op. proc.								
+		- full	enus	operation processors								
+		- ImeIAMTablecolTitle.end										
+	- ImeIMTablecol.end											
+- main	void	0	TblWzemMPeriod	prd								
+	- ImeIAMTableTitle.srefX1IxVType	srefX2RefWznmMLocale	srefIxWznmVGender	Title								
+	- sngfull	enus	n	monitoring period								
+	- plfull	enus	n	monitoring periods								
+	- ImeIAMTableTitle.end											
+	- ImeIMTablecol.srefIxVBasetype	srefRefWznmMSubset	irefRefWznmMRelation	srefFctIxVTbl	srefFctUref	sref	Short	srefIxVSubtype	srefIxVAxisfct	srefsKOption	Principal	Eponymous
+	- idref		0	void		ref	ref	void	void		false	false
+	- grp		47	tbl	TblWzemMUsergroup	grp	grp	void	void		true	false
+	- own		48	tbl	TblWzemMUser	own	own	void	void		true	false
+	- txtval		0	void		Version	ver	txt192	void		true	true
+		- ImeIAMTablecolTitle.srefX1IxVType	srefX2RefWznmMLocale	Title								
+		- full	enus	tool version								
+		- ImeIAMTablecolTitle.end										
+	- timeval		0	void		start	sta	tmstamp	void	idx	true	true
+		- ImeIAMTablecolTitle.srefX1IxVType	srefX2RefWznmMLocale	Title								
+		- short	enus	start								
+		- full	enus	start time								
+		- ImeIAMTablecolTitle.end										
+	- timeval		0	void		stop	sto	tmstamp	void		true	false
+		- ImeIAMTablecolTitle.srefX1IxVType	srefX2RefWznmMLocale	Title								
+		- short	enus	stop								
+		- full	enus	stop time								
+		- ImeIAMTablecolTitle.end										
+	- ImeIMTablecol.end											
+- main	void	0	TblWzemMPerson	prs								
+	- ImeIAMTableTitle.srefX1IxVType	srefX2RefWznmMLocale	srefIxWznmVGender	Title								
+	- sngfull	enus	n	person								
+	- plfull	enus	n	persons								
+	- ImeIAMTableTitle.end											
+	- ImeIMVector2.srefIxVBasetype	sref	osrefWznmKTaggrp	srefsKOption								
+	- or	VecWzemWMPersonDerivate		filfed								
+		- ImeIAMVectorTitle2.srefX1IxVType	srefX2RefWznmMLocale	Title								
+		- full	enus									
+		- ImeIAMVectorTitle2.end										
+		- ImeIMVectoritem2.sref	Avail	Implied	Title	Comment						
+		- usr			user							
+		- ImeIMVectoritem2.end										
+	- lin	VecWzemVMPersonSex	sex	filfed								
+		- ImeIAMVectorTitle2.srefX1IxVType	srefX2RefWznmMLocale	Title								
+		- full	enus	sex								
+		- ImeIAMVectorTitle2.end										
+	- vlst	VlstWzemUMPersonTitle	prstit									
+		- ImeIAMVectorTitle2.srefX1IxVType	srefX2RefWznmMLocale	Title								
+		- full	enus	title								
+		- ImeIAMVectorTitle2.end										
+	- ImeIMVector2.end											
+	- ImeIMTablecol.srefIxVBasetype	srefRefWznmMSubset	irefRefWznmMRelation	srefFctIxVTbl	srefFctUref	sref	Short	srefIxVSubtype	srefIxVAxisfct	srefsKOption	Principal	Eponymous
+	- idref		0	void		ref	ref	void	void		false	false
+	- grp		1	tbl	TblWzemMUsergroup	grp	grp	void	void		true	false
+	- own		2	tbl	TblWzemMUser	own	own	void	void		true	false
+	- vecref		32	vec	VecWzemWMPersonDerivate	ixWDerivate	drv	vrefand	void	idx	false	false
+	- vecref		0	vec	VecWzemVMPersonSex	ixVSex	sex	vreflin	void		true	false
+	- txtval		0	vec	VlstWzemUMPersonTitle	Title	tit	txt30	void		true	true
+	- txtval		0	void		Firstname	fnm	txt30	void		true	true
+		- ImeIAMTablecolTitle.srefX1IxVType	srefX2RefWznmMLocale	Title								
+		- full	enus	first name								
+		- ImeIAMTablecolTitle.end										
+	- tblref		13	tbl	TblWzemJMPersonLastname	refJLastname	j	trefmin	void		false	true
+	- txtval		0	void		Lastname	lnm	txt50	void	idx	true	true
+		- ImeIAMTablecolTitle.srefX1IxVType	srefX2RefWznmMLocale	Title								
+		- full	enus	last name								
+		- ImeIAMTablecolTitle.end										
+	- tblref		15	tbl	TblWzemAMPersonDetail	telRefADetail	ate	trefmin	void		false	false
+	- txtval		0	void		telVal	tel	txt192	void		true	false
+	- tblref		16	tbl	TblWzemAMPersonDetail	emlRefADetail	aem	trefmin	void		false	false
+	- txtval		0	void		emlVal	eml	txt192	void		true	false
+	- txtval		0	void		Salutation	sal	txt100	void		false	false
+		- ImeIAMTablecolTitle.srefX1IxVType	srefX2RefWznmMLocale	Title								
+		- full	enus	salutation								
+		- ImeIAMTablecolTitle.end										
+	- ImeIMTablecol.end											
+- main	void	0	TblWzemMPreset	pst								
+	- ImeIAMTableTitle.srefX1IxVType	srefX2RefWznmMLocale	srefIxWznmVGender	Title								
+	- sngfull	enus	n	presetting								
+	- plfull	enus	n	presettings								
+	- ImeIAMTableTitle.end											
+	- ImeIMTablecol.srefIxVBasetype	srefRefWznmMSubset	irefRefWznmMRelation	srefFctIxVTbl	srefFctUref	sref	Short	srefIxVSubtype	srefIxVAxisfct	srefsKOption	Principal	Eponymous
+	- idref		0	void		ref	ref	void	void		false	false
+	- dblval		0	void		x1Startu	sta	void	spt	idx	true	false
+		- ImeIAMTablecolTitle.srefX1IxVType	srefX2RefWznmMLocale	Title								
+		- full	enus	added								
+		- ImeIAMTablecolTitle.end										
+	- dblval		0	void		x1Stopu	sto	void	ept	idx	true	false
+		- ImeIAMTablecolTitle.srefX1IxVType	srefX2RefWznmMLocale	Title								
+		- full	enus	removed								
+		- ImeIAMTablecolTitle.end										
+	- tblref		62	tbl	TblWzemMJob	refWzemMJob	job	trefspec	void		true	true
+	- txtval		0	void		srefIxVPreset	pst	txt192	void		true	true
+		- ImeIAMTablecolTitle.srefX1IxVType	srefX2RefWznmMLocale	Title								
+		- full	enus	type								
+		- ImeIAMTablecolTitle.end										
+	- txtval			void		arg	arg	txt192	void		false	false
+		- ImeIAMTablecolTitle.srefX1IxVType	srefX2RefWznmMLocale	Title								
+		- full	enus	argument								
+		- ImeIAMTablecolTitle.end										
+	- ImeIMTablecol.end											
+- main	void	0	TblWzemMSession	ses								
+	- ImeIAMTableTitle.srefX1IxVType	srefX2RefWznmMLocale	srefIxWznmVGender	Title								
+	- sngfull	enus	n	session								
+	- plfull	enus	n	sessions								
+	- ImeIAMTableTitle.end											
+	- ImeIMTablecol.srefIxVBasetype	srefRefWznmMSubset	irefRefWznmMRelation	srefFctIxVTbl	srefFctUref	sref	Short	srefIxVSubtype	srefIxVAxisfct	srefsKOption	Principal	Eponymous
+	- idref		0	void		ref	ref	void	void		false	false
+	- tblref		23	tbl	TblWzemMUser	refWzemMUser	usr	trefspec	void		true	false
+	- timeval		0	void		start	sta	tmstamp	void	idx	true	false
+		- ImeIAMTablecolTitle.srefX1IxVType	srefX2RefWznmMLocale	Title								
+		- short	enus	start								
+		- full	enus	login time								
+		- ImeIAMTablecolTitle.end										
+	- timeval		0	void		stop	sto	tmstamp	void		true	false
+		- ImeIAMTablecolTitle.srefX1IxVType	srefX2RefWznmMLocale	Title								
+		- short	enus	stop								
+		- full	enus	logout time								
+		- ImeIAMTablecolTitle.end										
+	- txtval		0	void		Ip	ip	txt30	void		true	false
+		- ImeIAMTablecolTitle.srefX1IxVType	srefX2RefWznmMLocale	Title								
+		- short	enus	IP								
+		- full	enus	IP address								
+		- ImeIAMTablecolTitle.end										
+	- ImeIMTablecol.end											
+	- ImeIAMTableLoadfct.srefIxVLoadtype	Fctname	ldSrefWznmMTablecol	lbySrefsWznmMTablecol	ordSrefsWznmMTablecol	srefIxVLimtype						
+	- refs	loadRefsByUsr	ref	refWzemMUser	start	void						
+	- rst	loadRstByUsr		refWzemMUser	start	void						
+	- ImeIAMTableLoadfct.end											
+- main	void	0	TblWzemMUser	usr								
+	- ImeIAMTableTitle.srefX1IxVType	srefX2RefWznmMLocale	srefIxWznmVGender	Title								
+	- sngfull	enus	n	user								
+	- plfull	enus	n	users								
+	- ImeIAMTableTitle.end											
+	- ImeIMVector2.srefIxVBasetype	sref	osrefWznmKTaggrp	srefsKOption								
+	- lin	VecWzemVMUserState	usrste	filfed								
+		- ImeIAMVectorTitle2.srefX1IxVType	srefX2RefWznmMLocale	Title								
+		- full	enus	state								
+		- ImeIAMVectorTitle2.end										
+	- ImeIMVector2.end											
+	- ImeIMTablecol.srefIxVBasetype	srefRefWznmMSubset	irefRefWznmMRelation	srefFctIxVTbl	srefFctUref	sref	Short	srefIxVSubtype	srefIxVAxisfct	srefsKOption	Principal	Eponymous
+	- idref		0	void		ref	ref	void	void		false	false
+	- grp		24	tbl	TblWzemMUsergroup	grp	grp	void	void		false	false
+	- own		25	tbl	TblWzemMUser	own	own	void	void		false	false
+	- tblref		30	tbl	TblWzemRMUserMUsergroup	refRUsergroup	rug	trefmin	void		false	false
+	- tblref		31	tbl	TblWzemMUsergroup	refWzemMUsergroup	usg	trefspec	void		true	false
+	- tblref		33	tbl	TblWzemMPerson	refWzemMPerson	prs	trefspec	void		true	true
+	- idsref		0	void		sref	srf	void	void		true	true
+		- ImeIAMTablecolTitle.srefX1IxVType	srefX2RefWznmMLocale	Title								
+		- full	enus	login								
+		- ImeIAMTablecolTitle.end										
+	- tblref		35	tbl	TblWzemJMUserState	refJState	j	trefspec	void		false	false
+	- vecref		0	vec	VecWzemVMUserState	ixVState	ste	vreflin	void	idx	true	false
+	- vecref		0	vec	VecWzemVLocale	ixWzemVLocale	lcl	vreflin	void		true	false
+	- vecref		0	vec	VecWzemVUserlevel	ixWzemVUserlevel	ulv	vreflin	void		true	false
+	- txtval		0	void		Password	pwd	txt30	void		false	false
+		- ImeIAMTablecolTitle.srefX1IxVType	srefX2RefWznmMLocale	Title								
+		- full	enus	password								
+		- ImeIAMTablecolTitle.end										
+	- txtval		0	void		Fullkey	fky	txtlong	void		false	false
+		- ImeIAMTablecolTitle.srefX1IxVType	srefX2RefWznmMLocale	Title								
+		- full	enus	full key (X.509)								
+		- ImeIAMTablecolTitle.end										
+	- txtval		0	void		Comment	cmt	txtlong	void		false	false
+		- ImeIAMTablecolTitle.srefX1IxVType	srefX2RefWznmMLocale	Title								
+		- full	enus	comment								
+		- ImeIAMTablecolTitle.end										
+	- ImeIMTablecol.end											
+	- ImeIAMTableLoadfct.srefIxVLoadtype	Fctname	ldSrefWznmMTablecol	lbySrefsWznmMTablecol	ordSrefsWznmMTablecol	srefIxVLimtype						
+	- ref	loadRefByPrs	ref	refWzemMPerson		void						
+	- rec	loadRecByPrs		refWzemMPerson		void						
+	- ref	loadRefBySrf	ref	sref		void						
+	- rec	loadRecBySrf		sref		void						
+	- rec	loadRecBySrfPwd		sref;Password		void						
+	- ImeIAMTableLoadfct.end											
+- main	void	0	TblWzemMUsergroup	usg								
+	- ImeIAMTableTitle.srefX1IxVType	srefX2RefWznmMLocale	srefIxWznmVGender	Title								
+	- sngfull	enus	n	user group								
+	- plfull	enus	n	user groups								
+	- ImeIAMTableTitle.end											
+	- ImeIMTablecol.srefIxVBasetype	srefRefWznmMSubset	irefRefWznmMRelation	srefFctIxVTbl	srefFctUref	sref	Short	srefIxVSubtype	srefIxVAxisfct	srefsKOption	Principal	Eponymous
+	- idref		0	void		ref	ref	void	void		false	false
+	- grp		36	tbl	TblWzemMUsergroup	grp	grp	void	void		false	false
+	- own		37	tbl	TblWzemMUser	own	own	void	void		false	false
+	- idsref		0	void		sref	srf	void	void		true	true
+		- ImeIAMTablecolTitle.srefX1IxVType	srefX2RefWznmMLocale	Title								
+		- full	enus	identifier								
+		- ImeIAMTablecolTitle.end										
+	- txtval		0	void		Comment	cmt	txtlong	void		false	false
+		- ImeIAMTablecolTitle.srefX1IxVType	srefX2RefWznmMLocale	Title								
+		- full	enus	comment								
+		- ImeIAMTablecolTitle.end										
+	- ImeIMTablecol.end											
+	- ImeIAMTableLoadfct.srefIxVLoadtype	Fctname	ldSrefWznmMTablecol	lbySrefsWznmMTablecol	ordSrefsWznmMTablecol	srefIxVLimtype						
+	- ref	loadRefBySrf	ref	sref		void						
+	- rec	loadRecBySrf		sref		void						
+	- ImeIAMTableLoadfct.end											
+- aux	void	0	TblWzemAMPersonDetail	prsAdet								
+	- ImeIAMTableTitle.srefX1IxVType	srefX2RefWznmMLocale	srefIxWznmVGender	Title								
+	- plfull	enus	n	contact details								
+	- ImeIAMTableTitle.end											
+	- ImeIMVector2.srefIxVBasetype	sref	osrefWznmKTaggrp	srefsKOption								
+	- klst	KlstWzemKAMPersonDetailType	ctdet									
+		- ImeIAMVectorTitle2.srefX1IxVType	srefX2RefWznmMLocale	Title								
+		- full	enus	type								
+		- ImeIAMVectorTitle2.end										
+	- ImeIMVector2.end											
+	- ImeIMTablecol.srefIxVBasetype	srefRefWznmMSubset	irefRefWznmMRelation	srefFctIxVTbl	srefFctUref	sref	Short	srefIxVSubtype	srefIxVAxisfct	srefsKOption	Principal	Eponymous
+	- idref		0	void		ref	ref	void	void		false	false
+	- tblref		14	tbl	TblWzemMPerson	refWzemMPerson	prs	trefspec	void		true	false
+	- klref		0	vec	KlstWzemKAMPersonDetailType	x1SrefKType	typ	klrefsng	pt		true	true
+	- txtval		0	void		Val	val	txt192	void		true	false
+		- ImeIAMTablecolTitle.srefX1IxVType	srefX2RefWznmMLocale	Title								
+		- full	enus	value								
+		- ImeIAMTablecolTitle.end										
+	- ImeIMTablecol.end											
+	- ImeIAMTableLoadfct.srefIxVLoadtype	Fctname	ldSrefWznmMTablecol	lbySrefsWznmMTablecol	ordSrefsWznmMTablecol	srefIxVLimtype						
+	- rec	loadRecByPrsTyp		refWzemMPerson;x1SrefKType		void						
+	- ImeIAMTableLoadfct.end											
+- aux	void	0	TblWzemAMUserAccess	usrAacc								
+	- ImeIAMTableTitle.srefX1IxVType	srefX2RefWznmMLocale	srefIxWznmVGender	Title								
+	- plfull	enus	n	feature access rights								
+	- ImeIAMTableTitle.end											
+	- ImeIMTablecol.srefIxVBasetype	srefRefWznmMSubset	irefRefWznmMRelation	srefFctIxVTbl	srefFctUref	sref	Short	srefIxVSubtype	srefIxVAxisfct	srefsKOption	Principal	Eponymous
+	- idref		0	void		ref	ref	void	void		false	false
+	- tblref		17	tbl	TblWzemMUser	refWzemMUser	usr	trefspec	void		true	false
+	- vecref		0	vec	VecWzemVFeatgroup	x1IxWzemVFeatgroup	feg	vreflin	pt	idx	true	true
+	- uvsref		0	void		x2FeaSrefUix	fea	void	pt	idx	true	true
+		- ImeIAMTablecolTitle.srefX1IxVType	srefX2RefWznmMLocale	Title								
+		- full	enus	feature								
+		- ImeIAMTablecolTitle.end										
+	- vecref		0	vec	VecWzemWAccess	ixWzemWAccess	acc	vrefand	void		true	false
+	- ImeIMTablecol.end											
+- aux	void	0	TblWzemAMUsergroupAccess	usgAacc								
+	- ImeIAMTableTitle.srefX1IxVType	srefX2RefWznmMLocale	srefIxWznmVGender	Title								
+	- plfull	enus	n	feature access rights								
+	- ImeIAMTableTitle.end											
+	- ImeIMTablecol.srefIxVBasetype	srefRefWznmMSubset	irefRefWznmMRelation	srefFctIxVTbl	srefFctUref	sref	Short	srefIxVSubtype	srefIxVAxisfct	srefsKOption	Principal	Eponymous
+	- idref		0	void		ref	ref	void	void		false	false
+	- tblref		18	tbl	TblWzemMUsergroup	refWzemMUsergroup	usg	trefspec	void		true	false
+	- vecref		0	vec	VecWzemVFeatgroup	x1IxWzemVFeatgroup	feg	vreflin	pt	idx	true	true
+	- uvsref		0	void		x2FeaSrefUix	fea	void	pt	idx	true	true
+		- ImeIAMTablecolTitle.srefX1IxVType	srefX2RefWznmMLocale	Title								
+		- full	enus	feature								
+		- ImeIAMTablecolTitle.end										
+	- vecref		0	vec	VecWzemWAccess	ixWzemWAccess	acc	vrefand	void		true	false
+	- ImeIMTablecol.end											
+- aux	void	0	TblWzemAVControlPar	ctlApar								
+	- ImeIAMTableTitle.srefX1IxVType	srefX2RefWznmMLocale	srefIxWznmVGender	Title								
+	- plfull	enus	n	parameters								
+	- ImeIAMTableTitle.end											
+	- ImeIMTablecol.srefIxVBasetype	srefRefWznmMSubset	irefRefWznmMRelation	srefFctIxVTbl	srefFctUref	sref	Short	srefIxVSubtype	srefIxVAxisfct	srefsKOption	Principal	Eponymous
+	- idref		0	void		ref	ref	void	void		false	false
+	- vecref		0	vec	VecWzemVControl	ixWzemVControl	ctl	vreflin	void	idx	true	false
+	- tblref		19	tbl	TblWzemMUser	x1RefWzemMUser	usr	trefspec	pt		true	false
+	- vecref		0	vec	VecWzemVLocale	x2IxWzemVLocale	lcl	vreflin	pt	idx	true	false
+	- txtval		0	void		Par	par	txt192	void	idx	true	true
+		- ImeIAMTablecolTitle.srefX1IxVType	srefX2RefWznmMLocale	Title								
+		- full	enus	parameter								
+		- ImeIAMTablecolTitle.end										
+	- txtval		0	void		Val	val	txt192	void		true	false
+		- ImeIAMTablecolTitle.srefX1IxVType	srefX2RefWznmMLocale	Title								
+		- full	enus	value								
+		- ImeIAMTablecolTitle.end										
+	- ImeIMTablecol.end											
+	- ImeIAMTableLoadfct.srefIxVLoadtype	Fctname	ldSrefWznmMTablecol	lbySrefsWznmMTablecol	ordSrefsWznmMTablecol	srefIxVLimtype						
+	- string	loadValByCtlUsrPar	Val	ixWzemVControl;x1RefWzemMUser;Par		void						
+	- ref	loadRefByCtlUsrPar	ref	ixWzemVControl;x1RefWzemMUser;Par		void						
+	- ImeIAMTableLoadfct.end											
+- aux	void	0	TblWzemAVKeylistKey	klsAkey								
+	- ImeIAMTableTitle.srefX1IxVType	srefX2RefWznmMLocale	srefIxWznmVGender	Title								
+	- plfull	enus	n	keys								
+	- ImeIAMTableTitle.end											
+	- ImeIMTablecol.srefIxVBasetype	srefRefWznmMSubset	irefRefWznmMRelation	srefFctIxVTbl	srefFctUref	sref	Short	srefIxVSubtype	srefIxVAxisfct	srefsKOption	Principal	Eponymous
+	- idref		0	void		ref	ref	void	void		false	false
+	- vecref		0	vec	VecWzemVKeylist	klsIxWzemVKeylist	kls	vreflin	void	idx	true	false
+	- enum		0	void		klsNum	kln	enauto	void		true	false
+	- vecref		20	vec	VecWzemVMaintable	x1IxWzemVMaintable	mtb	vreflin	pt	idx	true	false
+	- tblref		20	tbl		x1Uref	urf	trefuniv	pt		true	false
+	- boolval		0	void		Fixed	fix	void	void		true	false
+		- ImeIAMTablecolTitle.srefX1IxVType	srefX2RefWznmMLocale	Title								
+		- full	enus	fixed								
+		- ImeIAMTablecolTitle.end										
+	- idsref		0	void		sref	srf	void	void		true	true
+		- ImeIAMTablecolTitle.srefX1IxVType	srefX2RefWznmMLocale	Title								
+		- full	enus	identifier								
+		- ImeIAMTablecolTitle.end										
+	- expr		0	void		Avail	avl	void	void		true	false
+		- ImeIAMTablecolTitle.srefX1IxVType	srefX2RefWznmMLocale	Title								
+		- short	enus	avail. rule								
+		- full	enus	availability rule								
+		- ImeIAMTablecolTitle.end										
+	- expr		0	void		Implied	imp	void	void		true	false
+		- ImeIAMTablecolTitle.srefX1IxVType	srefX2RefWznmMLocale	Title								
+		- short	enus	impl. rule								
+		- full	enus	rule for implied								
+		- ImeIAMTablecolTitle.end										
+	- tblref		22	tbl	TblWzemJAVKeylistKey	refJ	j	trefmin	void		true	true
+	- txtval		0	void		Title	tit	txt192	void		true	true
+		- ImeIAMTablecolTitle.srefX1IxVType	srefX2RefWznmMLocale	Title								
+		- full	enus	name								
+		- ImeIAMTablecolTitle.end										
+	- txtval		0	void		Comment	cmt	txtlong	void		true	true
+		- ImeIAMTablecolTitle.srefX1IxVType	srefX2RefWznmMLocale	Title								
+		- full	enus	comment								
+		- ImeIAMTablecolTitle.end										
+	- ImeIMTablecol.end											
+	- ImeIAMTableLoadfct.srefIxVLoadtype	Fctname	ldSrefWznmMTablecol	lbySrefsWznmMTablecol	ordSrefsWznmMTablecol	srefIxVLimtype						
+	- rst	loadRstByKls		klsIxWzemVKeylist	klsNum	void						
+	- rst	loadRstByKlsMtbUrf		klsIxWzemVKeylist;x1IxWzemVMaintable;x1Uref	klsNum	void						
+	- string	loadTitByRef	Title	ref		void						
+	- ref	loadRefByKlsSrf	ref	klsIxWzemVKeylist;sref		void						
+	- ref	loadRefByKlsMtbUrfSrf	ref	klsIxWzemVKeylist;x1IxWzemVMaintable;x1Uref;sref		void						
+	- ImeIAMTableLoadfct.end											
+- aux	void	0	TblWzemAVValuelistVal	vlsAval								
+	- ImeIAMTableTitle.srefX1IxVType	srefX2RefWznmMLocale	srefIxWznmVGender	Title								
+	- plfull	enus	n	values								
+	- ImeIAMTableTitle.end											
+	- ImeIMTablecol.srefIxVBasetype	srefRefWznmMSubset	irefRefWznmMRelation	srefFctIxVTbl	srefFctUref	sref	Short	srefIxVSubtype	srefIxVAxisfct	srefsKOption	Principal	Eponymous
+	- idref		0	void		ref	ref	void	void		false	false
+	- vecref		0	vec	VecWzemVValuelist	vlsIxWzemVValuelist	vls	vreflin	void	idx	true	false
+	- enum		0	void		vlsNum	vln	enauto	void	idx	true	false
+	- vecref		0	vec	VecWzemVLocale	x1IxWzemVLocale	lcl	vreflin	pt	idx	true	false
+	- txtval		0	void		Val	val	txt192	void		true	false
+		- ImeIAMTablecolTitle.srefX1IxVType	srefX2RefWznmMLocale	Title								
+		- full	enus	value								
+		- ImeIAMTablecolTitle.end										
+	- ImeIMTablecol.end											
+	- ImeIAMTableLoadfct.srefIxVLoadtype	Fctname	ldSrefWznmMTablecol	lbySrefsWznmMTablecol	ordSrefsWznmMTablecol	srefIxVLimtype						
+	- rst	loadRstByVlsLcl		vlsIxWzemVValuelist;x1IxWzemVLocale	vlsNum	void						
+	- ImeIAMTableLoadfct.end											
+- jump	void	0	TblWzemJAVKeylistKey	kakJkey								
+	- ImeIAMTableTitle.srefX1IxVType	srefX2RefWznmMLocale	srefIxWznmVGender	Title								
+	- plfull	enus	n	name and comment by locale								
+	- ImeIAMTableTitle.end											
+	- ImeIMTablecol.srefIxVBasetype	srefRefWznmMSubset	irefRefWznmMRelation	srefFctIxVTbl	srefFctUref	sref	Short	srefIxVSubtype	srefIxVAxisfct	srefsKOption	Principal	Eponymous
+	- idref		0	void		ref	ref	void	void		false	false
+	- tblref		21	tbl	TblWzemAVKeylistKey	refWzemAVKeylistKey	klk	trefspec	void		true	false
+	- vecref		0	vec	VecWzemVLocale	x1IxWzemVLocale	lcl	vreflin	pt	idx	true	false
+	- txtval		0	void		Title	tit	txt192	void		true	false
+	- txtval		0	void		Comment	cmt	txtlong	void		true	false
+	- ImeIMTablecol.end											
+	- ImeIAMTableLoadfct.srefIxVLoadtype	Fctname	ldSrefWznmMTablecol	lbySrefsWznmMTablecol	ordSrefsWznmMTablecol	srefIxVLimtype						
+	- rst	loadRstByKlk		refWzemAVKeylistKey	x1IxWzemVLocale	void						
+	- rec	loadRecByKlkLcl		refWzemAVKeylistKey;x1IxWzemVLocale		void						
+	- string	loadTitByKlkLcl	Title	refWzemAVKeylistKey;x1IxWzemVLocale		void						
+	- ImeIAMTableLoadfct.end											
+- jump	void	0	TblWzemJMCallArgRet	calJret								
+	- ImeIAMTableTitle.srefX1IxVType	srefX2RefWznmMLocale	srefIxWznmVGender	Title								
+	- sngfull	enus	n	return argument evolution								
+	- ImeIAMTableTitle.end											
+	- ImeIMTablecol.srefIxVBasetype	srefRefWznmMSubset	irefRefWznmMRelation	srefFctIxVTbl	srefFctUref	sref	Short	srefIxVSubtype	srefIxVAxisfct	srefsKOption	Principal	Eponymous
+	- idref		0	void		ref	ref	void	void		false	false
+	- tblref		74	tbl	TblWzemMCall	refWzemMCall	cal	trefspec	void		true	false
+	- dblval		0	void		x1Startu	sta	void	spt	idx	true	false
+		- ImeIAMTablecolTitle.srefX1IxVType	srefX2RefWznmMLocale	Title								
+		- full	enus	from								
+		- ImeIAMTablecolTitle.end										
+	- dblval		0	void		x1Stopu	sto	void	ept	idx	true	false
+		- ImeIAMTablecolTitle.srefX1IxVType	srefX2RefWznmMLocale	Title								
+		- full	enus	until								
+		- ImeIAMTablecolTitle.end										
+	- txtval			void		argRet	ret	txt192	void		false	false
+	- ImeIMTablecol.end											
+- jump	void	0	TblWzemJMClstn	clnJ								
+	- ImeIAMTableTitle.srefX1IxVType	srefX2RefWznmMLocale	srefIxWznmVGender	Title								
+	- sngfull	enus	n	mask and job access type evolution								
+	- ImeIAMTableTitle.end											
+	- ImeIMTablecol.srefIxVBasetype	srefRefWznmMSubset	irefRefWznmMRelation	srefFctIxVTbl	srefFctUref	sref	Short	srefIxVSubtype	srefIxVAxisfct	srefsKOption	Principal	Eponymous
+	- idref		0	void		ref	ref	void	void		false	false
+	- tblref		70	tbl	TblWzemMClstn	refWzemMClstn	cln	trefspec	void		true	false
+	- dblval		0	void		x1Startu	sta	void	spt	idx	true	false
+		- ImeIAMTablecolTitle.srefX1IxVType	srefX2RefWznmMLocale	Title								
+		- full	enus	from								
+		- ImeIAMTablecolTitle.end										
+	- dblval		0	void		x1Stopu	sto	void	ept	idx	true	false
+		- ImeIAMTablecolTitle.srefX1IxVType	srefX2RefWznmMLocale	Title								
+		- full	enus	until								
+		- ImeIAMTablecolTitle.end										
+	- txtval			void		argMask	msk	txt192	void		false	false
+	- vecref		0	vec	VecWzemVMClstnJactype	ixVJactype	jat	vreflin	void		false	false
+	- ImeIMTablecol.end											
+- jump	void	0	TblWzemJMJobDcol	jobJdcl								
+	- ImeIAMTableTitle.srefX1IxVType	srefX2RefWznmMLocale	srefIxWznmVGender	Title								
+	- sngfull	enus	n	dispatch collector evolution								
+	- ImeIAMTableTitle.end											
+	- ImeIMTablecol.srefIxVBasetype	srefRefWznmMSubset	irefRefWznmMRelation	srefFctIxVTbl	srefFctUref	sref	Short	srefIxVSubtype	srefIxVAxisfct	srefsKOption	Principal	Eponymous
+	- idref		0	void		ref	ref	void	void		false	false
+	- tblref		64	tbl	TblWzemMJob	refWzemMJob	job	trefspec	void		true	false
+	- dblval		0	void		x1Startu	sta	void	spt	idx	true	false
+		- ImeIAMTablecolTitle.srefX1IxVType	srefX2RefWznmMLocale	Title								
+		- full	enus	from								
+		- ImeIAMTablecolTitle.end										
+	- dblval		0	void		x1Stopu	sto	void	ept	idx	true	false
+		- ImeIAMTablecolTitle.srefX1IxVType	srefX2RefWznmMLocale	Title								
+		- full	enus	until								
+		- ImeIAMTablecolTitle.end										
+	- boolval		0	void		Dcol	dcl	void	void		true	false
+	- ImeIMTablecol.end											
+- jump	void	0	TblWzemJMJobStmgr	jobJstm								
+	- ImeIAMTableTitle.srefX1IxVType	srefX2RefWznmMLocale	srefIxWznmVGender	Title								
+	- sngfull	enus	n	stub manager evolution								
+	- ImeIAMTableTitle.end											
+	- ImeIMTablecol.srefIxVBasetype	srefRefWznmMSubset	irefRefWznmMRelation	srefFctIxVTbl	srefFctUref	sref	Short	srefIxVSubtype	srefIxVAxisfct	srefsKOption	Principal	Eponymous
+	- idref		0	void		ref	ref	void	void		false	false
+	- tblref		65	tbl	TblWzemMJob	refWzemMJob	job	trefspec	void		true	false
+	- dblval		0	void		x1Startu	sta	void	spt	idx	true	false
+		- ImeIAMTablecolTitle.srefX1IxVType	srefX2RefWznmMLocale	Title								
+		- full	enus	from								
+		- ImeIAMTablecolTitle.end										
+	- dblval		0	void		x1Stopu	sto	void	ept	idx	true	false
+		- ImeIAMTablecolTitle.srefX1IxVType	srefX2RefWznmMLocale	Title								
+		- full	enus	until								
+		- ImeIAMTablecolTitle.end										
+	- boolval		0	void		Stmgr	stm	void	void		true	false
+	- ImeIMTablecol.end											
+- jump	void	0	TblWzemJMPersonLastname	prsJlnm								
+	- ImeIAMTableTitle.srefX1IxVType	srefX2RefWznmMLocale	srefIxWznmVGender	Title								
+	- plfull	enus	n	last name history								
+	- ImeIAMTableTitle.end											
+	- ImeIMTablecol.srefIxVBasetype	srefRefWznmMSubset	irefRefWznmMRelation	srefFctIxVTbl	srefFctUref	sref	Short	srefIxVSubtype	srefIxVAxisfct	srefsKOption	Principal	Eponymous
+	- idref		0	void		ref	ref	void	void		false	false
+	- tblref		12	tbl	TblWzemMPerson	refWzemMPerson	prs	trefspec	void		true	false
+	- timeval		0	void		x1Startd	sta	tmdate	spt	idx	true	false
+		- ImeIAMTablecolTitle.srefX1IxVType	srefX2RefWznmMLocale	Title								
+		- full	enus	from								
+		- ImeIAMTablecolTitle.end										
+	- txtval		0	void		Lastname	lnm	txt50	void	idx	true	false
+	- ImeIMTablecol.end											
+- jump	void	0	TblWzemJMPresetArg	pstJarg								
+	- ImeIAMTableTitle.srefX1IxVType	srefX2RefWznmMLocale	srefIxWznmVGender	Title								
+	- sngfull	enus	n	argument evolution								
+	- ImeIAMTableTitle.end											
+	- ImeIMTablecol.srefIxVBasetype	srefRefWznmMSubset	irefRefWznmMRelation	srefFctIxVTbl	srefFctUref	sref	Short	srefIxVSubtype	srefIxVAxisfct	srefsKOption	Principal	Eponymous
+	- idref		0	void		ref	ref	void	void		false	false
+	- tblref		71	tbl	TblWzemMPreset	refWzemMPreset	pst	trefspec	void		true	false
+	- dblval		0	void		x1Startu	sta	void	spt	idx	true	false
+		- ImeIAMTablecolTitle.srefX1IxVType	srefX2RefWznmMLocale	Title								
+		- full	enus	from								
+		- ImeIAMTablecolTitle.end										
+	- dblval		0	void		x1Stopu	sto	void	ept	idx	true	false
+		- ImeIAMTablecolTitle.srefX1IxVType	srefX2RefWznmMLocale	Title								
+		- full	enus	until								
+		- ImeIAMTablecolTitle.end										
+	- txtval			void		arg	arg	txt192	void		false	false
+	- ImeIMTablecol.end											
+- jump	void	0	TblWzemJMUserState	usrJste								
+	- ImeIAMTableTitle.srefX1IxVType	srefX2RefWznmMLocale	srefIxWznmVGender	Title								
+	- plfull	enus	n	state history								
+	- ImeIAMTableTitle.end											
+	- ImeIMTablecol.srefIxVBasetype	srefRefWznmMSubset	irefRefWznmMRelation	srefFctIxVTbl	srefFctUref	sref	Short	srefIxVSubtype	srefIxVAxisfct	srefsKOption	Principal	Eponymous
+	- idref		0	void		ref	ref	void	void		false	false
+	- tblref		34	tbl	TblWzemMUser	refWzemMUser	usr	trefspec	void		true	false
+	- timeval		0	void		x1Start	sta	tmstamp	spt	idx	true	false
+		- ImeIAMTablecolTitle.srefX1IxVType	srefX2RefWznmMLocale	Title								
+		- full	enus	from								
+		- ImeIAMTablecolTitle.end										
+	- vecref		0	vec	VecWzemVMUserState	ixVState	ste	vreflin	void		true	false
+	- ImeIMTablecol.end											
+	- ImeIAMTableLoadfct.srefIxVLoadtype	Fctname	ldSrefWznmMTablecol	lbySrefsWznmMTablecol	ordSrefsWznmMTablecol	srefIxVLimtype						
+	- rec	loadRecByUsrSta		refWzemMUser;x1Start.leq	x1Start.desc	first						
+	- ImeIAMTableLoadfct.end											
+- rel	rel	38	TblWzemAccRMUserUniversal	ausrRunv								
+	- ImeIMTablecol.srefIxVBasetype	srefRefWznmMSubset	irefRefWznmMRelation	srefFctIxVTbl	srefFctUref	sref	Short	srefIxVSubtype	srefIxVAxisfct	srefsKOption	Principal	Eponymous
+	- idref		0	void		ref	ref	void	void		false	false
+	- tblref		39	tbl	TblWzemMUser	refWzemMUser	usr	trefspec	void		true	false
+	- vecref		40	vec	VecWzemVMaintable	unvIxWzemVMaintable	mtb	vreflin	void	idx	true	false
+	- tblref		40	tbl		unvUref	unv	trefuniv	void		true	false
+	- vecref		0	vec	VecWzemVRecaccess	ixWzemVRecaccess	rac	vreflin	void		true	false
+	- ImeIMTablecol.end											
+	- ImeIAMTableLoadfct.srefIxVLoadtype	Fctname	ldSrefWznmMTablecol	lbySrefsWznmMTablecol	ordSrefsWznmMTablecol	srefIxVLimtype						
+	- rec	loadRecByUsrMtbUnv		refWzemMUser;unvIxWzemVMaintable;unvUref		void						
+	- ImeIAMTableLoadfct.end											
+- rel	rel	41	TblWzemHistRMUserUniversal	husrRunv								
+	- ImeIMTablecol.srefIxVBasetype	srefRefWznmMSubset	irefRefWznmMRelation	srefFctIxVTbl	srefFctUref	sref	Short	srefIxVSubtype	srefIxVAxisfct	srefsKOption	Principal	Eponymous
+	- idref		0	void		ref	ref	void	void		false	false
+	- tblref		42	tbl	TblWzemMUser	refWzemMUser	usr	trefspec	void		true	false
+	- vecref		43	vec	VecWzemVMaintable	unvIxWzemVMaintable	mtb	vreflin	void	idx	true	false
+	- tblref		43	tbl		unvUref	unv	trefuniv	void		true	false
+	- vecref		0	vec	VecWzemVCard	ixWzemVCard	crd	vreflin	void	idx	true	false
+	- vecref		0	vec	VecWzemVPreset	ixWzemVPreset	pre	vreflin	void	idx	true	false
+	- vecref		210	vec	VecWzemVMaintable	preIxWzemVMaintable	prm	vreflin	void	idx	true	false
+	- tblref		210	tbl		preUref	pru	trefuniv	void		true	false
+	- timeval		0	void		start	sta	tmstamp	void		true	false
+		- ImeIAMTablecolTitle.srefX1IxVType	srefX2RefWznmMLocale	Title								
+		- full	enus	access time								
+		- ImeIAMTablecolTitle.end										
+	- ImeIMTablecol.end											
+	- ImeIAMTableLoadfct.srefIxVLoadtype	Fctname	ldSrefWznmMTablecol	lbySrefsWznmMTablecol	ordSrefsWznmMTablecol	srefIxVLimtype						
+	- ref	loadUnuByRef	unvUref	ref		void						
+	- rst	loadRstByUsrCrd		refWzemMUser;ixWzemVCard	start.desc	void						
+	- rec	loadRecByUsrMtbUnvCrd		refWzemMUser;unvIxWzemVMaintable;unvUref;ixWzemVCard		void						
+	- refs	loadRefsByUsrMtbCrd	ref	refWzemMUser;unvIxWzemVMaintable;ixWzemVCard	start.desc	limofs						
+	- ImeIAMTableLoadfct.end											
+- rel	rel	66	TblWzemRMUsergroupUniversal	usgRunv								
+	- ImeIMTablecol.srefIxVBasetype	srefRefWznmMSubset	irefRefWznmMRelation	srefFctIxVTbl	srefFctUref	sref	Short	srefIxVSubtype	srefIxVAxisfct	srefsKOption	Principal	Eponymous
+	- idref			void		ref	ref	void	void		false	false
+	- tblref		67	tbl	TblWzemMUsergroup	refWzemMUsergroup	usg	trefspec	void		true	false
+	- vecref		68	vec	VecWzemVMaintable	unvIxWzemVMaintable	mtb	vreflin	void	idx	true	false
+	- tblref		68	tbl		unvUref	unv	trefuniv	void		true	false
+	- vecref		0	vec	VecWzemVRecaccess	ixWzemVRecaccess	rac	vreflin	void		true	false
+	- ImeIMTablecol.end											
+	- ImeIAMTableLoadfct.srefIxVLoadtype	Fctname	ldSrefWznmMTablecol	lbySrefsWznmMTablecol	ordSrefsWznmMTablecol	srefIxVLimtype						
+	- rec	loadRecByUsgMtbUnv		refWzemMUsergroup;unvIxWzemVMaintable;unvUref		void						
+	- ImeIAMTableLoadfct.end											
+- rel	rel	26	TblWzemRMUserMUsergroup	usrRusg								
+	- ImeIMTablecol.srefIxVBasetype	srefRefWznmMSubset	irefRefWznmMRelation	srefFctIxVTbl	srefFctUref	sref	Short	srefIxVSubtype	srefIxVAxisfct	srefsKOption	Principal	Eponymous
+	- idref		0	void		ref	ref	void	void		false	false
+	- tblref		27	tbl	TblWzemMUser	refWzemMUser	usr	trefspec	void		true	false
+	- tblref		28	tbl	TblWzemMUsergroup	refWzemMUsergroup	usg	trefspec	void		true	false
+	- vecref		0	vec	VecWzemVUserlevel	ixWzemVUserlevel	ulv	vreflin	void		false	false
+	- ImeIMTablecol.end											
+- clust	void	0	TblWzemCEvent	evtC								
+	- ImeIMTablecol.srefIxVBasetype	srefRefWznmMSubset	irefRefWznmMRelation	srefFctIxVTbl	srefFctUref	sref	Short	srefIxVSubtype	srefIxVAxisfct	srefsKOption	Principal	Eponymous
+	- idref		0	void		ref	ref	void	void		false	false
+	- ImeIMTablecol.end											
+- ImeIMTable.end												
+- ImeIMRelation.iref	srefIxVBasetype	irefRefWznmCRelation	irefSupRefWznmMRelation	srefSupIxVSubrole	srefFrRefWznmMTable	srefFrsRefWznmMSubset	srefToRefWznmMTable	srefTosRefWznmMSubset	srefRefWznmMTable	Prefix	srefsKOption	
+- 1	grp	0	0	void	TblWzemMUsergroup		TblWzemMPerson					
+- 2	own	0	0	void	TblWzemMUser		TblWzemMPerson					
+- 12	j	0	0	void	TblWzemMPerson		TblWzemJMPersonLastname				pref	
+- 13	jpref	0	12	pref	TblWzemJMPersonLastname		TblWzemMPerson					
+- 14	aux	0	0	void	TblWzemMPerson		TblWzemAMPersonDetail				pref	
+- 15	auxpref	0	14	pref	TblWzemAMPersonDetail		TblWzemMPerson			tel		
+- 16	auxpref	0	14	pref	TblWzemAMPersonDetail		TblWzemMPerson			eml		
+- 17	aux	0	0	void	TblWzemMUser		TblWzemAMUserAccess					
+- 18	aux	0	0	void	TblWzemMUsergroup		TblWzemAMUsergroupAccess					
+- 19	_1n	0	0	void	TblWzemMUser		TblWzemAVControlPar					
+- 20	um1n	0	0	void			TblWzemAVKeylistKey					
+- 21	j	0	0	void	TblWzemAVKeylistKey		TblWzemJAVKeylistKey				pref	
+- 22	jpref	0	21	pref	TblWzemJAVKeylistKey		TblWzemAVKeylistKey					
+- 23	_1n	0	0	void	TblWzemMUser		TblWzemMSession				affil	
+- 24	grp	0	0	void	TblWzemMUsergroup		TblWzemMUser					
+- 25	own	0	0	void	TblWzemMUser		TblWzemMUser					
+- 26	mn	0	0	void	TblWzemMUser		TblWzemMUsergroup		TblWzemRMUserMUsergroup		preffrom	
+- 27	_1n	0	26	from1n	TblWzemMUser		TblWzemRMUserMUsergroup					
+- 28	_1n	0	26	to1n	TblWzemMUsergroup		TblWzemRMUserMUsergroup					
+- 29	mnpref	0	26	frompref								
+- 30	_1n	0	29	r1n	TblWzemRMUserMUsergroup		TblWzemMUser					
+- 31	_1n	0	29	mn1n	TblWzemMUsergroup		TblWzemMUser					
+	- ImeIAMRelationTitle.srefX1IxVType	srefX2RefWznmMLocale	Title									
+	- fromsngfull	enus	primary user group									
+	- ImeIAMRelationTitle.end											
+- 32	drv	0	0	void	TblWzemMPerson							
+- 33	drvsub	0	32	sub	TblWzemMPerson		TblWzemMUser			usr		
+- 34	j	0	0	void	TblWzemMUser		TblWzemJMUserState				pref	
+- 35	jpref	0	34	pref	TblWzemJMUserState		TblWzemMUser					
+- 36	grp	0	0	void	TblWzemMUsergroup		TblWzemMUsergroup					
+- 37	own	0	0	void	TblWzemMUser		TblWzemMUsergroup					
+- 38	umn	0	0	void	TblWzemMUser				TblWzemAccRMUserUniversal	acc		
+- 39	_1n	0	38	from1n	TblWzemMUser		TblWzemAccRMUserUniversal					
+	- ImeIAMRelationTitle.srefX1IxVType	srefX2RefWznmMLocale	Title									
+	- toplfull	enus	record access rights									
+	- ImeIAMRelationTitle.end											
+- 40	um1n	0	38	toum1n			TblWzemAccRMUserUniversal			unv		
+- 41	umn	0	0	void	TblWzemMUser				TblWzemHistRMUserUniversal	hist		
+- 42	_1n	0	41	from1n	TblWzemMUser		TblWzemHistRMUserUniversal					
+	- ImeIAMRelationTitle.srefX1IxVType	srefX2RefWznmMLocale	Title									
+	- toplfull	enus	access history									
+	- ImeIAMRelationTitle.end											
+- 43	um1n	0	41	toum1n			TblWzemHistRMUserUniversal			unv		
+- 44	umn	0	0	void	TblWzemMUsergroup				TblWzemRMUsergroupUniversal			
+- 45	_1n	0	44	from1n	TblWzemMUsergroup		TblWzemRMUsergroupUniversal					
+	- ImeIAMRelationTitle.srefX1IxVType	srefX2RefWznmMLocale	Title									
+	- toplfull	enus	record access rights									
+	- ImeIAMRelationTitle.end											
+- 46	um1n	0	44	toum1n			TblWzemRMUsergroupUniversal			unv		
+- 47	grp	0	0	void	TblWzemMUsergroup		TblWzemMPeriod					
+- 48	own	0	0	void	TblWzemMUser		TblWzemMPeriod					
+- 49	clust	0	0	void	TblWzemCEvent		TblWzemMEvent					
+- 50	_1n	0	0	void	TblWzemMPeriod		TblWzemMEvent				affil	
+- 51	a1n	0	0	void	TblWzemMCall		TblWzemMEvent					
+- 52	inc	0	0	void	TblWzemMEvent		TblWzemMDpch					
+- 53	a1n	0	0	void	TblWzemMClstn		TblWzemMEvent					
+- 54	a1n	0	0	void	TblWzemMJob		TblWzemMEvent					
+- 55	a1n	0	0	void	TblWzemMNode		TblWzemMEvent					
+- 56	a1n	0	0	void	TblWzemMPreset		TblWzemMEvent					
+- 57	_1n	0	0	void	TblWzemMPeriod		TblWzemMNode				affil	
+- 58	_1n	0	0	void	TblWzemMPeriod		TblWzemMJob				affil	
+- 59	h1n	0	0	void	TblWzemMJob		TblWzemMJob			sup	affil	
+	- ImeIAMRelationTitle.srefX1IxVType	srefX2RefWznmMLocale	Title									
+	- fromsngfull	enus	super job									
+	- toplfull	enus	sub-jobs									
+	- ImeIAMRelationTitle.end											
+- 60	_1n	0	0	void	TblWzemMJob		TblWzemMClstn				affil	
+- 61	a1n	0	0	void	TblWzemMJob		TblWzemMClstn			tjb		
+	- ImeIAMRelationTitle.srefX1IxVType	srefX2RefWznmMLocale	Title									
+	- fromsngfull	enus	trigger job									
+	- ImeIAMRelationTitle.end											
+- 62	_1n	0	0	void	TblWzemMJob		TblWzemMPreset				affil	
+- 64	j	0	0	void	TblWzemMJob		TblWzemJMJobDcol					
+- 65	j	0	0	void	TblWzemMJob		TblWzemJMJobStmgr					
+- 66	umn	0	0	void	TblWzemMUsergroup				TblWzemRMUsergroupUniversal			
+- 67	_1n	0	66	from1n	TblWzemMUsergroup		TblWzemRMUsergroupUniversal					
+	- ImeIAMRelationTitle.srefX1IxVType	srefX2RefWznmMLocale	Title									
+	- toplfull	enus	record access rights									
+	- ImeIAMRelationTitle.end											
+- 68	um1n	0	66	toum1n			TblWzemRMUsergroupUniversal			unv		
+- 69	a1n	0	0	void	TblWzemMOp		TblWzemMOp					
+- 70	j	0	0	void	TblWzemMClstn		TblWzemJMClstn					
+- 71	j	0	0	void	TblWzemMPreset		TblWzemJMPresetArg					
+- 72	_1n	0	0	void	TblWzemMJob		TblWzemMCall				affil	
+- 73	_1n	0	0	void	TblWzemMJob		TblWzemMOp				affil	
+- 74	j	0	0	void	TblWzemMCall		TblWzemJMCallArgRet					
+- ImeIMRelation.end												
+- ImeIMStub.srefIxVBasetype	srefRefWznmMTable	srefRefWznmMSubset	sref	Hierarch	srefRefWznmMTablecol	Localized	Example					
+- cust	TblWzemMCall		StubWzemCalStd	false		false	CallBrlyDlgClose by:123 argInv=1 argRet=2					
+- cust	TblWzemMClstn		StubWzemClnStd	false		false	stmgr CallIdecHusrRunvMod.crdUsrEq (spec:2)					
+- tco	TblWzemMDpch		StubWzemDchStd	false	srefIxVDpch	false	DpchRetBrlyDnsmapCollect					
+- cust	TblWzemMEvent		StubWzemEvtStd	false		false	[000123.456789] handleReqXyz					
+- cust	TblWzemMJob		StubWzemJobStd	false		false	PnlBrlyLocMap (7) sup:5					
+- tco	TblWzemMJob		StubWzemJobXjref	false	xjref	false	1234					
+- cust	TblWzemMNode		StubWzemNdeStd	false		false	127.0.0.1:13300 (1) x3					
+- tco	TblWzemMNode		StubWzemNdeXnref	false	xnref	false	3					
+- tco	TblWzemMOp		StubWzemOpxStd	false	xoref	false	1234					
+- cust	TblWzemMPeriod		StubWzemPrdStd	false		false	BeamRelay 0.1.60 2016-01-03 12:34:56					
+- cust	TblWzemMPerson		StubWzemPrsStd	false		false	Franz Kuntz					
+- cust	TblWzemMPreset		StubWzemPstStd	false		false	adm=true					
+- cust	TblWzemMSession		StubWzemSesMenu	false		true	user fkuntz / Franz Kuntz;logged in from 127.0.0.1;since 01-01-2010 10:34					
+- cust	TblWzemMSession		StubWzemSesStd	false		true	01-01-2010 10:34 from 127.0.0.1					
+- tco	TblWzemMUsergroup		StubWzemUsgStd	false	sref	false	super					
+- cust	TblWzemMUser		StubWzemUsrStd	false		false	fkuntz / Franz Kuntz					
+- ImeIMStub.end												
+- ImeIRMStubMStub.srefSupRefWznmMStub	srefSubRefWznmMStub											
+- StubWzemJobXjref	StubWzemCalStd											
+- StubWzemJobXjref	StubWzemClnStd											
+- StubWzemCalStd	StubWzemEvtStd											
+- StubWzemClnStd	StubWzemEvtStd											
+- StubWzemJobStd	StubWzemEvtStd											
+- StubWzemJobXjref	StubWzemEvtStd											
+- StubWzemNdeXnref	StubWzemEvtStd											
+- StubWzemOpxStd	StubWzemEvtStd											
+- StubWzemPstStd	StubWzemEvtStd											
+- StubWzemJobXjref	StubWzemJobStd											
+- StubWzemUsrStd	StubWzemSesMenu											
+- StubWzemPrsStd	StubWzemUsrStd											
+- ImeIRMStubMStub.end												

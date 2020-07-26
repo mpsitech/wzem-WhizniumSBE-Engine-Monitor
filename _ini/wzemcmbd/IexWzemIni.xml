@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<IexWzemIni version="0.9.18">
+	<ImeIAVKeylistKey>
+		<Ii num="1">
+			<kls>KlstWzemKAMPersonDetailType</kls>
+			<srf>eml</srf>
+			<tit>e-mail</tit>
+		</Ii>
+		<Ii num="2">
+			<kls>KlstWzemKAMPersonDetailType</kls>
+			<srf>fax</srf>
+			<tit>fax</tit>
+		</Ii>
+		<Ii num="3">
+			<kls>KlstWzemKAMPersonDetailType</kls>
+			<srf>mbl</srf>
+			<tit>mobile</tit>
+		</Ii>
+		<Ii num="4">
+			<kls>KlstWzemKAMPersonDetailType</kls>
+			<srf>tel</srf>
+			<tit>phone</tit>
+		</Ii>
+	</ImeIAVKeylistKey>
+	<ImeIMUsergroup>
+		<Ii num="1">
+			<srf>wzemusers</srf>
+			<ImeIAMUsergroupAccess>
+				<Ii num="1">
+					<feg>VecWzemVCard</feg>
+					<fea>CrdWzemUsg</fea>
+					<acc>edit;exec;view</acc>
+				</Ii>
+				<Ii num="2">
+					<feg>VecWzemVCard</feg>
+					<fea>CrdWzemUsr</fea>
+					<acc>edit;exec;view</acc>
+				</Ii>
+				<Ii num="3">
+					<feg>VecWzemVCard</feg>
+					<fea>CrdWzemPrs</fea>
+					<acc>edit;exec;view</acc>
+				</Ii>
+				<Ii num="4">
+					<feg>VecWzemVCard</feg>
+					<fea>CrdWzemPrd</fea>
+					<acc>edit;exec;view</acc>
+				</Ii>
+				<Ii num="5">
+					<feg>VecWzemVCard</feg>
+					<fea>CrdWzemEvt</fea>
+					<acc>edit;exec;view</acc>
+				</Ii>
+				<Ii num="6">
+					<feg>VecWzemVCard</feg>
+					<fea>CrdWzemJob</fea>
+					<acc>edit;exec;view</acc>
+				</Ii>
+				<Ii num="7">
+					<feg>VecWzemVCard</feg>
+					<fea>CrdWzemCal</fea>
+					<acc>edit;exec;view</acc>
+				</Ii>
+				<Ii num="8">
+					<feg>VecWzemVCard</feg>
+					<fea>CrdWzemCln</fea>
+					<acc>edit;exec;view</acc>
+				</Ii>
+				<Ii num="9">
+					<feg>VecWzemVCard</feg>
+					<fea>CrdWzemOpx</fea>
+					<acc>edit;exec;view</acc>
+				</Ii>
+				<Ii num="10">
+					<feg>VecWzemVCard</feg>
+					<fea>CrdWzemPst</fea>
+					<acc>edit;exec;view</acc>
+				</Ii>
+				<Ii num="11">
+					<feg>VecWzemVCard</feg>
+					<fea>CrdWzemNde</fea>
+					<acc>edit;exec;view</acc>
+				</Ii>
+			</ImeIAMUsergroupAccess>
+			<ImeIMUser>
+				<Ii num="1">
+					<srf>wzemuser</srf>
+					<ste>act</ste>
+					<lcl>enus</lcl>
+					<ulv>adm</ulv>
+					<pwd>asdf1234</pwd>
+					<ImeIMPerson>
+						<Ii num="1">
+							<sex>f</sex>
+							<tit>Mrs.</tit>
+							<fnm>Emily</fnm>
+							<lnm>Johnson</lnm>
+						</Ii>
+					</ImeIMPerson>
+				</Ii>
+			</ImeIMUser>
+		</Ii>
+	</ImeIMUsergroup>
+</IexWzemIni>

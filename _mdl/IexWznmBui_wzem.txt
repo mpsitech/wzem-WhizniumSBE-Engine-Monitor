@@ -1,0 +1,23 @@
+- IexWznmBui v0.9.26						
+- ImeIMModule.sref	Title	Comment				
+- MdlWzemAdmin	administration					
+	- ImeIMCard.srefRefIxVTbl	srefRefUref	sref	Title	Avail	Active
+	- tbl	TblWzemMUsergroup	CrdWzemUsg			
+	- tbl	TblWzemMUser	CrdWzemUsr			
+	- tbl	TblWzemMPerson	CrdWzemPrs			
+	- ImeIMCard.end					
+- MdlWzemMon	monitoring	call, clstn, op and preset for API use only				
+	- ImeIMCard.srefRefIxVTbl	srefRefUref	sref	Avail	Active	
+	- tbl	TblWzemMPeriod	CrdWzemPrd			
+	- tbl	TblWzemMEvent	CrdWzemEvt		pre.refPrd()	
+	- tbl	TblWzemMJob	CrdWzemJob		pre.refPrd()	
+	- tbl	TblWzemMCall	CrdWzemCal		pre.refPrd()	
+	- tbl	TblWzemMClstn	CrdWzemCln		pre.refPrd()	
+	- tbl	TblWzemMOp	CrdWzemOpx		pre.refPrd()	
+	- tbl	TblWzemMPreset	CrdWzemPst		pre.refPrd()	
+	- tbl	TblWzemMNode	CrdWzemNde		pre.refPrd()	
+	- ImeIMCard.end					
+- ImeIMModule.end						
+- ImeIMPreset.srefIxVIop	srefRefIxVTbl	srefRefUref	srefIxVScope	sref	srefIxWznmWArgtype	
+- retrupd			sess	PreWzemRefPrd		
+- ImeIMPreset.end						
