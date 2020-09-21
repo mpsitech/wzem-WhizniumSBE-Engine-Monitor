@@ -1,9 +1,9 @@
 /**
 	* \file QryWzemUsgList.cpp
 	* job handler for job QryWzemUsgList (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 4 Jun 2020
-	* \date modified: 4 Jun 2020
+	* \author Catherine Johnson
+	* \date created: 21 Sep 2020
+	* \date modified: 21 Sep 2020
 	*/
 
 #ifdef WZEMCMBD
@@ -170,8 +170,8 @@ void QryWzemUsgList::rerun_orderSQL(
 			, const uint preIxOrd
 		) {
 	if (preIxOrd == VecVOrd::SRF) sqlstr += " ORDER BY TblWzemMUsergroup.sref ASC";
-	else if (preIxOrd == VecVOrd::GRP) sqlstr += " ORDER BY TblWzemMUsergroup.grp ASC";
 	else if (preIxOrd == VecVOrd::OWN) sqlstr += " ORDER BY TblWzemMUsergroup.own ASC";
+	else if (preIxOrd == VecVOrd::GRP) sqlstr += " ORDER BY TblWzemMUsergroup.grp ASC";
 };
 
 void QryWzemUsgList::fetch(

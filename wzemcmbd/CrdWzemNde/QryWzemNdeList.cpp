@@ -1,9 +1,9 @@
 /**
 	* \file QryWzemNdeList.cpp
 	* job handler for job QryWzemNdeList (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 4 Jun 2020
-	* \date modified: 4 Jun 2020
+	* \author Catherine Johnson
+	* \date created: 21 Sep 2020
+	* \date modified: 21 Sep 2020
 	*/
 
 #ifdef WZEMCMBD
@@ -331,27 +331,13 @@ void QryWzemNdeList::handleCall(
 			DbsWzem* dbswzem
 			, Call* call
 		) {
-	if (call->ixVCall == VecWzemVCall::CALLWZEMNDEUPD_REFEQ) {
-		call->abort = handleCallWzemNdeUpd_refEq(dbswzem, call->jref);
-	} else if (call->ixVCall == VecWzemVCall::CALLWZEMNDEMOD) {
+	if (call->ixVCall == VecWzemVCall::CALLWZEMNDEMOD) {
 		call->abort = handleCallWzemNdeMod(dbswzem, call->jref);
+	} else if (call->ixVCall == VecWzemVCall::CALLWZEMNDEUPD_REFEQ) {
+		call->abort = handleCallWzemNdeUpd_refEq(dbswzem, call->jref);
 	} else if ((call->ixVCall == VecWzemVCall::CALLWZEMSTUBCHG) && (call->jref == jref)) {
 		call->abort = handleCallWzemStubChgFromSelf(dbswzem);
 	};
-};
-
-bool QryWzemNdeList::handleCallWzemNdeUpd_refEq(
-			DbsWzem* dbswzem
-			, const ubigint jrefTrig
-		) {
-	bool retval = false;
-
-	if (ixWzemVQrystate != VecWzemVQrystate::OOD) {
-		ixWzemVQrystate = VecWzemVQrystate::OOD;
-		xchg->triggerCall(dbswzem, VecWzemVCall::CALLWZEMSTATCHG, jref);
-	};
-
-	return retval;
 };
 
 bool QryWzemNdeList::handleCallWzemNdeMod(
@@ -362,6 +348,20 @@ bool QryWzemNdeList::handleCallWzemNdeMod(
 
 	if ((ixWzemVQrystate == VecWzemVQrystate::UTD) || (ixWzemVQrystate == VecWzemVQrystate::SLM)) {
 		ixWzemVQrystate = VecWzemVQrystate::MNR;
+		xchg->triggerCall(dbswzem, VecWzemVCall::CALLWZEMSTATCHG, jref);
+	};
+
+	return retval;
+};
+
+bool QryWzemNdeList::handleCallWzemNdeUpd_refEq(
+			DbsWzem* dbswzem
+			, const ubigint jrefTrig
+		) {
+	bool retval = false;
+
+	if (ixWzemVQrystate != VecWzemVQrystate::OOD) {
+		ixWzemVQrystate = VecWzemVQrystate::OOD;
 		xchg->triggerCall(dbswzem, VecWzemVCall::CALLWZEMSTATCHG, jref);
 	};
 

@@ -1,9 +1,9 @@
 /**
 	* \file IexWzemIni.h
 	* data blocks and readers/writers for import/export complex IexWzemIni (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 4 Jun 2020
-	* \date modified: 4 Jun 2020
+	* \author Catherine Johnson
+	* \date created: 21 Sep 2020
+	* \date modified: 21 Sep 2020
 	*/
 
 #ifndef IEXWZEMINI_H

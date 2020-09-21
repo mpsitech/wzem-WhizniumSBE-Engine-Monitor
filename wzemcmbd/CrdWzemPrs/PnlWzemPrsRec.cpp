@@ -1,9 +1,9 @@
 /**
 	* \file PnlWzemPrsRec.cpp
 	* job handler for job PnlWzemPrsRec (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 4 Jun 2020
-	* \date modified: 4 Jun 2020
+	* \author Catherine Johnson
+	* \date created: 21 Sep 2020
+	* \date modified: 21 Sep 2020
 	*/
 
 #ifdef WZEMCMBD
@@ -77,7 +77,11 @@ DpchEngWzem* PnlWzemPrsRec::getNewDpchEng(
 void PnlWzemPrsRec::refresh(
 			DbsWzem* dbswzem
 			, set<uint>& moditems
+			, const bool unmute
 		) {
+	if (muteRefresh && !unmute) return;
+	muteRefresh = true;
+
 	ContInf oldContinf(continf);
 	StatShr oldStatshr(statshr);
 
@@ -105,6 +109,7 @@ void PnlWzemPrsRec::refresh(
 	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
 	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
 
+	muteRefresh = false;
 };
 
 void PnlWzemPrsRec::updatePreset(

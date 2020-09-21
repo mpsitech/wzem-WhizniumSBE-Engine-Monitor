@@ -1,9 +1,9 @@
 /**
 	* \file PnlWzemUsgRec.cpp
 	* job handler for job PnlWzemUsgRec (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 4 Jun 2020
-	* \date modified: 4 Jun 2020
+	* \author Catherine Johnson
+	* \date created: 21 Sep 2020
+	* \date modified: 21 Sep 2020
 	*/
 
 #ifdef WZEMCMBD
@@ -37,8 +37,8 @@ PnlWzemUsgRec::PnlWzemUsgRec(
 		{
 	jref = xchg->addJob(dbswzem, this, jrefSup);
 
-	pnlaaccess = NULL;
 	pnlmnuser = NULL;
+	pnlaaccess = NULL;
 	pnldetail = NULL;
 
 	// IP constructor.cust1 --- INSERT
@@ -78,7 +78,11 @@ DpchEngWzem* PnlWzemUsgRec::getNewDpchEng(
 void PnlWzemUsgRec::refresh(
 			DbsWzem* dbswzem
 			, set<uint>& moditems
+			, const bool unmute
 		) {
+	if (muteRefresh && !unmute) return;
+	muteRefresh = true;
+
 	ContInf oldContinf(continf);
 	StatShr oldStatshr(statshr);
 
@@ -109,6 +113,7 @@ void PnlWzemUsgRec::refresh(
 	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
 	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
 
+	muteRefresh = false;
 };
 
 void PnlWzemUsgRec::updatePreset(

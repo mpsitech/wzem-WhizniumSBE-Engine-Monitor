@@ -1,9 +1,9 @@
 /**
 	* \file VecWzemVStub.h
 	* vector VecWzemVStub (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 4 Jun 2020
-	* \date modified: 4 Jun 2020
+	* \author Catherine Johnson
+	* \date created: 21 Sep 2020
+	* \date modified: 21 Sep 2020
 	*/
 
 #ifndef VECWZEMVSTUB_H
@@ -15,24 +15,24 @@
 	* VecWzemVStub
 	*/
 namespace VecWzemVStub {
-	const Sbecore::uint STUBWZEMEVTSTD = 1;
-	const Sbecore::uint STUBWZEMJOBSTD = 2;
-	const Sbecore::uint STUBWZEMJOBXJREF = 3;
-	const Sbecore::uint STUBWZEMOPXSTD = 4;
-	const Sbecore::uint STUBWZEMNDESTD = 5;
-	const Sbecore::uint STUBWZEMNDEXNREF = 6;
-	const Sbecore::uint STUBWZEMPRDSTD = 7;
-	const Sbecore::uint STUBWZEMPRSSTD = 8;
-	const Sbecore::uint STUBWZEMPSTSTD = 9;
-	const Sbecore::uint STUBWZEMSESMENU = 10;
-	const Sbecore::uint STUBWZEMSESSTD = 11;
-	const Sbecore::uint STUBWZEMOWNER = 12;
-	const Sbecore::uint STUBWZEMUSRSTD = 13;
-	const Sbecore::uint STUBWZEMGROUP = 14;
-	const Sbecore::uint STUBWZEMUSGSTD = 15;
-	const Sbecore::uint STUBWZEMDCHSTD = 16;
-	const Sbecore::uint STUBWZEMCLNSTD = 17;
-	const Sbecore::uint STUBWZEMCALSTD = 18;
+	const Sbecore::uint STUBWZEMCALSTD = 1;
+	const Sbecore::uint STUBWZEMCLNSTD = 2;
+	const Sbecore::uint STUBWZEMDCHSTD = 3;
+	const Sbecore::uint STUBWZEMEVTSTD = 4;
+	const Sbecore::uint STUBWZEMJOBSTD = 5;
+	const Sbecore::uint STUBWZEMJOBXJREF = 6;
+	const Sbecore::uint STUBWZEMOPXSTD = 7;
+	const Sbecore::uint STUBWZEMNDESTD = 8;
+	const Sbecore::uint STUBWZEMNDEXNREF = 9;
+	const Sbecore::uint STUBWZEMPRDSTD = 10;
+	const Sbecore::uint STUBWZEMPRSSTD = 11;
+	const Sbecore::uint STUBWZEMPSTSTD = 12;
+	const Sbecore::uint STUBWZEMSESMENU = 13;
+	const Sbecore::uint STUBWZEMSESSTD = 14;
+	const Sbecore::uint STUBWZEMOWNER = 15;
+	const Sbecore::uint STUBWZEMUSRSTD = 16;
+	const Sbecore::uint STUBWZEMGROUP = 17;
+	const Sbecore::uint STUBWZEMUSGSTD = 18;
 
 	Sbecore::uint getIx(const std::string& sref);
 	std::string getSref(const Sbecore::uint ix);

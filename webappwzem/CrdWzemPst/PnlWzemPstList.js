@@ -1,9 +1,9 @@
 /**
   * \file PnlWzemPstList.js
   * web client functionality for panel PnlWzemPstList
-  * \author Alexander Wirthmueller
-  * \date created: 4 Jun 2020
-  * \date modified: 4 Jun 2020
+  * \author Catherine Johnson
+  * \date created: 21 Sep 2020
+  * \date modified: 21 Sep 2020
   */
 
 // --- expand state management
@@ -429,6 +429,12 @@ function handleLoad() {
 };
 
 // --- specific event handlers for app controls
+
+function handleButClipboardClick() {
+	copyToClipboard(document, srcdoc, "WzemPstList", "ListWzemQPstList", retrieveTi(srcdoc, "TagWzemPstList", "TxtRecord1"), retrieveTi(srcdoc, "TagWzemPstList", "TxtRecord2"),
+				["Job","Pst","Sta","Sto"],
+				["job","pst","sta","sto"]);
+};
 
 // --- generalized event handlers for app controls
 

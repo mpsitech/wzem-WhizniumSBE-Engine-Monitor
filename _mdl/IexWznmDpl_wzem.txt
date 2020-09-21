@@ -1,0 +1,31 @@
+- IexWznmDpl v0.9.15				
+- ImeIMComponent.srefIxVBasetype	sref	Title	Comment	
+- cmbeng	wzemcmbd	WhizniumSBE Engine Monitor combined engine		
+	- ImeIMRelease.srefRefWznmMMachine	sref	srefsKOption	Comment
+	- apalis	wzemcmbd_apalis	stripdbg	
+	- arty	wzemcmbd_arty	stripdbg	
+	- linux	wzemcmbd_linux	stripdbg	
+	- mac	wzemcmbd_mac	stripdbg	
+	- ImeIMRelease.end			
+- dbs	dbswzem	WhizniumSBE Engine Monitor database access library		
+	- ImeIMRelease.srefRefWznmMMachine	sref	srefsKOption	Comment
+	- apalis	dbswzem_apalis		
+	- arty	dbswzem_arty		
+	- linux	dbswzem_linux	dynlib	
+	- mac	dbswzem_mac	dynlib	
+	- ImeIMRelease.end			
+- webapp	webappwzem	WhizniumSBE Engine Monitor web app user interface files		
+	- ImeIMRelease.srefRefWznmMMachine	sref	srefsKOption	Comment
+	- apalis	webappwzem_apalis		
+	- arty	webappwzem_arty		
+	- linux	webappwzem_linux		
+	- mac	webappwzem_mac		
+	- ImeIMRelease.end			
+- api	apiwzem	WhizniumSBE Engine Monitor API library		
+	- ImeIMRelease.srefRefWznmMMachine	sref	srefsKOption	Comment
+	- apalis	apiwzem_apalis		
+	- arty	apiwzem_arty		
+	- linux	apiwzem_linux	dynlib	
+	- mac	apiwzem_mac	dynlib	
+	- ImeIMRelease.end			
+- ImeIMComponent.end				

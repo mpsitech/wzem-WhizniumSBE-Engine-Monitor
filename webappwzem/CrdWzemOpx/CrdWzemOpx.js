@@ -1,9 +1,9 @@
 /**
   * \file CrdWzemOpx.js
   * web client functionality for card CrdWzemOpx
-  * \author Alexander Wirthmueller
-  * \date created: 4 Jun 2020
-  * \date modified: 4 Jun 2020
+  * \author Catherine Johnson
+  * \date created: 21 Sep 2020
+  * \date modified: 21 Sep 2020
   */
 
 function getInitdone(pnlshort) {
@@ -332,7 +332,7 @@ function changeHeight(pnlshort, height) {
 // --- view initialization and refresh
 function refresh() {
 
-	doc.title = retrieveCi(srcdoc, "ContInfWzemOpx", "MtxCrdOpx") + " - WhizniumSBE Engine Monitor 0.9.18";
+	doc.title = retrieveCi(srcdoc, "ContInfWzemOpx", "MtxCrdOpx") + " - WhizniumSBE Engine Monitor v0.9.19";
 };
 
 // --- event handlers
@@ -348,7 +348,7 @@ function handleLoad() {
 
 function handleUnload() {
 	var str = serializeDpchAppDo(srcdoc, "DpchAppWzemOpxDo", scrJref, "close");
-	sendReq(str, doc);
+	sendReq(str, doc, null, true);
 };
 
 function handleMitClick(menshort, consref) {

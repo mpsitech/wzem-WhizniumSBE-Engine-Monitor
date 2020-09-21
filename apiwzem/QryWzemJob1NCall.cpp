@@ -1,9 +1,9 @@
 /**
 	* \file QryWzemJob1NCall.cpp
 	* API code for job QryWzemJob1NCall (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 4 Jun 2020
-	* \date modified: 4 Jun 2020
+	* \author Catherine Johnson
+	* \date created: 21 Sep 2020
+	* \date modified: 21 Sep 2020
 	*/
 
 #include "QryWzemJob1NCall.h"

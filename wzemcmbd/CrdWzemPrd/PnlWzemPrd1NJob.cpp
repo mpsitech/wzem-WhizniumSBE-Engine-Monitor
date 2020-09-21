@@ -1,9 +1,9 @@
 /**
 	* \file PnlWzemPrd1NJob.cpp
 	* job handler for job PnlWzemPrd1NJob (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 4 Jun 2020
-	* \date modified: 4 Jun 2020
+	* \author Catherine Johnson
+	* \date created: 21 Sep 2020
+	* \date modified: 21 Sep 2020
 	*/
 
 #ifdef WZEMCMBD
@@ -90,7 +90,11 @@ DpchEngWzem* PnlWzemPrd1NJob::getNewDpchEng(
 void PnlWzemPrd1NJob::refresh(
 			DbsWzem* dbswzem
 			, set<uint>& moditems
+			, const bool unmute
 		) {
+	if (muteRefresh && !unmute) return;
+	muteRefresh = true;
+
 	ContInf oldContinf(continf);
 	StatShr oldStatshr(statshr);
 
@@ -108,6 +112,8 @@ void PnlWzemPrd1NJob::refresh(
 	// IP refresh --- END
 	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
 	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
+
+	muteRefresh = false;
 };
 
 void PnlWzemPrd1NJob::updatePreset(
@@ -221,9 +227,9 @@ void PnlWzemPrd1NJob::handleDpchAppDataStgiacqry(
 
 	WzemMJob* _recJob = NULL;
 
-	muteRefresh = true;
-
 	if (!diffitems.empty()) {
+		muteRefresh = true;
+
 		qry->stgiac = *_stgiacqry;
 
 		if (has(diffitems, QryWzemPrd1NJob::StgIac::JNUM)) recSelNew = qry->getRecByJnum(_stgiacqry->jnum);
@@ -249,10 +255,8 @@ void PnlWzemPrd1NJob::handleDpchAppDataStgiacqry(
 			qry->refreshJnum();
 		};
 
-		refresh(dbswzem, moditems);
+		refresh(dbswzem, moditems, true);
 	};
-
-	muteRefresh = false;
 
 	insert(moditems, DpchEngData::STGIACQRY);
 	*dpcheng = getNewDpchEng(moditems);
@@ -310,9 +314,8 @@ void PnlWzemPrd1NJob::handleDpchAppDoButRefreshClick(
 	muteRefresh = true;
 
 	qry->rerun(dbswzem, false);
-	refresh(dbswzem, moditems);
 
-	muteRefresh = false;
+	refresh(dbswzem, moditems, true);
 
 	insert(moditems, {DpchEngData::STATSHRQRY, DpchEngData::STGIACQRY, DpchEngData::RST});
 	*dpcheng = getNewDpchEng(moditems);

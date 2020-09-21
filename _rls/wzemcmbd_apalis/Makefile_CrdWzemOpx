@@ -1,0 +1,38 @@
+# file Makefile
+# make file for CrdWzemOpx card job handler, release wzemcmbd_apalis(linux (ubt_x86_64) cross-compilation)
+# author Catherine Johnson
+# date created: 21 Sep 2020
+# modified: 21 Sep 2020
+
+include ../Makefile.inc
+
+CPP = ${TCHROOT}/arm-tdx-linux-gnueabi-g++
+CPPFLAGS = --sysroot=${SYSROOT} -std=c++11 -march=armv7-a -mthumb -mfpu=neon -mfloat-abi=hard -g -Wall -Os -pthread -DWZEMCMBD
+
+STATLIB = ${TCHROOT}/arm-tdx-linux-gnueabi-ar
+STATLIBFLAGS = rcs
+
+INCPATH = -I=$(SRCROOT)/dbswzem -I=$(SRCROOT)/wzemcmbd/VecWzem -I=$(SRCROOT)/wzemcmbd/IexWzem -I=$(SRCROOT)/wzemcmbd
+INCPATH += -I=${WHIZROOT}/src -I=/usr/include -I=/usr/include/libxml2
+
+OBJS = CrdWzemOpx.o PnlWzemOpxList.o QryWzemOpxList.o PnlWzemOpxHeadbar.o PnlWzemOpxRec.o PnlWzemOpxDetail.o
+
+LIB = libcrdwzemopx
+
+.SUFFIXES: .cpp
+
+.cpp.o :
+	$(CPP) $(CPPFLAGS) $(INCPATH) -o $@ -c $<
+
+all:	$(LIB)
+
+$(LIB):	$(OBJS)
+	$(STATLIB) $(STATLIBFLAGS) $(LIB).a $(OBJS)
+	rm -f *.o
+
+install:
+	mv $(LIB).a ${SYSROOT}$(LIBROOT)/wzemcmbd/
+
+clean:
+	rm -f *.o
+

@@ -1,9 +1,9 @@
 /**
 	* \file CrdWzemNav.cpp
 	* job handler for job CrdWzemNav (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 4 Jun 2020
-	* \date modified: 4 Jun 2020
+	* \author Catherine Johnson
+	* \date created: 21 Sep 2020
+	* \date modified: 21 Sep 2020
 	*/
 
 #ifdef WZEMCMBD
@@ -41,8 +41,8 @@ CrdWzemNav::CrdWzemNav(
 	feedFSge.tag = "FeedFSge";
 	VecVSge::fillFeed(feedFSge);
 
-	pnladmin = NULL;
 	pnlmon = NULL;
+	pnladmin = NULL;
 	pnlpre = NULL;
 	pnlheadbar = NULL;
 	dlgloaini = NULL;
@@ -52,8 +52,8 @@ CrdWzemNav::CrdWzemNav(
 	set<uint> moditems;
 	refresh(dbswzem, moditems);
 
-	pnladmin = new PnlWzemNavAdmin(xchg, dbswzem, jref, ixWzemVLocale);
 	pnlmon = new PnlWzemNavMon(xchg, dbswzem, jref, ixWzemVLocale);
+	pnladmin = new PnlWzemNavAdmin(xchg, dbswzem, jref, ixWzemVLocale);
 	pnlpre = new PnlWzemNavPre(xchg, dbswzem, jref, ixWzemVLocale);
 	pnlheadbar = new PnlWzemNavHeadbar(xchg, dbswzem, jref, ixWzemVLocale);
 
@@ -101,7 +101,11 @@ DpchEngWzem* CrdWzemNav::getNewDpchEng(
 void CrdWzemNav::refresh(
 			DbsWzem* dbswzem
 			, set<uint>& moditems
+			, const bool unmute
 		) {
+	if (muteRefresh && !unmute) return;
+	muteRefresh = true;
+
 	ContInf oldContinf(continf);
 	StatShr oldStatshr(statshr);
 
@@ -145,6 +149,8 @@ void CrdWzemNav::refresh(
 	// IP refresh --- END
 	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
 	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
+
+	muteRefresh = false;
 };
 
 void CrdWzemNav::updatePreset(
@@ -482,7 +488,7 @@ void CrdWzemNav::changeStage(
 
 			setStage(dbswzem, _ixVSge);
 			reenter = false;
-			if (!muteRefresh) refreshWithDpchEng(dbswzem, dpcheng); // IP changeStage.refresh1 --- LINE
+			refreshWithDpchEng(dbswzem, dpcheng); // IP changeStage.refresh1 --- LINE
 		};
 
 		switch (_ixVSge) {

@@ -1,9 +1,9 @@
 /**
 	* \file PnlWzemPrdRec.h
 	* API code for job PnlWzemPrdRec (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 4 Jun 2020
-	* \date modified: 4 Jun 2020
+	* \author Catherine Johnson
+	* \date created: 21 Sep 2020
+	* \date modified: 21 Sep 2020
 	*/
 
 #ifndef PNLWZEMPRDREC_H
@@ -65,18 +65,18 @@ namespace PnlWzemPrdRec {
 
 	public:
 		static const Sbecore::uint INITDONEDETAIL = 1;
-		static const Sbecore::uint INITDONE1NJOB = 2;
+		static const Sbecore::uint INITDONE1NEVENT = 2;
 		static const Sbecore::uint INITDONE1NNODE = 3;
-		static const Sbecore::uint INITDONE1NEVENT = 4;
+		static const Sbecore::uint INITDONE1NJOB = 4;
 
 	public:
-		StatApp(const bool initdoneDetail = false, const bool initdone1NJob = false, const bool initdone1NNode = false, const bool initdone1NEvent = false);
+		StatApp(const bool initdoneDetail = false, const bool initdone1NEvent = false, const bool initdone1NNode = false, const bool initdone1NJob = false);
 
 	public:
 		bool initdoneDetail;
-		bool initdone1NJob;
-		bool initdone1NNode;
 		bool initdone1NEvent;
+		bool initdone1NNode;
+		bool initdone1NJob;
 
 	public:
 		bool readXML(xmlXPathContext* docctx, std::string basexpath = "", bool addbasetag = false);
@@ -92,20 +92,20 @@ namespace PnlWzemPrdRec {
 	public:
 		static const Sbecore::uint IXWZEMVEXPSTATE = 1;
 		static const Sbecore::uint SCRJREFDETAIL = 2;
-		static const Sbecore::uint SCRJREF1NJOB = 3;
+		static const Sbecore::uint SCRJREF1NEVENT = 3;
 		static const Sbecore::uint SCRJREF1NNODE = 4;
-		static const Sbecore::uint SCRJREF1NEVENT = 5;
+		static const Sbecore::uint SCRJREF1NJOB = 5;
 		static const Sbecore::uint BUTREGULARIZEACTIVE = 6;
 
 	public:
-		StatShr(const Sbecore::uint ixWzemVExpstate = VecWzemVExpstate::REGD, const std::string& scrJrefDetail = "", const std::string& scrJref1NJob = "", const std::string& scrJref1NNode = "", const std::string& scrJref1NEvent = "", const bool ButRegularizeActive = true);
+		StatShr(const Sbecore::uint ixWzemVExpstate = VecWzemVExpstate::REGD, const std::string& scrJrefDetail = "", const std::string& scrJref1NEvent = "", const std::string& scrJref1NNode = "", const std::string& scrJref1NJob = "", const bool ButRegularizeActive = true);
 
 	public:
 		Sbecore::uint ixWzemVExpstate;
 		std::string scrJrefDetail;
-		std::string scrJref1NJob;
-		std::string scrJref1NNode;
 		std::string scrJref1NEvent;
+		std::string scrJref1NNode;
+		std::string scrJref1NJob;
 		bool ButRegularizeActive;
 
 	public:

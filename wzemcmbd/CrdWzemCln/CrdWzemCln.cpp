@@ -1,9 +1,9 @@
 /**
 	* \file CrdWzemCln.cpp
 	* job handler for job CrdWzemCln (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 4 Jun 2020
-	* \date modified: 4 Jun 2020
+	* \author Catherine Johnson
+	* \date created: 21 Sep 2020
+	* \date modified: 21 Sep 2020
 	*/
 
 #ifdef WZEMCMBD
@@ -47,8 +47,10 @@ CrdWzemCln::CrdWzemCln(
 
 	// IP constructor.cust1 --- INSERT
 
+	if ((ref + 1) != 0) xchg->triggerIxRefCall(dbswzem, VecWzemVCall::CALLWZEMREFPRESET, jref, VecWzemVPreset::PREWZEMREFCLN, ref);
+
 	// initialize according to ref
-	changeRef(dbswzem, jref, ((ref+1) == 0) ? 0 : ref, false);
+	changeRef(dbswzem, jref, ((ref + 1) == 0) ? 0 : ref, false);
 
 	pnllist = new PnlWzemClnList(xchg, dbswzem, jref, ixWzemVLocale);
 	pnlheadbar = new PnlWzemClnHeadbar(xchg, dbswzem, jref, ixWzemVLocale);
@@ -102,7 +104,11 @@ DpchEngWzem* CrdWzemCln::getNewDpchEng(
 void CrdWzemCln::refresh(
 			DbsWzem* dbswzem
 			, set<uint>& moditems
+			, const bool unmute
 		) {
+	if (muteRefresh && !unmute) return;
+	muteRefresh = true;
+
 	ContInf oldContinf(continf);
 
 	// IP refresh --- BEGIN
@@ -112,6 +118,8 @@ void CrdWzemCln::refresh(
 
 	// IP refresh --- END
 	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
+
+	muteRefresh = false;
 };
 
 void CrdWzemCln::changeRef(
@@ -284,7 +292,7 @@ void CrdWzemCln::changeStage(
 
 			setStage(dbswzem, _ixVSge);
 			reenter = false;
-			if (!muteRefresh) refreshWithDpchEng(dbswzem, dpcheng); // IP changeStage.refresh1 --- LINE
+			refreshWithDpchEng(dbswzem, dpcheng); // IP changeStage.refresh1 --- LINE
 		};
 
 		switch (_ixVSge) {

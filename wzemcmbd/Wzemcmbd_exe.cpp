@@ -1,9 +1,9 @@
 /**
 	* \file Wzemcmbd_exe.cpp
 	* Wzem combined daemon main (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 4 Jun 2020
-	* \date modified: 4 Jun 2020
+	* \author Catherine Johnson
+	* \date created: 21 Sep 2020
+	* \date modified: 21 Sep 2020
 	*/
 
 #include "Wzemcmbd.h"
@@ -244,6 +244,7 @@ void showSubjobs(
 			, bool clstns
 			, bool ops
 			, bool presets
+			, bool sges
 			, bool dcolcont
 			, bool stmgrcont
 			, unsigned int indent
@@ -252,6 +253,9 @@ void showSubjobs(
 
 	string setgray = "\033[38;2;196;196;196m";
 	string reset = "\033[0m";
+
+	bool csjobNotJob = false;
+	bool srvNotCli = false;
 
 	DcolWzem* dcol = NULL;
 	StmgrWzem* stmgr = NULL;
@@ -262,6 +266,8 @@ void showSubjobs(
 	vector<uint> icsWzemVPreset;
 	vector<Arg> args;
 
+	string s;
+
 	// indentation
 	for (unsigned int i = 0; i < indent; i++) id = id + "\t";
 
@@ -270,8 +276,11 @@ void showSubjobs(
 	else cout << "\t" << id << "+ ";
 	cout << VecWzemVJob::getSref(job->ixWzemVJob);
 
-	if (xchg->getCsjobNotJob(job->ixWzemVJob)) {
-		if (((CsjobWzem*) job)->srvNotCli) cout << "/SRV";
+	csjobNotJob = xchg->getCsjobNotJob(job->ixWzemVJob);
+	if (csjobNotJob) srvNotCli = ((CsjobWzem*) job)->srvNotCli;
+
+	if (csjobNotJob) {
+		if (srvNotCli) cout << "/SRV";
 		else cout << "/CLI";
 	};
 
@@ -310,12 +319,12 @@ void showSubjobs(
 		// ops
 		cout << setgray;
 
-		job->mOps.lock("", "showSubjobs");
+		job->mOps.lock("", "showSubjobs", "jref=" + to_string(job->jref));
 
 		for (auto it = job->ops.begin(); it != job->ops.end(); it++)
 					cout << "\t\t" << id << VecWzemVDpch::getSref((*it)->ixVDpch).substr(4+3) << " (" << to_string((*it)->oref) << "): " << (*it)->squawk << endl;
 
-		job->mOps.unlock("", "showSubjobs");
+		job->mOps.unlock("", "showSubjobs", "jref=" + to_string(job->jref));
 
 		cout << reset;
 	};
@@ -330,6 +339,21 @@ void showSubjobs(
 					cout << "\t\t" << id << VecWzemVPreset::getSref(icsWzemVPreset[i]) << ": " << args[i].to_string() << endl;
 
 		cout << reset;
+	};
+
+	if (sges) {
+		// stages
+		if (!csjobNotJob || (csjobNotJob && srvNotCli)) {
+			s = job->getSquawk(NULL);
+
+			if (s != "") {
+				cout << setgray;
+
+				cout << "\t\t" << id << job->ixVSge << ": " << s << endl;
+
+				cout << reset;
+			};
+		};
 	};
 
 	if (dcolcont) {
@@ -369,7 +393,7 @@ void showSubjobs(
 		job = xchg->getJobByJref(*it);
 		jobinfo2 = xchg->getJobinfoByJref(*it);
 
-		if (job && jobinfo2) showSubjobs(xchg, job, jobinfo2, clstns, ops, presets, dcolcont, stmgrcont, indent+1);
+		if (job && jobinfo2) showSubjobs(xchg, job, jobinfo2, clstns, ops, presets, sges, dcolcont, stmgrcont, indent + 1);
 	};
 };
 
@@ -458,7 +482,7 @@ int main(
 
 	try {
 		// welcome message
-		cout << "Welcome to WhizniumSBE Engine Monitor 0.9.18!" << endl;
+		cout << "Welcome to WhizniumSBE Engine Monitor v0.9.19!" << endl;
 
 		// calls wzemcmbd.init()
 		wzemcmbd = new Wzemcmbd(exedir, clearAll, startMon);
@@ -491,12 +515,16 @@ int main(
 					cout << "\tstartMon" << endl;
 					cout << "\tstopMon" << endl;
 
+					cout << "\tstartMtdump" << endl;
+					cout << "\tstopMtdump" << endl;
+
 					cout << "\tshowJobs" << endl;
 					cout << "\tshowSubjobs" << endl;
 
 					cout << "\tshowClstns" << endl;
 					cout << "\tshowOps" << endl;
 					cout << "\tshowPresets" << endl;
+					cout << "\tshowSges" << endl;
 
 					cout << "\tshowDcolContent" << endl;
 					cout << "\tshowStmgrContent" << endl;
@@ -510,8 +538,14 @@ int main(
 				} else if (cmd == "stopMon") {
 					xchg->stopMon();
 
+				} else if (cmd == "startMtdump") {
+					Mt::ixVVerbose = Mt::VecVVerbose::ALL;
+
+				} else if (cmd == "stopMtdump") {
+					Mt::ixVVerbose = Mt::VecVVerbose::ERROR;
+
 				} else if ( (cmd == "showJobs") || (cmd == "showSubjobs") || (cmd == "showClstns") || (cmd == "showOps") || (cmd == "showPresets")
-							|| (cmd == "showDcolContent") || (cmd == "showStmgrContent") ) {
+							|| (cmd == "showSges") || (cmd == "showDcolContent") || (cmd == "showStmgrContent") ) {
 
 					xchg->rwmJobs.rlock("", "main[1]");
 
@@ -524,13 +558,14 @@ int main(
 					};
 
 					if (job && jobinfo) {
-						if (cmd == "showJobs") showSubjobs(xchg, job, jobinfo, false, false, false, false, false, 0);
-						else if (cmd == "showSubjobs") showSubjobs(xchg, job, jobinfo, false, false, false, false, false, 0);
-						else if (cmd == "showClstns") showSubjobs(xchg, job, jobinfo, true, false, false, false, false, 0);
-						else if (cmd == "showOps") showSubjobs(xchg, job, jobinfo, false, true, false, false, false, 0);
-						else if (cmd == "showPresets") showSubjobs(xchg, job, jobinfo, false, false, true, false, false, 0);
-						else if (cmd == "showDcolContent") showSubjobs(xchg, job, jobinfo, false, false, false, true, false, 0);
-						else if (cmd == "showStmgrContent") showSubjobs(xchg, job, jobinfo, false, false, false, false, true, 0);
+						if (cmd == "showJobs") showSubjobs(xchg, job, jobinfo, false, false, false, false, false, false, 0);
+						else if (cmd == "showSubjobs") showSubjobs(xchg, job, jobinfo, false, false, false, false, false, false, 0);
+						else if (cmd == "showClstns") showSubjobs(xchg, job, jobinfo, true, false, false, false, false, false, 0);
+						else if (cmd == "showOps") showSubjobs(xchg, job, jobinfo, false, true, false, false, false, false, 0);
+						else if (cmd == "showPresets") showSubjobs(xchg, job, jobinfo, false, false, true, false, false, false, 0);
+						else if (cmd == "showSges") showSubjobs(xchg, job, jobinfo, false, false, false, true, false, false, 0);
+						else if (cmd == "showDcolContent") showSubjobs(xchg, job, jobinfo, false, false, false, false, true, false, 0);
+						else if (cmd == "showStmgrContent") showSubjobs(xchg, job, jobinfo, false, false, false, false, false, true, 0);
 					};
 
 					xchg->rwmJobs.runlock("", "main[1]");

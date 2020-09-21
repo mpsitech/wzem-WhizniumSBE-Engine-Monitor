@@ -1,9 +1,9 @@
 /**
   * \file PnlWzemJob1NCall.js
   * web client functionality for panel PnlWzemJob1NCall
-  * \author Alexander Wirthmueller
-  * \date created: 4 Jun 2020
-  * \date modified: 4 Jun 2020
+  * \author Catherine Johnson
+  * \date created: 21 Sep 2020
+  * \date modified: 21 Sep 2020
   */
 
 // --- expand state management
@@ -409,6 +409,12 @@ function handleButMinimizeClick() {
 
 function handleButRegularizeClick() {
 	regularize(true);
+};
+
+function handleButClipboardClick() {
+	copyToClipboard(document, srcdoc, "WzemJob1NCall", "ListWzemQJob1NCall", retrieveTi(srcdoc, "TagWzemJob1NCall", "TxtRecord1"), retrieveTi(srcdoc, "TagWzemJob1NCall", "TxtRecord2"),
+				["Ref"],
+				["ref"]);
 };
 
 // --- generalized event handlers for app controls

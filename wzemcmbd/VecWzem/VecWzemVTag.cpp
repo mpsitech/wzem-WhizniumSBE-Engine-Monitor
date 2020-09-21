@@ -1,9 +1,9 @@
 /**
 	* \file VecWzemVTag.cpp
 	* vector VecWzemVTag (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 4 Jun 2020
-	* \date modified: 4 Jun 2020
+	* \author Catherine Johnson
+	* \date created: 21 Sep 2020
+	* \date modified: 21 Sep 2020
 	*/
 
 #include "VecWzemVTag.h"
@@ -51,6 +51,7 @@ uint VecWzemVTag::getIx(
 	if (s == "progress") return PROGRESS;
 	if (s == "prserr") return PRSERR;
 	if (s == "quest") return QUEST;
+	if (s == "rec") return REC;
 	if (s == "reverse") return REVERSE;
 	if (s == "run") return RUN;
 	if (s == "sess") return SESS;
@@ -98,6 +99,7 @@ string VecWzemVTag::getSref(
 	if (ix == PROGRESS) return("progress");
 	if (ix == PRSERR) return("prserr");
 	if (ix == QUEST) return("quest");
+	if (ix == REC) return("rec");
 	if (ix == REVERSE) return("reverse");
 	if (ix == RUN) return("run");
 	if (ix == SESS) return("sess");
@@ -147,6 +149,7 @@ string VecWzemVTag::getTitle(
 		if (ix == PROGRESS) return("progress");
 		if (ix == PRSERR) return("parse error");
 		if (ix == QUEST) return("question");
+		if (ix == REC) return("records &firstload; to &lastload; of &ntot;");
 		if (ix == REVERSE) return("reverse");
 		if (ix == RUN) return("execute");
 		if (ix == SESS) return("session");

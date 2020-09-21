@@ -1,9 +1,9 @@
 /**
 	* \file PnlWzemUsgDetail.cpp
 	* job handler for job PnlWzemUsgDetail (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 4 Jun 2020
-	* \date modified: 4 Jun 2020
+	* \author Catherine Johnson
+	* \date created: 21 Sep 2020
+	* \date modified: 21 Sep 2020
 	*/
 
 #ifdef WZEMCMBD
@@ -104,7 +104,11 @@ void PnlWzemUsgDetail::refreshRecUsg(
 void PnlWzemUsgDetail::refresh(
 			DbsWzem* dbswzem
 			, set<uint>& moditems
+			, const bool unmute
 		) {
+	if (muteRefresh && !unmute) return;
+	muteRefresh = true;
+
 	StatShr oldStatshr(statshr);
 
 	// IP refresh --- BEGIN
@@ -114,6 +118,8 @@ void PnlWzemUsgDetail::refresh(
 	// IP refresh --- END
 
 	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
+
+	muteRefresh = false;
 };
 
 void PnlWzemUsgDetail::updatePreset(

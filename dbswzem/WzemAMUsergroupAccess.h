@@ -1,9 +1,9 @@
 /**
 	* \file WzemAMUsergroupAccess.h
 	* database access for table TblWzemAMUsergroupAccess (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 4 Jun 2020
-	* \date modified: 4 Jun 2020
+	* \author Catherine Johnson
+	* \date created: 21 Sep 2020
+	* \date modified: 21 Sep 2020
 	*/
 
 #ifndef WZEMAMUSERGROUPACCESS_H

@@ -1,9 +1,9 @@
 /**
 	* \file PnlWzemPrdRec_blks.cpp
 	* job handler for job PnlWzemPrdRec (implementation of blocks)
-	* \author Alexander Wirthmueller
-	* \date created: 4 Jun 2020
-	* \date modified: 4 Jun 2020
+	* \author Catherine Johnson
+	* \date created: 21 Sep 2020
+	* \date modified: 21 Sep 2020
 	*/
 
 using namespace std;
@@ -97,9 +97,9 @@ void PnlWzemPrdRec::StatApp::writeXML(
 			, string difftag
 			, bool shorttags
 			, const bool initdoneDetail
-			, const bool initdone1NJob
-			, const bool initdone1NNode
 			, const bool initdone1NEvent
+			, const bool initdone1NNode
+			, const bool initdone1NJob
 		) {
 	if (difftag.length() == 0) difftag = "StatAppWzemPrdRec";
 
@@ -109,9 +109,9 @@ void PnlWzemPrdRec::StatApp::writeXML(
 
 	xmlTextWriterStartElement(wr, BAD_CAST difftag.c_str());
 		writeBoolAttr(wr, itemtag, "sref", "initdoneDetail", initdoneDetail);
-		writeBoolAttr(wr, itemtag, "sref", "initdone1NJob", initdone1NJob);
-		writeBoolAttr(wr, itemtag, "sref", "initdone1NNode", initdone1NNode);
 		writeBoolAttr(wr, itemtag, "sref", "initdone1NEvent", initdone1NEvent);
+		writeBoolAttr(wr, itemtag, "sref", "initdone1NNode", initdone1NNode);
+		writeBoolAttr(wr, itemtag, "sref", "initdone1NJob", initdone1NJob);
 	xmlTextWriterEndElement(wr);
 };
 
@@ -122,21 +122,21 @@ void PnlWzemPrdRec::StatApp::writeXML(
 PnlWzemPrdRec::StatShr::StatShr(
 			const uint ixWzemVExpstate
 			, const ubigint jrefDetail
-			, const ubigint jref1NJob
-			, const ubigint jref1NNode
 			, const ubigint jref1NEvent
+			, const ubigint jref1NNode
+			, const ubigint jref1NJob
 			, const bool ButRegularizeActive
 		) :
 			Block()
 		{
 	this->ixWzemVExpstate = ixWzemVExpstate;
 	this->jrefDetail = jrefDetail;
-	this->jref1NJob = jref1NJob;
-	this->jref1NNode = jref1NNode;
 	this->jref1NEvent = jref1NEvent;
+	this->jref1NNode = jref1NNode;
+	this->jref1NJob = jref1NJob;
 	this->ButRegularizeActive = ButRegularizeActive;
 
-	mask = {IXWZEMVEXPSTATE, JREFDETAIL, JREF1NJOB, JREF1NNODE, JREF1NEVENT, BUTREGULARIZEACTIVE};
+	mask = {IXWZEMVEXPSTATE, JREFDETAIL, JREF1NEVENT, JREF1NNODE, JREF1NJOB, BUTREGULARIZEACTIVE};
 };
 
 void PnlWzemPrdRec::StatShr::writeXML(
@@ -153,9 +153,9 @@ void PnlWzemPrdRec::StatShr::writeXML(
 	xmlTextWriterStartElement(wr, BAD_CAST difftag.c_str());
 		writeStringAttr(wr, itemtag, "sref", "srefIxWzemVExpstate", VecWzemVExpstate::getSref(ixWzemVExpstate));
 		writeStringAttr(wr, itemtag, "sref", "scrJrefDetail", Scr::scramble(jrefDetail));
-		writeStringAttr(wr, itemtag, "sref", "scrJref1NJob", Scr::scramble(jref1NJob));
-		writeStringAttr(wr, itemtag, "sref", "scrJref1NNode", Scr::scramble(jref1NNode));
 		writeStringAttr(wr, itemtag, "sref", "scrJref1NEvent", Scr::scramble(jref1NEvent));
+		writeStringAttr(wr, itemtag, "sref", "scrJref1NNode", Scr::scramble(jref1NNode));
+		writeStringAttr(wr, itemtag, "sref", "scrJref1NJob", Scr::scramble(jref1NJob));
 		writeBoolAttr(wr, itemtag, "sref", "ButRegularizeActive", ButRegularizeActive);
 	xmlTextWriterEndElement(wr);
 };
@@ -167,9 +167,9 @@ set<uint> PnlWzemPrdRec::StatShr::comm(
 
 	if (ixWzemVExpstate == comp->ixWzemVExpstate) insert(items, IXWZEMVEXPSTATE);
 	if (jrefDetail == comp->jrefDetail) insert(items, JREFDETAIL);
-	if (jref1NJob == comp->jref1NJob) insert(items, JREF1NJOB);
-	if (jref1NNode == comp->jref1NNode) insert(items, JREF1NNODE);
 	if (jref1NEvent == comp->jref1NEvent) insert(items, JREF1NEVENT);
+	if (jref1NNode == comp->jref1NNode) insert(items, JREF1NNODE);
+	if (jref1NJob == comp->jref1NJob) insert(items, JREF1NJOB);
 	if (ButRegularizeActive == comp->ButRegularizeActive) insert(items, BUTREGULARIZEACTIVE);
 
 	return(items);
@@ -183,7 +183,7 @@ set<uint> PnlWzemPrdRec::StatShr::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {IXWZEMVEXPSTATE, JREFDETAIL, JREF1NJOB, JREF1NNODE, JREF1NEVENT, BUTREGULARIZEACTIVE};
+	diffitems = {IXWZEMVEXPSTATE, JREFDETAIL, JREF1NEVENT, JREF1NNODE, JREF1NJOB, BUTREGULARIZEACTIVE};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);

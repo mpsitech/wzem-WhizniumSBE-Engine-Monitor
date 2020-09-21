@@ -1,9 +1,9 @@
 /**
 	* \file QryWzemJobList.h
 	* job handler for job QryWzemJobList (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 4 Jun 2020
-	* \date modified: 4 Jun 2020
+	* \author Catherine Johnson
+	* \date created: 21 Sep 2020
+	* \date modified: 21 Sep 2020
 	*/
 
 #ifndef QRYWZEMJOBLIST_H
@@ -32,8 +32,8 @@ public:
 
 	public:
 		static const Sbecore::uint SUP = 1;
-		static const Sbecore::uint STO = 2;
-		static const Sbecore::uint STA = 3;
+		static const Sbecore::uint STA = 2;
+		static const Sbecore::uint STO = 3;
 		static const Sbecore::uint PRD = 4;
 
 		static Sbecore::uint getIx(const std::string& sref);
@@ -144,8 +144,8 @@ public:
 	void handleCall(DbsWzem* dbswzem, Sbecore::Call* call);
 
 private:
-	bool handleCallWzemJobUpd_refEq(DbsWzem* dbswzem, const Sbecore::ubigint jrefTrig);
 	bool handleCallWzemJobMod(DbsWzem* dbswzem, const Sbecore::ubigint jrefTrig);
+	bool handleCallWzemJobUpd_refEq(DbsWzem* dbswzem, const Sbecore::ubigint jrefTrig);
 	bool handleCallWzemStubChgFromSelf(DbsWzem* dbswzem);
 
 };

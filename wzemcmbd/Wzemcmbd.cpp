@@ -1,9 +1,9 @@
 /**
 	* \file Wzemcmbd.cpp
 	* inter-thread exchange object for Wzem combined daemon (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 4 Jun 2020
-	* \date modified: 4 Jun 2020
+	* \author Catherine Johnson
+	* \date created: 21 Sep 2020
+	* \date modified: 21 Sep 2020
 	*/
 
 #include "Wzemcmbd.h"
@@ -815,9 +815,9 @@ DpchEngWzemAlert* AlrWzem::prepareAlrAbt(
 	continf.TxtCpt = StrMod::cap(continf.TxtCpt);
 
 	if (ixWzemVLocale == VecWzemVLocale::ENUS) {
-		continf.TxtMsg1 = "WhizniumSBE Engine Monitor version 0.9.18 released on 4-6-2020";
+		continf.TxtMsg1 = "WhizniumSBE Engine Monitor version v0.9.19 released on 21-9-2020";
 		continf.TxtMsg2 = "\\u00a9 MPSI Technologies GmbH";
-		continf.TxtMsg4 = "contributors: Alexander Wirthmueller";
+		continf.TxtMsg4 = "contributors: -";
 		continf.TxtMsg6 = "WhizniumSBE Engine Monitor serves as a debugging tool for projects developed with WhizniumSBE.";
 		continf.TxtMsg7 = "Events modifying the run-time job structure can be tracked along with external requests and operation execution.";
 	};
@@ -974,11 +974,11 @@ ReqWzem::~ReqWzem() {
 };
 
 void ReqWzem::setStateReply() {
-	cReady.lockMutex("ReqWzem", "setStateReply");
+	cReady.lockMutex("ReqWzem", "setStateReply", "jref=" + to_string(jref));
 	ixVState = VecVState::REPLY;
-	cReady.unlockMutex("ReqWzem", "setStateReply");
+	cReady.unlockMutex("ReqWzem", "setStateReply", "jref=" + to_string(jref));
 
-	cReady.signal("ReqWzem", "setStateReply");
+	cReady.signal("ReqWzem", "setStateReply", "jref=" + to_string(jref));
 };
 
 /******************************************************************************
@@ -989,7 +989,7 @@ DcolWzem::DcolWzem(
 			const ubigint jref
 			, const uint ixWzemVLocale
 		) :
-			mAccess("dcol(" + to_string(jref) + ").mAccess", "DcolWzem", "DcolWzem")
+			mAccess("dcol.mAccess", "DcolWzem", "DcolWzem", "jref=" + to_string(jref))
 		{
 	this->jref = jref;
 	this->ixWzemVLocale = ixWzemVLocale;
@@ -1002,24 +1002,24 @@ DcolWzem::DcolWzem(
 DcolWzem::~DcolWzem() {
 	for (auto it = dpchs.begin(); it != dpchs.end(); it++) delete(*it);
 
-	if (req) req->cReady.signal("DcolWzem", "~DcolWzem");
+	if (req) req->cReady.signal("DcolWzem", "~DcolWzem", "jref=" + to_string(jref));
 
-	mAccess.lock("DcolWzem", "~DcolWzem");
-	mAccess.unlock("DcolWzem", "~DcolWzem");
+	mAccess.lock("DcolWzem", "~DcolWzem", "jref=" + to_string(jref));
+	mAccess.unlock("DcolWzem", "~DcolWzem", "jref=" + to_string(jref));
 };
 
 void DcolWzem::lockAccess(
 			const string& srefObject
 			, const string& srefMember
 		) {
-	mAccess.lock(srefObject, srefMember);
+	mAccess.lock(srefObject, srefMember, "jref=" + to_string(jref));
 };
 
 void DcolWzem::unlockAccess(
 			const string& srefObject
 			, const string& srefMember
 		) {
-	mAccess.unlock(srefObject, srefMember);
+	mAccess.unlock(srefObject, srefMember, "jref=" + to_string(jref));
 };
 
 /******************************************************************************
@@ -1032,8 +1032,8 @@ JobWzem::JobWzem(
 			, const ubigint jrefSup
 			, const uint ixWzemVLocale
 		) :
-			mAccess("mAccess", VecWzemVJob::getSref(ixWzemVJob) + "(jrefSup=" + to_string(jrefSup) + ")", VecWzemVJob::getSref(ixWzemVJob))
-			, mOps("mOps", VecWzemVJob::getSref(ixWzemVJob) + "(jrefSup=" + to_string(jrefSup) + ")", VecWzemVJob::getSref(ixWzemVJob))
+			mAccess("mAccess", VecWzemVJob::getSref(ixWzemVJob), VecWzemVJob::getSref(ixWzemVJob), "jrefSup=" + to_string(jrefSup))
+			, mOps("mOps", VecWzemVJob::getSref(ixWzemVJob), VecWzemVJob::getSref(ixWzemVJob), "jrefSup=" + to_string(jrefSup))
 		{
 	this->xchg = xchg;
 
@@ -1062,8 +1062,8 @@ JobWzem::JobWzem(
 JobWzem::~JobWzem() {
 	if (reqCmd) delete reqCmd;
 
-	mAccess.lock(VecWzemVJob::getSref(ixWzemVJob) + "(" + to_string(jref) + ")", "~" + VecWzemVJob::getSref(ixWzemVJob));
-	mAccess.unlock(VecWzemVJob::getSref(ixWzemVJob) + "(" + to_string(jref) + ")", "~" + VecWzemVJob::getSref(ixWzemVJob));
+	mAccess.lock(VecWzemVJob::getSref(ixWzemVJob), "~" + VecWzemVJob::getSref(ixWzemVJob), "jref=" + to_string(jref));
+	mAccess.unlock(VecWzemVJob::getSref(ixWzemVJob), "~" + VecWzemVJob::getSref(ixWzemVJob), "jref=" + to_string(jref));
 };
 
 DpchEngWzem* JobWzem::getNewDpchEng(
@@ -1075,18 +1075,21 @@ DpchEngWzem* JobWzem::getNewDpchEng(
 void JobWzem::refresh(
 			DbsWzem* dbswzem
 			, set<uint>& moditems
+			, const bool unmute
 		) {
 };
 
 void JobWzem::refreshWithDpchEng(
 			DbsWzem* dbswzem
 			, DpchEngWzem** dpcheng
+			, const bool unmute
 		) {
 	set<uint> moditems;
 
 	DpchEngWzem* _dpcheng = NULL;
 
-	refresh(dbswzem, moditems);
+	refresh(dbswzem, moditems, unmute);
+	if (muteRefresh) return;
 
 	if (dpcheng) {
 		_dpcheng = getNewDpchEng(moditems);
@@ -1126,39 +1129,39 @@ void JobWzem::lockAccess(
 			const string& srefObject
 			, const string& srefMember
 		) {
-	mAccess.lock(srefObject, srefMember);
+	mAccess.lock(srefObject, srefMember, "jref=" + to_string(jref));
 };
 
 bool JobWzem::trylockAccess(
 			const string& srefObject
 			, const string& srefMember
 		) {
-	return mAccess.trylock(srefObject, srefMember);
+	return mAccess.trylock(srefObject, srefMember, "jref=" + to_string(jref));
 };
 
 void JobWzem::unlockAccess(
 			const string& srefObject
 			, const string& srefMember
 		) {
-	mAccess.unlock(srefObject, srefMember);
+	mAccess.unlock(srefObject, srefMember, "jref=" + to_string(jref));
 };
 
 void JobWzem::lockAccess(
 			const string& srefMember
 		) {
-	mAccess.lock("", srefMember);
+	mAccess.lock(VecWzemVJob::getSref(ixWzemVJob), srefMember, "jref=" + to_string(jref));
 };
 
 bool JobWzem::trylockAccess(
 			const string& srefMember
 		) {
-	return mAccess.trylock("", srefMember);
+	return mAccess.trylock(VecWzemVJob::getSref(ixWzemVJob), srefMember, "jref=" + to_string(jref));
 };
 
 void JobWzem::unlockAccess(
 			const string& srefMember
 		) {
-	mAccess.unlock("", srefMember);
+	mAccess.unlock(VecWzemVJob::getSref(ixWzemVJob), srefMember, "jref=" + to_string(jref));
 };
 
 void JobWzem::setStage(
@@ -1207,12 +1210,12 @@ void JobWzem::submitInvs(
 };
 
 void JobWzem::clearOps() {
-	mOps.lock(VecWzemVJob::getSref(ixWzemVJob) + "(" + to_string(jref) + ")", "clearOps");
+	mOps.lock(VecWzemVJob::getSref(ixWzemVJob), "clearOps", "jref=" + to_string(jref));
 
 	for (auto it = ops.begin(); it != ops.end(); it++) delete(*it);
 	ops.clear();
 
-	mOps.unlock(VecWzemVJob::getSref(ixWzemVJob) + "(" + to_string(jref) + ")", "clearOps");
+	mOps.unlock(VecWzemVJob::getSref(ixWzemVJob), "clearOps", "jref=" + to_string(jref));
 };
 
 void JobWzem::addOp(
@@ -1221,14 +1224,14 @@ void JobWzem::addOp(
 		) {
 	string squawk;
 
-	mOps.lock(VecWzemVJob::getSref(ixWzemVJob) + "(" + to_string(jref) + ")", "addOp");
+	mOps.lock(VecWzemVJob::getSref(ixWzemVJob), "addOp", "jref=" + to_string(jref));
 
 	// generate squawk
 
 	// append to op list
 	ops.push_back(new Op(inv->oref, inv->ixWzemVDpch, squawk));
 
-	mOps.unlock(VecWzemVJob::getSref(ixWzemVJob) + "(" + to_string(jref) + ")", "addOp");
+	mOps.unlock(VecWzemVJob::getSref(ixWzemVJob), "addOp", "jref=" + to_string(jref));
 };
 
 void JobWzem::removeOp(
@@ -1236,7 +1239,7 @@ void JobWzem::removeOp(
 		) {
 	Op* op = NULL;
 
-	mOps.lock(VecWzemVJob::getSref(ixWzemVJob) + "(" + to_string(jref) + ")", "removeOp");
+	mOps.lock(VecWzemVJob::getSref(ixWzemVJob), "removeOp", "jref=" + to_string(jref));
 
 	for (auto it = ops.begin(); it != ops.end(); it++) {
 		op = *it;
@@ -1254,17 +1257,17 @@ void JobWzem::removeOp(
 		};
 	};
 
-	mOps.unlock(VecWzemVJob::getSref(ixWzemVJob) + "(" + to_string(jref) + ")", "removeOp");
+	mOps.unlock(VecWzemVJob::getSref(ixWzemVJob), "removeOp", "jref=" + to_string(jref));
 };
 
 string JobWzem::getOpsqkLast() {
 	string retval;
 
-	mOps.lock(VecWzemVJob::getSref(ixWzemVJob) + "(" + to_string(jref) + ")", "getOpsqkLast");
+	mOps.lock(VecWzemVJob::getSref(ixWzemVJob), "getOpsqkLast", "jref=" + to_string(jref));
 
 	retval = opsqkLast;
 
-	mOps.unlock(VecWzemVJob::getSref(ixWzemVJob) + "(" + to_string(jref) + ")", "getOpsqkLast");
+	mOps.unlock(VecWzemVJob::getSref(ixWzemVJob), "getOpsqkLast", "jref=" + to_string(jref));
 
 	return retval;
 };
@@ -1296,11 +1299,12 @@ CsjobWzem::CsjobWzem(
 	srv = NULL;
 };
 
-void CsjobWzem::handleClaim(
+bool CsjobWzem::handleClaim(
 			DbsWzem* dbswzem
 			, map<ubigint,Claim*>& claims
 			, const ubigint jrefNewest
 		) {
+	return false;
 };
 
 /******************************************************************************
@@ -1334,57 +1338,61 @@ void ShrdatWzem::term(
 void ShrdatWzem::rlockAccess(
 			const string& srefObject
 			, const string& srefMember
+			, const string& args
 		) {
-	rwmAccess.rlock(srefObject, srefMember);
+	rwmAccess.rlock(srefObject, srefMember, args);
 };
 
 void ShrdatWzem::runlockAccess(
 			const string& srefObject
 			, const string& srefMember
+			, const string& args
 		) {
-	rwmAccess.runlock(srefObject, srefMember);
+	rwmAccess.runlock(srefObject, srefMember, args);
 };
 
 void ShrdatWzem::rlockAccess(
 			const ubigint jref
 			, const string& srefMember
 		) {
-	rwmAccess.rlock(srefSupclass + "(" + to_string(jref) + ")", srefMember);
+	rwmAccess.rlock(srefSupclass, srefMember, "jref=" + to_string(jref));
 };
 
 void ShrdatWzem::runlockAccess(
 			const ubigint jref
 			, const string& srefMember
 		) {
-	rwmAccess.runlock(srefSupclass + "(" + to_string(jref) + ")", srefMember);
+	rwmAccess.runlock(srefSupclass, srefMember, "jref=" + to_string(jref));
 };
 
 void ShrdatWzem::wlockAccess(
 			const string& srefObject
 			, const string& srefMember
+			, const string& args
 		) {
-	rwmAccess.wlock(srefObject, srefMember);
+	rwmAccess.wlock(srefObject, srefMember, args);
 };
 
 void ShrdatWzem::wunlockAccess(
 			const string& srefObject
 			, const string& srefMember
+			, const string& args
 		) {
-	rwmAccess.wunlock(srefObject, srefMember);
+	rwmAccess.wunlock(srefObject, srefMember, args);
 };
 
 void ShrdatWzem::wlockAccess(
 			const ubigint jref
 			, const string& srefMember
 		) {
-	rwmAccess.wlock(srefSupclass + "(" + to_string(jref) + ")", srefMember);
+	rwmAccess.wlock(srefSupclass, srefMember, "jref=" + to_string(jref));
 };
 
 void ShrdatWzem::wunlockAccess(
 			const ubigint jref
 			, const string& srefMember
 		) {
-	rwmAccess.wunlock(srefSupclass + "(" + to_string(jref) + ")", srefMember);
+	rwmAccess.wunlock(srefSupclass, srefMember, "jref=" + to_string(jref));
 };
 
 /******************************************************************************
@@ -1396,7 +1404,7 @@ StmgrWzem::StmgrWzem(
 			, const ubigint jref
 			, const uint ixVNonetype
 		) :
-			mAccess("stmgr(" + to_string(jref) + ").mAccess", "StmgrWzem", "StmgrWzem")
+			mAccess("stmgr.mAccess", "StmgrWzem", "StmgrWzem", "jref=" + to_string(jref))
 		{
 	this->xchg = xchg;
 
@@ -1409,8 +1417,8 @@ StmgrWzem::StmgrWzem(
 StmgrWzem::~StmgrWzem() {
 	delete stcch;
 
-	mAccess.lock("StmgrWzem", "~StmgrWzem");
-	mAccess.unlock("StmgrWzem", "~StmgrWzem");
+	mAccess.lock("StmgrWzem", "~StmgrWzem", "jref=" + to_string(jref));
+	mAccess.unlock("StmgrWzem", "~StmgrWzem", "jref=" + to_string(jref));
 };
 
 void StmgrWzem::handleCall(
@@ -1436,8 +1444,8 @@ void StmgrWzem::handleCall(
 		insert(icsWzemVStub, VecWzemVStub::STUBWZEMJOBXJREF);
 		insert(icsWzemVStub, VecWzemVStub::STUBWZEMJOBSTD);
 	} else if (call->ixVCall == VecWzemVCall::CALLWZEMNDEUPD_REFEQ) {
-		insert(icsWzemVStub, VecWzemVStub::STUBWZEMNDEXNREF);
 		insert(icsWzemVStub, VecWzemVStub::STUBWZEMNDESTD);
+		insert(icsWzemVStub, VecWzemVStub::STUBWZEMNDEXNREF);
 	} else if (call->ixVCall == VecWzemVCall::CALLWZEMOPXUPD_REFEQ) {
 		insert(icsWzemVStub, VecWzemVStub::STUBWZEMOPXSTD);
 	} else if (call->ixVCall == VecWzemVCall::CALLWZEMPRDUPD_REFEQ) {
@@ -1447,8 +1455,8 @@ void StmgrWzem::handleCall(
 	} else if (call->ixVCall == VecWzemVCall::CALLWZEMPSTUPD_REFEQ) {
 		insert(icsWzemVStub, VecWzemVStub::STUBWZEMPSTSTD);
 	} else if (call->ixVCall == VecWzemVCall::CALLWZEMSESUPD_REFEQ) {
-		insert(icsWzemVStub, VecWzemVStub::STUBWZEMSESSTD);
 		insert(icsWzemVStub, VecWzemVStub::STUBWZEMSESMENU);
+		insert(icsWzemVStub, VecWzemVStub::STUBWZEMSESSTD);
 	} else if (call->ixVCall == VecWzemVCall::CALLWZEMUSGUPD_REFEQ) {
 		insert(icsWzemVStub, VecWzemVStub::STUBWZEMUSGSTD);
 		insert(icsWzemVStub, VecWzemVStub::STUBWZEMGROUP);
@@ -1539,14 +1547,14 @@ void StmgrWzem::lockAccess(
 			const string& srefObject
 			, const string& srefMember
 		) {
-	mAccess.lock(srefObject, srefMember);
+	mAccess.lock(srefObject, srefMember, "jref=" + to_string(jref));
 };
 
 void StmgrWzem::unlockAccess(
 			const string& srefObject
 			, const string& srefMember
 		) {
-	mAccess.unlock(srefObject, srefMember);
+	mAccess.unlock(srefObject, srefMember, "jref=" + to_string(jref));
 };
 
 /******************************************************************************
@@ -1688,7 +1696,7 @@ void XchgWzemcmbd::startMon() {
 	Clstn* clstn = NULL;
 	Preset* preset = NULL;
 
-	mon.start("WhizniumSBE Engine Monitor 0.9.18", stgwzempath.monpath);
+	mon.start("WhizniumSBE Engine Monitor v0.9.19", stgwzempath.monpath);
 
 	rwmJobs.rlock("XchgWzemcmbd", "startMon");
 	for (auto it = jobs.begin(); it != jobs.end(); it++) {
@@ -1755,14 +1763,16 @@ void XchgWzemcmbd::appendToLogfile(
 void XchgWzemcmbd::addReq(
 			ReqWzem* req
 		) {
-	mReqs.lock("XchgWzemcmbd", "addReq");
+	if (jrefRoot == 0) return;
+
+	mReqs.lock("XchgWzemcmbd", "addReq", "jref=" + to_string(req->jref));
 
 	req->ixVState = ReqWzem::VecVState::WAITPRC;
 	reqs.push_back(req);
 
-	mReqs.unlock("XchgWzemcmbd", "addReq");
+	mReqs.unlock("XchgWzemcmbd", "addReq", "jref=" + to_string(req->jref));
 
-	cJobprcs.signal("XchgWzemcmbd", "addReq");
+	cJobprcs.signal("XchgWzemcmbd", "addReq", "jref=" + to_string(req->jref));
 };
 
 ReqWzem* XchgWzemcmbd::pullFirstReq() {
@@ -1790,8 +1800,8 @@ void XchgWzemcmbd::addInvs(
 			, vector<DpchInvWzem*>& dpchinvs
 		) {
 	// append to inv list and signal the news (note the double-lock)
-	mInvs.lock("XchgWzemcmbd", "addInvs");
-	job->mOps.lock("XchgWzemcmbd", "addInvs");
+	mInvs.lock("XchgWzemcmbd", "addInvs", "jref=" + to_string(job->jref));
+	job->mOps.lock("XchgWzemcmbd", "addInvs", "jref=" + to_string(job->jref));
 
 	for (unsigned int i = 0; i < dpchinvs.size(); i++) {
 		job->addOp(dbswzem, dpchinvs[i]);
@@ -1801,10 +1811,10 @@ void XchgWzemcmbd::addInvs(
 		mon.eventAddInv(job->jref, VecWzemVDpch::getSref(dpchinvs[i]->ixWzemVDpch), "", dpchinvs[i]->oref);
 	};
 
-	job->mOps.unlock("XchgWzemcmbd", "addInvs");
-	mInvs.unlock("XchgWzemcmbd", "addInvs");
+	job->mOps.unlock("XchgWzemcmbd", "addInvs", "jref=" + to_string(job->jref));
+	mInvs.unlock("XchgWzemcmbd", "addInvs", "jref=" + to_string(job->jref));
 
-	cOpprcs.broadcast("XchgWzemcmbd", "addInvs");
+	cOpprcs.broadcast("XchgWzemcmbd", "addInvs", "jref=" + to_string(job->jref));
 };
 
 DpchInvWzem* XchgWzemcmbd::pullFirstInv() {
@@ -1836,7 +1846,7 @@ Preset* XchgWzemcmbd::addPreset(
 	// create new presetting (override value if exists) and append to presetting list
 	preset = getPresetByPref(pref);
 
-	rwmPresets.wlock("XchgWzemcmbd", "addPreset");
+	rwmPresets.wlock("XchgWzemcmbd", "addPreset", "jref=" + to_string(jref));
 
 	if (preset) {
 		preset->arg = arg;
@@ -1850,7 +1860,7 @@ Preset* XchgWzemcmbd::addPreset(
 		mon.eventAddPreset(jref, VecWzemVPreset::getSref(ixWzemVPreset), arg);
 	};
 
-	rwmPresets.wunlock("XchgWzemcmbd", "addPreset");
+	rwmPresets.wunlock("XchgWzemcmbd", "addPreset", "jref=" + to_string(jref));
 
 	return(preset);
 };
@@ -1956,8 +1966,8 @@ Arg XchgWzemcmbd::getPreset(
 		else if (ixWzemVPreset == VecWzemVPreset::PREWZEMSYSSTAMP) arg.intval = rawtime;
 
 	} else {
-		rwmJobs.rlock("XchgWzemcmbd", "getPreset");
-		rwmPresets.rlock("XchgWzemcmbd", "getPreset");
+		rwmJobs.rlock("XchgWzemcmbd", "getPreset", "jref=" + to_string(jref));
+		rwmPresets.rlock("XchgWzemcmbd", "getPreset", "jref=" + to_string(jref));
 
 		jobinfo = getJobinfoByJref(jref);
 
@@ -1977,8 +1987,8 @@ Arg XchgWzemcmbd::getPreset(
 			};
 		};
 
-		rwmPresets.runlock("XchgWzemcmbd", "getPreset");
-		rwmJobs.runlock("XchgWzemcmbd", "getPreset");
+		rwmPresets.runlock("XchgWzemcmbd", "getPreset", "jref=" + to_string(jref));
+		rwmJobs.runlock("XchgWzemcmbd", "getPreset", "jref=" + to_string(jref));
 	};
 
 	return(arg);
@@ -2075,7 +2085,7 @@ void XchgWzemcmbd::getPresetsByJref(
 	icsWzemVPreset.clear();
 	args.clear();
 
-	rwmPresets.rlock("XchgWzemcmbd", "getPresetsByJref");
+	rwmPresets.rlock("XchgWzemcmbd", "getPresetsByJref", "jref=" + to_string(jref));
 
 	auto rng = presets.equal_range(presetref_t(jref, 0));
 	for (auto it = rng.first; it != rng.second; it++) {
@@ -2085,14 +2095,14 @@ void XchgWzemcmbd::getPresetsByJref(
 		args.push_back(preset->arg);
 	};
 
-	rwmPresets.runlock("XchgWzemcmbd", "getPresetsByJref");
+	rwmPresets.runlock("XchgWzemcmbd", "getPresetsByJref", "jref=" + to_string(jref));
 };
 
 void XchgWzemcmbd::removePreset(
 			const uint ixWzemVPreset
 			, const ubigint jref
 		) {
-	rwmPresets.wlock("XchgWzemcmbd", "removePreset");
+	rwmPresets.wlock("XchgWzemcmbd", "removePreset", "jref=" + to_string(jref) + ",srefIxWzemVPreset=" + VecWzemVPreset::getSref(ixWzemVPreset));
 
 	auto it = presets.find(presetref_t(jref, ixWzemVPreset));
 	if (it != presets.end()) {
@@ -2102,13 +2112,13 @@ void XchgWzemcmbd::removePreset(
 		mon.eventRemovePreset(jref, VecWzemVPreset::getSref(ixWzemVPreset));
 	};
 
-	rwmPresets.wunlock("XchgWzemcmbd", "removePreset");
+	rwmPresets.wunlock("XchgWzemcmbd", "removePreset", "jref=" + to_string(jref) + ",srefIxWzemVPreset=" + VecWzemVPreset::getSref(ixWzemVPreset));
 };
 
 void XchgWzemcmbd::removePresetsByJref(
 			const ubigint jref
 		) {
-	rwmPresets.wlock("XchgWzemcmbd", "removePresetsByJref");
+	rwmPresets.wlock("XchgWzemcmbd", "removePresetsByJref", "jref=" + to_string(jref));
 
 	uint ixVPreset;
 
@@ -2121,7 +2131,7 @@ void XchgWzemcmbd::removePresetsByJref(
 	};
 	presets.erase(rng.first, rng.second);
 
-	rwmPresets.wunlock("XchgWzemcmbd", "removePresetsByJref");
+	rwmPresets.wunlock("XchgWzemcmbd", "removePresetsByJref", "jref=" + to_string(jref));
 };
 
 StmgrWzem* XchgWzemcmbd::addStmgr(
@@ -2134,12 +2144,12 @@ StmgrWzem* XchgWzemcmbd::addStmgr(
 	stmgr = getStmgrByJref(jref);
 
 	if (!stmgr) {
-		rwmStmgrs.wlock("XchgWzemcmbd", "addStmgr");
+		rwmStmgrs.wlock("XchgWzemcmbd", "addStmgr", "jref=" + to_string(jref));
 
 		stmgr = new StmgrWzem(this, jref, ixVNonetype);
 		stmgrs[jref] = stmgr;
 
-		rwmStmgrs.wunlock("XchgWzemcmbd", "addStmgr");
+		rwmStmgrs.wunlock("XchgWzemcmbd", "addStmgr", "jref=" + to_string(jref));
 
 		mon.eventAddStmgr(jref);
 	};
@@ -2152,7 +2162,7 @@ StmgrWzem* XchgWzemcmbd::getStmgrByJref(
 		) {
 	StmgrWzem* stmgr = NULL;
 
-	rwmStmgrs.rlock("XchgWzemcmbd", "getStmgrByJref");
+	rwmStmgrs.rlock("XchgWzemcmbd", "getStmgrByJref", "jref=" + to_string(jref));
 
 	auto it = stmgrs.find(jref);
 
@@ -2161,7 +2171,7 @@ StmgrWzem* XchgWzemcmbd::getStmgrByJref(
 		stmgr->lockAccess("XchgWzemcmbd", "getStmgrByJref");
 	};
 
-	rwmStmgrs.runlock("XchgWzemcmbd", "getStmgrByJref");
+	rwmStmgrs.runlock("XchgWzemcmbd", "getStmgrByJref", "jref=" + to_string(jref));
 
 	return(stmgr);
 };
@@ -2169,7 +2179,7 @@ StmgrWzem* XchgWzemcmbd::getStmgrByJref(
 void XchgWzemcmbd::removeStmgrByJref(
 			const ubigint jref
 		) {
-	rwmStmgrs.wlock("XchgWzemcmbd", "removeStmgrByJref");
+	rwmStmgrs.wlock("XchgWzemcmbd", "removeStmgrByJref", "jref=" + to_string(jref));
 
 	removeClstnsByJref(jref, Clstn::VecVTarget::STMGR);
 
@@ -2181,7 +2191,7 @@ void XchgWzemcmbd::removeStmgrByJref(
 		mon.eventRemoveStmgr(jref);
 	};
 
-	rwmStmgrs.wunlock("XchgWzemcmbd", "removeStmgrByJref");
+	rwmStmgrs.wunlock("XchgWzemcmbd", "removeStmgrByJref", "jref=" + to_string(jref));
 };
 
 Clstn* XchgWzemcmbd::addClstn(
@@ -2200,7 +2210,7 @@ Clstn* XchgWzemcmbd::addClstn(
 	multimap<clstnref_t,Clstn*>::iterator it;
 	Clstn* clstn = NULL;
 
-	rwmClstns.wlock("XchgWzemcmbd", "addClstn");
+	rwmClstns.wlock("XchgWzemcmbd", "addClstn", "jref=" + to_string(jref) + ",srefIxWzemVCall=" + VecWzemVCall::getSref(ixWzemVCall));
 
 	if (!chgarg) it = clstns.end();
 	else {
@@ -2234,7 +2244,7 @@ Clstn* XchgWzemcmbd::addClstn(
 		mon.eventChangeClstnArg(jref, "job", VecWzemVCall::getSref(ixWzemVCall), Clstn::VecVJobmask::getSref(ixVJobmask), jrefTrig, arg, ixVSge, Clstn::VecVJactype::getSref(ixVJactype));
 	};
 
-	rwmClstns.wunlock("XchgWzemcmbd", "addClstn");
+	rwmClstns.wunlock("XchgWzemcmbd", "addClstn", "jref=" + to_string(jref) + ",srefIxWzemVCall=" + VecWzemVCall::getSref(ixWzemVCall));
 
 	return(clstn);
 };
@@ -2314,13 +2324,13 @@ Clstn* XchgWzemcmbd::addClstnStmgr(
 	clstn = getClstnByCref(cref);
 
 	if (!clstn) {
-		rwmClstns.wlock("XchgWzemcmbd", "addClstnStmgr");
+		rwmClstns.wlock("XchgWzemcmbd", "addClstnStmgr", "jref=" + to_string(jref) + ",srefIxWzemVCall=" + VecWzemVCall::getSref(ixWzemVCall));
 
 		clstn = new Clstn(cref, Clstn::VecVJactype::LOCK);
 		clstns.insert(pair<clstnref_t,Clstn*>(cref, clstn));
 		cref2sClstns.insert(pair<clstnref2_t,clstnref_t>(cref2, cref));
 
-		rwmClstns.wunlock("XchgWzemcmbd", "addClstnStmgr");
+		rwmClstns.wunlock("XchgWzemcmbd", "addClstnStmgr", "jref=" + to_string(jref) + ",srefIxWzemVCall=" + VecWzemVCall::getSref(ixWzemVCall));
 
 		mon.eventAddClstn(jref, "stmgr", VecWzemVCall::getSref(ixWzemVCall), Clstn::VecVJobmask::getSref(Clstn::VecVJobmask::ALL), 0, Arg(), 0, Clstn::VecVJactype::getSref(Clstn::VecVJactype::LOCK));
 	};
@@ -2354,7 +2364,7 @@ void XchgWzemcmbd::getClstnsByJref(
 	icsWzemVCall.clear();
 	icsVJobmask.clear();
 
-	rwmClstns.rlock("XchgWzemcmbd", "getClstnsByJref");
+	rwmClstns.rlock("XchgWzemcmbd", "getClstnsByJref", "jref=" + to_string(jref));
 
 	auto rng = cref2sClstns.equal_range(clstnref2_t(jref, ixVTarget, 0));
 	for (auto it = rng.first; it != rng.second; it++) {
@@ -2366,7 +2376,7 @@ void XchgWzemcmbd::getClstnsByJref(
 		};
 	};
 
-	rwmClstns.runlock("XchgWzemcmbd", "getClstnsByJref");
+	rwmClstns.runlock("XchgWzemcmbd", "getClstnsByJref", "jref=" + to_string(jref));
 };
 
 void XchgWzemcmbd::removeClstns(
@@ -2374,7 +2384,7 @@ void XchgWzemcmbd::removeClstns(
 			, const ubigint jref
 			, const uint ixVTarget
 		) {
-	rwmClstns.wlock("XchgWzemcmbd", "removeClstns");
+	rwmClstns.wlock("XchgWzemcmbd", "removeClstns", "jref=" + to_string(jref));
 
 	uint ixVJobmask;
 	ubigint jrefTrig;
@@ -2397,14 +2407,14 @@ void XchgWzemcmbd::removeClstns(
 	};
 	clstns.erase(rng.first, rng.second);
 
-	rwmClstns.wunlock("XchgWzemcmbd", "removeClstns");
+	rwmClstns.wunlock("XchgWzemcmbd", "removeClstns", "jref=" + to_string(jref));
 };
 
 void XchgWzemcmbd::removeClstnsByJref(
 			const ubigint jref
 			, const uint ixVTarget
 		) {
-	rwmClstns.wlock("XchgWzemcmbd", "removeClstnsByJref");
+	rwmClstns.wlock("XchgWzemcmbd", "removeClstnsByJref", "jref=" + to_string(jref));
 
 	uint ixVCall;
 	uint ixVJobmask;
@@ -2431,7 +2441,7 @@ void XchgWzemcmbd::removeClstnsByJref(
 	};
 	cref2sClstns.erase(rng.first, rng.second);
 
-	rwmClstns.wunlock("XchgWzemcmbd", "removeClstnsByJref");
+	rwmClstns.wunlock("XchgWzemcmbd", "removeClstnsByJref", "jref=" + to_string(jref));
 };
 
 void XchgWzemcmbd::findJrefsByCall(
@@ -2448,8 +2458,8 @@ void XchgWzemcmbd::findJrefsByCall(
 	ubigint jrefTrig;
 	bool match;
 
-	rwmJobs.rlock("XchgWzemcmbd", "findJrefsByCall");
-	rwmClstns.rlock("XchgWzemcmbd", "findJrefsByCall");
+	rwmJobs.rlock("XchgWzemcmbd", "findJrefsByCall", "jref=" + to_string(call->jref));
+	rwmClstns.rlock("XchgWzemcmbd", "findJrefsByCall", "jref=" + to_string(call->jref));
 
 	jrefsClissrv = getCsjobClisByJref(call->jref);
 	jrefsClissrv.insert(call->jref);
@@ -2560,8 +2570,8 @@ void XchgWzemcmbd::findJrefsByCall(
 		};
 	};
 
-	rwmClstns.runlock("XchgWzemcmbd", "findJrefsByCall");
-	rwmJobs.runlock("XchgWzemcmbd", "findJrefsByCall");
+	rwmClstns.runlock("XchgWzemcmbd", "findJrefsByCall", "jref=" + to_string(call->jref));
+	rwmJobs.runlock("XchgWzemcmbd", "findJrefsByCall", "jref=" + to_string(call->jref));
 };
 
 void XchgWzemcmbd::triggerCall(
@@ -3038,7 +3048,7 @@ DcolWzem* XchgWzemcmbd::addDcol(
 	DcolWzem* dcol = NULL;
 
 	// create new dcol and append to dcol list
-	rwmJobs.rlock("XchgWzemcmbd", "addDcol");
+	rwmJobs.rlock("XchgWzemcmbd", "addDcol", "jref=" + to_string(jref));
 
 	job = getJobByJref(jref);
 
@@ -3046,20 +3056,20 @@ DcolWzem* XchgWzemcmbd::addDcol(
 		dcol = getDcolByJref(jref);
 
 		if (!dcol) {
-			rwmDcols.wlock("XchgWzemcmbd", "addDcol");
+			rwmDcols.wlock("XchgWzemcmbd", "addDcol", "jref=" + to_string(jref));
 
 			dcol = new DcolWzem(jref, job->ixWzemVLocale);
 			dcols[jref] = dcol;
 
 			dcol->lockAccess("XchgWzemcmbd", "addDcol");
 
-			rwmDcols.wunlock("XchgWzemcmbd", "addDcol");
+			rwmDcols.wunlock("XchgWzemcmbd", "addDcol", "jref=" + to_string(jref));
 
 			mon.eventAddDcol(jref);
 		};
 	};
 
-	rwmJobs.runlock("XchgWzemcmbd", "addDcol");
+	rwmJobs.runlock("XchgWzemcmbd", "addDcol", "jref=" + to_string(jref));
 
 	// make dcol the session's active notify dcol
 	triggerIxRefCall(NULL, VecWzemVCall::CALLWZEMREFPRESET, jref, VecWzemVPreset::PREWZEMJREFNOTIFY, jref);
@@ -3075,8 +3085,8 @@ DcolWzem* XchgWzemcmbd::getDcolByJref(
 
 	DcolWzem* dcol = NULL;
 
-	rwmJobs.rlock("XchgWzemcmbd", "getDcolByJref");
-	rwmDcols.rlock("XchgWzemcmbd", "getDcolByJref");
+	rwmJobs.rlock("XchgWzemcmbd", "getDcolByJref", "jref=" + to_string(jref));
+	rwmDcols.rlock("XchgWzemcmbd", "getDcolByJref", "jref=" + to_string(jref));
 
 	jobinfo = getJobinfoByJref(jref);
 
@@ -3096,8 +3106,8 @@ DcolWzem* XchgWzemcmbd::getDcolByJref(
 		jobinfo = getJobinfoByJref(jref);
 	};
 
-	rwmDcols.runlock("XchgWzemcmbd", "getDcolByJref");
-	rwmJobs.runlock("XchgWzemcmbd", "getDcolByJref");
+	rwmDcols.runlock("XchgWzemcmbd", "getDcolByJref", "jref=" + to_string(jref));
+	rwmJobs.runlock("XchgWzemcmbd", "getDcolByJref", "jref=" + to_string(jref));
 
 	return(dcol);
 };
@@ -3105,7 +3115,7 @@ DcolWzem* XchgWzemcmbd::getDcolByJref(
 void XchgWzemcmbd::removeDcolByJref(
 			const ubigint jref
 		) {
-	rwmDcols.wlock("XchgWzemcmbd", "removeDcolByJref");
+	rwmDcols.wlock("XchgWzemcmbd", "removeDcolByJref", "jref=" + to_string(jref));
 
 	auto it = dcols.find(jref);
 	if (it != dcols.end()) {
@@ -3115,7 +3125,7 @@ void XchgWzemcmbd::removeDcolByJref(
 		mon.eventRemoveDcol(jref);
 	};
 
-	rwmDcols.wunlock("XchgWzemcmbd", "removeDcolByJref");
+	rwmDcols.wunlock("XchgWzemcmbd", "removeDcolByJref", "jref=" + to_string(jref));
 };
 
 void XchgWzemcmbd::removeDcolsByJref(
@@ -3125,8 +3135,8 @@ void XchgWzemcmbd::removeDcolsByJref(
 
 	vector<ubigint> jrefs;
 
-	rwmJobs.rlock("XchgWzemcmbd", "removeDcolsByJref");
-	rwmDcols.wlock("XchgWzemcmbd", "removeDcolsByJref");
+	rwmJobs.rlock("XchgWzemcmbd", "removeDcolsByJref", "jref=" + to_string(jref));
+	rwmDcols.wlock("XchgWzemcmbd", "removeDcolsByJref", "jref=" + to_string(jref));
 
 	jrefs.push_back(jref);
 
@@ -3147,8 +3157,8 @@ void XchgWzemcmbd::removeDcolsByJref(
 		};
 	};
 
-	rwmDcols.wunlock("XchgWzemcmbd", "removeDcolsByJref");
-	rwmJobs.runlock("XchgWzemcmbd", "removeDcolsByJref");
+	rwmDcols.wunlock("XchgWzemcmbd", "removeDcolsByJref", "jref=" + to_string(jref));
+	rwmJobs.runlock("XchgWzemcmbd", "removeDcolsByJref", "jref=" + to_string(jref));
 };
 
 void XchgWzemcmbd::submitDpch(
@@ -3176,7 +3186,7 @@ void XchgWzemcmbd::submitDpch(
 			dcol->req = NULL;
 			//cout << "XchgWzemcmbd::submitDpch() waiting request for ixWzemVDpch = " << dpcheng->ixWzemVDpch << ", jref = " << dpcheng->jref << endl;
 
-			cReady_backup->signal("XchgWzemcmbd", "submitDpch");
+			cReady_backup->signal("XchgWzemcmbd", "submitDpch", "jref=" + to_string(dcol->jref));
 
 			dcol->unlockAccess("XchgWzemcmbd", "submitDpch");
 
@@ -3237,7 +3247,7 @@ ubigint XchgWzemcmbd::addJob(
 	bool srvNotCli = false;
 
 	// get new jref and append to job list
-	rwmJobs.wlock("XchgWzemcmbd", "addJob");
+	rwmJobs.wlock("XchgWzemcmbd", "addJob", "jrefSup=" + to_string(jrefSup));
 
 	job->jref = jrefseq.getNewRef();
 	jobs[job->jref] = job;
@@ -3254,7 +3264,7 @@ ubigint XchgWzemcmbd::addJob(
 	if (jrefSup != 0) jobinfos[jrefSup]->jrefsSub.insert(job->jref);
 
 	if (csjobNotJob) {
-		rwmCsjobinfos.wlock("XchgWzemcmbd", "addJob");
+		rwmCsjobinfos.wlock("XchgWzemcmbd", "addJob", "jref=" + to_string(job->jref));
 
 		csjob = (CsjobWzem*) job;
 		csjobinfo = csjobinfos[job->ixWzemVJob];
@@ -3266,7 +3276,7 @@ ubigint XchgWzemcmbd::addJob(
 			csjobinfo->jrefSrv = job->jref;
 			for (auto it = csjobinfo->jrefsCli.begin(); it != csjobinfo->jrefsCli.end(); it++) {
 				jobs[*it]->ixVSge = job->ixVSge;
-				((CsjobWzem*) (jobs[*it]))->srv = NULL;
+				((CsjobWzem*) (jobs[*it]))->srv = csjob;
 			};
 
 		} else {
@@ -3279,10 +3289,10 @@ ubigint XchgWzemcmbd::addJob(
 			csjobinfo->jrefsCli.insert(job->jref);
 		};
 
-		rwmCsjobinfos.wunlock("XchgWzemcmbd", "addJob");
+		rwmCsjobinfos.wunlock("XchgWzemcmbd", "addJob", "jref=" + to_string(job->jref));
 	};
 
-	rwmJobs.wunlock("XchgWzemcmbd", "addJob");
+	rwmJobs.wunlock("XchgWzemcmbd", "addJob", "jref=" + to_string(job->jref));
 
 	mon.eventAddJob(jrefSup, VecWzemVJob::getSref(job->ixWzemVJob), job->jref, csjobNotJob, srvNotCli);
 
@@ -3294,12 +3304,12 @@ JobWzem* XchgWzemcmbd::getJobByJref(
 		) {
 	JobWzem* job = NULL;
 
-	rwmJobs.rlock("XchgWzemcmbd", "getJobByJref");
+	rwmJobs.rlock("XchgWzemcmbd", "getJobByJref", "jref=" + to_string(jref));
 
 	auto it = jobs.find(jref);
 	if (it != jobs.end()) job = it->second;
 
-	rwmJobs.runlock("XchgWzemcmbd", "getJobByJref");
+	rwmJobs.runlock("XchgWzemcmbd", "getJobByJref", "jref=" + to_string(jref));
 
 	return job;
 };
@@ -3309,12 +3319,12 @@ Jobinfo* XchgWzemcmbd::getJobinfoByJref(
 		) {
 	Jobinfo* jobinfo = NULL;
 
-	rwmJobs.rlock("XchgWzemcmbd", "getJobinfoByJref");
+	rwmJobs.rlock("XchgWzemcmbd", "getJobinfoByJref", "jref=" + to_string(jref));
 
 	auto it = jobinfos.find(jref);
 	if (it != jobinfos.end()) jobinfo = it->second;
 
-	rwmJobs.runlock("XchgWzemcmbd", "getJobinfoByJref");
+	rwmJobs.runlock("XchgWzemcmbd", "getJobinfoByJref", "jref=" + to_string(jref));
 
 	return jobinfo;
 };
@@ -3330,7 +3340,7 @@ void XchgWzemcmbd::removeJobByJref(
 
 	bool csjobNotJob;
 
-	rwmJobs.wlock("XchgWzemcmbd", "removeJobByJref");
+	rwmJobs.rlock("XchgWzemcmbd", "removeJobByJref[1]", "jref=" + to_string(jref));
 
 	job = getJobByJref(jref);
 
@@ -3345,12 +3355,16 @@ void XchgWzemcmbd::removeJobByJref(
 		removeDcolByJref(jref);
 
 		if (csjobNotJob) {
-			rwmCsjobinfos.wlock("XchgWzemcmbd", "removeJobByJref");
+			rwmCsjobinfos.rlock("XchgWzemcmbd", "removeJobByJref[1]", "jref=" + to_string(jref));
 
 			csjob = (CsjobWzem*) job;
 			csjobinfo = csjobinfos[job->ixWzemVJob];
 
 			removeCsjobClaim(NULL, csjob);
+
+			rwmCsjobinfos.runlock("XchgWzemcmbd", "removeJobByJref[1]", "jref=" + to_string(jref));
+
+			rwmCsjobinfos.wlock("XchgWzemcmbd", "removeJobByJref[2]", "jref=" + to_string(jref));
 
 			if (csjob->srvNotCli) {
 				csjobinfo->jrefSrv = 0;
@@ -3358,13 +3372,22 @@ void XchgWzemcmbd::removeJobByJref(
 
 			} else csjobinfo->jrefsCli.erase(jref);
 
-			rwmCsjobinfos.wunlock("XchgWzemcmbd", "removeJobByJref");
+			rwmCsjobinfos.wunlock("XchgWzemcmbd", "removeJobByJref[2]", "jref=" + to_string(jref));
 		};
 
 		jobinfo = jobinfos[jref];
 
+		rwmJobs.runlock("XchgWzemcmbd", "removeJobByJref[1]", "jref=" + to_string(jref));
+
+		rwmJobs.wlock("XchgWzemcmbd", "removeJobByJref[2]", "jref=" + to_string(jref));
+
 		if (jobinfo->jrefSup != 0) jobinfos[jobinfo->jrefSup]->jrefsSub.erase(jref);
+
+		rwmJobs.wunlock("XchgWzemcmbd", "removeJobByJref[2]", "jref=" + to_string(jref));
+
 		while (jobinfo->jrefsSub.size() > 0) delete jobs[*(jobinfo->jrefsSub.begin())];
+
+		rwmJobs.wlock("XchgWzemcmbd", "removeJobByJref[3]", "jref=" + to_string(jref));
 
 		// remove job from list only here otherwise sub-job delete will loop forever
 		jobs.erase(jref);
@@ -3374,16 +3397,17 @@ void XchgWzemcmbd::removeJobByJref(
 
 		ixWzemVJobs.erase(jref);
 
+		if (jobs.empty()) {
+			// root job
+			jrefRoot = 0;
+			jrefCmd = 0;
+		};
+
+		rwmJobs.wunlock("XchgWzemcmbd", "removeJobByJref[3]", "jref=" + to_string(jref));
+
 		mon.eventRemoveJob(jref);
-	};
 
-	if (jobs.empty()) {
-		// root job
-		jrefRoot = 0;
-		jrefCmd = 0;
-	};
-
-	rwmJobs.wunlock("XchgWzemcmbd", "removeJobByJref");
+	} else rwmJobs.wunlock("XchgWzemcmbd", "removeJobByJref[4]", "jref=" + to_string(jref));
 };
 
 bool XchgWzemcmbd::getJobSup(
@@ -3418,8 +3442,8 @@ void XchgWzemcmbd::setJobStage(
 
 	bool csjobNotJob = getCsjobNotJob(job->ixWzemVJob);
 
-	rwmJobs.wlock("XchgWzemcmbd", "setJobStage");
-	if (csjobNotJob) rwmCsjobinfos.rlock("XchgWzemcmbd", "setJobStage");
+	rwmJobs.rlock("XchgWzemcmbd", "setJobStage", "jref=" + to_string(job->jref));
+	if (csjobNotJob) rwmCsjobinfos.rlock("XchgWzemcmbd", "setJobStage", "jref=" + to_string(job->jref));
 
 	jobinfos[job->jref]->ixVSge = ixVSge;
 	job->ixVSge = ixVSge;
@@ -3433,8 +3457,8 @@ void XchgWzemcmbd::setJobStage(
 		};
 	};
 
-	if (csjobNotJob) rwmCsjobinfos.runlock("XchgWzemcmbd", "setJobStage");
-	rwmJobs.wunlock("XchgWzemcmbd", "setJobStage");
+	if (csjobNotJob) rwmCsjobinfos.runlock("XchgWzemcmbd", "setJobStage", "jref=" + to_string(job->jref));
+	rwmJobs.runlock("XchgWzemcmbd", "setJobStage", "jref=" + to_string(job->jref));
 
 	triggerIxCall(dbswzem, VecWzemVCall::CALLWZEMSGECHG, job->jref, ixVSge);
 };
@@ -3446,56 +3470,113 @@ void XchgWzemcmbd::addCsjobClaim(
 		) {
 	Csjobinfo* csjobinfo = NULL;;
 
+	bool mod;
+
 	if (!csjob->srvNotCli && csjob->srv) {
-		rwmCsjobinfos.rlock("XchgWzemcmbd", "addCsjobClaim");
+		rwmCsjobinfos.rlock("XchgWzemcmbd", "addCsjobClaim", "jref=" + to_string(csjob->jref));
 
 		csjobinfo = csjobinfos[csjob->ixWzemVJob];
 
-		rwmCsjobinfos.runlock("XchgWzemcmbd", "addCsjobClaim");
+		rwmCsjobinfos.runlock("XchgWzemcmbd", "addCsjobClaim", "jref=" + to_string(csjob->jref));
 
-		csjobinfo->mClaims.lock("XchgWzemcmbd", "addCsjobClaim");
+		csjob->srv->lockAccess("XchgWzemcmbd", "addCsjobClaim");
+
+		csjobinfo->mClaims.wlock("XchgWzemcmbd", "addCsjobClaim", "jref=" + to_string(csjob->jref));
 
 		auto it = csjobinfo->claims.find(csjob->jref);
 		if (it != csjobinfo->claims.end()) delete it->second;
 
 		csjobinfo->claims[csjob->jref] = claim;
 
-		csjob->srv->lockAccess("XchgWzemcmbd", "addCsjobClaim");
+		mod = csjob->srv->handleClaim(dbswzem, csjobinfo->claims, csjob->jref);
 
-		csjob->srv->handleClaim(dbswzem, csjobinfo->claims, csjob->jref);
+		csjobinfo->mClaims.wunlock("XchgWzemcmbd", "addCsjobClaim", "jref=" + to_string(csjob->jref));
 
 		csjob->srv->unlockAccess("XchgWzemcmbd", "addCsjobClaim");
 
-		csjobinfo->mClaims.unlock("XchgWzemcmbd", "addCsjobClaim");
+		if (mod) triggerCall(dbswzem, VecWzemVCall::CALLWZEMCLAIMCHG, csjob->jref);
 	};
 };
 
-void XchgWzemcmbd::getCsjobClaim(
+bool XchgWzemcmbd::getCsjobClaim(
 			CsjobWzem* csjob
 			, bool& takenNotAvailable
 			, bool& fulfilled
+			, bool& run
 		) {
+	bool retval = false;
+
 	Csjobinfo* csjobinfo = NULL;;
 
 	takenNotAvailable = false;
 	fulfilled = false;
+	run = false;
 
 	if (!csjob->srvNotCli && csjob->srv) {
-		rwmCsjobinfos.rlock("XchgWzemcmbd", "getCsjobClaim");
+		rwmCsjobinfos.rlock("XchgWzemcmbd", "getCsjobClaim", "jref=" + to_string(csjob->jref));
 
 		csjobinfo = csjobinfos[csjob->ixWzemVJob];
 
-		csjobinfo->mClaims.lock("XchgWzemcmbd", "getCsjobClaim");
+		csjobinfo->mClaims.rlock("XchgWzemcmbd", "getCsjobClaim", "jref=" + to_string(csjob->jref));
 
 		auto it = csjobinfo->claims.find(csjob->jref);
-		if (it != csjobinfo->claims.end()) {
+		retval = (it != csjobinfo->claims.end());
+
+		if (retval) {
 			takenNotAvailable = it->second->takenNotAvailable;
 			fulfilled = it->second->fulfilled;
+			run = it->second->run;
 		};
 
-		csjobinfo->mClaims.unlock("XchgWzemcmbd", "getCsjobClaim");
+		csjobinfo->mClaims.runlock("XchgWzemcmbd", "getCsjobClaim", "jref=" + to_string(csjob->jref));
 
-		rwmCsjobinfos.runlock("XchgWzemcmbd", "getCsjobClaim");
+		rwmCsjobinfos.runlock("XchgWzemcmbd", "getCsjobClaim", "jref=" + to_string(csjob->jref));
+	};
+
+	return retval;
+};
+
+bool XchgWzemcmbd::getCsjobClaim(
+			CsjobWzem* csjob
+			, bool& takenNotAvailable
+			, bool& fulfilled
+		) {
+	bool run;
+
+	return getCsjobClaim(csjob, takenNotAvailable, fulfilled, run);
+};
+
+void XchgWzemcmbd::clearCsjobRun(
+			DbsWzem* dbswzem
+			, const uint ixWzemVJob
+		) {
+	Csjobinfo* csjobinfo = NULL;
+	Claim* claim = NULL;
+
+	bool mod = false;
+
+	rwmCsjobinfos.rlock("XchgWzemcmbd", "clearCsjobRun", "srefIxWzemVJob=" + VecWzemVJob::getSref(ixWzemVJob));
+
+	auto it = csjobinfos.find(ixWzemVJob);
+	if (it != csjobinfos.end()) csjobinfo = it->second;
+
+	rwmCsjobinfos.runlock("XchgWzemcmbd", "clearCsjobRun", "srefIxWzemVJob=" + VecWzemVJob::getSref(ixWzemVJob));
+
+	if (csjobinfo) {
+		csjobinfo->mClaims.wlock("XchgWzemcmbd", "clearCsjobRun", "srefIxWzemVJob=" + VecWzemVJob::getSref(ixWzemVJob));
+
+		for (auto it2 = csjobinfo->claims.begin(); it2 != csjobinfo->claims.end(); it2++) {
+			claim = it2->second;
+
+			if (claim->run) {
+				claim->run = false;
+				mod = true;
+			};
+		};
+
+		csjobinfo->mClaims.wunlock("XchgWzemcmbd", "clearCsjobRun", "srefIxWzemVJob=" + VecWzemVJob::getSref(ixWzemVJob));
+
+		if (mod) triggerCall(dbswzem, VecWzemVCall::CALLWZEMCLAIMCHG, csjobinfo->jrefSrv);
 	};
 };
 
@@ -3505,28 +3586,32 @@ void XchgWzemcmbd::removeCsjobClaim(
 		) {
 	Csjobinfo* csjobinfo = NULL;;
 
+	bool mod = false;
+
 	if (!csjob->srvNotCli && csjob->srv) {
-		rwmCsjobinfos.rlock("XchgWzemcmbd", "removeCsjobClaim");
+		rwmCsjobinfos.rlock("XchgWzemcmbd", "removeCsjobClaim", "jref=" + to_string(csjob->jref));
 
 		csjobinfo = csjobinfos[csjob->ixWzemVJob];
 
-		rwmCsjobinfos.runlock("XchgWzemcmbd", "removeCsjobClaim");
+		rwmCsjobinfos.runlock("XchgWzemcmbd", "removeCsjobClaim", "jref=" + to_string(csjob->jref));
 
-		csjobinfo->mClaims.lock("XchgWzemcmbd", "removeCsjobClaim");
+		csjob->srv->lockAccess("XchgWzemcmbd", "removeCsjobClaim");
+
+		csjobinfo->mClaims.wlock("XchgWzemcmbd", "removeCsjobClaim", "jref=" + to_string(csjob->jref));
 
 		auto it = csjobinfo->claims.find(csjob->jref);
 		if (it != csjobinfo->claims.end()) {
 			delete it->second;
 			csjobinfo->claims.erase(it);
+
+			mod = csjob->srv->handleClaim(dbswzem, csjobinfo->claims, 0);
 		};
 
-		csjob->srv->lockAccess("XchgWzemcmbd", "removeCsjobClaim");
-
-		csjob->srv->handleClaim(dbswzem, csjobinfo->claims, 0);
+		csjobinfo->mClaims.wunlock("XchgWzemcmbd", "removeCsjobClaim", "jref=" + to_string(csjob->jref));
 
 		csjob->srv->unlockAccess("XchgWzemcmbd", "removeCsjobClaim");
 
-		csjobinfo->mClaims.unlock("XchgWzemcmbd", "removeCsjobClaim");
+		if (mod) triggerCall(dbswzem, VecWzemVCall::CALLWZEMCLAIMCHG, csjobinfo->jrefSrv);
 	};
 };
 
@@ -3535,11 +3620,11 @@ bool XchgWzemcmbd::getCsjobNotJob(
 		) {
 	bool retval;
 
-	rwmCsjobinfos.rlock("XchgWzemcmbd", "getCsjobNotJob");
+	rwmCsjobinfos.rlock("XchgWzemcmbd", "getCsjobNotJob", "srefIxWzemVJob=" + VecWzemVJob::getSref(ixWzemVJob));
 
 	retval = (csjobinfos.find(ixWzemVJob) != csjobinfos.end());
 
-	rwmCsjobinfos.runlock("XchgWzemcmbd", "getCsjobNotJob");
+	rwmCsjobinfos.runlock("XchgWzemcmbd", "getCsjobNotJob", "srefIxWzemVJob=" + VecWzemVJob::getSref(ixWzemVJob));
 
 	return retval;
 };
@@ -3549,13 +3634,13 @@ set<ubigint> XchgWzemcmbd::getCsjobClisByJref(
 		) {
 	set<ubigint> retval;
 
-	rwmCsjobinfos.rlock("XchgWzemcmbd", "getCsjobClis");
+	rwmCsjobinfos.rlock("XchgWzemcmbd", "getCsjobClis", "jref=" + to_string(jref));
 
 	auto it = csjobinfos.find(ixWzemVJobs[jref]);
 	
 	if (it != csjobinfos.end()) retval = it->second->jrefsCli;
 
-	rwmCsjobinfos.runlock("XchgWzemcmbd", "getCsjobClis");
+	rwmCsjobinfos.runlock("XchgWzemcmbd", "getCsjobClis", "jref=" + to_string(jref));
 
 	return retval;
 };

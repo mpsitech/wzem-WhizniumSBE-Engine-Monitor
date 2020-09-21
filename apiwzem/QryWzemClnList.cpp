@@ -1,9 +1,9 @@
 /**
 	* \file QryWzemClnList.cpp
 	* API code for job QryWzemClnList (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 4 Jun 2020
-	* \date modified: 4 Jun 2020
+	* \author Catherine Johnson
+	* \date created: 21 Sep 2020
+	* \date modified: 21 Sep 2020
 	*/
 
 #include "QryWzemClnList.h"
@@ -21,8 +21,8 @@ uint QryWzemClnList::VecVOrd::getIx(
 		) {
 	string s = StrMod::lc(sref);
 
-	if (s == "sto") return STO;
 	if (s == "sta") return STA;
+	if (s == "sto") return STO;
 	if (s == "job") return JOB;
 
 	return(0);
@@ -31,8 +31,8 @@ uint QryWzemClnList::VecVOrd::getIx(
 string QryWzemClnList::VecVOrd::getSref(
 			const uint ix
 		) {
-	if (ix == STO) return("sto");
 	if (ix == STA) return("sta");
+	if (ix == STO) return("sto");
 	if (ix == JOB) return("job");
 
 	return("");

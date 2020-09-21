@@ -1,9 +1,9 @@
 /**
 	* \file CrdWzemOpx_blks.cpp
 	* job handler for job CrdWzemOpx (implementation of blocks)
-	* \author Alexander Wirthmueller
-	* \date created: 4 Jun 2020
-	* \date modified: 4 Jun 2020
+	* \author Catherine Johnson
+	* \date created: 21 Sep 2020
+	* \date modified: 21 Sep 2020
 	*/
 
 using namespace std;

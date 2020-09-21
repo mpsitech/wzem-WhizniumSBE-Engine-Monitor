@@ -1,9 +1,9 @@
 /**
 	* \file PnlWzemNdeDetail.h
 	* job handler for job PnlWzemNdeDetail (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 4 Jun 2020
-	* \date modified: 4 Jun 2020
+	* \author Catherine Johnson
+	* \date created: 21 Sep 2020
+	* \date modified: 21 Sep 2020
 	*/
 
 #ifndef PNLWZEMNDEDETAIL_H
@@ -259,7 +259,7 @@ public:
 
 	void refreshRecNde(DbsWzem* dbswzem, std::set<Sbecore::uint>& moditems);
 
-	void refresh(DbsWzem* dbswzem, std::set<Sbecore::uint>& moditems);
+	void refresh(DbsWzem* dbswzem, std::set<Sbecore::uint>& moditems, const bool unmute = false);
 
 	void updatePreset(DbsWzem* dbswzem, const Sbecore::uint ixWzemVPreset, const Sbecore::ubigint jrefTrig, const bool notif = false);
 

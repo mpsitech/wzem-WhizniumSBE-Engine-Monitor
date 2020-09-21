@@ -1,9 +1,9 @@
 /**
 	* \file QryWzemUsrList_blks.cpp
 	* job handler for job QryWzemUsrList (implementation of blocks)
-	* \author Alexander Wirthmueller
-	* \date created: 4 Jun 2020
-	* \date modified: 4 Jun 2020
+	* \author Catherine Johnson
+	* \date created: 21 Sep 2020
+	* \date modified: 21 Sep 2020
 	*/
 
 using namespace std;
@@ -20,8 +20,8 @@ uint QryWzemUsrList::VecVOrd::getIx(
 	string s = StrMod::lc(sref);
 
 	if (s == "ste") return STE;
-	if (s == "usg") return USG;
 	if (s == "srf") return SRF;
+	if (s == "usg") return USG;
 	if (s == "prs") return PRS;
 	if (s == "own") return OWN;
 	if (s == "grp") return GRP;
@@ -33,8 +33,8 @@ string QryWzemUsrList::VecVOrd::getSref(
 			const uint ix
 		) {
 	if (ix == STE) return("ste");
-	if (ix == USG) return("usg");
 	if (ix == SRF) return("srf");
+	if (ix == USG) return("usg");
 	if (ix == PRS) return("prs");
 	if (ix == OWN) return("own");
 	if (ix == GRP) return("grp");

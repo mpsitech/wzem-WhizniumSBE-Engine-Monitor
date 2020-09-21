@@ -3,6 +3,7 @@
 	<head>
 		<title>List_bhdr</title>
 		<script>
+			function handleButClipboardClick() {parent.parent.window.handleButClipboardClick();};
 			function handleButNewClick() {parent.parent.window.handleButClick("ButNew");};
 			function handleButDeleteClick() {parent.parent.window.handleButClick("ButDelete");};
 			function handleButFilterClick() {parent.parent.window.handleButClick("ButFilter");};
@@ -22,6 +23,8 @@
 					<span class="hdr_cpt" id="Cpt">Cpt</span>
 				</td>
 				<td align="right">
+					<img id="ButClipboard" class="but" src="../icon/clipboard.png" width="16" height="16" alt="ButClipboard" onmouseover="src='../icon/clipboard_hlt.png'" onmouseout="src='../icon/clipboard.png'" onclick="handleButClipboardClick()"/>
+					&nbsp;&nbsp;
 					<img id="ButNew" class="but" src="../icon/new.png" width="16" height="16" alt="ButNew" onmouseover="src='../icon/new_hlt.png'" onmouseout="src='../icon/new.png'" onclick="handleButNewClick()"/>
 					&nbsp;
 					<img id="ButDelete" class="but" src="../icon/delete.png" width="16" height="16" alt="ButDelete" onmouseover="src='../icon/delete_hlt.png'" onmouseout="src='../icon/delete.png'" onclick="handleButDeleteClick()"/>

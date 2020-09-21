@@ -3,6 +3,7 @@
 	<head>
 		<title>Sup1NJob_bhdr</title>
 		<script>
+			function handleButClipboardClick() {parent.parent.window.handleButClipboardClick();};
 			function handleButViewClick() {parent.parent.window.handleButCrdopenClick("ButView");};
 			function handleButNewClick() {parent.parent.window.handleButCrdopenClick("ButNew");};
 			function handleButDeleteClick() {parent.parent.window.handleButClick("ButDelete");};
@@ -13,8 +14,8 @@
 		<table cellspacing="0" border="0" cellpadding="0">
 			<colgroup>
 				<col width="5">
-				<col width="285">
-				<col width="150">
+				<col width="265">
+				<col width="170">
 			</colgroup>
 			<tr>
 				<td height="29"></td>
@@ -22,6 +23,8 @@
 					<span class="hdr_cpt" id="Cpt">Cpt</span>
 				</td>
 				<td align="right">
+					<img id="ButClipboard" class="but" src="../icon/clipboard.png" width="16" height="16" alt="ButClipboard" onmouseover="src='../icon/clipboard_hlt.png'" onmouseout="src='../icon/clipboard.png'" onclick="handleButClipboardClick()"/>
+					&nbsp;&nbsp;
 					<img id="ButView" class="but" src="../icon/view.png" width="16" height="16" alt="ButView" onmouseover="src='../icon/view_hlt.png'" onmouseout="src='../icon/view.png'" onclick="handleButViewClick()"/>
 					&nbsp;&nbsp;
 					<img id="ButNew" class="but" src="../icon/new.png" width="16" height="16" alt="ButNew" onmouseover="src='../icon/new_hlt.png'" onmouseout="src='../icon/new.png'" onclick="handleButNewClick()"/>

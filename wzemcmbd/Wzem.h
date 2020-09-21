@@ -1,20 +1,20 @@
 /**
 	* \file Wzem.h
 	* Wzem global functionality (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 4 Jun 2020
-	* \date modified: 4 Jun 2020
+	* \author Catherine Johnson
+	* \date created: 21 Sep 2020
+	* \date modified: 21 Sep 2020
 	*/
 
 #ifndef WZEM_H
 #define WZEM_H
 
-#define WZEM_VERSION "0.9.18"
+#define WZEM_VERSION "0.9.19"
 #define WZEM_VERSION_MAJOR 0
 #define WZEM_VERSION_MINOR 9
-#define WZEM_VERSION_SUB 18
+#define WZEM_VERSION_SUB 19
 
-// IP incl --- INSERT
+// IP include.cust --- INSERT
 
 #include <fstream>
 #include <iostream>

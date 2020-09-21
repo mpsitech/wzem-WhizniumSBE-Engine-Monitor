@@ -1,30 +1,30 @@
 /**
   * \file PnlWzemPrdRec.js
   * web client functionality for panel PnlWzemPrdRec
-  * \author Alexander Wirthmueller
-  * \date created: 4 Jun 2020
-  * \date modified: 4 Jun 2020
+  * \author Catherine Johnson
+  * \date created: 21 Sep 2020
+  * \date modified: 21 Sep 2020
   */
 
 function updateScrJrefs() {
 	scrJrefDetail = retrieveSi(srcdoc, "StatShrWzemPrdRec", "scrJrefDetail");
-	scrJref1NJob = retrieveSi(srcdoc, "StatShrWzemPrdRec", "scrJref1NJob");
-	scrJref1NNode = retrieveSi(srcdoc, "StatShrWzemPrdRec", "scrJref1NNode");
 	scrJref1NEvent = retrieveSi(srcdoc, "StatShrWzemPrdRec", "scrJref1NEvent");
+	scrJref1NNode = retrieveSi(srcdoc, "StatShrWzemPrdRec", "scrJref1NNode");
+	scrJref1NJob = retrieveSi(srcdoc, "StatShrWzemPrdRec", "scrJref1NJob");
 };
 
 function resetInitdones() {
 	setSi(srcdoc, "StatAppWzemPrdRec", "initdoneDetail", "false");
-	setSi(srcdoc, "StatAppWzemPrdRec", "initdone1NJob", "false");
-	setSi(srcdoc, "StatAppWzemPrdRec", "initdone1NNode", "false");
 	setSi(srcdoc, "StatAppWzemPrdRec", "initdone1NEvent", "false");
+	setSi(srcdoc, "StatAppWzemPrdRec", "initdone1NNode", "false");
+	setSi(srcdoc, "StatAppWzemPrdRec", "initdone1NJob", "false");
 };
 
 function resetHeights() {
 	heightDetail = 30;
-	height1NJob = 30;
-	height1NNode = 30;
 	height1NEvent = 30;
+	height1NNode = 30;
+	height1NJob = 30;
 };
 
 function getInitdone(pnlshort) {
@@ -43,18 +43,18 @@ function checkInitdone() {
 	var initdone1NRelease = (retrieveSi(srcdoc, "StatAppWzemPrdRec", "initdone1NRelease") == "true");
 
 	var initdoneDetail = (retrieveSi(srcdoc, "StatAppWzemPrdRec", "initdoneDetail") == "true");
-	var initdone1NJob = (retrieveSi(srcdoc, "StatAppWzemPrdRec", "initdone1NJob") == "true");
-	var initdone1NNode = (retrieveSi(srcdoc, "StatAppWzemPrdRec", "initdone1NNode") == "true");
 	var initdone1NEvent = (retrieveSi(srcdoc, "StatAppWzemPrdRec", "initdone1NEvent") == "true");
+	var initdone1NNode = (retrieveSi(srcdoc, "StatAppWzemPrdRec", "initdone1NNode") == "true");
+	var initdone1NJob = (retrieveSi(srcdoc, "StatAppWzemPrdRec", "initdone1NJob") == "true");
 
 	if (!initdoneDetail) {
 		lhsdoc.getElementById("Detail").src = "./PnlWzemPrdDetail.html?scrJref=" + scrJrefDetail;
-	} else if (!initdone1NJob) {
-		rhsdoc.getElementById("1NJob").src = "./PnlWzemPrd1NJob.html?scrJref=" + scrJref1NJob;
-	} else if (!initdone1NNode) {
-		rhsdoc.getElementById("1NNode").src = "./PnlWzemPrd1NNode.html?scrJref=" + scrJref1NNode;
 	} else if (!initdone1NEvent) {
 		rhsdoc.getElementById("1NEvent").src = "./PnlWzemPrd1NEvent.html?scrJref=" + scrJref1NEvent;
+	} else if (!initdone1NNode) {
+		rhsdoc.getElementById("1NNode").src = "./PnlWzemPrd1NNode.html?scrJref=" + scrJref1NNode;
+	} else if (!initdone1NJob) {
+		rhsdoc.getElementById("1NJob").src = "./PnlWzemPrd1NJob.html?scrJref=" + scrJref1NJob;
 
 	} else {
 		refreshB();
@@ -94,9 +94,9 @@ function setPnlAvail(short, avail) {
 		else if (short == "List") heightList = height;
 		else if (short == "Rec") heightRec = height;
 		else if (short == "Detail") heightDetail = height;
-		else if (short == "1NJob") height1NJob = height;
-		else if (short == "1NNode") height1NNode = height;
 		else if (short == "1NEvent") height1NEvent = height;
+		else if (short == "1NNode") height1NNode = height;
+		else if (short == "1NJob") height1NJob = height;
 	};
 
 	return(avail != oldAvail);
@@ -140,9 +140,9 @@ function changeHeight(pnlshort, height, update) {
 	else if (pnlshort == "List") heightList = height;
 	else if (pnlshort == "Rec") heightRec = height;
 	else if (pnlshort == "Detail") heightDetail = height;
-	else if (pnlshort == "1NJob") height1NJob = height;
-	else if (pnlshort == "1NNode") height1NNode = height;
 	else if (pnlshort == "1NEvent") height1NEvent = height;
+	else if (pnlshort == "1NNode") height1NNode = height;
+	else if (pnlshort == "1NJob") height1NJob = height;
 
 	if (update) updateHeight();
 };
@@ -151,7 +151,7 @@ function updateHeight() {
 	var heightLhs, heightRhs, heightGt;
 
 	heightLhs = heightDetail+13 + 5;
-	heightRhs = height1NJob+13 + height1NNode+13 + height1NEvent+13 + 5;
+	heightRhs = height1NEvent+13 + height1NNode+13 + height1NJob+13 + 5;
 
 	if (heightLhs > heightRhs) {
 		lhsdoc.getElementById("tdFill").setAttribute("height", "5");
@@ -342,12 +342,12 @@ function handleDpchEng(dom, dpch) {
 
 			if (_scrJref == scrJrefDetail) {
 				if (getInitdone("Detail")) lhsdoc.getElementById("Detail").contentWindow.handleDpchEng(dom, dpch);
-			} else if (_scrJref == scrJref1NJob) {
-				if (getInitdone("1NJob")) rhsdoc.getElementById("1NJob").contentWindow.handleDpchEng(dom, dpch);
-			} else if (_scrJref == scrJref1NNode) {
-				if (getInitdone("1NNode")) rhsdoc.getElementById("1NNode").contentWindow.handleDpchEng(dom, dpch);
 			} else if (_scrJref == scrJref1NEvent) {
 				if (getInitdone("1NEvent")) rhsdoc.getElementById("1NEvent").contentWindow.handleDpchEng(dom, dpch);
+			} else if (_scrJref == scrJref1NNode) {
+				if (getInitdone("1NNode")) rhsdoc.getElementById("1NNode").contentWindow.handleDpchEng(dom, dpch);
+			} else if (_scrJref == scrJref1NJob) {
+				if (getInitdone("1NJob")) rhsdoc.getElementById("1NJob").contentWindow.handleDpchEng(dom, dpch);
 			} else {
 				// alert("got a '" + dpch + "' from job with scrJref " + _scrJref);
 			};

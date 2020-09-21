@@ -1,9 +1,9 @@
 /**
 	* \file DbsWzem.cpp
 	* C++ wrapper for database DbsWzem (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 4 Jun 2020
-	* \date modified: 4 Jun 2020
+	* \author Catherine Johnson
+	* \date created: 21 Sep 2020
+	* \date modified: 21 Sep 2020
 	*/
 
 #include "DbsWzem.h"
@@ -380,6 +380,7 @@ void DbsWzem::initLite() {
 	};
 
 	sqlite3_extended_result_codes(dbsLite, 1);
+	sqlite3_busy_timeout(dbsLite, 5000);
 
 	tblwzemaccrmuseruniversal = new LiteTblWzemAccRMUserUniversal();
 	((LiteTblWzemAccRMUserUniversal*) tblwzemaccrmuseruniversal)->init(dbsLite);

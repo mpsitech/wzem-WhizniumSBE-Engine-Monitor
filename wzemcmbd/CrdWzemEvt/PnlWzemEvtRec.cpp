@@ -1,9 +1,9 @@
 /**
 	* \file PnlWzemEvtRec.cpp
 	* job handler for job PnlWzemEvtRec (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 4 Jun 2020
-	* \date modified: 4 Jun 2020
+	* \author Catherine Johnson
+	* \date created: 21 Sep 2020
+	* \date modified: 21 Sep 2020
 	*/
 
 #ifdef WZEMCMBD
@@ -86,7 +86,11 @@ DpchEngWzem* PnlWzemEvtRec::getNewDpchEng(
 void PnlWzemEvtRec::refresh(
 			DbsWzem* dbswzem
 			, set<uint>& moditems
+			, const bool unmute
 		) {
+	if (muteRefresh && !unmute) return;
+	muteRefresh = true;
+
 	ContInf oldContinf(continf);
 	StatShr oldStatshr(statshr);
 
@@ -111,6 +115,7 @@ void PnlWzemEvtRec::refresh(
 	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
 	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
 
+	muteRefresh = false;
 };
 
 void PnlWzemEvtRec::updatePreset(
@@ -247,10 +252,10 @@ void PnlWzemEvtRec::handleCall(
 			DbsWzem* dbswzem
 			, Call* call
 		) {
-	if (call->ixVCall == VecWzemVCall::CALLWZEMEVTUPD_REFEQ) {
-		call->abort = handleCallWzemEvtUpd_refEq(dbswzem, call->jref);
-	} else if (call->ixVCall == VecWzemVCall::CALLWZEMDCHUPD_REFEQ) {
+	if (call->ixVCall == VecWzemVCall::CALLWZEMDCHUPD_REFEQ) {
 		call->abort = handleCallWzemDchUpd_refEq(dbswzem, call->jref);
+	} else if (call->ixVCall == VecWzemVCall::CALLWZEMEVTUPD_REFEQ) {
+		call->abort = handleCallWzemEvtUpd_refEq(dbswzem, call->jref);
 	} else if (call->ixVCall == VecWzemVCall::CALLWZEMEVT_PSTEQ) {
 		call->abort = handleCallWzemEvt_pstEq(dbswzem, call->jref, call->argInv.ref, call->argRet.boolval);
 	} else if (call->ixVCall == VecWzemVCall::CALLWZEMEVT_PRDEQ) {
@@ -272,21 +277,21 @@ void PnlWzemEvtRec::handleCall(
 	};
 };
 
-bool PnlWzemEvtRec::handleCallWzemEvtUpd_refEq(
-			DbsWzem* dbswzem
-			, const ubigint jrefTrig
-		) {
-	bool retval = false;
-	// IP handleCallWzemEvtUpd_refEq --- INSERT
-	return retval;
-};
-
 bool PnlWzemEvtRec::handleCallWzemDchUpd_refEq(
 			DbsWzem* dbswzem
 			, const ubigint jrefTrig
 		) {
 	bool retval = false;
 	// IP handleCallWzemDchUpd_refEq --- INSERT
+	return retval;
+};
+
+bool PnlWzemEvtRec::handleCallWzemEvtUpd_refEq(
+			DbsWzem* dbswzem
+			, const ubigint jrefTrig
+		) {
+	bool retval = false;
+	// IP handleCallWzemEvtUpd_refEq --- INSERT
 	return retval;
 };
 

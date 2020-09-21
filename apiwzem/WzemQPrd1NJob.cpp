@@ -1,9 +1,9 @@
 /**
 	* \file WzemQPrd1NJob.cpp
 	* API code for table TblWzemQPrd1NJob (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 4 Jun 2020
-	* \date modified: 4 Jun 2020
+	* \author Catherine Johnson
+	* \date created: 21 Sep 2020
+	* \date modified: 21 Sep 2020
 	*/
 
 #include "WzemQPrd1NJob.h"

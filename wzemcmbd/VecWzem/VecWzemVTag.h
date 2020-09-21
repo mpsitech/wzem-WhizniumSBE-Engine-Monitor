@@ -1,9 +1,9 @@
 /**
 	* \file VecWzemVTag.h
 	* vector VecWzemVTag (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 4 Jun 2020
-	* \date modified: 4 Jun 2020
+	* \author Catherine Johnson
+	* \date created: 21 Sep 2020
+	* \date modified: 21 Sep 2020
 	*/
 
 #ifndef VECWZEMVTAG_H
@@ -45,16 +45,17 @@ namespace VecWzemVTag {
 	const Sbecore::uint PROGRESS = 28;
 	const Sbecore::uint PRSERR = 29;
 	const Sbecore::uint QUEST = 30;
-	const Sbecore::uint REVERSE = 31;
-	const Sbecore::uint RUN = 32;
-	const Sbecore::uint SESS = 33;
-	const Sbecore::uint SHOWLONG = 34;
-	const Sbecore::uint SHOWSHORT = 35;
-	const Sbecore::uint STOP = 36;
-	const Sbecore::uint SUSPSESS = 37;
-	const Sbecore::uint TRU = 38;
-	const Sbecore::uint UPLOAD = 39;
-	const Sbecore::uint YES = 40;
+	const Sbecore::uint REC = 31;
+	const Sbecore::uint REVERSE = 32;
+	const Sbecore::uint RUN = 33;
+	const Sbecore::uint SESS = 34;
+	const Sbecore::uint SHOWLONG = 35;
+	const Sbecore::uint SHOWSHORT = 36;
+	const Sbecore::uint STOP = 37;
+	const Sbecore::uint SUSPSESS = 38;
+	const Sbecore::uint TRU = 39;
+	const Sbecore::uint UPLOAD = 40;
+	const Sbecore::uint YES = 41;
 
 	Sbecore::uint getIx(const std::string& sref);
 	std::string getSref(const Sbecore::uint ix);

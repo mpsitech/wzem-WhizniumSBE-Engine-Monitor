@@ -1,9 +1,9 @@
 /**
   * \file PnlWzemNdeList.js
   * web client functionality for panel PnlWzemNdeList
-  * \author Alexander Wirthmueller
-  * \date created: 4 Jun 2020
-  * \date modified: 4 Jun 2020
+  * \author Catherine Johnson
+  * \date created: 21 Sep 2020
+  * \date modified: 21 Sep 2020
   */
 
 // --- expand state management
@@ -438,6 +438,12 @@ function handleLoad() {
 };
 
 // --- specific event handlers for app controls
+
+function handleButClipboardClick() {
+	copyToClipboard(document, srcdoc, "WzemNdeList", "ListWzemQNdeList", retrieveTi(srcdoc, "TagWzemNdeList", "TxtRecord1"), retrieveTi(srcdoc, "TagWzemNdeList", "TxtRecord2"),
+				["Prd","Xnr","Ip","Sta","Sto","Prt","Orn"],
+				["prd","xnr","ip","sta","sto","prt","orn"]);
+};
 
 // --- generalized event handlers for app controls
 

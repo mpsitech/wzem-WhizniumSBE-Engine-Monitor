@@ -1,9 +1,9 @@
 /**
 	* \file PnlWzemPrsADetail.cpp
 	* API code for job PnlWzemPrsADetail (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 4 Jun 2020
-	* \date modified: 4 Jun 2020
+	* \author Catherine Johnson
+	* \date created: 21 Sep 2020
+	* \date modified: 21 Sep 2020
 	*/
 
 #include "PnlWzemPrsADetail.h"
@@ -332,6 +332,8 @@ set<uint> PnlWzemPrsADetail::StgIac::diff(
 
 PnlWzemPrsADetail::Tag::Tag(
 			const string& Cpt
+			, const string& TxtRecord1
+			, const string& TxtRecord2
 			, const string& Trs
 			, const string& TxtShowing1
 			, const string& TxtShowing2
@@ -341,13 +343,15 @@ PnlWzemPrsADetail::Tag::Tag(
 			Block()
 		{
 	this->Cpt = Cpt;
+	this->TxtRecord1 = TxtRecord1;
+	this->TxtRecord2 = TxtRecord2;
 	this->Trs = Trs;
 	this->TxtShowing1 = TxtShowing1;
 	this->TxtShowing2 = TxtShowing2;
 	this->TcoTyp = TcoTyp;
 	this->TcoVal = TcoVal;
 
-	mask = {CPT, TRS, TXTSHOWING1, TXTSHOWING2, TCOTYP, TCOVAL};
+	mask = {CPT, TXTRECORD1, TXTRECORD2, TRS, TXTSHOWING1, TXTSHOWING2, TCOTYP, TCOVAL};
 };
 
 bool PnlWzemPrsADetail::Tag::readXML(
@@ -368,6 +372,8 @@ bool PnlWzemPrsADetail::Tag::readXML(
 
 	if (basefound) {
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Ti", "sref", "Cpt", Cpt)) add(CPT);
+		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Ti", "sref", "TxtRecord1", TxtRecord1)) add(TXTRECORD1);
+		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Ti", "sref", "TxtRecord2", TxtRecord2)) add(TXTRECORD2);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Ti", "sref", "Trs", Trs)) add(TRS);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Ti", "sref", "TxtShowing1", TxtShowing1)) add(TXTSHOWING1);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Ti", "sref", "TxtShowing2", TxtShowing2)) add(TXTSHOWING2);

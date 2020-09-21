@@ -1,9 +1,9 @@
 /**
 	* \file QryWzemPrdList.h
 	* job handler for job QryWzemPrdList (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 4 Jun 2020
-	* \date modified: 4 Jun 2020
+	* \author Catherine Johnson
+	* \date created: 21 Sep 2020
+	* \date modified: 21 Sep 2020
 	*/
 
 #ifndef QRYWZEMPRDLIST_H
@@ -143,8 +143,8 @@ public:
 	void handleCall(DbsWzem* dbswzem, Sbecore::Call* call);
 
 private:
-	bool handleCallWzemPrdUpd_refEq(DbsWzem* dbswzem, const Sbecore::ubigint jrefTrig);
 	bool handleCallWzemPrdMod(DbsWzem* dbswzem, const Sbecore::ubigint jrefTrig);
+	bool handleCallWzemPrdUpd_refEq(DbsWzem* dbswzem, const Sbecore::ubigint jrefTrig);
 	bool handleCallWzemStubChgFromSelf(DbsWzem* dbswzem);
 
 };

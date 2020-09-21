@@ -1,9 +1,9 @@
 /**
 	* \file PnlWzemUsgList.cpp
 	* job handler for job PnlWzemUsgList (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 4 Jun 2020
-	* \date modified: 4 Jun 2020
+	* \author Catherine Johnson
+	* \date created: 21 Sep 2020
+	* \date modified: 21 Sep 2020
 	*/
 
 #ifdef WZEMCMBD
@@ -94,7 +94,11 @@ DpchEngWzem* PnlWzemUsgList::getNewDpchEng(
 void PnlWzemUsgList::refresh(
 			DbsWzem* dbswzem
 			, set<uint>& moditems
+			, const bool unmute
 		) {
+	if (muteRefresh && !unmute) return;
+	muteRefresh = true;
+
 	ContInf oldContinf(continf);
 	ContIac oldContiac(contiac);
 
@@ -108,6 +112,8 @@ void PnlWzemUsgList::refresh(
 	// IP refresh --- END
 	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
 	if (contiac.diff(&oldContiac).size() != 0) insert(moditems, DpchEngData::CONTIAC);
+
+	muteRefresh = false;
 };
 
 void PnlWzemUsgList::updatePreset(
@@ -239,19 +245,18 @@ void PnlWzemUsgList::handleDpchAppDataContiac(
 
 	diffitems = _contiac->diff(&contiac);
 
-	muteRefresh = true;
-
 	if (has(diffitems, ContIac::NUMFTOS)) {
-		if ((_contiac->numFTos >= QryWzemUsgList::VecVOrd::SRF) && (_contiac->numFTos <= QryWzemUsgList::VecVOrd::OWN)) {
+		if ((_contiac->numFTos >= QryWzemUsgList::VecVOrd::SRF) && (_contiac->numFTos <= QryWzemUsgList::VecVOrd::GRP)) {
+			muteRefresh = true;
+
 			xchg->addIxPreset(VecWzemVPreset::PREWZEMIXORD, jref, _contiac->numFTos);
 
 			qry->rerun(dbswzem);
-			refresh(dbswzem, moditems);
+
+			refresh(dbswzem, moditems, true);
 			insert(moditems, {DpchEngData::STATSHRQRY, DpchEngData::STGIACQRY, DpchEngData::RST});
 		};
 	};
-
-	muteRefresh = false;
 
 	insert(moditems, DpchEngData::CONTIAC);
 	*dpcheng = getNewDpchEng(moditems);
@@ -283,16 +288,17 @@ void PnlWzemUsgList::handleDpchAppDataStgiacqry(
 
 	ubigint refSelNew = 0;
 
-	muteRefresh = true;
-
 	if (!diffitems.empty()) {
 		qry->stgiac = *_stgiacqry;
 
 		if (has(diffitems, QryWzemUsgList::StgIac::JNUM)) refSelNew = qry->getRefByJnum(_stgiacqry->jnum);
 
 		if (!has(diffitems, QryWzemUsgList::StgIac::JNUM) || (diffitems.size() > 1)) {
+			muteRefresh = true;
+
 			qry->rerun(dbswzem);
-			refresh(dbswzem, moditems);
+
+			refresh(dbswzem, moditems, true);
 			insert(moditems, {DpchEngData::STATSHRQRY, DpchEngData::RST});
 		};
 
@@ -301,8 +307,6 @@ void PnlWzemUsgList::handleDpchAppDataStgiacqry(
 			xchg->triggerIxRefCall(dbswzem, VecWzemVCall::CALLWZEMREFPRESET, jref, VecWzemVPreset::PREWZEMREFUSG, refSelNew);
 		};
 	};
-
-	muteRefresh = false;
 
 	insert(moditems, DpchEngData::STGIACQRY);
 	*dpcheng = getNewDpchEng(moditems);
@@ -352,9 +356,8 @@ void PnlWzemUsgList::handleDpchAppDoButRefreshClick(
 	muteRefresh = true;
 
 	qry->rerun(dbswzem, false);
-	refresh(dbswzem, moditems);
 
-	muteRefresh = false;
+	refresh(dbswzem, moditems, true);
 
 	insert(moditems, {DpchEngData::STATSHRQRY, DpchEngData::STGIACQRY, DpchEngData::RST});
 	*dpcheng = getNewDpchEng(moditems);

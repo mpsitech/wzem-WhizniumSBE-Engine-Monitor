@@ -1,9 +1,9 @@
 /**
   * \file PnlWzemPrsADetail.js
   * web client functionality for panel PnlWzemPrsADetail
-  * \author Alexander Wirthmueller
-  * \date created: 4 Jun 2020
-  * \date modified: 4 Jun 2020
+  * \author Catherine Johnson
+  * \date created: 21 Sep 2020
+  * \date modified: 21 Sep 2020
   */
 
 // --- expand state management
@@ -412,6 +412,12 @@ function handleButMinimizeClick() {
 
 function handleButRegularizeClick() {
 	regularize(true);
+};
+
+function handleButClipboardClick() {
+	copyToClipboard(document, srcdoc, "WzemPrsADetail", "ListWzemQPrsADetail", retrieveTi(srcdoc, "TagWzemPrsADetail", "TxtRecord1"), retrieveTi(srcdoc, "TagWzemPrsADetail", "TxtRecord2"),
+				["Typ","","Val"],
+				["typ","typ2","val"]);
 };
 
 // --- generalized event handlers for app controls

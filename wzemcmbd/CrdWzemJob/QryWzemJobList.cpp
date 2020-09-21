@@ -1,9 +1,9 @@
 /**
 	* \file QryWzemJobList.cpp
 	* job handler for job QryWzemJobList (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 4 Jun 2020
-	* \date modified: 4 Jun 2020
+	* \author Catherine Johnson
+	* \date created: 21 Sep 2020
+	* \date modified: 21 Sep 2020
 	*/
 
 #ifdef WZEMCMBD
@@ -168,8 +168,8 @@ void QryWzemJobList::rerun_orderSQL(
 			, const uint preIxOrd
 		) {
 	if (preIxOrd == VecVOrd::SUP) sqlstr += " ORDER BY TblWzemMJob.supRefWzemMJob ASC";
-	else if (preIxOrd == VecVOrd::STO) sqlstr += " ORDER BY TblWzemMJob.x1Stopu ASC";
 	else if (preIxOrd == VecVOrd::STA) sqlstr += " ORDER BY TblWzemMJob.x1Startu ASC";
+	else if (preIxOrd == VecVOrd::STO) sqlstr += " ORDER BY TblWzemMJob.x1Stopu ASC";
 	else if (preIxOrd == VecVOrd::PRD) sqlstr += " ORDER BY TblWzemMJob.refWzemMPeriod ASC";
 };
 
@@ -340,27 +340,13 @@ void QryWzemJobList::handleCall(
 			DbsWzem* dbswzem
 			, Call* call
 		) {
-	if (call->ixVCall == VecWzemVCall::CALLWZEMJOBUPD_REFEQ) {
-		call->abort = handleCallWzemJobUpd_refEq(dbswzem, call->jref);
-	} else if (call->ixVCall == VecWzemVCall::CALLWZEMJOBMOD) {
+	if (call->ixVCall == VecWzemVCall::CALLWZEMJOBMOD) {
 		call->abort = handleCallWzemJobMod(dbswzem, call->jref);
+	} else if (call->ixVCall == VecWzemVCall::CALLWZEMJOBUPD_REFEQ) {
+		call->abort = handleCallWzemJobUpd_refEq(dbswzem, call->jref);
 	} else if ((call->ixVCall == VecWzemVCall::CALLWZEMSTUBCHG) && (call->jref == jref)) {
 		call->abort = handleCallWzemStubChgFromSelf(dbswzem);
 	};
-};
-
-bool QryWzemJobList::handleCallWzemJobUpd_refEq(
-			DbsWzem* dbswzem
-			, const ubigint jrefTrig
-		) {
-	bool retval = false;
-
-	if (ixWzemVQrystate != VecWzemVQrystate::OOD) {
-		ixWzemVQrystate = VecWzemVQrystate::OOD;
-		xchg->triggerCall(dbswzem, VecWzemVCall::CALLWZEMSTATCHG, jref);
-	};
-
-	return retval;
 };
 
 bool QryWzemJobList::handleCallWzemJobMod(
@@ -371,6 +357,20 @@ bool QryWzemJobList::handleCallWzemJobMod(
 
 	if ((ixWzemVQrystate == VecWzemVQrystate::UTD) || (ixWzemVQrystate == VecWzemVQrystate::SLM)) {
 		ixWzemVQrystate = VecWzemVQrystate::MNR;
+		xchg->triggerCall(dbswzem, VecWzemVCall::CALLWZEMSTATCHG, jref);
+	};
+
+	return retval;
+};
+
+bool QryWzemJobList::handleCallWzemJobUpd_refEq(
+			DbsWzem* dbswzem
+			, const ubigint jrefTrig
+		) {
+	bool retval = false;
+
+	if (ixWzemVQrystate != VecWzemVQrystate::OOD) {
+		ixWzemVQrystate = VecWzemVQrystate::OOD;
 		xchg->triggerCall(dbswzem, VecWzemVCall::CALLWZEMSTATCHG, jref);
 	};
 

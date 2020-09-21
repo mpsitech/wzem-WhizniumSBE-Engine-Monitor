@@ -1,9 +1,9 @@
 /**
 	* \file PnlWzemUsr1NSession.cpp
 	* job handler for job PnlWzemUsr1NSession (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 4 Jun 2020
-	* \date modified: 4 Jun 2020
+	* \author Catherine Johnson
+	* \date created: 21 Sep 2020
+	* \date modified: 21 Sep 2020
 	*/
 
 #ifdef WZEMCMBD
@@ -90,7 +90,11 @@ DpchEngWzem* PnlWzemUsr1NSession::getNewDpchEng(
 void PnlWzemUsr1NSession::refresh(
 			DbsWzem* dbswzem
 			, set<uint>& moditems
+			, const bool unmute
 		) {
+	if (muteRefresh && !unmute) return;
+	muteRefresh = true;
+
 	ContInf oldContinf(continf);
 	StatShr oldStatshr(statshr);
 
@@ -105,6 +109,8 @@ void PnlWzemUsr1NSession::refresh(
 	// IP refresh --- END
 	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
 	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
+
+	muteRefresh = false;
 };
 
 void PnlWzemUsr1NSession::updatePreset(
@@ -214,9 +220,9 @@ void PnlWzemUsr1NSession::handleDpchAppDataStgiacqry(
 
 	WzemMSession* _recSes = NULL;
 
-	muteRefresh = true;
-
 	if (!diffitems.empty()) {
+		muteRefresh = true;
+
 		qry->stgiac = *_stgiacqry;
 
 		if (has(diffitems, QryWzemUsr1NSession::StgIac::JNUM)) recSelNew = qry->getRecByJnum(_stgiacqry->jnum);
@@ -242,10 +248,8 @@ void PnlWzemUsr1NSession::handleDpchAppDataStgiacqry(
 			qry->refreshJnum();
 		};
 
-		refresh(dbswzem, moditems);
+		refresh(dbswzem, moditems, true);
 	};
-
-	muteRefresh = false;
 
 	insert(moditems, DpchEngData::STGIACQRY);
 	*dpcheng = getNewDpchEng(moditems);
@@ -267,9 +271,8 @@ void PnlWzemUsr1NSession::handleDpchAppDoButRefreshClick(
 	muteRefresh = true;
 
 	qry->rerun(dbswzem, false);
-	refresh(dbswzem, moditems);
 
-	muteRefresh = false;
+	refresh(dbswzem, moditems, true);
 
 	insert(moditems, {DpchEngData::STATSHRQRY, DpchEngData::STGIACQRY, DpchEngData::RST});
 	*dpcheng = getNewDpchEng(moditems);

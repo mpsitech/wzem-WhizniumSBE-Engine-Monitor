@@ -1,9 +1,9 @@
 /**
   * \file PnlWzemUsgList.js
   * web client functionality for panel PnlWzemUsgList
-  * \author Alexander Wirthmueller
-  * \date created: 4 Jun 2020
-  * \date modified: 4 Jun 2020
+  * \author Catherine Johnson
+  * \date created: 21 Sep 2020
+  * \date modified: 21 Sep 2020
   */
 
 // --- expand state management
@@ -115,9 +115,9 @@ function refreshB(chgcol) {
 			ix++;
 
 			if (i == 1) {
-				doc.cols.push("TcoGrp"); doc.widths.push(TcoGrpWidth); doc.fs.push("grp"); doc.tos.push(2); wtot += TcoGrpWidth;
+				doc.cols.push("TcoGrp"); doc.widths.push(TcoGrpWidth); doc.fs.push("grp"); doc.tos.push(3); wtot += TcoGrpWidth;
 			} else if (i == 2) {
-				doc.cols.push("TcoOwn"); doc.widths.push(TcoOwnWidth); doc.fs.push("own"); doc.tos.push(3); wtot += TcoOwnWidth;
+				doc.cols.push("TcoOwn"); doc.widths.push(TcoOwnWidth); doc.fs.push("own"); doc.tos.push(2); wtot += TcoOwnWidth;
 			} else if (i == 3) {
 				doc.cols.push("TcoSrf"); doc.widths.push(TcoSrfWidth); doc.fs.push("srf"); doc.tos.push(1); wtot += TcoSrfWidth;
 			} else {
@@ -426,6 +426,12 @@ function handleLoad() {
 };
 
 // --- specific event handlers for app controls
+
+function handleButClipboardClick() {
+	copyToClipboard(document, srcdoc, "WzemUsgList", "ListWzemQUsgList", retrieveTi(srcdoc, "TagWzemUsgList", "TxtRecord1"), retrieveTi(srcdoc, "TagWzemUsgList", "TxtRecord2"),
+				["Grp","Own","Srf"],
+				["grp","own","srf"]);
+};
 
 // --- generalized event handlers for app controls
 

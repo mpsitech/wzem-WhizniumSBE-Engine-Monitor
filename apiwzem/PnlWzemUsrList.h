@@ -1,9 +1,9 @@
 /**
 	* \file PnlWzemUsrList.h
 	* API code for job PnlWzemUsrList (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 4 Jun 2020
-	* \date modified: 4 Jun 2020
+	* \author Catherine Johnson
+	* \date created: 21 Sep 2020
+	* \date modified: 21 Sep 2020
 	*/
 
 #ifndef PNLWZEMUSRLIST_H
@@ -155,23 +155,27 @@ namespace PnlWzemUsrList {
 
 	public:
 		static const Sbecore::uint CPT = 1;
-		static const Sbecore::uint TRS = 2;
-		static const Sbecore::uint TXTSHOWING1 = 3;
-		static const Sbecore::uint TXTSHOWING2 = 4;
-		static const Sbecore::uint TCOGRP = 5;
-		static const Sbecore::uint TCOOWN = 6;
-		static const Sbecore::uint TCOPRS = 7;
-		static const Sbecore::uint TCOSRF = 8;
-		static const Sbecore::uint TCOUSG = 9;
-		static const Sbecore::uint TCOSTE = 10;
-		static const Sbecore::uint TCOLCL = 11;
-		static const Sbecore::uint TCOULV = 12;
+		static const Sbecore::uint TXTRECORD1 = 2;
+		static const Sbecore::uint TXTRECORD2 = 3;
+		static const Sbecore::uint TRS = 4;
+		static const Sbecore::uint TXTSHOWING1 = 5;
+		static const Sbecore::uint TXTSHOWING2 = 6;
+		static const Sbecore::uint TCOGRP = 7;
+		static const Sbecore::uint TCOOWN = 8;
+		static const Sbecore::uint TCOPRS = 9;
+		static const Sbecore::uint TCOSRF = 10;
+		static const Sbecore::uint TCOUSG = 11;
+		static const Sbecore::uint TCOSTE = 12;
+		static const Sbecore::uint TCOLCL = 13;
+		static const Sbecore::uint TCOULV = 14;
 
 	public:
-		Tag(const std::string& Cpt = "", const std::string& Trs = "", const std::string& TxtShowing1 = "", const std::string& TxtShowing2 = "", const std::string& TcoGrp = "", const std::string& TcoOwn = "", const std::string& TcoPrs = "", const std::string& TcoSrf = "", const std::string& TcoUsg = "", const std::string& TcoSte = "", const std::string& TcoLcl = "", const std::string& TcoUlv = "");
+		Tag(const std::string& Cpt = "", const std::string& TxtRecord1 = "", const std::string& TxtRecord2 = "", const std::string& Trs = "", const std::string& TxtShowing1 = "", const std::string& TxtShowing2 = "", const std::string& TcoGrp = "", const std::string& TcoOwn = "", const std::string& TcoPrs = "", const std::string& TcoSrf = "", const std::string& TcoUsg = "", const std::string& TcoSte = "", const std::string& TcoLcl = "", const std::string& TcoUlv = "");
 
 	public:
 		std::string Cpt;
+		std::string TxtRecord1;
+		std::string TxtRecord2;
 		std::string Trs;
 		std::string TxtShowing1;
 		std::string TxtShowing2;

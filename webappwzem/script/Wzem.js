@@ -1,15 +1,15 @@
 /**
   * \file Wzem.js
   * web client global functionality for Wzem
-  * \author Alexander Wirthmueller
-  * \date created: 4 Jun 2020
-  * \date modified: 4 Jun 2020
+  * \author Catherine Johnson
+  * \date created: 21 Sep 2020
+  * \date modified: 21 Sep 2020
   */
 
-WZEM_VERSION = "0.9.18";
+WZEM_VERSION = "0.9.19";
 WZEM_VERSION_MAJOR = 0;
 WZEM_VERSION_MINOR = 9;
-WZEM_VERSION_SUB = 18;
+WZEM_VERSION_SUB = 19;
 
 function getCrdwnd() {
 	if (window.name == "Crd") return window;

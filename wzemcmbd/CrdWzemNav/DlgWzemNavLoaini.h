@@ -1,9 +1,9 @@
 /**
 	* \file DlgWzemNavLoaini.h
 	* job handler for job DlgWzemNavLoaini (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 4 Jun 2020
-	* \date modified: 4 Jun 2020
+	* \author Catherine Johnson
+	* \date created: 21 Sep 2020
+	* \date modified: 21 Sep 2020
 	*/
 
 #ifndef DLGWZEMNAVLOAINI_H
@@ -408,10 +408,10 @@ public:
 	};
 
 	bool evalButDneActive(DbsWzem* dbswzem);
-	bool evalIfiUldActive(DbsWzem* dbswzem);
 	bool evalLfiDldActive(DbsWzem* dbswzem);
 	bool evalImpButRunActive(DbsWzem* dbswzem);
 	bool evalImpButStoActive(DbsWzem* dbswzem);
+	bool evalIfiUldActive(DbsWzem* dbswzem);
 
 public:
 	DlgWzemNavLoaini(XchgWzem* xchg, DbsWzem* dbswzem, const Sbecore::ubigint jrefSup, const Sbecore::uint ixWzemVLocale);
@@ -449,7 +449,7 @@ public:
 	void refreshImp(DbsWzem* dbswzem, std::set<Sbecore::uint>& moditems);
 	void refreshLfi(DbsWzem* dbswzem, std::set<Sbecore::uint>& moditems);
 
-	void refresh(DbsWzem* dbswzem, std::set<Sbecore::uint>& moditems);
+	void refresh(DbsWzem* dbswzem, std::set<Sbecore::uint>& moditems, const bool unmute = false);
 
 public:
 
@@ -471,9 +471,9 @@ private:
 
 	std::string handleDownloadInSgeDone(DbsWzem* dbswzem);
 
-	void handleTimerInSgePrsidle(DbsWzem* dbswzem, const std::string& sref);
 	void handleTimerWithSrefMonInSgeImport(DbsWzem* dbswzem);
 	void handleTimerInSgeImpidle(DbsWzem* dbswzem, const std::string& sref);
+	void handleTimerInSgePrsidle(DbsWzem* dbswzem, const std::string& sref);
 
 private:
 	void changeStage(DbsWzem* dbswzem, Sbecore::uint _ixVSge, DpchEngWzem** dpcheng = NULL);
@@ -504,7 +504,6 @@ private:
 };
 
 #endif
-
 
 
 

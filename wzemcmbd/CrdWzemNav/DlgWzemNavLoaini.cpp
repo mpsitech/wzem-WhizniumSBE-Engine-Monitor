@@ -1,9 +1,9 @@
 /**
 	* \file DlgWzemNavLoaini.cpp
 	* job handler for job DlgWzemNavLoaini (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 4 Jun 2020
-	* \date modified: 4 Jun 2020
+	* \author Catherine Johnson
+	* \date created: 21 Sep 2020
+	* \date modified: 21 Sep 2020
 	*/
 
 #ifdef WZEMCMBD
@@ -104,8 +104,8 @@ void DlgWzemNavLoaini::refreshImp(
 			DbsWzem* dbswzem
 			, set<uint>& moditems
 		) {
-	ContInfImp oldContinfimp(continfimp);
 	StatShrImp oldStatshrimp(statshrimp);
+	ContInfImp oldContinfimp(continfimp);
 
 	// IP refreshImp --- RBEGIN
 	// continfimp
@@ -116,8 +116,8 @@ void DlgWzemNavLoaini::refreshImp(
 	statshrimp.ButStoActive = evalImpButStoActive(dbswzem);
 
 	// IP refreshImp --- REND
-	if (continfimp.diff(&oldContinfimp).size() != 0) insert(moditems, DpchEngData::CONTINFIMP);
 	if (statshrimp.diff(&oldStatshrimp).size() != 0) insert(moditems, DpchEngData::STATSHRIMP);
+	if (continfimp.diff(&oldContinfimp).size() != 0) insert(moditems, DpchEngData::CONTINFIMP);
 };
 
 void DlgWzemNavLoaini::refreshLfi(
@@ -141,7 +141,11 @@ void DlgWzemNavLoaini::refreshLfi(
 void DlgWzemNavLoaini::refresh(
 			DbsWzem* dbswzem
 			, set<uint>& moditems
+			, const bool unmute
 		) {
+	if (muteRefresh && !unmute) return;
+	muteRefresh = true;
+
 	StatShr oldStatshr(statshr);
 	ContIac oldContiac(contiac);
 	ContInf oldContinf(continf);
@@ -164,6 +168,8 @@ void DlgWzemNavLoaini::refresh(
 	refreshIfi(dbswzem, moditems);
 	refreshImp(dbswzem, moditems);
 	refreshLfi(dbswzem, moditems);
+
+	muteRefresh = false;
 };
 
 void DlgWzemNavLoaini::handleRequest(
@@ -221,9 +227,9 @@ void DlgWzemNavLoaini::handleRequest(
 		if (ixVSge == VecVSge::DONE) req->filename = handleDownloadInSgeDone(dbswzem);
 
 	} else if (req->ixVBasetype == ReqWzem::VecVBasetype::TIMER) {
-		if (ixVSge == VecVSge::PRSIDLE) handleTimerInSgePrsidle(dbswzem, req->sref);
-		else if ((req->sref == "mon") && (ixVSge == VecVSge::IMPORT)) handleTimerWithSrefMonInSgeImport(dbswzem);
+		if ((req->sref == "mon") && (ixVSge == VecVSge::IMPORT)) handleTimerWithSrefMonInSgeImport(dbswzem);
 		else if (ixVSge == VecVSge::IMPIDLE) handleTimerInSgeImpidle(dbswzem, req->sref);
+		else if (ixVSge == VecVSge::PRSIDLE) handleTimerInSgePrsidle(dbswzem, req->sref);
 	};
 };
 
@@ -313,13 +319,6 @@ string DlgWzemNavLoaini::handleDownloadInSgeDone(
 	return(""); // IP handleDownloadInSgeDone --- LINE
 };
 
-void DlgWzemNavLoaini::handleTimerInSgePrsidle(
-			DbsWzem* dbswzem
-			, const string& sref
-		) {
-	changeStage(dbswzem, nextIxVSgeSuccess);
-};
-
 void DlgWzemNavLoaini::handleTimerWithSrefMonInSgeImport(
 			DbsWzem* dbswzem
 		) {
@@ -328,6 +327,13 @@ void DlgWzemNavLoaini::handleTimerWithSrefMonInSgeImport(
 };
 
 void DlgWzemNavLoaini::handleTimerInSgeImpidle(
+			DbsWzem* dbswzem
+			, const string& sref
+		) {
+	changeStage(dbswzem, nextIxVSgeSuccess);
+};
+
+void DlgWzemNavLoaini::handleTimerInSgePrsidle(
 			DbsWzem* dbswzem
 			, const string& sref
 		) {
@@ -357,7 +363,7 @@ void DlgWzemNavLoaini::changeStage(
 
 			setStage(dbswzem, _ixVSge);
 			reenter = false;
-			if (!muteRefresh) refreshWithDpchEng(dbswzem, dpcheng); // IP changeStage.refresh1 --- LINE
+			refreshWithDpchEng(dbswzem, dpcheng); // IP changeStage.refresh1 --- LINE
 		};
 
 		switch (_ixVSge) {
@@ -632,7 +638,6 @@ void DlgWzemNavLoaini::leaveSgeDone(
 		) {
 	// IP leaveSgeDone --- INSERT
 };
-
 
 
 

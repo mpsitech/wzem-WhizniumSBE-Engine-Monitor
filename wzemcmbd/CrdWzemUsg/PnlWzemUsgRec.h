@@ -1,9 +1,9 @@
 /**
 	* \file PnlWzemUsgRec.h
 	* job handler for job PnlWzemUsgRec (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 4 Jun 2020
-	* \date modified: 4 Jun 2020
+	* \author Catherine Johnson
+	* \date created: 21 Sep 2020
+	* \date modified: 21 Sep 2020
 	*/
 
 #ifndef PNLWZEMUSGREC_H
@@ -13,8 +13,8 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWzemUsgAAccess.h"
 #include "PnlWzemUsgMNUser.h"
+#include "PnlWzemUsgAAccess.h"
 #include "PnlWzemUsgDetail.h"
 
 #define VecVWzemUsgRecDo PnlWzemUsgRec::VecVDo
@@ -170,8 +170,8 @@ public:
 	ContInf continf;
 	StatShr statshr;
 
-	PnlWzemUsgAAccess* pnlaaccess;
 	PnlWzemUsgMNUser* pnlmnuser;
+	PnlWzemUsgAAccess* pnlaaccess;
 	PnlWzemUsgDetail* pnldetail;
 
 	WzemMUsergroup recUsg;
@@ -184,7 +184,7 @@ public:
 public:
 	DpchEngWzem* getNewDpchEng(std::set<Sbecore::uint> items);
 
-	void refresh(DbsWzem* dbswzem, std::set<Sbecore::uint>& moditems);
+	void refresh(DbsWzem* dbswzem, std::set<Sbecore::uint>& moditems, const bool unmute = false);
 
 	void updatePreset(DbsWzem* dbswzem, const Sbecore::uint ixWzemVPreset, const Sbecore::ubigint jrefTrig, const bool notif = false);
 	void minimize(DbsWzem* dbswzem, const bool notif = false, DpchEngWzem** dpcheng = NULL);

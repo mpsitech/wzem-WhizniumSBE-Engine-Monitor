@@ -1,9 +1,9 @@
 /**
 	* \file Wzemcmbd.h
 	* inter-thread exchange object for Wzem combined daemon (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 4 Jun 2020
-	* \date modified: 4 Jun 2020
+	* \author Catherine Johnson
+	* \date created: 21 Sep 2020
+	* \date modified: 21 Sep 2020
 	*/
 
 #ifndef WZEMCMBD_H
@@ -516,8 +516,8 @@ public:
 public:
 	virtual DpchEngWzem* getNewDpchEng(std::set<Sbecore::uint> items);
 
-	virtual void refresh(DbsWzem* dbswzem, std::set<Sbecore::uint>& moditems);
-	void refreshWithDpchEng(DbsWzem* dbswzem, DpchEngWzem** dpcheng = NULL);
+	virtual void refresh(DbsWzem* dbswzem, std::set<Sbecore::uint>& moditems, const bool unmute = false);
+	void refreshWithDpchEng(DbsWzem* dbswzem, DpchEngWzem** dpcheng = NULL, const bool unmute = false);
 
 	virtual std::string getSquawk(DbsWzem* dbswzem);
 
@@ -561,7 +561,7 @@ public:
 	CsjobWzem* srv; // client
 
 public:
-	virtual void handleClaim(DbsWzem* dbswzem, std::map<Sbecore::ubigint,Sbecore::Claim*>& claims, const Sbecore::ubigint jrefNewest); // server
+	virtual bool handleClaim(DbsWzem* dbswzem, std::map<Sbecore::ubigint,Sbecore::Claim*>& claims, const Sbecore::ubigint jrefNewest); // server
 };
 
 /**
@@ -583,13 +583,13 @@ public:
 	virtual void init(XchgWzem* xchg, DbsWzem* dbswzem);
 	virtual void term(XchgWzem* xchg);
 
-	void rlockAccess(const std::string& srefObject, const std::string& srefMember);
-	void runlockAccess(const std::string& srefObject, const std::string& srefMember);
+	void rlockAccess(const std::string& srefObject, const std::string& srefMember, const std::string& args = "");
+	void runlockAccess(const std::string& srefObject, const std::string& srefMember, const std::string& args = "");
 	void rlockAccess(const Sbecore::ubigint jref, const std::string& srefMember);
 	void runlockAccess(const Sbecore::ubigint jref, const std::string& srefMember);
 
-	void wlockAccess(const std::string& srefObject, const std::string& srefMember);
-	void wunlockAccess(const std::string& srefObject, const std::string& srefMember);
+	void wlockAccess(const std::string& srefObject, const std::string& srefMember, const std::string& args = "");
+	void wunlockAccess(const std::string& srefObject, const std::string& srefMember, const std::string& args = "");
 	void wlockAccess(const Sbecore::ubigint jref, const std::string& srefMember);
 	void wunlockAccess(const Sbecore::ubigint jref, const std::string& srefMember);
 };
@@ -905,7 +905,12 @@ public:
 
 	// client/server job methods
 	void addCsjobClaim(DbsWzem* dbswzem, CsjobWzem* csjob, Sbecore::Claim* claim);
-	void getCsjobClaim(CsjobWzem* csjob, bool& takenNotAvailable, bool& fulfilled);
+
+	bool getCsjobClaim(CsjobWzem* csjob, bool& takenNotAvailable, bool& fulfilled, bool& run);
+	bool getCsjobClaim(CsjobWzem* csjob, bool& takenNotAvailable, bool& fulfilled);
+
+	void clearCsjobRun(DbsWzem* dbswzem, const Sbecore::uint ixWzemVJob);
+
 	void removeCsjobClaim(DbsWzem* dbswzem, CsjobWzem* csjob);
 
 	bool getCsjobNotJob(const Sbecore::uint ixWzemVJob);

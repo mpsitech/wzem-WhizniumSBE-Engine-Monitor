@@ -1,9 +1,9 @@
 /**
 	* \file PnlWzemJob1NClstn_blks.cpp
 	* job handler for job PnlWzemJob1NClstn (implementation of blocks)
-	* \author Alexander Wirthmueller
-	* \date created: 4 Jun 2020
-	* \date modified: 4 Jun 2020
+	* \author Catherine Johnson
+	* \date created: 21 Sep 2020
+	* \date modified: 21 Sep 2020
 	*/
 
 using namespace std;
@@ -280,6 +280,8 @@ void PnlWzemJob1NClstn::Tag::writeXML(
 			writeStringAttr(wr, itemtag, "sref", "Cpt", "Call listeners");
 			writeStringAttr(wr, itemtag, "sref", "TcoRef", "Call listener");
 		};
+		writeStringAttr(wr, itemtag, "sref", "TxtRecord1", StrMod::cap(VecWzemVTag::getTitle(VecWzemVTag::REC, ixWzemVLocale)));
+		writeStringAttr(wr, itemtag, "sref", "TxtRecord2", StrMod::cap(VecWzemVTag::getTitle(VecWzemVTag::EMPLONG, ixWzemVLocale)));
 		writeStringAttr(wr, itemtag, "sref", "Trs", StrMod::cap(VecWzemVTag::getTitle(VecWzemVTag::GOTO, ixWzemVLocale)) + " ...");
 		writeStringAttr(wr, itemtag, "sref", "TxtShowing1", VecWzemVTag::getTitle(VecWzemVTag::SHOWSHORT, ixWzemVLocale));
 		writeStringAttr(wr, itemtag, "sref", "TxtShowing2", VecWzemVTag::getTitle(VecWzemVTag::EMPSHORT, ixWzemVLocale));

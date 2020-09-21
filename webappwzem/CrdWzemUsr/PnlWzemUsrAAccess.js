@@ -1,9 +1,9 @@
 /**
   * \file PnlWzemUsrAAccess.js
   * web client functionality for panel PnlWzemUsrAAccess
-  * \author Alexander Wirthmueller
-  * \date created: 4 Jun 2020
-  * \date modified: 4 Jun 2020
+  * \author Catherine Johnson
+  * \date created: 21 Sep 2020
+  * \date modified: 21 Sep 2020
   */
 
 // --- expand state management
@@ -415,6 +415,12 @@ function handleButMinimizeClick() {
 
 function handleButRegularizeClick() {
 	regularize(true);
+};
+
+function handleButClipboardClick() {
+	copyToClipboard(document, srcdoc, "WzemUsrAAccess", "ListWzemQUsrAAccess", retrieveTi(srcdoc, "TagWzemUsrAAccess", "TxtRecord1"), retrieveTi(srcdoc, "TagWzemUsrAAccess", "TxtRecord2"),
+				["Feg","","Fea","Acc",""],
+				["feg","feg2","fea","acc","acc2"]);
 };
 
 // --- generalized event handlers for app controls

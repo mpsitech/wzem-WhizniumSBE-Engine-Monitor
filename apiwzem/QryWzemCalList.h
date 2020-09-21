@@ -1,9 +1,9 @@
 /**
 	* \file QryWzemCalList.h
 	* API code for job QryWzemCalList (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 4 Jun 2020
-	* \date modified: 4 Jun 2020
+	* \author Catherine Johnson
+	* \date created: 21 Sep 2020
+	* \date modified: 21 Sep 2020
 	*/
 
 #ifndef QRYWZEMCALLIST_H
@@ -28,8 +28,8 @@ namespace QryWzemCalList {
 
 	public:
 		static const Sbecore::uint STO = 1;
-		static const Sbecore::uint STA = 2;
-		static const Sbecore::uint JOB = 3;
+		static const Sbecore::uint JOB = 2;
+		static const Sbecore::uint STA = 3;
 
 		static Sbecore::uint getIx(const std::string& sref);
 		static std::string getSref(const Sbecore::uint ix);

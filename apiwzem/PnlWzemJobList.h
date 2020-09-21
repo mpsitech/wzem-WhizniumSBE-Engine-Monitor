@@ -1,9 +1,9 @@
 /**
 	* \file PnlWzemJobList.h
 	* API code for job PnlWzemJobList (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 4 Jun 2020
-	* \date modified: 4 Jun 2020
+	* \author Catherine Johnson
+	* \date created: 21 Sep 2020
+	* \date modified: 21 Sep 2020
 	*/
 
 #ifndef PNLWZEMJOBLIST_H
@@ -151,21 +151,25 @@ namespace PnlWzemJobList {
 
 	public:
 		static const Sbecore::uint CPT = 1;
-		static const Sbecore::uint TRS = 2;
-		static const Sbecore::uint TXTSHOWING1 = 3;
-		static const Sbecore::uint TXTSHOWING2 = 4;
-		static const Sbecore::uint TCOPRD = 5;
-		static const Sbecore::uint TCOJOB = 6;
-		static const Sbecore::uint TCOXJR = 7;
-		static const Sbecore::uint TCOSTA = 8;
-		static const Sbecore::uint TCOSTO = 9;
-		static const Sbecore::uint TCOSUP = 10;
+		static const Sbecore::uint TXTRECORD1 = 2;
+		static const Sbecore::uint TXTRECORD2 = 3;
+		static const Sbecore::uint TRS = 4;
+		static const Sbecore::uint TXTSHOWING1 = 5;
+		static const Sbecore::uint TXTSHOWING2 = 6;
+		static const Sbecore::uint TCOPRD = 7;
+		static const Sbecore::uint TCOJOB = 8;
+		static const Sbecore::uint TCOXJR = 9;
+		static const Sbecore::uint TCOSTA = 10;
+		static const Sbecore::uint TCOSTO = 11;
+		static const Sbecore::uint TCOSUP = 12;
 
 	public:
-		Tag(const std::string& Cpt = "", const std::string& Trs = "", const std::string& TxtShowing1 = "", const std::string& TxtShowing2 = "", const std::string& TcoPrd = "", const std::string& TcoJob = "", const std::string& TcoXjr = "", const std::string& TcoSta = "", const std::string& TcoSto = "", const std::string& TcoSup = "");
+		Tag(const std::string& Cpt = "", const std::string& TxtRecord1 = "", const std::string& TxtRecord2 = "", const std::string& Trs = "", const std::string& TxtShowing1 = "", const std::string& TxtShowing2 = "", const std::string& TcoPrd = "", const std::string& TcoJob = "", const std::string& TcoXjr = "", const std::string& TcoSta = "", const std::string& TcoSto = "", const std::string& TcoSup = "");
 
 	public:
 		std::string Cpt;
+		std::string TxtRecord1;
+		std::string TxtRecord2;
 		std::string Trs;
 		std::string TxtShowing1;
 		std::string TxtShowing2;

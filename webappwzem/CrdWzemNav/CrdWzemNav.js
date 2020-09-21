@@ -1,9 +1,9 @@
 /**
   * \file CrdWzemNav.js
   * web client functionality for card CrdWzemNav
-  * \author Alexander Wirthmueller
-  * \date created: 4 Jun 2020
-  * \date modified: 4 Jun 2020
+  * \author Catherine Johnson
+  * \date created: 21 Sep 2020
+  * \date modified: 21 Sep 2020
   */
 
 function getInitdone(pnlshort) {
@@ -433,7 +433,7 @@ function handleLoad() {
 
 function handleUnload() {
 	var str = serializeDpchAppDo(srcdoc, "DpchAppWzemNavDo", scrJref, "close");
-	sendReq(str, doc);
+	sendReq(str, doc, null, true);
 };
 
 function handleMitClick(menshort, consref) {

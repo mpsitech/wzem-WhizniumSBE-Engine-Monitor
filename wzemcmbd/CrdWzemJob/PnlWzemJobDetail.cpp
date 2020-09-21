@@ -1,9 +1,9 @@
 /**
 	* \file PnlWzemJobDetail.cpp
 	* job handler for job PnlWzemJobDetail (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 4 Jun 2020
-	* \date modified: 4 Jun 2020
+	* \author Catherine Johnson
+	* \date created: 21 Sep 2020
+	* \date modified: 21 Sep 2020
 	*/
 
 #ifdef WZEMCMBD
@@ -124,27 +124,6 @@ void PnlWzemJobDetail::refreshRecJob(
 
 };
 
-void PnlWzemJobDetail::refreshRecJobJstm(
-			DbsWzem* dbswzem
-			, set<uint>& moditems
-		) {
-	ContIac oldContiac(contiac);
-	ContInf oldContinf(continf);
-	StatShr oldStatshr(statshr);
-
-	WzemJMJobStmgr* _recJobJstm = NULL;
-
-	if (dbswzem->tblwzemjmjobstmgr->loadRecByRef(recJobJstm.ref, &_recJobJstm)) {
-		recJobJstm = *_recJobJstm;
-		delete _recJobJstm;
-	} else recJobJstm = WzemJMJobStmgr();
-
-	if (contiac.diff(&oldContiac).size() != 0) insert(moditems, DpchEngData::CONTIAC);
-	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
-	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
-
-};
-
 void PnlWzemJobDetail::refreshRecJobJdcl(
 			DbsWzem* dbswzem
 			, set<uint>& moditems
@@ -166,10 +145,35 @@ void PnlWzemJobDetail::refreshRecJobJdcl(
 
 };
 
-void PnlWzemJobDetail::refresh(
+void PnlWzemJobDetail::refreshRecJobJstm(
 			DbsWzem* dbswzem
 			, set<uint>& moditems
 		) {
+	ContIac oldContiac(contiac);
+	ContInf oldContinf(continf);
+	StatShr oldStatshr(statshr);
+
+	WzemJMJobStmgr* _recJobJstm = NULL;
+
+	if (dbswzem->tblwzemjmjobstmgr->loadRecByRef(recJobJstm.ref, &_recJobJstm)) {
+		recJobJstm = *_recJobJstm;
+		delete _recJobJstm;
+	} else recJobJstm = WzemJMJobStmgr();
+
+	if (contiac.diff(&oldContiac).size() != 0) insert(moditems, DpchEngData::CONTIAC);
+	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
+	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
+
+};
+
+void PnlWzemJobDetail::refresh(
+			DbsWzem* dbswzem
+			, set<uint>& moditems
+			, const bool unmute
+		) {
+	if (muteRefresh && !unmute) return;
+	muteRefresh = true;
+
 	StatShr oldStatshr(statshr);
 
 	// IP refresh --- BEGIN
@@ -179,6 +183,8 @@ void PnlWzemJobDetail::refresh(
 	// IP refresh --- END
 
 	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
+
+	muteRefresh = false;
 };
 
 void PnlWzemJobDetail::updatePreset(

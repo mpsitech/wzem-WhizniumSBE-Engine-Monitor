@@ -1,9 +1,9 @@
 /**
 	* \file QryWzemJobList_blks.cpp
 	* job handler for job QryWzemJobList (implementation of blocks)
-	* \author Alexander Wirthmueller
-	* \date created: 4 Jun 2020
-	* \date modified: 4 Jun 2020
+	* \author Catherine Johnson
+	* \date created: 21 Sep 2020
+	* \date modified: 21 Sep 2020
 	*/
 
 using namespace std;
@@ -20,8 +20,8 @@ uint QryWzemJobList::VecVOrd::getIx(
 	string s = StrMod::lc(sref);
 
 	if (s == "sup") return SUP;
-	if (s == "sto") return STO;
 	if (s == "sta") return STA;
+	if (s == "sto") return STO;
 	if (s == "prd") return PRD;
 
 	return(0);
@@ -31,8 +31,8 @@ string QryWzemJobList::VecVOrd::getSref(
 			const uint ix
 		) {
 	if (ix == SUP) return("sup");
-	if (ix == STO) return("sto");
 	if (ix == STA) return("sta");
+	if (ix == STO) return("sto");
 	if (ix == PRD) return("prd");
 
 	return("");

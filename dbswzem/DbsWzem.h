@@ -1,18 +1,18 @@
 /**
 	* \file DbsWzem.h
 	* C++ wrapper for database DbsWzem (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 4 Jun 2020
-	* \date modified: 4 Jun 2020
+	* \author Catherine Johnson
+	* \date created: 21 Sep 2020
+	* \date modified: 21 Sep 2020
 	*/
 
 #ifndef DBSWZEM_H
 #define DBSWZEM_H
 
-#define WZEM_VERSION "0.9.18"
+#define WZEM_VERSION "0.9.19"
 #define WZEM_VERSION_MAJOR 0
 #define WZEM_VERSION_MINOR 9
-#define WZEM_VERSION_SUB 18
+#define WZEM_VERSION_SUB 19
 
 #include <sbecore/Types.h>
 
@@ -178,9 +178,9 @@ public:
 		static const Sbecore::uint PNLWZEMPRDLIST_TCOVER = 35;
 		static const Sbecore::uint PNLWZEMPRDLIST_TCOSTA = 36;
 		static const Sbecore::uint PNLWZEMPRDLIST_TCOSTO = 37;
-		static const Sbecore::uint PNLWZEMPRD1NJOB_TCOREF = 38;
+		static const Sbecore::uint PNLWZEMPRD1NEVENT_TCOREF = 38;
 		static const Sbecore::uint PNLWZEMPRD1NNODE_TCOREF = 39;
-		static const Sbecore::uint PNLWZEMPRD1NEVENT_TCOREF = 40;
+		static const Sbecore::uint PNLWZEMPRD1NJOB_TCOREF = 40;
 		static const Sbecore::uint PNLWZEMEVTLIST_TCOTYP = 41;
 		static const Sbecore::uint PNLWZEMEVTLIST_TCOPRD = 42;
 		static const Sbecore::uint PNLWZEMEVTLIST_TCOSTA = 43;
@@ -194,10 +194,10 @@ public:
 		static const Sbecore::uint PNLWZEMJOBLIST_TCOSTA = 51;
 		static const Sbecore::uint PNLWZEMJOBLIST_TCOSTO = 52;
 		static const Sbecore::uint PNLWZEMJOBLIST_TCOSUP = 53;
-		static const Sbecore::uint PNLWZEMJOB1NOP_TCOREF = 54;
-		static const Sbecore::uint PNLWZEMJOB1NCALL_TCOREF = 55;
-		static const Sbecore::uint PNLWZEMJOB1NPRESET_TCOREF = 56;
-		static const Sbecore::uint PNLWZEMJOB1NCLSTN_TCOREF = 57;
+		static const Sbecore::uint PNLWZEMJOB1NCLSTN_TCOREF = 54;
+		static const Sbecore::uint PNLWZEMJOB1NPRESET_TCOREF = 55;
+		static const Sbecore::uint PNLWZEMJOB1NCALL_TCOREF = 56;
+		static const Sbecore::uint PNLWZEMJOB1NOP_TCOREF = 57;
 		static const Sbecore::uint PNLWZEMJOBSUP1NJOB_TCOREF = 58;
 		static const Sbecore::uint PNLWZEMCALLIST_TCOJOB = 59;
 		static const Sbecore::uint PNLWZEMCALLIST_TCOCAL = 60;

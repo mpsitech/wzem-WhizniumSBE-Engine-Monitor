@@ -1,9 +1,9 @@
 /**
   * \file PnlWzemCalList.js
   * web client functionality for panel PnlWzemCalList
-  * \author Alexander Wirthmueller
-  * \date created: 4 Jun 2020
-  * \date modified: 4 Jun 2020
+  * \author Catherine Johnson
+  * \date created: 21 Sep 2020
+  * \date modified: 21 Sep 2020
   */
 
 // --- expand state management
@@ -116,11 +116,11 @@ function refreshB(chgcol) {
 			ix++;
 
 			if (i == 1) {
-				doc.cols.push("TcoJob"); doc.widths.push(TcoJobWidth); doc.fs.push("job"); doc.tos.push(3); wtot += TcoJobWidth;
+				doc.cols.push("TcoJob"); doc.widths.push(TcoJobWidth); doc.fs.push("job"); doc.tos.push(2); wtot += TcoJobWidth;
 			} else if (i == 2) {
 				doc.cols.push("TcoCal"); doc.widths.push(TcoCalWidth); doc.fs.push("cal"); doc.tos.push(0); wtot += TcoCalWidth;
 			} else if (i == 3) {
-				doc.cols.push("TcoSta"); doc.widths.push(TcoStaWidth); doc.fs.push("sta"); doc.tos.push(2); wtot += TcoStaWidth;
+				doc.cols.push("TcoSta"); doc.widths.push(TcoStaWidth); doc.fs.push("sta"); doc.tos.push(3); wtot += TcoStaWidth;
 			} else if (i == 4) {
 				doc.cols.push("TcoSto"); doc.widths.push(TcoStoWidth); doc.fs.push("sto"); doc.tos.push(1); wtot += TcoStoWidth;
 			} else {
@@ -429,6 +429,12 @@ function handleLoad() {
 };
 
 // --- specific event handlers for app controls
+
+function handleButClipboardClick() {
+	copyToClipboard(document, srcdoc, "WzemCalList", "ListWzemQCalList", retrieveTi(srcdoc, "TagWzemCalList", "TxtRecord1"), retrieveTi(srcdoc, "TagWzemCalList", "TxtRecord2"),
+				["Job","Cal","Sta","Sto"],
+				["job","cal","sta","sto"]);
+};
 
 // --- generalized event handlers for app controls
 

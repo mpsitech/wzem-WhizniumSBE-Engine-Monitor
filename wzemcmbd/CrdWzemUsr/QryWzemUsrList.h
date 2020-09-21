@@ -1,9 +1,9 @@
 /**
 	* \file QryWzemUsrList.h
 	* job handler for job QryWzemUsrList (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 4 Jun 2020
-	* \date modified: 4 Jun 2020
+	* \author Catherine Johnson
+	* \date created: 21 Sep 2020
+	* \date modified: 21 Sep 2020
 	*/
 
 #ifndef QRYWZEMUSRLIST_H
@@ -32,8 +32,8 @@ public:
 
 	public:
 		static const Sbecore::uint STE = 1;
-		static const Sbecore::uint USG = 2;
-		static const Sbecore::uint SRF = 3;
+		static const Sbecore::uint SRF = 2;
+		static const Sbecore::uint USG = 3;
 		static const Sbecore::uint PRS = 4;
 		static const Sbecore::uint OWN = 5;
 		static const Sbecore::uint GRP = 6;

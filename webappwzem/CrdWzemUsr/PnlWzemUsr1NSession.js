@@ -1,9 +1,9 @@
 /**
   * \file PnlWzemUsr1NSession.js
   * web client functionality for panel PnlWzemUsr1NSession
-  * \author Alexander Wirthmueller
-  * \date created: 4 Jun 2020
-  * \date modified: 4 Jun 2020
+  * \author Catherine Johnson
+  * \date created: 21 Sep 2020
+  * \date modified: 21 Sep 2020
   */
 
 // --- expand state management
@@ -409,6 +409,12 @@ function handleButMinimizeClick() {
 
 function handleButRegularizeClick() {
 	regularize(true);
+};
+
+function handleButClipboardClick() {
+	copyToClipboard(document, srcdoc, "WzemUsr1NSession", "ListWzemQUsr1NSession", retrieveTi(srcdoc, "TagWzemUsr1NSession", "TxtRecord1"), retrieveTi(srcdoc, "TagWzemUsr1NSession", "TxtRecord2"),
+				["Ref"],
+				["ref"]);
 };
 
 // --- generalized event handlers for app controls

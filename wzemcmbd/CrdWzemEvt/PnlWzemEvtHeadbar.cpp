@@ -1,9 +1,9 @@
 /**
 	* \file PnlWzemEvtHeadbar.cpp
 	* job handler for job PnlWzemEvtHeadbar (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 4 Jun 2020
-	* \date modified: 4 Jun 2020
+	* \author Catherine Johnson
+	* \date created: 21 Sep 2020
+	* \date modified: 21 Sep 2020
 	*/
 
 #ifdef WZEMCMBD
@@ -75,7 +75,12 @@ DpchEngWzem* PnlWzemEvtHeadbar::getNewDpchEng(
 void PnlWzemEvtHeadbar::refresh(
 			DbsWzem* dbswzem
 			, set<uint>& moditems
+			, const bool unmute
 		) {
+	if (muteRefresh && !unmute) return;
+	muteRefresh = true;
+
+	muteRefresh = false;
 };
 
 void PnlWzemEvtHeadbar::handleRequest(

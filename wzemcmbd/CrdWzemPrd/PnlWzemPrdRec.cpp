@@ -1,9 +1,9 @@
 /**
 	* \file PnlWzemPrdRec.cpp
 	* job handler for job PnlWzemPrdRec (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 4 Jun 2020
-	* \date modified: 4 Jun 2020
+	* \author Catherine Johnson
+	* \date created: 21 Sep 2020
+	* \date modified: 21 Sep 2020
 	*/
 
 #ifdef WZEMCMBD
@@ -37,9 +37,9 @@ PnlWzemPrdRec::PnlWzemPrdRec(
 		{
 	jref = xchg->addJob(dbswzem, this, jrefSup);
 
-	pnl1nevent = NULL;
-	pnl1nnode = NULL;
 	pnl1njob = NULL;
+	pnl1nnode = NULL;
+	pnl1nevent = NULL;
 	pnldetail = NULL;
 
 	// IP constructor.cust1 --- INSERT
@@ -79,7 +79,11 @@ DpchEngWzem* PnlWzemPrdRec::getNewDpchEng(
 void PnlWzemPrdRec::refresh(
 			DbsWzem* dbswzem
 			, set<uint>& moditems
+			, const bool unmute
 		) {
+	if (muteRefresh && !unmute) return;
+	muteRefresh = true;
+
 	ContInf oldContinf(continf);
 	StatShr oldStatshr(statshr);
 
@@ -94,25 +98,26 @@ void PnlWzemPrdRec::refresh(
 
 	if (statshr.ixWzemVExpstate == VecWzemVExpstate::MIND) {
 		if (pnldetail) {delete pnldetail; pnldetail = NULL;};
-		if (pnl1njob) {delete pnl1njob; pnl1njob = NULL;};
-		if (pnl1nnode) {delete pnl1nnode; pnl1nnode = NULL;};
 		if (pnl1nevent) {delete pnl1nevent; pnl1nevent = NULL;};
+		if (pnl1nnode) {delete pnl1nnode; pnl1nnode = NULL;};
+		if (pnl1njob) {delete pnl1njob; pnl1njob = NULL;};
 	} else {
 		if (!pnldetail) pnldetail = new PnlWzemPrdDetail(xchg, dbswzem, jref, ixWzemVLocale);
-		if (!pnl1njob) pnl1njob = new PnlWzemPrd1NJob(xchg, dbswzem, jref, ixWzemVLocale);
-		if (!pnl1nnode) pnl1nnode = new PnlWzemPrd1NNode(xchg, dbswzem, jref, ixWzemVLocale);
 		if (!pnl1nevent) pnl1nevent = new PnlWzemPrd1NEvent(xchg, dbswzem, jref, ixWzemVLocale);
+		if (!pnl1nnode) pnl1nnode = new PnlWzemPrd1NNode(xchg, dbswzem, jref, ixWzemVLocale);
+		if (!pnl1njob) pnl1njob = new PnlWzemPrd1NJob(xchg, dbswzem, jref, ixWzemVLocale);
 	};
 
 	statshr.jrefDetail = ((pnldetail) ? pnldetail->jref : 0);
-	statshr.jref1NJob = ((pnl1njob) ? pnl1njob->jref : 0);
-	statshr.jref1NNode = ((pnl1nnode) ? pnl1nnode->jref : 0);
 	statshr.jref1NEvent = ((pnl1nevent) ? pnl1nevent->jref : 0);
+	statshr.jref1NNode = ((pnl1nnode) ? pnl1nnode->jref : 0);
+	statshr.jref1NJob = ((pnl1njob) ? pnl1njob->jref : 0);
 
 	// IP refresh --- END
 	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
 	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
 
+	muteRefresh = false;
 };
 
 void PnlWzemPrdRec::updatePreset(
@@ -134,9 +139,9 @@ void PnlWzemPrdRec::updatePreset(
 
 		if (recPrd.ref != 0) {
 			if (pnldetail) pnldetail->updatePreset(dbswzem, ixWzemVPreset, jrefTrig, notif);
-			if (pnl1njob) pnl1njob->updatePreset(dbswzem, ixWzemVPreset, jrefTrig, notif);
-			if (pnl1nnode) pnl1nnode->updatePreset(dbswzem, ixWzemVPreset, jrefTrig, notif);
 			if (pnl1nevent) pnl1nevent->updatePreset(dbswzem, ixWzemVPreset, jrefTrig, notif);
+			if (pnl1nnode) pnl1nnode->updatePreset(dbswzem, ixWzemVPreset, jrefTrig, notif);
+			if (pnl1njob) pnl1njob->updatePreset(dbswzem, ixWzemVPreset, jrefTrig, notif);
 		};
 
 		refresh(dbswzem, moditems);
