@@ -1,10 +1,11 @@
 /**
 	* \file JobWzemIexIni.h
 	* job handler for job JobWzemIexIni (declarations)
-	* \author Catherine Johnson
-	* \date created: 21 Sep 2020
-	* \date modified: 21 Sep 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 1 Dec 2020
 	*/
+// IP header --- ABOVE
 
 #ifndef JOBWZEMIEXINI_H
 #define JOBWZEMIEXINI_H
@@ -53,6 +54,7 @@ public:
 
 	std::string fullpath;
 	bool xmlNotTxt;
+	std::string rectpath;
 
 	Sbecore::uint lineno;
 	Sbecore::uint impcnt;
@@ -74,7 +76,7 @@ public:
 public:
 	void reset(DbsWzem* dbswzem);
 
-	void parseFromFile(DbsWzem* dbswzem, const std::string& _fullpath, const bool _xmlNotTxt);
+	void parseFromFile(DbsWzem* dbswzem, const std::string& _fullpath, const bool _xmlNotTxt, const std::string& _rectpath = "");
 	void import(DbsWzem* dbswzem);
 	void reverse(DbsWzem* dbswzem);
 	void collect(DbsWzem* dbswzem, const std::map<Sbecore::uint,Sbecore::uint>& _icsWzemVIop = IexWzemIni::icsWzemVIopInsAll());

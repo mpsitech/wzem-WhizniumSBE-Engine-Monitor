@@ -1,46 +1,39 @@
-- IexWznmJtr v0.9.29												
-- ImeIMJob.sref												
-- DlgWzemNavLoaini												
-	- ImeIMStage.srefIxVBasetype	sref	Monitvl	srefSnxRefWznmMStage	srefFnxRefWznmMStage	srefEnxRefWznmMStage	Comment					
-	- other	idle										
-		- ImeIMSensitivity2.srefIxVBasetype	srefRefWznmMCall	srefIxVJactype	srefIxVJobmask	Jobshort	Argpatt	srefRefWznmMControl	Srefmask	srefIxVAction	srefCsgRefWznmMStage	Custcode
-		- uld		lock	void					chgsge	prsidle	
-		- ImeIMSensitivity2.end										
-	- immcb	prsidle		parse								
-	- other	parse		prsdone	alrwzemper							
-		- ImeIMSquawk.Title	Example									
-		- parsing initialization data										
-		- ImeIMSquawk.end										
-	- alr	alrwzemper		idle								
-		- ImeIMSquawk.Title	Example									
-		- parse error										
-		- ImeIMSquawk.end										
-	- other	prsdone										
-		- ImeIMSquawk.Title	Example									
-		- initialization data parsed										
-		- ImeIMSquawk.end										
-		- ImeIMSensitivity2.srefIxVBasetype	srefRefWznmMCall	srefIxVJactype	srefIxVJobmask	Jobshort	Argpatt	srefRefWznmMControl	Srefmask	srefIxVAction	srefCsgRefWznmMStage	Custcode
-		- con		lock	void			ImpButRun		chgsge	impidle	
-		- ImeIMSensitivity2.end										
-	- immcb	impidle		import								
-	- other	import	250000	done	alrwzemier							
-		- ImeIMSquawk.Title	Example									
-		- importing initialization data (&impcnt; records added)	importing initialization data (1234 records added)									
-		- ImeIMSquawk.end										
-	- alr	alrwzemier		idle								
-		- ImeIMSquawk.Title	Example									
-		- import error										
-		- ImeIMSquawk.end										
-	- other	done										
-		- ImeIMSensitivity2.srefIxVBasetype	srefRefWznmMCall	srefIxVJactype	srefIxVJobmask	Jobshort	Argpatt	srefRefWznmMControl	Srefmask	srefIxVAction	srefCsgRefWznmMStage	Custcode
-		- dld		lock	void					cust		
-		- ImeIMSensitivity2.end										
-	- ImeIMStage.end											
-- ImeIMJob.end												
-- ImeIMBlock2.sref												
-- StgWzemDatabase												
-	- ImeIAMBlockItem2.srefIxWznmVIop	ImeIAMBlockItem2.irefRefWznmCAMBlockItem	srefIxVBasetype	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment			
-	- retrupd	0		username			mpsitech					
-	- retrupd	0		password			f9w8feeh					
-	- ImeIAMBlockItem2.end											
-- ImeIMBlock2.end												
+IexWznmJtr v0.9.29
+ImeIMJob.sref
+DlgWzemNavLoaini
+	ImeIMStage.srefIxVBasetype	sref	Monitvl	srefSnxRefWznmMStage	srefFnxRefWznmMStage	srefEnxRefWznmMStage	Comment
+	other	idle
+		ImeIMSensitivity2.srefIxVBasetype	srefRefWznmMCall	srefIxVJactype	srefIxVJobmask	Jobshort	Argpatt	srefRefWznmMControl	Srefmask	srefIxVAction	srefCsgRefWznmMStage	Custcode
+		uld		lock	void					chgsge	prsidle
+		ImeIMSensitivity2.end
+	immcb	prsidle		parse
+	other	parse		prsdone	alrwzemper
+		ImeIMSquawk.Title	Example
+		parsing initialization data
+		ImeIMSquawk.end
+	alr	alrwzemper		idle
+		ImeIMSquawk.Title	Example
+		parse error
+		ImeIMSquawk.end
+	other	prsdone
+		ImeIMSquawk.Title	Example
+		initialization data parsed
+		ImeIMSquawk.end
+		ImeIMSensitivity2.srefIxVBasetype	srefRefWznmMCall	srefIxVJactype	srefIxVJobmask	Jobshort	Argpatt	srefRefWznmMControl	Srefmask	srefIxVAction	srefCsgRefWznmMStage	Custcode
+		con		lock	void			ImpButRun		chgsge	impidle
+		ImeIMSensitivity2.end
+	immcb	impidle		import
+	other	import	250000	done	alrwzemier
+		ImeIMSquawk.Title	Example
+		importing initialization data (&impcnt; records added)	importing initialization data (1234 records added)
+		ImeIMSquawk.end
+	alr	alrwzemier		idle
+		ImeIMSquawk.Title	Example
+		import error
+		ImeIMSquawk.end
+	other	done
+		ImeIMSensitivity2.srefIxVBasetype	srefRefWznmMCall	srefIxVJactype	srefIxVJobmask	Jobshort	Argpatt	srefRefWznmMControl	Srefmask	srefIxVAction	srefCsgRefWznmMStage	Custcode
+		dld		lock	void					cust
+		ImeIMSensitivity2.end
+	ImeIMStage.end
+ImeIMJob.end

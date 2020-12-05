@@ -1,10 +1,11 @@
 /**
 	* \file PnlWzemJobDetail.cpp
 	* job handler for job PnlWzemJobDetail (implementation)
-	* \author Catherine Johnson
-	* \date created: 21 Sep 2020
-	* \date modified: 21 Sep 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 1 Dec 2020
 	*/
+// IP header --- ABOVE
 
 #ifdef WZEMCMBD
 	#include <Wzemcmbd.h>
@@ -329,10 +330,10 @@ void PnlWzemJobDetail::handleCall(
 			DbsWzem* dbswzem
 			, Call* call
 		) {
-	if (call->ixVCall == VecWzemVCall::CALLWZEMJOBJDCLMOD_JOBEQ) {
-		call->abort = handleCallWzemJobJdclMod_jobEq(dbswzem, call->jref);
-	} else if (call->ixVCall == VecWzemVCall::CALLWZEMJOBJSTMMOD_JOBEQ) {
+	if (call->ixVCall == VecWzemVCall::CALLWZEMJOBJSTMMOD_JOBEQ) {
 		call->abort = handleCallWzemJobJstmMod_jobEq(dbswzem, call->jref);
+	} else if (call->ixVCall == VecWzemVCall::CALLWZEMJOBJDCLMOD_JOBEQ) {
+		call->abort = handleCallWzemJobJdclMod_jobEq(dbswzem, call->jref);
 	} else if (call->ixVCall == VecWzemVCall::CALLWZEMJOBUPD_REFEQ) {
 		call->abort = handleCallWzemJobUpd_refEq(dbswzem, call->jref);
 	} else if (call->ixVCall == VecWzemVCall::CALLWZEMJOB_SUPEQ) {
@@ -342,21 +343,21 @@ void PnlWzemJobDetail::handleCall(
 	};
 };
 
-bool PnlWzemJobDetail::handleCallWzemJobJdclMod_jobEq(
-			DbsWzem* dbswzem
-			, const ubigint jrefTrig
-		) {
-	bool retval = false;
-	// IP handleCallWzemJobJdclMod_jobEq --- INSERT
-	return retval;
-};
-
 bool PnlWzemJobDetail::handleCallWzemJobJstmMod_jobEq(
 			DbsWzem* dbswzem
 			, const ubigint jrefTrig
 		) {
 	bool retval = false;
 	// IP handleCallWzemJobJstmMod_jobEq --- INSERT
+	return retval;
+};
+
+bool PnlWzemJobDetail::handleCallWzemJobJdclMod_jobEq(
+			DbsWzem* dbswzem
+			, const ubigint jrefTrig
+		) {
+	bool retval = false;
+	// IP handleCallWzemJobJdclMod_jobEq --- INSERT
 	return retval;
 };
 

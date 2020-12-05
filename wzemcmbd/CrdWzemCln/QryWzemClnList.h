@@ -1,10 +1,11 @@
 /**
 	* \file QryWzemClnList.h
 	* job handler for job QryWzemClnList (declarations)
-	* \author Catherine Johnson
-	* \date created: 21 Sep 2020
-	* \date modified: 21 Sep 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 1 Dec 2020
 	*/
+// IP header --- ABOVE
 
 #ifndef QRYWZEMCLNLIST_H
 #define QRYWZEMCLNLIST_H
@@ -31,8 +32,8 @@ public:
 	class VecVOrd {
 
 	public:
-		static const Sbecore::uint STA = 1;
-		static const Sbecore::uint STO = 2;
+		static const Sbecore::uint STO = 1;
+		static const Sbecore::uint STA = 2;
 		static const Sbecore::uint JOB = 3;
 
 		static Sbecore::uint getIx(const std::string& sref);

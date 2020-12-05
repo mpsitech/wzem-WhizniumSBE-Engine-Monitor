@@ -1,10 +1,11 @@
 /**
 	* \file QryWzemPstList.cpp
 	* job handler for job QryWzemPstList (implementation)
-	* \author Catherine Johnson
-	* \date created: 21 Sep 2020
-	* \date modified: 21 Sep 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 1 Dec 2020
 	*/
+// IP header --- ABOVE
 
 #ifdef WZEMCMBD
 	#include <Wzemcmbd.h>
@@ -325,27 +326,13 @@ void QryWzemPstList::handleCall(
 			DbsWzem* dbswzem
 			, Call* call
 		) {
-	if (call->ixVCall == VecWzemVCall::CALLWZEMPSTMOD) {
-		call->abort = handleCallWzemPstMod(dbswzem, call->jref);
-	} else if (call->ixVCall == VecWzemVCall::CALLWZEMPSTUPD_REFEQ) {
+	if (call->ixVCall == VecWzemVCall::CALLWZEMPSTUPD_REFEQ) {
 		call->abort = handleCallWzemPstUpd_refEq(dbswzem, call->jref);
+	} else if (call->ixVCall == VecWzemVCall::CALLWZEMPSTMOD) {
+		call->abort = handleCallWzemPstMod(dbswzem, call->jref);
 	} else if ((call->ixVCall == VecWzemVCall::CALLWZEMSTUBCHG) && (call->jref == jref)) {
 		call->abort = handleCallWzemStubChgFromSelf(dbswzem);
 	};
-};
-
-bool QryWzemPstList::handleCallWzemPstMod(
-			DbsWzem* dbswzem
-			, const ubigint jrefTrig
-		) {
-	bool retval = false;
-
-	if ((ixWzemVQrystate == VecWzemVQrystate::UTD) || (ixWzemVQrystate == VecWzemVQrystate::SLM)) {
-		ixWzemVQrystate = VecWzemVQrystate::MNR;
-		xchg->triggerCall(dbswzem, VecWzemVCall::CALLWZEMSTATCHG, jref);
-	};
-
-	return retval;
 };
 
 bool QryWzemPstList::handleCallWzemPstUpd_refEq(
@@ -356,6 +343,20 @@ bool QryWzemPstList::handleCallWzemPstUpd_refEq(
 
 	if (ixWzemVQrystate != VecWzemVQrystate::OOD) {
 		ixWzemVQrystate = VecWzemVQrystate::OOD;
+		xchg->triggerCall(dbswzem, VecWzemVCall::CALLWZEMSTATCHG, jref);
+	};
+
+	return retval;
+};
+
+bool QryWzemPstList::handleCallWzemPstMod(
+			DbsWzem* dbswzem
+			, const ubigint jrefTrig
+		) {
+	bool retval = false;
+
+	if ((ixWzemVQrystate == VecWzemVQrystate::UTD) || (ixWzemVQrystate == VecWzemVQrystate::SLM)) {
+		ixWzemVQrystate = VecWzemVQrystate::MNR;
 		xchg->triggerCall(dbswzem, VecWzemVCall::CALLWZEMSTATCHG, jref);
 	};
 

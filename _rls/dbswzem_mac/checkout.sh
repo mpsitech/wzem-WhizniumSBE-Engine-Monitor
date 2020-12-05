@@ -1,22 +1,23 @@
 #!/bin/bash
 # file checkout.sh
 # checkout script for Wzem database access library, release dbswzem_mac
-# author Catherine Johnson
-# date created: 21 Sep 2020
-# modified: 21 Sep 2020
+# copyright: (C) 2016-2020 MPSI Technologies GmbH
+# author: Alexander Wirthmueller (auto-generation)
+# date created: 1 Dec 2020
+# IP header --- ABOVE
 
-export set SRCROOT=${WHIZROOT}/src
+export set BUILDROOT=${WHIZSDKROOT}/build
 
-mkdir $SRCROOT/dbswzem
+mkdir $BUILDROOT/dbswzem
 
-cp makeall.sh $SRCROOT/dbswzem/
+cp makeall.sh $BUILDROOT/dbswzem/
 
-cp Makefile $SRCROOT/dbswzem/
+cp Makefile $BUILDROOT/dbswzem/
 
-cp ../../dbswzem/DbsWzem.h $SRCROOT/dbswzem/
-cp ../../dbswzem/DbsWzem_vecs.cpp $SRCROOT/dbswzem/
-cp ../../dbswzem/DbsWzem.cpp $SRCROOT/dbswzem/
+cp ../../dbswzem/DbsWzem.h $BUILDROOT/dbswzem/
+cp ../../dbswzem/DbsWzem_vecs.cpp $BUILDROOT/dbswzem/
+cp ../../dbswzem/DbsWzem.cpp $BUILDROOT/dbswzem/
 
-cp ../../dbswzem/Wzem*.h $SRCROOT/dbswzem/
-cp ../../dbswzem/Wzem*.cpp $SRCROOT/dbswzem/
+cp ../../dbswzem/Wzem*.h $BUILDROOT/dbswzem/
+cp ../../dbswzem/Wzem*.cpp $BUILDROOT/dbswzem/
 

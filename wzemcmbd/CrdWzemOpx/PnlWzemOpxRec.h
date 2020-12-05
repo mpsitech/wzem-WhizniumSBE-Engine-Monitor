@@ -1,10 +1,11 @@
 /**
 	* \file PnlWzemOpxRec.h
 	* job handler for job PnlWzemOpxRec (declarations)
-	* \author Catherine Johnson
-	* \date created: 21 Sep 2020
-	* \date modified: 21 Sep 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 1 Dec 2020
 	*/
+// IP header --- ABOVE
 
 #ifndef PNLWZEMOPXREC_H
 #define PNLWZEMOPXREC_H

@@ -1,2 +1,2 @@
-# dbecore
-MPSI Technologies WhizniumDBE core library
+# wzem
+MPSI Technologies WhizniumSBE Engine Monitor

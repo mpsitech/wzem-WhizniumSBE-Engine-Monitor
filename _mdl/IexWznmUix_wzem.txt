@@ -1,46 +1,46 @@
-- IexWznmUix v0.9.26																		
-- ImeIMCard.sref																		
-- CrdWzemNav																		
-	- ImeIMControl1.srefIxVBasetype	srefHkIxVSection	srefRefIxVTbl	srefRefUref	srefSupRefWznmMControl	supNum	srefIxVScope	sref	srefIxVSubtype	srefsWznmMTag	Title	Avail	Active	srefsKOption				
-	- msp	mbar	void		MenApp	4	app	MspApp2	void			MitAppLoiAvail()						
-	- mit	mbar	dlg	DlgWzemNavLoaini	MenApp	5	shr	MitAppLoi	void	loaini		virgin()		cap;ddd				
-	- ImeIMControl1.end																	
-	- ImeIMDialog.srefIxVBasetype	srefRefIxVTbl	srefRefUref	sref	Comment													
-	- import	iex	IexWzemIni	DlgWzemNavLoaini														
-		- ImeICControl3.iref																
-		- 1																
-		- ImeICControl3.end																
-		- ImeIMControl3.iref	srefIxVBasetype	irefRefWznmCControl	srefHkIxVSection	srefRefIxVTbl	srefRefUref	irefSupRefWznmMControl	srefIxVScope	sref	srefIxVSubtype	srefsWznmMTag	Title	srefStdRefWznmMStub	srefShoRefWznmMStub	Avail	Active	srefsKOption
-		- 1	cpt	0	hdr	void		0	app	Cpt	void	loaini						cap
-		- 2	sge	0	void	void		0	shr	Sge	void							
-			- ImeIMFeed3.srefSrcIxVTbl	srefSrcUref	sref	srefsWznmMVectoritem	srefsWznmMTag	Comment										
-			- vec		FeedFSge													
-				- ImeIMVector3.srefIxVBasetype	sref	osrefWznmKTaggrp	srefsKOption											
-				- lin	VecVDlgWzemNavLoainiSge		noloc;notit;filfed											
-				- ImeIMVector3.end														
-			- ImeIMFeed3.end															
-		- 3	dse	0	hdr	void		0	shr	Dse	void							
-			- ImeIMFeed3.srefSrcIxVTbl	srefSrcUref	sref	srefsWznmMVectoritem	srefsWznmMTag	Comment										
-			- vec		FeedFDse													
-				- ImeIMVector3.srefIxVBasetype	sref	osrefWznmKTaggrp	srefsKOption											
-				- lin	VecVDlgWzemNavLoainiDit		filfed											
-				- ImeIMVector3.end														
-			- ImeIMFeed3.end															
-		- 4	dit	0	void	void		0	shr	DitIfi	dituld		Initialization file					
-		- 5	uld	0	cont	void		4	app	IfiUld	void	upload					sge(idle)	cap
-		- 6	cpt	0	cont	void		5	app	IfiCpt	void	filename						cap
-		- 7	dit	0	void	void		0	shr	DitImp	ditprg	import						cap
-		- 8	txt	0	cont	void		7	shr	ImpTxtPrg	void							t
-		- 9	cpt	0	cont	void		8	app	ImpCptPrg	void	progress						cap
-		- 10	sep	0	cont	void		7	app	ImpSep1	void							
-		- 11	but	1	cont	void		7	shr	ImpButRun	void	run					sge(prsdone)	cap
-		- 12	but	1	cont	void		7	shr	ImpButSto	void	stop					sge(impidle|import)	cap
-		- 13	dit	0	void	void		0	shr	DitLfi	ditdld		Log file					
-		- 14	dld	0	cont	void		13	app	LfiDld	void	download					sge(done)	cap
-		- 15	but	0	ftr	void		0	shr	ButDne	void	done					sge(idle|done)	cap
-			- ImeIAMControlPar3.x1SrefKKey	srefX2RefWznmMLocale	osrefKVal													
-			- action		dlgclose													
-			- ImeIAMControlPar3.end															
-		- ImeIMControl3.end																
-	- ImeIMDialog.end																	
-- ImeIMCard.end																		
+IexWznmUix v0.9.26
+ImeIMCard.sref
+CrdWzemNav
+	ImeIMControl1.srefIxVBasetype	srefHkIxVSection	srefRefIxVTbl	srefRefUref	srefSupRefWznmMControl	supNum	srefIxVScope	sref	srefIxVSubtype	srefsWznmMTag	Title	Avail	Active	srefsKOption
+	msp	mbar	void		MenApp	4	app	MspApp2	void			MitAppLoiAvail()
+	mit	mbar	dlg	DlgWzemNavLoaini	MenApp	5	shr	MitAppLoi	void	loaini		virgin()		cap;ddd
+	ImeIMControl1.end
+	ImeIMDialog.srefIxVBasetype	srefRefIxVTbl	srefRefUref	sref	Comment
+	import	iex	IexWzemIni	DlgWzemNavLoaini
+		ImeICControl3.iref
+		1
+		ImeICControl3.end
+		ImeIMControl3.iref	srefIxVBasetype	irefRefWznmCControl	srefHkIxVSection	srefRefIxVTbl	srefRefUref	irefSupRefWznmMControl	srefIxVScope	sref	srefIxVSubtype	srefsWznmMTag	Title	srefStdRefWznmMStub	srefShoRefWznmMStub	Avail	Active	srefsKOption
+		1	cpt	0	hdr	void		0	app	Cpt	void	loaini						cap
+		2	sge	0	void	void		0	shr	Sge	void
+			ImeIMFeed3.srefSrcIxVTbl	srefSrcUref	sref	srefsWznmMVectoritem	srefsWznmMTag	Comment
+			vec		FeedFSge
+				ImeIMVector3.srefIxVBasetype	sref	osrefWznmKTaggrp	srefsKOption
+				lin	VecVDlgWzemNavLoainiSge		noloc;notit;filfed
+				ImeIMVector3.end
+			ImeIMFeed3.end
+		3	dse	0	hdr	void		0	shr	Dse	void
+			ImeIMFeed3.srefSrcIxVTbl	srefSrcUref	sref	srefsWznmMVectoritem	srefsWznmMTag	Comment
+			vec		FeedFDse
+				ImeIMVector3.srefIxVBasetype	sref	osrefWznmKTaggrp	srefsKOption
+				lin	VecVDlgWzemNavLoainiDit		filfed
+				ImeIMVector3.end
+			ImeIMFeed3.end
+		4	dit	0	void	void		0	shr	DitIfi	dituld		Initialization file
+		5	uld	0	cont	void		4	app	IfiUld	void	upload					sge(idle)	cap
+		6	cpt	0	cont	void		5	app	IfiCpt	void	filename						cap
+		7	dit	0	void	void		0	shr	DitImp	ditprg	import						cap
+		8	txt	0	cont	void		7	shr	ImpTxtPrg	void							t
+		9	cpt	0	cont	void		8	app	ImpCptPrg	void	progress						cap
+		10	sep	0	cont	void		7	app	ImpSep1	void
+		11	but	1	cont	void		7	shr	ImpButRun	void	run					sge(prsdone)	cap
+		12	but	1	cont	void		7	shr	ImpButSto	void	stop					sge(impidle|import)	cap
+		13	dit	0	void	void		0	shr	DitLfi	ditdld		Log file
+		14	dld	0	cont	void		13	app	LfiDld	void	download					sge(done)	cap
+		15	but	0	ftr	void		0	shr	ButDne	void	done					sge(idle|done)	cap
+			ImeIAMControlPar3.x1SrefKKey	srefX2RefWznmMLocale	osrefKVal
+			action		dlgclose
+			ImeIAMControlPar3.end
+		ImeIMControl3.end
+	ImeIMDialog.end
+ImeIMCard.end

@@ -1,15 +1,7 @@
-/**
-  * \file Wzem.js
-  * web client global functionality for Wzem
-  * \author Catherine Johnson
-  * \date created: 21 Sep 2020
-  * \date modified: 21 Sep 2020
-  */
-
-WZEM_VERSION = "0.9.19";
-WZEM_VERSION_MAJOR = 0;
-WZEM_VERSION_MINOR = 9;
-WZEM_VERSION_SUB = 19;
+WZEM_VERSION = "1.0.0";
+WZEM_VERSION_MAJOR = 1;
+WZEM_VERSION_MINOR = 0;
+WZEM_VERSION_SUB = 0;
 
 function getCrdwnd() {
 	if (window.name == "Crd") return window;

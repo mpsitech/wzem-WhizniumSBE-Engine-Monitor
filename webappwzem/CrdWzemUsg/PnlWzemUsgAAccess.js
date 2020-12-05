@@ -1,11 +1,3 @@
-/**
-  * \file PnlWzemUsgAAccess.js
-  * web client functionality for panel PnlWzemUsgAAccess
-  * \author Catherine Johnson
-  * \date created: 21 Sep 2020
-  * \date modified: 21 Sep 2020
-  */
-
 // --- expand state management
 function minimize(updh) {
 	if (retrieveSi(srcdoc, "StatAppWzemUsgAAccess", "srefIxWzemVExpstate") == "mind") return;

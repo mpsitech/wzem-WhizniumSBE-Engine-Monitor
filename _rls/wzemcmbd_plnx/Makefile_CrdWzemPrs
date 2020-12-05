@@ -1,0 +1,39 @@
+# file Makefile
+# make file for CrdWzemPrs card job handler, release wzemcmbd_plnx(ubuntu cross-compilation)
+# copyright: (C) 2016-2020 MPSI Technologies GmbH
+# author: Alexander Wirthmueller (auto-generation)
+# date created: 1 Dec 2020
+# IP header --- ABOVE
+
+include ../Makefile.inc
+
+CPP = ${TCHROOT}/arm-xilinx-linux-gnueabi-g++
+CPPFLAGS = --sysroot=${SYSROOT} -std=c++11 -march=armv7-a -mthumb -mfpu=neon -mfloat-abi=hard -g -Wall -Os -pthread -DWZEMCMBD
+
+STATLIB = ${TCHROOT}/arm-xilinx-linux-gnueabi-ar
+STATLIBFLAGS = rcs
+
+INCPATH = -I=$(BUILDROOT)/dbswzem -I=$(BUILDROOT)/wzemcmbd/VecWzem -I=$(BUILDROOT)/wzemcmbd/IexWzem -I=$(BUILDROOT)/wzemcmbd
+INCPATH += -I=${WHIZSDKROOT}/build -I=/usr/include -I=/usr/include/libxml2
+
+OBJS = CrdWzemPrs.o PnlWzemPrsList.o QryWzemPrsList.o PnlWzemPrsHeadbar.o PnlWzemPrsRec.o PnlWzemPrsDetail.o PnlWzemPrsADetail.o QryWzemPrsADetail.o
+
+LIB = libcrdwzemprs
+
+.SUFFIXES: .cpp
+
+.cpp.o :
+	$(CPP) $(CPPFLAGS) $(INCPATH) -o $@ -c $<
+
+all:	$(LIB)
+
+$(LIB):	$(OBJS)
+	$(STATLIB) $(STATLIBFLAGS) $(LIB).a $(OBJS)
+	rm -f *.o
+
+install:
+	mv $(LIB).a ${SYSROOT}$(LIBROOT)/wzemcmbd/
+
+clean:
+	rm -f *.o
+

@@ -1,10 +1,11 @@
 /**
 	* \file PnlWzemPrsRec.h
 	* job handler for job PnlWzemPrsRec (declarations)
-	* \author Catherine Johnson
-	* \date created: 21 Sep 2020
-	* \date modified: 21 Sep 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 1 Dec 2020
 	*/
+// IP header --- ABOVE
 
 #ifndef PNLWZEMPRSREC_H
 #define PNLWZEMPRSREC_H
@@ -13,8 +14,8 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWzemPrsADetail.h"
 #include "PnlWzemPrsDetail.h"
+#include "PnlWzemPrsADetail.h"
 
 #define VecVWzemPrsRecDo PnlWzemPrsRec::VecVDo
 
@@ -167,8 +168,8 @@ public:
 	ContInf continf;
 	StatShr statshr;
 
-	PnlWzemPrsADetail* pnladetail;
 	PnlWzemPrsDetail* pnldetail;
+	PnlWzemPrsADetail* pnladetail;
 
 	WzemMPerson recPrs;
 

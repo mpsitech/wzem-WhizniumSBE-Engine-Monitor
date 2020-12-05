@@ -1,10 +1,11 @@
 /**
 	* \file WzemQUsrList.h
 	* Dbs and XML wrapper for table TblWzemQUsrList (declarations)
-	* \author Catherine Johnson
-	* \date created: 21 Sep 2020
-	* \date modified: 21 Sep 2020
-	*/
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 1 Dec 2020
+  */
+// IP header --- ABOVE
 
 #ifndef WZEMQUSRLIST_H
 #define WZEMQUSRLIST_H

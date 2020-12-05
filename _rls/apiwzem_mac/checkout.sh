@@ -1,18 +1,19 @@
 #!/bin/bash
 # file checkout.sh
 # checkout script for Wzem API library, release apiwzem_mac
-# author Catherine Johnson
-# date created: 21 Sep 2020
-# modified: 21 Sep 2020
+# copyright: (C) 2016-2020 MPSI Technologies GmbH
+# author: Alexander Wirthmueller (auto-generation)
+# date created: 1 Dec 2020
+# IP header --- ABOVE
 
-export set SRCROOT=${WHIZROOT}/src
+export set BUILDROOT=${WHIZSDKROOT}/build
 
-mkdir $SRCROOT/apiwzem
+mkdir $BUILDROOT/apiwzem
 
-cp makeall.sh $SRCROOT/apiwzem/
+cp makeall.sh $BUILDROOT/apiwzem/
 
-cp Makefile $SRCROOT/apiwzem/
+cp Makefile $BUILDROOT/apiwzem/
 
-cp ../../apiwzem/*.h $SRCROOT/apiwzem/
-cp ../../apiwzem/*.cpp $SRCROOT/apiwzem/
+cp ../../apiwzem/*.h $BUILDROOT/apiwzem/
+cp ../../apiwzem/*.cpp $BUILDROOT/apiwzem/
 

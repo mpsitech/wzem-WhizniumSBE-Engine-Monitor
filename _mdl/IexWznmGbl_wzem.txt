@@ -1,5 +1,5 @@
-- IexWznmGbl v0.9.29		
-- ImeIMCapability.srefTplRefWznmMCapability	sref	Title
-- arm	Arm	
-- dlgloaini	DlgWzemNavLoaini	
-- ImeIMCapability.end		
+IexWznmGbl v0.9.29
+ImeIMCapability.srefTplRefWznmMCapability	sref	Title
+arm	Arm
+dlgloaini	DlgWzemNavLoaini
+ImeIMCapability.end

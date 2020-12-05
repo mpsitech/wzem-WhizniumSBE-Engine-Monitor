@@ -1,10 +1,11 @@
 /**
 	* \file QryWzemUsrList.h
 	* job handler for job QryWzemUsrList (declarations)
-	* \author Catherine Johnson
-	* \date created: 21 Sep 2020
-	* \date modified: 21 Sep 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 1 Dec 2020
 	*/
+// IP header --- ABOVE
 
 #ifndef QRYWZEMUSRLIST_H
 #define QRYWZEMUSRLIST_H
@@ -32,11 +33,11 @@ public:
 
 	public:
 		static const Sbecore::uint STE = 1;
-		static const Sbecore::uint SRF = 2;
-		static const Sbecore::uint USG = 3;
-		static const Sbecore::uint PRS = 4;
+		static const Sbecore::uint USG = 2;
+		static const Sbecore::uint SRF = 3;
+		static const Sbecore::uint GRP = 4;
 		static const Sbecore::uint OWN = 5;
-		static const Sbecore::uint GRP = 6;
+		static const Sbecore::uint PRS = 6;
 
 		static Sbecore::uint getIx(const std::string& sref);
 		static std::string getSref(const Sbecore::uint ix);

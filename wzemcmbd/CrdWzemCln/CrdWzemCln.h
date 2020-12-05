@@ -1,10 +1,11 @@
 /**
 	* \file CrdWzemCln.h
 	* job handler for job CrdWzemCln (declarations)
-	* \author Catherine Johnson
-	* \date created: 21 Sep 2020
-	* \date modified: 21 Sep 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 1 Dec 2020
 	*/
+// IP header --- ABOVE
 
 #ifndef CRDWZEMCLN_H
 #define CRDWZEMCLN_H
@@ -14,8 +15,8 @@
 // IP include.cust --- INSERT
 
 #include "PnlWzemClnList.h"
-#include "PnlWzemClnHeadbar.h"
 #include "PnlWzemClnRec.h"
+#include "PnlWzemClnHeadbar.h"
 
 #define VecVWzemClnDo CrdWzemCln::VecVDo
 #define VecVWzemClnSge CrdWzemCln::VecVSge
@@ -190,8 +191,8 @@ public:
 	Sbecore::Xmlio::Feed feedFSge;
 
 	PnlWzemClnList* pnllist;
-	PnlWzemClnHeadbar* pnlheadbar;
 	PnlWzemClnRec* pnlrec;
+	PnlWzemClnHeadbar* pnlheadbar;
 
 	// IP vars.cust --- INSERT
 

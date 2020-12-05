@@ -1,29 +1,29 @@
-- IexWzemIni vv0.9.19
-- ImeIAVKeylistKey.srefKlsIxWzemVKeylist	sref	Avail	Implied	Title	Comment
-- KlstWzemKAMPersonDetailType	eml			e-mail	
-- KlstWzemKAMPersonDetailType	fax			fax	
-- KlstWzemKAMPersonDetailType	mbl			mobile	
-- KlstWzemKAMPersonDetailType	tel			phone	
-- ImeIAVKeylistKey.end
-- ImeIMUsergroup.sref	Comment
-- wzemusers
-	- ImeIAMUsergroupAccess.srefX1IxWzemVFeatgroup	x2FeaSrefUix	srefsIxWzemWAccess
-	- VecWzemVCard	CrdWzemUsg	edit;exec;view
-	- VecWzemVCard	CrdWzemUsr	edit;exec;view
-	- VecWzemVCard	CrdWzemPrs	edit;exec;view
-	- VecWzemVCard	CrdWzemPrd	edit;exec;view
-	- VecWzemVCard	CrdWzemEvt	edit;exec;view
-	- VecWzemVCard	CrdWzemJob	edit;exec;view
-	- VecWzemVCard	CrdWzemCal	edit;exec;view
-	- VecWzemVCard	CrdWzemCln	edit;exec;view
-	- VecWzemVCard	CrdWzemOpx	edit;exec;view
-	- VecWzemVCard	CrdWzemPst	edit;exec;view
-	- VecWzemVCard	CrdWzemNde	edit;exec;view
-	- ImeIAMUsergroupAccess.end
-	- ImeIMUser.sref	srefIxVState	srefIxWzemVLocale	srefIxWzemVUserlevel	Password	Comment
-	- wzemuser	act	enus	adm	asdf1234
-		- ImeIMPerson.srefIxVSex	Title	Firstname	Lastname
-		- f	Mrs.	Emily	Johnson
-		- ImeIMPerson.end
-	- ImeIMUser.end
-- ImeIMUsergroup.end
+IexWzemIni v1.0.0
+ImeIAVKeylistKey.srefKlsIxWzemVKeylist	sref	Avail	Implied	Title	Comment
+KlstWzemKAMPersonDetailType	eml			e-mail	
+KlstWzemKAMPersonDetailType	fax			fax	
+KlstWzemKAMPersonDetailType	mbl			mobile	
+KlstWzemKAMPersonDetailType	tel			phone	
+ImeIAVKeylistKey.end
+ImeIMUsergroup.sref	Comment
+wzemusers
+	ImeIAMUsergroupAccess.srefX1IxWzemVFeatgroup	x2FeaSrefUix	srefsIxWzemWAccess
+	VecWzemVCard	CrdWzemUsg	edit;exec;view
+	VecWzemVCard	CrdWzemUsr	edit;exec;view
+	VecWzemVCard	CrdWzemPrs	edit;exec;view
+	VecWzemVCard	CrdWzemPrd	edit;exec;view
+	VecWzemVCard	CrdWzemEvt	edit;exec;view
+	VecWzemVCard	CrdWzemJob	edit;exec;view
+	VecWzemVCard	CrdWzemCal	edit;exec;view
+	VecWzemVCard	CrdWzemCln	edit;exec;view
+	VecWzemVCard	CrdWzemOpx	edit;exec;view
+	VecWzemVCard	CrdWzemPst	edit;exec;view
+	VecWzemVCard	CrdWzemNde	edit;exec;view
+	ImeIAMUsergroupAccess.end
+	ImeIMUser.sref	srefIxVState	srefIxWzemVLocale	srefIxWzemVUserlevel	Password	Comment
+	wzemuser	act	enus	adm	asdf1234
+		ImeIMPerson.srefIxVSex	Title	Firstname	Lastname
+		f	Mrs.	Emily	Johnson
+		ImeIMPerson.end
+	ImeIMUser.end
+ImeIMUsergroup.end

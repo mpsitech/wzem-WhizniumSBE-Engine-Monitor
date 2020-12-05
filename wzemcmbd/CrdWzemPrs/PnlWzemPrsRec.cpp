@@ -1,10 +1,11 @@
 /**
 	* \file PnlWzemPrsRec.cpp
 	* job handler for job PnlWzemPrsRec (implementation)
-	* \author Catherine Johnson
-	* \date created: 21 Sep 2020
-	* \date modified: 21 Sep 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 1 Dec 2020
 	*/
+// IP header --- ABOVE
 
 #ifdef WZEMCMBD
 	#include <Wzemcmbd.h>
@@ -37,8 +38,8 @@ PnlWzemPrsRec::PnlWzemPrsRec(
 		{
 	jref = xchg->addJob(dbswzem, this, jrefSup);
 
-	pnladetail = NULL;
 	pnldetail = NULL;
+	pnladetail = NULL;
 
 	// IP constructor.cust1 --- INSERT
 

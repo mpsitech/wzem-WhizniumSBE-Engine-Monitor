@@ -1,10 +1,11 @@
 /**
 	* \file QryWzemNdeList.h
 	* job handler for job QryWzemNdeList (declarations)
-	* \author Catherine Johnson
-	* \date created: 21 Sep 2020
-	* \date modified: 21 Sep 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 1 Dec 2020
 	*/
+// IP header --- ABOVE
 
 #ifndef QRYWZEMNDELIST_H
 #define QRYWZEMNDELIST_H
@@ -143,8 +144,8 @@ public:
 	void handleCall(DbsWzem* dbswzem, Sbecore::Call* call);
 
 private:
-	bool handleCallWzemNdeMod(DbsWzem* dbswzem, const Sbecore::ubigint jrefTrig);
 	bool handleCallWzemNdeUpd_refEq(DbsWzem* dbswzem, const Sbecore::ubigint jrefTrig);
+	bool handleCallWzemNdeMod(DbsWzem* dbswzem, const Sbecore::ubigint jrefTrig);
 	bool handleCallWzemStubChgFromSelf(DbsWzem* dbswzem);
 
 };

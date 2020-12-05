@@ -1,8 +1,9 @@
 # file Makefile
 # make file for CrdWzemNde card job handler, release wzemcmbd_mac
-# author Catherine Johnson
-# date created: 21 Sep 2020
-# modified: 21 Sep 2020
+# copyright: (C) 2016-2020 MPSI Technologies GmbH
+# author: Alexander Wirthmueller (auto-generation)
+# date created: 1 Dec 2020
+# IP header --- ABOVE
 
 include ../Makefile.inc
 
@@ -12,8 +13,8 @@ CPPFLAGS = -std=c++11 -g -Wall -Os -pthread -DWZEMCMBD
 STATLIB = ar
 STATLIBFLAGS = rcs
 
-INCPATH = -I$(SRCROOT)/dbswzem -I$(SRCROOT)/wzemcmbd/VecWzem -I$(SRCROOT)/wzemcmbd/IexWzem -I$(SRCROOT)/wzemcmbd
-INCPATH += -I${WHIZROOT}/src -I/usr/include -I/usr/local/include -I/usr/local/include/libxml2 -I/usr/local/mysql/include
+INCPATH = -I$(BUILDROOT)/dbswzem -I$(BUILDROOT)/wzemcmbd/VecWzem -I$(BUILDROOT)/wzemcmbd/IexWzem -I$(BUILDROOT)/wzemcmbd
+INCPATH += -I${WHIZSDKROOT}/build -I/usr/local/include -I/usr/local/include/libxml2 -I/usr/local/mysql/include -I/usr/local/opt/sqlite/include
 
 OBJS = CrdWzemNde.o PnlWzemNdeList.o QryWzemNdeList.o PnlWzemNdeHeadbar.o PnlWzemNdeRec.o PnlWzemNdeDetail.o
 

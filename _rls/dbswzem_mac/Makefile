@@ -1,13 +1,14 @@
 # file Makefile
 # make file for Wzem database access library, release dbswzem_mac
-# author Catherine Johnson
-# date created: 21 Sep 2020
-# modified: 21 Sep 2020
+# copyright: (C) 2016-2020 MPSI Technologies GmbH
+# author: Alexander Wirthmueller (auto-generation)
+# date created: 1 Dec 2020
+# IP header --- ABOVE
 
-LIBROOT = ${WHIZROOT}/lib
+LIBROOT = ${WHIZSDKROOT}/lib
 
 CPP = g++
-CPPFLAGS = -std=c++11 -g -Wall -Os -pthread -fpic
+CPPFLAGS = -std=c++11 -g -Wall -Os -pthread -fPIC
 
 STATLIB = ar
 STATLIBFLAGS = rcs
@@ -16,7 +17,7 @@ DYNLIB = g++
 DYNLIBFLAGS = -dynamiclib -undefined dynamic_lookup
 DYNLIBEXT = dylib
 
-INCPATH = -I${WHIZROOT}/src -I/usr/include -I/usr/local/include/libxml2 -I/usr/local/mysql/include
+INCPATH = -I${WHIZSDKROOT}/build -I/usr/local/include/libxml2 -I/usr/local/mysql/include -I/usr/local/opt/sqlite/include
 
 PCHS = DbsWzem.h.gch
 

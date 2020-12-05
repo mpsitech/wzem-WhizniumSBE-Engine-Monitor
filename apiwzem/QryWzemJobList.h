@@ -1,10 +1,11 @@
 /**
 	* \file QryWzemJobList.h
 	* API code for job QryWzemJobList (declarations)
-	* \author Catherine Johnson
-	* \date created: 21 Sep 2020
-	* \date modified: 21 Sep 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 1 Dec 2020
 	*/
+// IP header --- ABOVE
 
 #ifndef QRYWZEMJOBLIST_H
 #define QRYWZEMJOBLIST_H
@@ -28,8 +29,8 @@ namespace QryWzemJobList {
 
 	public:
 		static const Sbecore::uint SUP = 1;
-		static const Sbecore::uint STA = 2;
-		static const Sbecore::uint STO = 3;
+		static const Sbecore::uint STO = 2;
+		static const Sbecore::uint STA = 3;
 		static const Sbecore::uint PRD = 4;
 
 		static Sbecore::uint getIx(const std::string& sref);

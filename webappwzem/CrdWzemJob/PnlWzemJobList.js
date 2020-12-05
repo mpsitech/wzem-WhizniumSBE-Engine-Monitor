@@ -1,11 +1,3 @@
-/**
-  * \file PnlWzemJobList.js
-  * web client functionality for panel PnlWzemJobList
-  * \author Catherine Johnson
-  * \date created: 21 Sep 2020
-  * \date modified: 21 Sep 2020
-  */
-
 // --- expand state management
 function minimize() {
 	// change container heights
@@ -124,9 +116,9 @@ function refreshB(chgcol) {
 			} else if (i == 3) {
 				doc.cols.push("TcoXjr"); doc.widths.push(TcoXjrWidth); doc.fs.push("xjr"); doc.tos.push(0); wtot += TcoXjrWidth;
 			} else if (i == 4) {
-				doc.cols.push("TcoSta"); doc.widths.push(TcoStaWidth); doc.fs.push("sta"); doc.tos.push(2); wtot += TcoStaWidth;
+				doc.cols.push("TcoSta"); doc.widths.push(TcoStaWidth); doc.fs.push("sta"); doc.tos.push(3); wtot += TcoStaWidth;
 			} else if (i == 5) {
-				doc.cols.push("TcoSto"); doc.widths.push(TcoStoWidth); doc.fs.push("sto"); doc.tos.push(3); wtot += TcoStoWidth;
+				doc.cols.push("TcoSto"); doc.widths.push(TcoStoWidth); doc.fs.push("sto"); doc.tos.push(2); wtot += TcoStoWidth;
 			} else if (i == 6) {
 				doc.cols.push("TcoSup"); doc.widths.push(TcoSupWidth); doc.fs.push("sup"); doc.tos.push(1); wtot += TcoSupWidth;
 			} else {

@@ -1,17 +1,18 @@
 #!/bin/bash
 # file remake.sh
 # re-make script for Wzem combined daemon, release wzemcmbd_mac
-# author Catherine Johnson
-# date created: 21 Sep 2020
-# modified: 21 Sep 2020
+# copyright: (C) 2016-2020 MPSI Technologies GmbH
+# author: Alexander Wirthmueller (auto-generation)
+# date created: 1 Dec 2020
+# IP header --- ABOVE
 
-export set SRCROOT=${WHIZROOT}/src
-export set REPROOT=${WHIZROOT}/srcrep
+export set BUILDROOT=${WHIZSDKROOT}/build
+export set REPROOT=${WHIZDEVROOT}/rep
 
 cd $REPROOT/wzem/_rls/wzemcmbd_mac
 ./checkout.sh
 
-cd $SRCROOT/wzemcmbd
+cd $BUILDROOT/wzemcmbd
 
 ./make.sh "$@"
 

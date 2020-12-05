@@ -1,10 +1,11 @@
 /**
 	* \file CrdWzemUsg.cpp
 	* job handler for job CrdWzemUsg (implementation)
-	* \author Catherine Johnson
-	* \date created: 21 Sep 2020
-	* \date modified: 21 Sep 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 1 Dec 2020
 	*/
+// IP header --- ABOVE
 
 #ifdef WZEMCMBD
 	#include <Wzemcmbd.h>
@@ -68,8 +69,8 @@ CrdWzemUsg::CrdWzemUsg(
 	changeStage(dbswzem, VecVSge::IDLE);
 
 	xchg->addClstn(VecWzemVCall::CALLWZEMREFPRESET, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
-	xchg->addClstn(VecWzemVCall::CALLWZEMSTATCHG, jref, Clstn::VecVJobmask::IMM, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 	xchg->addClstn(VecWzemVCall::CALLWZEMDLGCLOSE, jref, Clstn::VecVJobmask::IMM, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
+	xchg->addClstn(VecWzemVCall::CALLWZEMSTATCHG, jref, Clstn::VecVJobmask::IMM, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 
 	// IP constructor.cust3 --- INSERT
 
@@ -241,10 +242,10 @@ void CrdWzemUsg::handleCall(
 		) {
 	if (call->ixVCall == VecWzemVCall::CALLWZEMREFPRESET) {
 		call->abort = handleCallWzemRefPreSet(dbswzem, call->jref, call->argInv.ix, call->argInv.ref);
-	} else if (call->ixVCall == VecWzemVCall::CALLWZEMSTATCHG) {
-		call->abort = handleCallWzemStatChg(dbswzem, call->jref);
 	} else if (call->ixVCall == VecWzemVCall::CALLWZEMDLGCLOSE) {
 		call->abort = handleCallWzemDlgClose(dbswzem, call->jref);
+	} else if (call->ixVCall == VecWzemVCall::CALLWZEMSTATCHG) {
+		call->abort = handleCallWzemStatChg(dbswzem, call->jref);
 	};
 };
 
@@ -265,21 +266,21 @@ bool CrdWzemUsg::handleCallWzemRefPreSet(
 	return retval;
 };
 
-bool CrdWzemUsg::handleCallWzemStatChg(
-			DbsWzem* dbswzem
-			, const ubigint jrefTrig
-		) {
-	bool retval = false;
-	if (jrefTrig == pnlrec->jref) if ((pnllist->statshr.ixWzemVExpstate == VecWzemVExpstate::REGD) && (pnlrec->statshr.ixWzemVExpstate == VecWzemVExpstate::REGD)) pnllist->minimize(dbswzem, true);
-	return retval;
-};
-
 bool CrdWzemUsg::handleCallWzemDlgClose(
 			DbsWzem* dbswzem
 			, const ubigint jrefTrig
 		) {
 	bool retval = false;
 	// IP handleCallWzemDlgClose --- INSERT
+	return retval;
+};
+
+bool CrdWzemUsg::handleCallWzemStatChg(
+			DbsWzem* dbswzem
+			, const ubigint jrefTrig
+		) {
+	bool retval = false;
+	if (jrefTrig == pnlrec->jref) if ((pnllist->statshr.ixWzemVExpstate == VecWzemVExpstate::REGD) && (pnlrec->statshr.ixWzemVExpstate == VecWzemVExpstate::REGD)) pnllist->minimize(dbswzem, true);
 	return retval;
 };
 

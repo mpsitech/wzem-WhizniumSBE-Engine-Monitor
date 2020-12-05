@@ -1,11 +1,3 @@
-/**
-  * \file CrdWzemNav.js
-  * web client functionality for card CrdWzemNav
-  * \author Catherine Johnson
-  * \date created: 21 Sep 2020
-  * \date modified: 21 Sep 2020
-  */
-
 function getInitdone(pnlshort) {
 	return(retrieveSi(srcdoc, "StatAppWzemNav", "initdone" + pnlshort) == "true");
 };

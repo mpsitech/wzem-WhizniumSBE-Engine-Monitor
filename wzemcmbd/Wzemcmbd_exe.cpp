@@ -1,10 +1,11 @@
 /**
 	* \file Wzemcmbd_exe.cpp
 	* Wzem combined daemon main (implementation)
-	* \author Catherine Johnson
-	* \date created: 21 Sep 2020
-	* \date modified: 21 Sep 2020
-	*/
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 1 Dec 2020
+  */
+// IP header --- ABOVE
 
 #include "Wzemcmbd.h"
 
@@ -482,7 +483,7 @@ int main(
 
 	try {
 		// welcome message
-		cout << "Welcome to WhizniumSBE Engine Monitor v0.9.19!" << endl;
+		cout << "Welcome to WhizniumSBE Engine Monitor v1.0.0!" << endl;
 
 		// calls wzemcmbd.init()
 		wzemcmbd = new Wzemcmbd(exedir, clearAll, startMon);

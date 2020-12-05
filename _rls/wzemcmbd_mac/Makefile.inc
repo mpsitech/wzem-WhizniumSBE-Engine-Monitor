@@ -1,10 +1,11 @@
 # file Makefile.inc
 # make file paths for Wzem combined daemon, release wzemcmbd_mac
-# author Catherine Johnson
-# date created: 21 Sep 2020
-# modified: 21 Sep 2020
+# copyright: (C) 2016-2020 MPSI Technologies GmbH
+# author: Alexander Wirthmueller (auto-generation)
+# date created: 1 Dec 2020
+# IP header --- ABOVE
 
-SRCROOT = ${WHIZROOT}/src
-LIBROOT = ${WHIZROOT}/lib
+BUILDROOT = ${WHIZSDKROOT}/build
+LIBROOT = ${WHIZSDKROOT}/lib
 BINROOT = ${WHIZROOT}/bin
 

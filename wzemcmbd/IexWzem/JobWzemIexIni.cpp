@@ -1,10 +1,11 @@
 /**
 	* \file JobWzemIexIni.cpp
 	* job handler for job JobWzemIexIni (implementation)
-	* \author Catherine Johnson
-	* \date created: 21 Sep 2020
-	* \date modified: 21 Sep 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 1 Dec 2020
 	*/
+// IP header --- ABOVE
 
 #ifdef WZEMCMBD
 	#include <Wzemcmbd.h>
@@ -68,10 +69,12 @@ void JobWzemIexIni::parseFromFile(
 			DbsWzem* dbswzem
 			, const string& _fullpath
 			, const bool _xmlNotTxt
+			, const string& _rectpath
 		) {
 	if (ixVSge == VecVSge::IDLE) {
 		fullpath = _fullpath;
 		xmlNotTxt = _xmlNotTxt;
+		rectpath = _rectpath;
 
 		changeStage(dbswzem, VecVSge::PARSE);
 	};
@@ -211,6 +214,7 @@ uint JobWzemIexIni::enterSgeIdle(
 
 	fullpath = "";
 	xmlNotTxt = false;
+	rectpath = "";
 
 	lineno = 0;
 	impcnt = 0;
@@ -241,7 +245,7 @@ uint JobWzemIexIni::enterSgeParse(
 	nextIxVSgeFailure = VecVSge::PRSERR;
 
 	try {
-		IexWzemIni::parseFromFile(fullpath, xmlNotTxt, imeiavcontrolpar, imeiavkeylistkey, imeiavvaluelistval, imeimusergroup);
+		IexWzemIni::parseFromFile(fullpath, xmlNotTxt, rectpath, imeiavcontrolpar, imeiavkeylistkey, imeiavvaluelistval, imeimusergroup);
 
 	} catch (SbeException& e) {
 		if (e.ix == SbeException::PATHNF) e.vals["path"] = "<hidden>";
@@ -873,6 +877,10 @@ void JobWzemIexIni::leaveSgeDone(
 		) {
 	// IP leaveSgeDone --- INSERT
 };
+
+
+
+
 
 
 

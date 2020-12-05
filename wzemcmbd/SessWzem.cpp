@@ -1,10 +1,11 @@
 /**
 	* \file SessWzem.cpp
 	* job handler for job SessWzem (implementation)
-	* \author Catherine Johnson
-	* \date created: 21 Sep 2020
-	* \date modified: 21 Sep 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 1 Dec 2020
 	*/
+// IP header --- ABOVE
 
 #ifdef WZEMCMBD
 	#include <Wzemcmbd.h>
@@ -128,11 +129,11 @@ SessWzem::SessWzem(
 	statshr.jrefCrdnav = crdnav->jref;
 
 	xchg->addClstn(VecWzemVCall::CALLWZEMREFPRESET, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
-	xchg->addClstn(VecWzemVCall::CALLWZEMRECACCESS, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 	xchg->addClstn(VecWzemVCall::CALLWZEMLOG, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
+	xchg->addClstn(VecWzemVCall::CALLWZEMRECACCESS, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 	xchg->addClstn(VecWzemVCall::CALLWZEMCRDOPEN, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
-	xchg->addClstn(VecWzemVCall::CALLWZEMCRDACTIVE, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 	xchg->addClstn(VecWzemVCall::CALLWZEMCRDCLOSE, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
+	xchg->addClstn(VecWzemVCall::CALLWZEMCRDACTIVE, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 
 	// IP constructor.cust3 --- INSERT
 
@@ -988,16 +989,16 @@ void SessWzem::handleCall(
 		) {
 	if (call->ixVCall == VecWzemVCall::CALLWZEMREFPRESET) {
 		call->abort = handleCallWzemRefPreSet(dbswzem, call->jref, call->argInv.ix, call->argInv.ref);
-	} else if (call->ixVCall == VecWzemVCall::CALLWZEMRECACCESS) {
-		call->abort = handleCallWzemRecaccess(dbswzem, call->jref, call->argInv.ix, call->argInv.ref, call->argRet.ix);
 	} else if (call->ixVCall == VecWzemVCall::CALLWZEMLOG) {
 		call->abort = handleCallWzemLog(dbswzem, call->jref, call->argInv.ix, call->argInv.ref, call->argInv.sref, call->argInv.intval);
+	} else if (call->ixVCall == VecWzemVCall::CALLWZEMRECACCESS) {
+		call->abort = handleCallWzemRecaccess(dbswzem, call->jref, call->argInv.ix, call->argInv.ref, call->argRet.ix);
 	} else if (call->ixVCall == VecWzemVCall::CALLWZEMCRDOPEN) {
 		call->abort = handleCallWzemCrdOpen(dbswzem, call->jref, call->argInv.ix, call->argInv.ref, call->argInv.sref, call->argInv.intval, call->argRet.ref);
-	} else if (call->ixVCall == VecWzemVCall::CALLWZEMCRDACTIVE) {
-		call->abort = handleCallWzemCrdActive(dbswzem, call->jref, call->argInv.ix, call->argRet.ix);
 	} else if (call->ixVCall == VecWzemVCall::CALLWZEMCRDCLOSE) {
 		call->abort = handleCallWzemCrdClose(dbswzem, call->jref, call->argInv.ix);
+	} else if (call->ixVCall == VecWzemVCall::CALLWZEMCRDACTIVE) {
+		call->abort = handleCallWzemCrdActive(dbswzem, call->jref, call->argInv.ix, call->argRet.ix);
 	};
 };
 
@@ -1027,18 +1028,6 @@ bool SessWzem::handleCallWzemRefPreSet(
 	return retval;
 };
 
-bool SessWzem::handleCallWzemRecaccess(
-			DbsWzem* dbswzem
-			, const ubigint jrefTrig
-			, const uint ixInv
-			, const ubigint refInv
-			, uint& ixRet
-		) {
-	bool retval = false;
-	ixRet = checkRecaccess(dbswzem, ixInv, refInv);
-	return retval;
-};
-
 bool SessWzem::handleCallWzemLog(
 			DbsWzem* dbswzem
 			, const ubigint jrefTrig
@@ -1049,6 +1038,18 @@ bool SessWzem::handleCallWzemLog(
 		) {
 	bool retval = false;
 	logRecaccess(dbswzem, ixInv, refInv, VecWzemVCard::getIx(srefInv), intvalInv);
+	return retval;
+};
+
+bool SessWzem::handleCallWzemRecaccess(
+			DbsWzem* dbswzem
+			, const ubigint jrefTrig
+			, const uint ixInv
+			, const ubigint refInv
+			, uint& ixRet
+		) {
+	bool retval = false;
+	ixRet = checkRecaccess(dbswzem, ixInv, refInv);
 	return retval;
 };
 
@@ -1206,17 +1207,6 @@ bool SessWzem::handleCallWzemCrdOpen(
 	return retval;
 };
 
-bool SessWzem::handleCallWzemCrdActive(
-			DbsWzem* dbswzem
-			, const ubigint jrefTrig
-			, const uint ixInv
-			, uint& ixRet
-		) {
-	bool retval = false;
-	ixRet = checkCrdActive(ixInv);
-	return retval;
-};
-
 bool SessWzem::handleCallWzemCrdClose(
 			DbsWzem* dbswzem
 			, const ubigint jrefTrig
@@ -1357,6 +1347,17 @@ bool SessWzem::handleCallWzemCrdClose(
 			} else it++;
 		};
 	};
+	return retval;
+};
+
+bool SessWzem::handleCallWzemCrdActive(
+			DbsWzem* dbswzem
+			, const ubigint jrefTrig
+			, const uint ixInv
+			, uint& ixRet
+		) {
+	bool retval = false;
+	ixRet = checkCrdActive(ixInv);
 	return retval;
 };
 

@@ -1,8 +1,9 @@
 # file Makefile
 # make file for Wzem combined daemon, release wzemcmbd_mac
-# author Catherine Johnson
-# date created: 21 Sep 2020
-# modified: 21 Sep 2020
+# copyright: (C) 2016-2020 MPSI Technologies GmbH
+# author: Alexander Wirthmueller (auto-generation)
+# date created: 1 Dec 2020
+# IP header --- ABOVE
 
 include Makefile.inc
 
@@ -12,9 +13,9 @@ CPPFLAGS = -std=c++11 -g -Wall -Os -pthread -DWZEMCMBD
 LINK = g++
 LINKFLAGS = -s
 
-INCPATH = -I$(SRCROOT)/dbswzem -I$(SRCROOT)/wzemcmbd/VecWzem -I$(SRCROOT)/wzemcmbd/IexWzem -I$(SRCROOT)/wzemcmbd
-INCPATH += -I$(SRCROOT)/wzemcmbd/CrdWzemUsg -I$(SRCROOT)/wzemcmbd/CrdWzemUsr -I$(SRCROOT)/wzemcmbd/CrdWzemPrs -I$(SRCROOT)/wzemcmbd/CrdWzemNav -I$(SRCROOT)/wzemcmbd/CrdWzemPrd -I$(SRCROOT)/wzemcmbd/CrdWzemEvt -I$(SRCROOT)/wzemcmbd/CrdWzemJob -I$(SRCROOT)/wzemcmbd/CrdWzemCal -I$(SRCROOT)/wzemcmbd/CrdWzemCln -I$(SRCROOT)/wzemcmbd/CrdWzemOpx -I$(SRCROOT)/wzemcmbd/CrdWzemPst -I$(SRCROOT)/wzemcmbd/CrdWzemNde
-INCPATH += -I${WHIZROOT}/src -I/usr/include -I/usr/local/include -I/usr/local/include/libxml2 -I/usr/local/mysql/include
+INCPATH = -I$(BUILDROOT)/dbswzem -I$(BUILDROOT)/wzemcmbd/VecWzem -I$(BUILDROOT)/wzemcmbd/IexWzem -I$(BUILDROOT)/wzemcmbd
+INCPATH += -I$(BUILDROOT)/wzemcmbd/CrdWzemUsg -I$(BUILDROOT)/wzemcmbd/CrdWzemUsr -I$(BUILDROOT)/wzemcmbd/CrdWzemPrs -I$(BUILDROOT)/wzemcmbd/CrdWzemNav -I$(BUILDROOT)/wzemcmbd/CrdWzemPrd -I$(BUILDROOT)/wzemcmbd/CrdWzemEvt -I$(BUILDROOT)/wzemcmbd/CrdWzemJob -I$(BUILDROOT)/wzemcmbd/CrdWzemCal -I$(BUILDROOT)/wzemcmbd/CrdWzemCln -I$(BUILDROOT)/wzemcmbd/CrdWzemOpx -I$(BUILDROOT)/wzemcmbd/CrdWzemPst -I$(BUILDROOT)/wzemcmbd/CrdWzemNde
+INCPATH += -I${WHIZSDKROOT}/build -I/usr/local/include -I/usr/local/include/libxml2 -I/usr/local/mysql/include -I/usr/local/opt/sqlite/include
 
 PCHS = Wzemcmbd.h.gch
 
@@ -24,17 +25,14 @@ OBJS += Wzemcmbd_exe.o
 
 LIBPATH = -L$(LIBROOT)
 LIBPATH += -L$(LIBROOT)/wzemcmbd
-LIBPATH += -L${WHIZROOT}/lib -L/usr/lib -L/usr/local/lib -L/usr/local/mysql/lib
-LIBPATH += 
+LIBPATH += -L${WHIZSDKROOT}/lib -L/usr/local/lib -L/usr/local/mysql/lib -L/usr/local/opt/sqlite/lib
 
 LIBS = -lcrdwzemusg -lcrdwzemusr -lcrdwzemprs -lcrdwzemnav -lcrdwzemprd -lcrdwzemevt -lcrdwzemjob -lcrdwzemcal -lcrdwzemcln -lcrdwzemopx -lcrdwzempst -lcrdwzemnde
 LIBS += -liexwzem -lvecwzem -ldbswzem
-LIBS += -lmicrohttpd -lsbecore_mon -lsbecore_my
-LIBS += -lmysqlclient -lsbecore_plus
+LIBS += -lmicrohttpd -lsbecore_lite -lsbecore_mon -lsbecore_my
+LIBS += -lmysqlclient -lsbecore_plus -lsqlite3
 LIBS += -lsbecore
 LIBS += -lxml2
-LIBS += -lz
-LIBS += 
 
 EXE = Wzemcmbd
 

@@ -1,10 +1,11 @@
 /**
 	* \file CrdWzemUsr.h
 	* API code for job CrdWzemUsr (declarations)
-	* \author Catherine Johnson
-	* \date created: 21 Sep 2020
-	* \date modified: 21 Sep 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 1 Dec 2020
 	*/
+// IP header --- ABOVE
 
 #ifndef CRDWZEMUSR_H
 #define CRDWZEMUSR_H

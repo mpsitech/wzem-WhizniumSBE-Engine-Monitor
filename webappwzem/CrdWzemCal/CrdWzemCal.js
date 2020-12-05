@@ -1,11 +1,3 @@
-/**
-  * \file CrdWzemCal.js
-  * web client functionality for card CrdWzemCal
-  * \author Catherine Johnson
-  * \date created: 21 Sep 2020
-  * \date modified: 21 Sep 2020
-  */
-
 function getInitdone(pnlshort) {
 	return(retrieveSi(srcdoc, "StatAppWzemCal", "initdone" + pnlshort) == "true");
 };
@@ -332,7 +324,7 @@ function changeHeight(pnlshort, height) {
 // --- view initialization and refresh
 function refresh() {
 
-	doc.title = retrieveCi(srcdoc, "ContInfWzemCal", "MtxCrdCal") + " - WhizniumSBE Engine Monitor v0.9.19";
+	doc.title = retrieveCi(srcdoc, "ContInfWzemCal", "MtxCrdCal") + " - WhizniumSBE Engine Monitor v1.0.0";
 };
 
 // --- event handlers

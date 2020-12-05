@@ -1,11 +1,3 @@
-/**
-  * \file PnlWzemNavPre.js
-  * web client functionality for panel PnlWzemNavPre
-  * \author Catherine Johnson
-  * \date created: 21 Sep 2020
-  * \date modified: 21 Sep 2020
-  */
-
 // --- expand state management
 function minimize() {
 };

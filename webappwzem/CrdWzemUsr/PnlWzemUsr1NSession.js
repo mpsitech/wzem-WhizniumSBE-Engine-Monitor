@@ -1,11 +1,3 @@
-/**
-  * \file PnlWzemUsr1NSession.js
-  * web client functionality for panel PnlWzemUsr1NSession
-  * \author Catherine Johnson
-  * \date created: 21 Sep 2020
-  * \date modified: 21 Sep 2020
-  */
-
 // --- expand state management
 function minimize(updh) {
 	if (retrieveSi(srcdoc, "StatAppWzemUsr1NSession", "srefIxWzemVExpstate") == "mind") return;

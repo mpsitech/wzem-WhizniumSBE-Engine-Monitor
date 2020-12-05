@@ -1,10 +1,11 @@
 /**
 	* \file QryWzemClnList.cpp
 	* job handler for job QryWzemClnList (implementation)
-	* \author Catherine Johnson
-	* \date created: 21 Sep 2020
-	* \date modified: 21 Sep 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 1 Dec 2020
 	*/
+// IP header --- ABOVE
 
 #ifdef WZEMCMBD
 	#include <Wzemcmbd.h>
@@ -160,8 +161,8 @@ void QryWzemClnList::rerun_orderSQL(
 			string& sqlstr
 			, const uint preIxOrd
 		) {
-	if (preIxOrd == VecVOrd::STA) sqlstr += " ORDER BY TblWzemMClstn.x1Startu ASC";
-	else if (preIxOrd == VecVOrd::STO) sqlstr += " ORDER BY TblWzemMClstn.x1Stopu ASC";
+	if (preIxOrd == VecVOrd::STO) sqlstr += " ORDER BY TblWzemMClstn.x1Stopu ASC";
+	else if (preIxOrd == VecVOrd::STA) sqlstr += " ORDER BY TblWzemMClstn.x1Startu ASC";
 	else if (preIxOrd == VecVOrd::JOB) sqlstr += " ORDER BY TblWzemMClstn.refWzemMJob ASC";
 };
 

@@ -1,11 +1,3 @@
-/**
-  * \file PnlWzemCalDetail.js
-  * web client functionality for panel PnlWzemCalDetail
-  * \author Catherine Johnson
-  * \date created: 21 Sep 2020
-  * \date modified: 21 Sep 2020
-  */
-
 // IP cust --- INSERT
 
 // --- expand state management

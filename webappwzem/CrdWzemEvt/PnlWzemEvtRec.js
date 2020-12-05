@@ -1,11 +1,3 @@
-/**
-  * \file PnlWzemEvtRec.js
-  * web client functionality for panel PnlWzemEvtRec
-  * \author Catherine Johnson
-  * \date created: 21 Sep 2020
-  * \date modified: 21 Sep 2020
-  */
-
 function updateScrJrefs() {
 	scrJrefDetail = retrieveSi(srcdoc, "StatShrWzemEvtRec", "scrJrefDetail");
 };

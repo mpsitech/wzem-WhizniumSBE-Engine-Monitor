@@ -1,11 +1,3 @@
-/**
-  * \file PnlWzemPrd1NJob.js
-  * web client functionality for panel PnlWzemPrd1NJob
-  * \author Catherine Johnson
-  * \date created: 21 Sep 2020
-  * \date modified: 21 Sep 2020
-  */
-
 // --- expand state management
 function minimize(updh) {
 	if (retrieveSi(srcdoc, "StatAppWzemPrd1NJob", "srefIxWzemVExpstate") == "mind") return;

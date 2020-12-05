@@ -1,11 +1,3 @@
-/**
-  * \file DlgWzemNavLoaini.js
-  * web client functionality for dialog DlgWzemNavLoaini
-  * \author Catherine Johnson
-  * \date created: 21 Sep 2020
-  * \date modified: 21 Sep 2020
-  */
-
 // IP cust --- INSERT
 
 // --- view initialization and refresh

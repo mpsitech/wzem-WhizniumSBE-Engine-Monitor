@@ -1,0 +1,39 @@
+# file Makefile
+# make file for CrdWzemUsr card job handler, release wzemcmbd_riscv(ubuntu cross-compilation)
+# copyright: (C) 2016-2020 MPSI Technologies GmbH
+# author: Alexander Wirthmueller (auto-generation)
+# date created: 1 Dec 2020
+# IP header --- ABOVE
+
+include ../Makefile.inc
+
+CPP = 
+CPPFLAGS = --sysroot=${SYSROOT} -DWZEMCMBD
+
+STATLIB = 
+STATLIBFLAGS = rcs
+
+INCPATH = -I=$(BUILDROOT)/dbswzem -I=$(BUILDROOT)/wzemcmbd/VecWzem -I=$(BUILDROOT)/wzemcmbd/IexWzem -I=$(BUILDROOT)/wzemcmbd
+INCPATH += -I=${WHIZSDKROOT}/build -I=/usr/include -I=/usr/include/libxml2
+
+OBJS = CrdWzemUsr.o PnlWzemUsrList.o QryWzemUsrList.o PnlWzemUsrHeadbar.o PnlWzemUsrRec.o PnlWzemUsrMNUsergroup.o QryWzemUsrMNUsergroup.o PnlWzemUsr1NSession.o QryWzemUsr1NSession.o PnlWzemUsrAAccess.o QryWzemUsrAAccess.o PnlWzemUsrDetail.o
+
+LIB = libcrdwzemusr
+
+.SUFFIXES: .cpp
+
+.cpp.o :
+	$(CPP) $(CPPFLAGS) $(INCPATH) -o $@ -c $<
+
+all:	$(LIB)
+
+$(LIB):	$(OBJS)
+	$(STATLIB) $(STATLIBFLAGS) $(LIB).a $(OBJS)
+	rm -f *.o
+
+install:
+	mv $(LIB).a ${SYSROOT}$(LIBROOT)/wzemcmbd/
+
+clean:
+	rm -f *.o
+

@@ -1,10 +1,11 @@
 /**
 	* \file PnlWzemCalDetail.h
 	* job handler for job PnlWzemCalDetail (declarations)
-	* \author Catherine Johnson
-	* \date created: 21 Sep 2020
-	* \date modified: 21 Sep 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 1 Dec 2020
 	*/
+// IP header --- ABOVE
 
 #ifndef PNLWZEMCALDETAIL_H
 #define PNLWZEMCALDETAIL_H

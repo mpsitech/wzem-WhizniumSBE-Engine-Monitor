@@ -1,10 +1,11 @@
 /**
 	* \file Wzemcmbd.h
 	* inter-thread exchange object for Wzem combined daemon (declarations)
-	* \author Catherine Johnson
-	* \date created: 21 Sep 2020
-	* \date modified: 21 Sep 2020
-	*/
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 1 Dec 2020
+  */
+// IP header --- ABOVE
 
 #ifndef WZEMCMBD_H
 #define WZEMCMBD_H
@@ -226,7 +227,7 @@ public:
 	static const Sbecore::uint HTTPS = 2;
 
 public:
-	StgWzemAppsrv(const Sbecore::usmallint port = 0, const bool https = false);
+	StgWzemAppsrv(const Sbecore::usmallint port = 13100, const bool https = false);
 
 public:
 	Sbecore::usmallint port;
@@ -250,7 +251,7 @@ public:
 	static const Sbecore::uint APPSRV = 3;
 
 public:
-	StgWzemcmbd(const Sbecore::usmallint jobprcn = 1, const Sbecore::usmallint opprcn = 1, const bool appsrv = true);
+	StgWzemcmbd(const Sbecore::usmallint jobprcn = 4, const Sbecore::usmallint opprcn = 1, const bool appsrv = true);
 
 public:
 	Sbecore::usmallint jobprcn;
@@ -270,25 +271,21 @@ public:
 class StgWzemDatabase : public Sbecore::Xmlio::Block {
 
 public:
-	static const Sbecore::uint IXDBSVDBSTYPE = 1;
-	static const Sbecore::uint DBSPATH = 2;
-	static const Sbecore::uint DBSNAME = 3;
-	static const Sbecore::uint USERNAME = 4;
-	static const Sbecore::uint PASSWORD = 5;
-	static const Sbecore::uint IP = 6;
-	static const Sbecore::uint PORT = 7;
+	static const Sbecore::uint DBSPATH = 1;
+	static const Sbecore::uint DBSNAME = 2;
+	static const Sbecore::uint USERNAME = 3;
+	static const Sbecore::uint PASSWORD = 4;
+	static const Sbecore::uint IP = 5;
 
 public:
-	StgWzemDatabase(const Sbecore::uint ixDbsVDbstype = 0, const std::string& dbspath = "", const std::string& dbsname = "", const std::string& username = "mpsitech", const std::string& password = "f9w8feeh", const std::string& ip = "", const Sbecore::usmallint port = 0);
+	StgWzemDatabase(const std::string& dbspath = "./DbsWzem.sql", const std::string& dbsname = "DbsWzem", const std::string& username = "default", const std::string& password = "asdf1234", const std::string& ip = "127.0.0.1");
 
 public:
-	Sbecore::uint ixDbsVDbstype;
 	std::string dbspath;
 	std::string dbsname;
 	std::string username;
 	std::string password;
 	std::string ip;
-	Sbecore::usmallint port;
 
 public:
 	bool readXML(xmlXPathContext* docctx, std::string basexpath = "", bool addbasetag = false);
@@ -311,7 +308,7 @@ public:
 	static const Sbecore::uint HELPURL = 6;
 
 public:
-	StgWzemPath(const std::string& acvpath = "", const std::string& keypath = "", const std::string& monpath = "", const std::string& tmppath = "", const std::string& webpath = "", const std::string& helpurl = "");
+	StgWzemPath(const std::string& acvpath = "${WHIZROOT}/acv/wzem", const std::string& keypath = "", const std::string& monpath = "${WHIZROOT}/mon/wzem", const std::string& tmppath = "${WHIZROOT}/tmp/wzem", const std::string& webpath = "${WHIZROOT}/web/appwzem", const std::string& helpurl = "http://www.mpsitech.com/wzem");
 
 public:
 	std::string acvpath;

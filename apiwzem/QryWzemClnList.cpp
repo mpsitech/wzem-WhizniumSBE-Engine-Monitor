@@ -1,10 +1,11 @@
 /**
 	* \file QryWzemClnList.cpp
 	* API code for job QryWzemClnList (implementation)
-	* \author Catherine Johnson
-	* \date created: 21 Sep 2020
-	* \date modified: 21 Sep 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 1 Dec 2020
 	*/
+// IP header --- ABOVE
 
 #include "QryWzemClnList.h"
 
@@ -21,8 +22,8 @@ uint QryWzemClnList::VecVOrd::getIx(
 		) {
 	string s = StrMod::lc(sref);
 
-	if (s == "sta") return STA;
 	if (s == "sto") return STO;
+	if (s == "sta") return STA;
 	if (s == "job") return JOB;
 
 	return(0);
@@ -31,8 +32,8 @@ uint QryWzemClnList::VecVOrd::getIx(
 string QryWzemClnList::VecVOrd::getSref(
 			const uint ix
 		) {
-	if (ix == STA) return("sta");
 	if (ix == STO) return("sto");
+	if (ix == STA) return("sta");
 	if (ix == JOB) return("job");
 
 	return("");

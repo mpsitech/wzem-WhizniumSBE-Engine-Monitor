@@ -1,18 +1,19 @@
 /**
 	* \file Wzem.h
 	* Wzem global functionality (declarations)
-	* \author Catherine Johnson
-	* \date created: 21 Sep 2020
-	* \date modified: 21 Sep 2020
-	*/
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 1 Dec 2020
+  */
+// IP header --- ABOVE
 
 #ifndef WZEM_H
 #define WZEM_H
 
-#define WZEM_VERSION "0.9.19"
-#define WZEM_VERSION_MAJOR 0
-#define WZEM_VERSION_MINOR 9
-#define WZEM_VERSION_SUB 19
+#define WZEM_VERSION "1.0.0"
+#define WZEM_VERSION_MAJOR 1
+#define WZEM_VERSION_MINOR 0
+#define WZEM_VERSION_SUB 0
 
 // IP include.cust --- INSERT
 

@@ -1,10 +1,11 @@
 /**
 	* \file QryWzemJob1NClstn.h
 	* API code for job QryWzemJob1NClstn (declarations)
-	* \author Catherine Johnson
-	* \date created: 21 Sep 2020
-	* \date modified: 21 Sep 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 1 Dec 2020
 	*/
+// IP header --- ABOVE
 
 #ifndef QRYWZEMJOB1NCLSTN_H
 #define QRYWZEMJOB1NCLSTN_H

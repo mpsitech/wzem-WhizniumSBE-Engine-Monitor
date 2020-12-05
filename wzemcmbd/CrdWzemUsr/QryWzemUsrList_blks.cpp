@@ -1,10 +1,11 @@
 /**
 	* \file QryWzemUsrList_blks.cpp
 	* job handler for job QryWzemUsrList (implementation of blocks)
-	* \author Catherine Johnson
-	* \date created: 21 Sep 2020
-	* \date modified: 21 Sep 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 1 Dec 2020
 	*/
+// IP header --- ABOVE
 
 using namespace std;
 using namespace Sbecore;
@@ -20,11 +21,11 @@ uint QryWzemUsrList::VecVOrd::getIx(
 	string s = StrMod::lc(sref);
 
 	if (s == "ste") return STE;
-	if (s == "srf") return SRF;
 	if (s == "usg") return USG;
-	if (s == "prs") return PRS;
-	if (s == "own") return OWN;
+	if (s == "srf") return SRF;
 	if (s == "grp") return GRP;
+	if (s == "own") return OWN;
+	if (s == "prs") return PRS;
 
 	return(0);
 };
@@ -33,11 +34,11 @@ string QryWzemUsrList::VecVOrd::getSref(
 			const uint ix
 		) {
 	if (ix == STE) return("ste");
-	if (ix == SRF) return("srf");
 	if (ix == USG) return("usg");
-	if (ix == PRS) return("prs");
-	if (ix == OWN) return("own");
+	if (ix == SRF) return("srf");
 	if (ix == GRP) return("grp");
+	if (ix == OWN) return("own");
+	if (ix == PRS) return("prs");
 
 	return("");
 };

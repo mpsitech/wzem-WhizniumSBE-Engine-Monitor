@@ -1,10 +1,11 @@
 /**
 	* \file CrdWzemPst.cpp
 	* job handler for job CrdWzemPst (implementation)
-	* \author Catherine Johnson
-	* \date created: 21 Sep 2020
-	* \date modified: 21 Sep 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 1 Dec 2020
 	*/
+// IP header --- ABOVE
 
 #ifdef WZEMCMBD
 	#include <Wzemcmbd.h>
@@ -42,8 +43,8 @@ CrdWzemPst::CrdWzemPst(
 	VecVSge::fillFeed(feedFSge);
 
 	pnllist = NULL;
-	pnlrec = NULL;
 	pnlheadbar = NULL;
+	pnlrec = NULL;
 
 	// IP constructor.cust1 --- INSERT
 
@@ -53,8 +54,8 @@ CrdWzemPst::CrdWzemPst(
 	changeRef(dbswzem, jref, ((ref + 1) == 0) ? 0 : ref, false);
 
 	pnllist = new PnlWzemPstList(xchg, dbswzem, jref, ixWzemVLocale);
-	pnlrec = new PnlWzemPstRec(xchg, dbswzem, jref, ixWzemVLocale);
 	pnlheadbar = new PnlWzemPstHeadbar(xchg, dbswzem, jref, ixWzemVLocale);
+	pnlrec = new PnlWzemPstRec(xchg, dbswzem, jref, ixWzemVLocale);
 
 	// IP constructor.cust2 --- INSERT
 

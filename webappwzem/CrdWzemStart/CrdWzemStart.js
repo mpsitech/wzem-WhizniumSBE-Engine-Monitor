@@ -1,11 +1,3 @@
-/**
-  * \file CrdWzemStart.js
-  * web client functionality for Wzem start page
-  * \author Catherine Johnson
-  * \date created: 21 Sep 2020
-  * \date modified: 21 Sep 2020
-  */
-
 function initLogin() {
 	doc.getElementById("tdCont").setAttribute("height", "128");
 	doc.getElementById("Cont").setAttribute("height", "120");

@@ -1,10 +1,11 @@
 /**
 	* \file PnlWzemClnList.cpp
 	* job handler for job PnlWzemClnList (implementation)
-	* \author Catherine Johnson
-	* \date created: 21 Sep 2020
-	* \date modified: 21 Sep 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 1 Dec 2020
 	*/
+// IP header --- ABOVE
 
 #ifdef WZEMCMBD
 	#include <Wzemcmbd.h>
@@ -246,7 +247,7 @@ void PnlWzemClnList::handleDpchAppDataContiac(
 	diffitems = _contiac->diff(&contiac);
 
 	if (has(diffitems, ContIac::NUMFTOS)) {
-		if ((_contiac->numFTos >= QryWzemClnList::VecVOrd::STA) && (_contiac->numFTos <= QryWzemClnList::VecVOrd::JOB)) {
+		if ((_contiac->numFTos >= QryWzemClnList::VecVOrd::STO) && (_contiac->numFTos <= QryWzemClnList::VecVOrd::JOB)) {
 			muteRefresh = true;
 
 			xchg->addIxPreset(VecWzemVPreset::PREWZEMIXORD, jref, _contiac->numFTos);

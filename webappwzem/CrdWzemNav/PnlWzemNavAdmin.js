@@ -1,11 +1,3 @@
-/**
-  * \file PnlWzemNavAdmin.js
-  * web client functionality for panel PnlWzemNavAdmin
-  * \author Catherine Johnson
-  * \date created: 21 Sep 2020
-  * \date modified: 21 Sep 2020
-  */
-
 // IP cust --- INSERT
 
 // --- expand state management

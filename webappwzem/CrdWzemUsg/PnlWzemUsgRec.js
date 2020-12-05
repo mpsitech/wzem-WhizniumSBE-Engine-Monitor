@@ -1,11 +1,3 @@
-/**
-  * \file PnlWzemUsgRec.js
-  * web client functionality for panel PnlWzemUsgRec
-  * \author Catherine Johnson
-  * \date created: 21 Sep 2020
-  * \date modified: 21 Sep 2020
-  */
-
 function updateScrJrefs() {
 	scrJrefDetail = retrieveSi(srcdoc, "StatShrWzemUsgRec", "scrJrefDetail");
 	scrJrefAAccess = retrieveSi(srcdoc, "StatShrWzemUsgRec", "scrJrefAAccess");
