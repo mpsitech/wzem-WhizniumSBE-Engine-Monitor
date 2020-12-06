@@ -38,8 +38,8 @@ PnlWzemPrsRec::PnlWzemPrsRec(
 		{
 	jref = xchg->addJob(dbswzem, this, jrefSup);
 
-	pnldetail = NULL;
 	pnladetail = NULL;
+	pnldetail = NULL;
 
 	// IP constructor.cust1 --- INSERT
 
@@ -255,4 +255,10 @@ bool PnlWzemPrsRec::handleCallWzemPrsUpd_refEq(
 	// IP handleCallWzemPrsUpd_refEq --- INSERT
 	return retval;
 };
+
+
+
+
+
+
 

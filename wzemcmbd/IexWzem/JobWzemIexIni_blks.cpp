@@ -61,3 +61,9 @@ void JobWzemIexIni::VecVSge::fillFeed(
 	for (unsigned int i = 1; i <= 11; i++) feed.appendIxSrefTitles(i, getSref(i), getSref(i));
 };
 
+
+
+
+
+
+

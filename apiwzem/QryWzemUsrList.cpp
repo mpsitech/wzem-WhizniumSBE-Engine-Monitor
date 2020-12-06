@@ -3,7 +3,7 @@
 	* API code for job QryWzemUsrList (implementation)
 	* \copyright (C) 2016-2020 MPSI Technologies GmbH
 	* \author Alexander Wirthmueller (auto-generation)
-	* \date created: 1 Dec 2020
+	* \date created: 6 Dec 2020
 	*/
 // IP header --- ABOVE
 
@@ -25,9 +25,9 @@ uint QryWzemUsrList::VecVOrd::getIx(
 	if (s == "ste") return STE;
 	if (s == "usg") return USG;
 	if (s == "srf") return SRF;
-	if (s == "grp") return GRP;
-	if (s == "own") return OWN;
 	if (s == "prs") return PRS;
+	if (s == "own") return OWN;
+	if (s == "grp") return GRP;
 
 	return(0);
 };
@@ -38,9 +38,9 @@ string QryWzemUsrList::VecVOrd::getSref(
 	if (ix == STE) return("ste");
 	if (ix == USG) return("usg");
 	if (ix == SRF) return("srf");
-	if (ix == GRP) return("grp");
-	if (ix == OWN) return("own");
 	if (ix == PRS) return("prs");
+	if (ix == OWN) return("own");
+	if (ix == GRP) return("grp");
 
 	return("");
 };

@@ -373,3 +373,9 @@ bool QryWzemClnList::handleCallWzemStubChgFromSelf(
 	return retval;
 };
 
+
+
+
+
+
+

@@ -172,3 +172,9 @@ bool PnlWzemNdeDetail::evalTxfOrnActive(
 	return(args.back());
 };
 
+
+
+
+
+
+

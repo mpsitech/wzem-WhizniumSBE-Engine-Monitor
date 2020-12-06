@@ -473,8 +473,8 @@ private:
 	std::string handleDownloadInSgeDone(DbsWzem* dbswzem);
 
 	void handleTimerInSgePrsidle(DbsWzem* dbswzem, const std::string& sref);
-	void handleTimerWithSrefMonInSgeImport(DbsWzem* dbswzem);
 	void handleTimerInSgeImpidle(DbsWzem* dbswzem, const std::string& sref);
+	void handleTimerWithSrefMonInSgeImport(DbsWzem* dbswzem);
 
 private:
 	void changeStage(DbsWzem* dbswzem, Sbecore::uint _ixVSge, DpchEngWzem** dpcheng = NULL);

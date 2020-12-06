@@ -3,7 +3,7 @@
 	* C++ wrapper for database DbsWzem (implementation of vectors)
 	* \copyright (C) 2016-2020 MPSI Technologies GmbH
 	* \author Alexander Wirthmueller (auto-generation)
-	* \date created: 1 Dec 2020
+	* \date created: 6 Dec 2020
   */
 // IP header --- ABOVE
 
@@ -148,10 +148,10 @@ uint DbsWzem::VecVControl::getIx(
 	if (s == "pnlwzemjoblist.tcosta") return PNLWZEMJOBLIST_TCOSTA;
 	if (s == "pnlwzemjoblist.tcosto") return PNLWZEMJOBLIST_TCOSTO;
 	if (s == "pnlwzemjoblist.tcosup") return PNLWZEMJOBLIST_TCOSUP;
-	if (s == "pnlwzemjob1ncall.tcoref") return PNLWZEMJOB1NCALL_TCOREF;
-	if (s == "pnlwzemjob1nop.tcoref") return PNLWZEMJOB1NOP_TCOREF;
 	if (s == "pnlwzemjob1nclstn.tcoref") return PNLWZEMJOB1NCLSTN_TCOREF;
 	if (s == "pnlwzemjob1npreset.tcoref") return PNLWZEMJOB1NPRESET_TCOREF;
+	if (s == "pnlwzemjob1ncall.tcoref") return PNLWZEMJOB1NCALL_TCOREF;
+	if (s == "pnlwzemjob1nop.tcoref") return PNLWZEMJOB1NOP_TCOREF;
 	if (s == "pnlwzemjobsup1njob.tcoref") return PNLWZEMJOBSUP1NJOB_TCOREF;
 	if (s == "pnlwzemcallist.tcojob") return PNLWZEMCALLIST_TCOJOB;
 	if (s == "pnlwzemcallist.tcocal") return PNLWZEMCALLIST_TCOCAL;
@@ -237,10 +237,10 @@ string DbsWzem::VecVControl::getSref(
 	if (ix == PNLWZEMJOBLIST_TCOSTA) return("PnlWzemJobList.TcoSta");
 	if (ix == PNLWZEMJOBLIST_TCOSTO) return("PnlWzemJobList.TcoSto");
 	if (ix == PNLWZEMJOBLIST_TCOSUP) return("PnlWzemJobList.TcoSup");
-	if (ix == PNLWZEMJOB1NCALL_TCOREF) return("PnlWzemJob1NCall.TcoRef");
-	if (ix == PNLWZEMJOB1NOP_TCOREF) return("PnlWzemJob1NOp.TcoRef");
 	if (ix == PNLWZEMJOB1NCLSTN_TCOREF) return("PnlWzemJob1NClstn.TcoRef");
 	if (ix == PNLWZEMJOB1NPRESET_TCOREF) return("PnlWzemJob1NPreset.TcoRef");
+	if (ix == PNLWZEMJOB1NCALL_TCOREF) return("PnlWzemJob1NCall.TcoRef");
+	if (ix == PNLWZEMJOB1NOP_TCOREF) return("PnlWzemJob1NOp.TcoRef");
 	if (ix == PNLWZEMJOBSUP1NJOB_TCOREF) return("PnlWzemJobSup1NJob.TcoRef");
 	if (ix == PNLWZEMCALLIST_TCOJOB) return("PnlWzemCalList.TcoJob");
 	if (ix == PNLWZEMCALLIST_TCOCAL) return("PnlWzemCalList.TcoCal");

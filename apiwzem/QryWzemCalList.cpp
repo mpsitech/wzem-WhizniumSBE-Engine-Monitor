@@ -3,7 +3,7 @@
 	* API code for job QryWzemCalList (implementation)
 	* \copyright (C) 2016-2020 MPSI Technologies GmbH
 	* \author Alexander Wirthmueller (auto-generation)
-	* \date created: 1 Dec 2020
+	* \date created: 6 Dec 2020
 	*/
 // IP header --- ABOVE
 
@@ -22,9 +22,9 @@ uint QryWzemCalList::VecVOrd::getIx(
 		) {
 	string s = StrMod::lc(sref);
 
-	if (s == "sto") return STO;
-	if (s == "sta") return STA;
 	if (s == "job") return JOB;
+	if (s == "sta") return STA;
+	if (s == "sto") return STO;
 
 	return(0);
 };
@@ -32,9 +32,9 @@ uint QryWzemCalList::VecVOrd::getIx(
 string QryWzemCalList::VecVOrd::getSref(
 			const uint ix
 		) {
-	if (ix == STO) return("sto");
-	if (ix == STA) return("sta");
 	if (ix == JOB) return("job");
+	if (ix == STA) return("sta");
+	if (ix == STO) return("sto");
 
 	return("");
 };

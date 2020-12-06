@@ -271,21 +271,25 @@ public:
 class StgWzemDatabase : public Sbecore::Xmlio::Block {
 
 public:
-	static const Sbecore::uint DBSPATH = 1;
-	static const Sbecore::uint DBSNAME = 2;
-	static const Sbecore::uint USERNAME = 3;
-	static const Sbecore::uint PASSWORD = 4;
-	static const Sbecore::uint IP = 5;
+	static const Sbecore::uint IXDBSVDBSTYPE = 1;
+	static const Sbecore::uint DBSPATH = 2;
+	static const Sbecore::uint DBSNAME = 3;
+	static const Sbecore::uint USERNAME = 4;
+	static const Sbecore::uint PASSWORD = 5;
+	static const Sbecore::uint IP = 6;
+	static const Sbecore::uint PORT = 7;
 
 public:
-	StgWzemDatabase(const std::string& dbspath = "./DbsWzem.sql", const std::string& dbsname = "DbsWzem", const std::string& username = "default", const std::string& password = "asdf1234", const std::string& ip = "127.0.0.1");
+	StgWzemDatabase(const Sbecore::uint ixDbsVDbstype = 0, const std::string& dbspath = "./DbsWzem.sql", const std::string& dbsname = "DbsWzem", const std::string& username = "default", const std::string& password = "asdf1234", const std::string& ip = "127.0.0.1", const Sbecore::usmallint port = 3306);
 
 public:
+	Sbecore::uint ixDbsVDbstype;
 	std::string dbspath;
 	std::string dbsname;
 	std::string username;
 	std::string password;
 	std::string ip;
+	Sbecore::usmallint port;
 
 public:
 	bool readXML(xmlXPathContext* docctx, std::string basexpath = "", bool addbasetag = false);
@@ -308,7 +312,7 @@ public:
 	static const Sbecore::uint HELPURL = 6;
 
 public:
-	StgWzemPath(const std::string& acvpath = "${WHIZROOT}/acv/wzem", const std::string& keypath = "", const std::string& monpath = "${WHIZROOT}/mon/wzem", const std::string& tmppath = "${WHIZROOT}/tmp/wzem", const std::string& webpath = "${WHIZROOT}/web/appwzem", const std::string& helpurl = "http://www.mpsitech.com/wzem");
+	StgWzemPath(const std::string& acvpath = "${WHIZROOT}/acv/wzem", const std::string& keypath = "", const std::string& monpath = "${WHIZROOT}/mon/wzem", const std::string& tmppath = "${WHIZROOT}/tmp/wzem", const std::string& webpath = "${WHIZROOT}/web/appwzem", const std::string& helpurl = "/wzem");
 
 public:
 	std::string acvpath;
@@ -921,4 +925,10 @@ public:
 	static void runExtcall(void* arg);
 };
 #endif
+
+
+
+
+
+
 

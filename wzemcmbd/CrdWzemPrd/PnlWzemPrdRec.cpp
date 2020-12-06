@@ -40,8 +40,8 @@ PnlWzemPrdRec::PnlWzemPrdRec(
 
 	pnl1njob = NULL;
 	pnl1nnode = NULL;
-	pnl1nevent = NULL;
 	pnldetail = NULL;
+	pnl1nevent = NULL;
 
 	// IP constructor.cust1 --- INSERT
 
@@ -265,4 +265,10 @@ bool PnlWzemPrdRec::handleCallWzemPrdUpd_refEq(
 	// IP handleCallWzemPrdUpd_refEq --- INSERT
 	return retval;
 };
+
+
+
+
+
+
 

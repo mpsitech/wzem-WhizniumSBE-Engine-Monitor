@@ -275,3 +275,9 @@ bool PnlWzemOpxDetail::handleCallWzemOpx_jobEq(
 	return retval;
 };
 
+
+
+
+
+
+

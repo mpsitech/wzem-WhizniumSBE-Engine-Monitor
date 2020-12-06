@@ -15,11 +15,11 @@
 // IP include.cust --- INSERT
 
 #include "PnlWzemJobSup1NJob.h"
+#include "PnlWzemJob1NOp.h"
+#include "PnlWzemJob1NCall.h"
 #include "PnlWzemJob1NPreset.h"
 #include "PnlWzemJob1NClstn.h"
-#include "PnlWzemJob1NOp.h"
 #include "PnlWzemJobDetail.h"
-#include "PnlWzemJob1NCall.h"
 
 #define VecVWzemJobRecDo PnlWzemJobRec::VecVDo
 
@@ -76,7 +76,7 @@ public:
 	class StatApp {
 
 	public:
-		static void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true, const bool initdoneDetail = false, const bool initdone1NCall = false, const bool initdone1NOp = false, const bool initdone1NClstn = false, const bool initdone1NPreset = false, const bool initdoneSup1NJob = false);
+		static void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true, const bool initdoneDetail = false, const bool initdone1NClstn = false, const bool initdone1NPreset = false, const bool initdone1NCall = false, const bool initdone1NOp = false, const bool initdoneSup1NJob = false);
 	};
 
 	/**
@@ -87,23 +87,23 @@ public:
 	public:
 		static const Sbecore::uint IXWZEMVEXPSTATE = 1;
 		static const Sbecore::uint JREFDETAIL = 2;
-		static const Sbecore::uint JREF1NCALL = 3;
-		static const Sbecore::uint JREF1NOP = 4;
-		static const Sbecore::uint JREF1NCLSTN = 5;
-		static const Sbecore::uint JREF1NPRESET = 6;
+		static const Sbecore::uint JREF1NCLSTN = 3;
+		static const Sbecore::uint JREF1NPRESET = 4;
+		static const Sbecore::uint JREF1NCALL = 5;
+		static const Sbecore::uint JREF1NOP = 6;
 		static const Sbecore::uint JREFSUP1NJOB = 7;
 		static const Sbecore::uint BUTREGULARIZEACTIVE = 8;
 
 	public:
-		StatShr(const Sbecore::uint ixWzemVExpstate = VecWzemVExpstate::REGD, const Sbecore::ubigint jrefDetail = 0, const Sbecore::ubigint jref1NCall = 0, const Sbecore::ubigint jref1NOp = 0, const Sbecore::ubigint jref1NClstn = 0, const Sbecore::ubigint jref1NPreset = 0, const Sbecore::ubigint jrefSup1NJob = 0, const bool ButRegularizeActive = true);
+		StatShr(const Sbecore::uint ixWzemVExpstate = VecWzemVExpstate::REGD, const Sbecore::ubigint jrefDetail = 0, const Sbecore::ubigint jref1NClstn = 0, const Sbecore::ubigint jref1NPreset = 0, const Sbecore::ubigint jref1NCall = 0, const Sbecore::ubigint jref1NOp = 0, const Sbecore::ubigint jrefSup1NJob = 0, const bool ButRegularizeActive = true);
 
 	public:
 		Sbecore::uint ixWzemVExpstate;
 		Sbecore::ubigint jrefDetail;
-		Sbecore::ubigint jref1NCall;
-		Sbecore::ubigint jref1NOp;
 		Sbecore::ubigint jref1NClstn;
 		Sbecore::ubigint jref1NPreset;
+		Sbecore::ubigint jref1NCall;
+		Sbecore::ubigint jref1NOp;
 		Sbecore::ubigint jrefSup1NJob;
 		bool ButRegularizeActive;
 
@@ -181,11 +181,11 @@ public:
 	StatShr statshr;
 
 	PnlWzemJobSup1NJob* pnlsup1njob;
+	PnlWzemJob1NOp* pnl1nop;
+	PnlWzemJob1NCall* pnl1ncall;
 	PnlWzemJob1NPreset* pnl1npreset;
 	PnlWzemJob1NClstn* pnl1nclstn;
-	PnlWzemJob1NOp* pnl1nop;
 	PnlWzemJobDetail* pnldetail;
-	PnlWzemJob1NCall* pnl1ncall;
 
 	WzemMJob recJob;
 
@@ -226,4 +226,10 @@ private:
 };
 
 #endif
+
+
+
+
+
+
 

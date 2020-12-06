@@ -81,3 +81,9 @@ bool PnlWzemPrsADetail::evalButDeleteActive(
 	return(args.back());
 };
 
+
+
+
+
+
+

@@ -220,3 +220,9 @@ set<uint> QryWzemPstList::StgIac::diff(
 	return(diffitems);
 };
 
+
+
+
+
+
+

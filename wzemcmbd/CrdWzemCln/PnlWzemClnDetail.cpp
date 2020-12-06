@@ -398,3 +398,9 @@ bool PnlWzemClnDetail::handleCallWzemCln_jobEq(
 	return retval;
 };
 
+
+
+
+
+
+

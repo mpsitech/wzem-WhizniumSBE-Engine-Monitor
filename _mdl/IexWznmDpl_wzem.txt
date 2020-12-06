@@ -7,6 +7,9 @@ cmbeng	wzemcmbd	WhizniumSBE Engine Monitor combined engine
 	any;yocto;armv7;tdx	wzemcmbd_tdx	stripdbg
 	any;mac	wzemcmbd_mac	stripdbg
 	any;ubuntu	wzemcmbd_ubuntu	stripdbg
+	// IP releases.mpsi --- IBEGIN
+	any;ubuntu;mpsitech;jack	wzemcmbd_ubuntu_mpsi	stripdbg
+	// IP releases.mpsi --- IEND
 	ImeIMRelease.end
 dbs	dbswzem	WhizniumSBE Engine Monitor database access library
 	ImeIMRelease.hsrefRefWznmMMachine	sref	srefsKOption	Comment
@@ -15,6 +18,9 @@ dbs	dbswzem	WhizniumSBE Engine Monitor database access library
 	any;yocto;armv7;tdx	dbswzem_tdx
 	any;mac	dbswzem_mac	dynlib
 	any;ubuntu	dbswzem_ubuntu	dynlib
+	// IP releases.mpsi --- IBEGIN
+	any;ubuntu;mpsitech;jack	dbswzem_ubuntu_mpsi	dynlib
+	// IP releases.mpsi --- IEND
 	ImeIMRelease.end
 webapp	webappwzem	WhizniumSBE Engine Monitor web app user interface files
 	ImeIMRelease.hsrefRefWznmMMachine	sref	srefsKOption	Comment

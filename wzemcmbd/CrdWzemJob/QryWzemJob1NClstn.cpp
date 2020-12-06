@@ -329,3 +329,9 @@ bool QryWzemJob1NClstn::handleCallWzemStubChgFromSelf(
 	return retval;
 };
 
+
+
+
+
+
+

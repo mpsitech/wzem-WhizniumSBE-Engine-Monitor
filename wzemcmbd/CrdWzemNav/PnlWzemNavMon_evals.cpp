@@ -235,3 +235,9 @@ bool PnlWzemNavMon::evalButNdeViewActive(
 	return(args.back());
 };
 
+
+
+
+
+
+

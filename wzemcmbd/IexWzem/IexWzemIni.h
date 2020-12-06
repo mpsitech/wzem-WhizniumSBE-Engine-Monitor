@@ -789,3 +789,9 @@ namespace IexWzemIni {
 
 #endif
 
+
+
+
+
+
+

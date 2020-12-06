@@ -14,8 +14,8 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWzemPrsDetail.h"
 #include "PnlWzemPrsADetail.h"
+#include "PnlWzemPrsDetail.h"
 
 #define VecVWzemPrsRecDo PnlWzemPrsRec::VecVDo
 
@@ -168,8 +168,8 @@ public:
 	ContInf continf;
 	StatShr statshr;
 
-	PnlWzemPrsDetail* pnldetail;
 	PnlWzemPrsADetail* pnladetail;
+	PnlWzemPrsDetail* pnldetail;
 
 	WzemMPerson recPrs;
 
@@ -208,4 +208,10 @@ private:
 };
 
 #endif
+
+
+
+
+
+
 

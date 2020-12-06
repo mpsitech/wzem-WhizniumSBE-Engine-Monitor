@@ -483,7 +483,7 @@ int main(
 
 	try {
 		// welcome message
-		cout << "Welcome to WhizniumSBE Engine Monitor v1.0.0!" << endl;
+		cout << "Welcome to WhizniumSBE Engine Monitor v1.0.1!" << endl;
 
 		// calls wzemcmbd.init()
 		wzemcmbd = new Wzemcmbd(exedir, clearAll, startMon);
@@ -640,4 +640,10 @@ int main(
 
 	return(0);
 };
+
+
+
+
+
+
 

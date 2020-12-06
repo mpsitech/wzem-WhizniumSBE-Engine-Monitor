@@ -3,17 +3,17 @@
 	* Wzem API library global functionality (declarations)
 	* \copyright (C) 2016-2020 MPSI Technologies GmbH
 	* \author Alexander Wirthmueller (auto-generation)
-	* \date created: 1 Dec 2020
+	* \date created: 6 Dec 2020
   */
 // IP header --- ABOVE
 
 #ifndef APIWZEM_H
 #define APIWZEM_H
 
-#define WZEM_VERSION "1.0.0"
+#define WZEM_VERSION "1.0.1"
 #define WZEM_VERSION_MAJOR 1
 #define WZEM_VERSION_MINOR 0
-#define WZEM_VERSION_SUB 0
+#define WZEM_VERSION_SUB 1
 
 #include "ApiWzem_blks.h"
 

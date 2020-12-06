@@ -263,3 +263,9 @@ bool PnlWzemClnDetail::evalPupJatActive(
 	return(args.back());
 };
 
+
+
+
+
+
+

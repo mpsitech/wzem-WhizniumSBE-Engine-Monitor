@@ -2,18 +2,18 @@
 -- MySQL / MariaDB database create script
 -- copyright: (C) 2016-2020 MPSI Technologies GmbH
 -- author: Alexander Wirthmueller (auto-generation)
--- date created: 1 Dec 2020
+-- date created: 6 Dec 2020
 -- IP header --- ABOVE
 
 DROP DATABASE IF EXISTS DbsWzem;
 CREATE DATABASE DbsWzem;
 USE DbsWzem;
 
-CREATE USER IF NOT EXISTS 'mpsitech'@'%' IDENTIFIED BY 'asdf1234';
-GRANT ALL PRIVILEGES ON DbsWzem.* TO 'mpsitech'@'%';
+CREATE USER IF NOT EXISTS 'default'@'%' IDENTIFIED BY 'asdf1234';
+GRANT ALL PRIVILEGES ON DbsWzem.* TO 'default'@'%';
 
-CREATE USER IF NOT EXISTS 'mpsitech'@'localhost' IDENTIFIED BY 'asdf1234';
-GRANT ALL PRIVILEGES ON DbsWzem.* TO 'mpsitech'@'localhost';
+CREATE USER IF NOT EXISTS 'default'@'localhost' IDENTIFIED BY 'asdf1234';
+GRANT ALL PRIVILEGES ON DbsWzem.* TO 'default'@'localhost';
 
 CREATE TABLE TblWzemAccRMUserUniversal(
 	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,

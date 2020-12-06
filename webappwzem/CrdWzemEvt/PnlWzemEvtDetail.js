@@ -513,6 +513,8 @@ function handleButCrdopenClick(ctlsref) {
 };
 
 function handleLstLoad(lstdoc, ctlsref, ncol, multsel) {
+	if (!srcdoc) return;
+
 	if (multsel) {
 		refreshLst(lstdoc, srcdoc, ncol, false, multsel, "FeedF" + ctlsref, parseInt(retrieveSi(srcdoc, "StatAppWzemEvtDetail", ctlsref + "NumFirstdisp")),
 					parseUintvec(retrieveCi(srcdoc, "ContIacWzemEvtDetail", "numsF" + ctlsref)));

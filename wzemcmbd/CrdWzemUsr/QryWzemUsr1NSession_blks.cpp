@@ -186,3 +186,9 @@ set<uint> QryWzemUsr1NSession::StgIac::diff(
 	return(diffitems);
 };
 
+
+
+
+
+
+

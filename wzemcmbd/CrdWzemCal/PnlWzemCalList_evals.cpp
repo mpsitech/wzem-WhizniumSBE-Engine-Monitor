@@ -25,3 +25,9 @@ bool PnlWzemCalList::evalButDeleteActive(
 	return(args.back());
 };
 
+
+
+
+
+
+

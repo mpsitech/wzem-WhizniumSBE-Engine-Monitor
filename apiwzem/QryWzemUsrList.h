@@ -3,7 +3,7 @@
 	* API code for job QryWzemUsrList (declarations)
 	* \copyright (C) 2016-2020 MPSI Technologies GmbH
 	* \author Alexander Wirthmueller (auto-generation)
-	* \date created: 1 Dec 2020
+	* \date created: 6 Dec 2020
 	*/
 // IP header --- ABOVE
 
@@ -31,9 +31,9 @@ namespace QryWzemUsrList {
 		static const Sbecore::uint STE = 1;
 		static const Sbecore::uint USG = 2;
 		static const Sbecore::uint SRF = 3;
-		static const Sbecore::uint GRP = 4;
+		static const Sbecore::uint PRS = 4;
 		static const Sbecore::uint OWN = 5;
-		static const Sbecore::uint PRS = 6;
+		static const Sbecore::uint GRP = 6;
 
 		static Sbecore::uint getIx(const std::string& sref);
 		static std::string getSref(const Sbecore::uint ix);

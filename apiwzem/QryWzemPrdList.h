@@ -3,7 +3,7 @@
 	* API code for job QryWzemPrdList (declarations)
 	* \copyright (C) 2016-2020 MPSI Technologies GmbH
 	* \author Alexander Wirthmueller (auto-generation)
-	* \date created: 1 Dec 2020
+	* \date created: 6 Dec 2020
 	*/
 // IP header --- ABOVE
 
@@ -28,9 +28,9 @@ namespace QryWzemPrdList {
 	class VecVOrd {
 
 	public:
-		static const Sbecore::uint STA = 1;
+		static const Sbecore::uint GRP = 1;
 		static const Sbecore::uint OWN = 2;
-		static const Sbecore::uint GRP = 3;
+		static const Sbecore::uint STA = 3;
 
 		static Sbecore::uint getIx(const std::string& sref);
 		static std::string getSref(const Sbecore::uint ix);

@@ -20,8 +20,8 @@ uint QryWzemOpxList::VecVOrd::getIx(
 		) {
 	string s = StrMod::lc(sref);
 
-	if (s == "sto") return STO;
 	if (s == "sta") return STA;
+	if (s == "sto") return STO;
 	if (s == "job") return JOB;
 
 	return(0);
@@ -30,8 +30,8 @@ uint QryWzemOpxList::VecVOrd::getIx(
 string QryWzemOpxList::VecVOrd::getSref(
 			const uint ix
 		) {
-	if (ix == STO) return("sto");
 	if (ix == STA) return("sta");
+	if (ix == STO) return("sto");
 	if (ix == JOB) return("job");
 
 	return("");
@@ -219,4 +219,10 @@ set<uint> QryWzemOpxList::StgIac::diff(
 
 	return(diffitems);
 };
+
+
+
+
+
+
 

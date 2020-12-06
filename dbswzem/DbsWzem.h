@@ -3,17 +3,17 @@
 	* C++ wrapper for database DbsWzem (declarations)
 	* \copyright (C) 2016-2020 MPSI Technologies GmbH
 	* \author Alexander Wirthmueller (auto-generation)
-	* \date created: 1 Dec 2020
+	* \date created: 6 Dec 2020
   */
 // IP header --- ABOVE
 
 #ifndef DBSWZEM_H
 #define DBSWZEM_H
 
-#define WZEM_VERSION "1.0.0"
+#define WZEM_VERSION "1.0.1"
 #define WZEM_VERSION_MAJOR 1
 #define WZEM_VERSION_MINOR 0
-#define WZEM_VERSION_SUB 0
+#define WZEM_VERSION_SUB 1
 
 #include <sbecore/Types.h>
 
@@ -195,10 +195,10 @@ public:
 		static const Sbecore::uint PNLWZEMJOBLIST_TCOSTA = 51;
 		static const Sbecore::uint PNLWZEMJOBLIST_TCOSTO = 52;
 		static const Sbecore::uint PNLWZEMJOBLIST_TCOSUP = 53;
-		static const Sbecore::uint PNLWZEMJOB1NCALL_TCOREF = 54;
-		static const Sbecore::uint PNLWZEMJOB1NOP_TCOREF = 55;
-		static const Sbecore::uint PNLWZEMJOB1NCLSTN_TCOREF = 56;
-		static const Sbecore::uint PNLWZEMJOB1NPRESET_TCOREF = 57;
+		static const Sbecore::uint PNLWZEMJOB1NCLSTN_TCOREF = 54;
+		static const Sbecore::uint PNLWZEMJOB1NPRESET_TCOREF = 55;
+		static const Sbecore::uint PNLWZEMJOB1NCALL_TCOREF = 56;
+		static const Sbecore::uint PNLWZEMJOB1NOP_TCOREF = 57;
 		static const Sbecore::uint PNLWZEMJOBSUP1NJOB_TCOREF = 58;
 		static const Sbecore::uint PNLWZEMCALLIST_TCOJOB = 59;
 		static const Sbecore::uint PNLWZEMCALLIST_TCOCAL = 60;

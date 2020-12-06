@@ -14,11 +14,13 @@
 		<Si sref="appsrv">true</Si>
 	</StgWzemcmbd>
 	<StgWzemDatabase>
+		<Si sref="srefIxDbsVDbstype">lite</Si>
 		<Si sref="dbspath">./DbsWzem.sql</Si>
 		<Si sref="dbsname">DbsWzem</Si>
 		<Si sref="username">default</Si>
 		<Si sref="password">asdf1234</Si>
 		<Si sref="ip">127.0.0.1</Si>
+		<Si sref="port">3306</Si>
 	</StgWzemDatabase>
 	<StgWzemPath>
 		<Si sref="acvpath">${WHIZROOT}/acv/wzem</Si>
@@ -26,6 +28,6 @@
 		<Si sref="monpath">${WHIZROOT}/mon/wzem</Si>
 		<Si sref="tmppath">${WHIZROOT}/tmp/wzem</Si>
 		<Si sref="webpath">${WHIZROOT}/web/appwzem</Si>
-		<Si sref="helpurl">http://www.mpsitech.com/wzem</Si>
+		<Si sref="helpurl">/wzem</Si>
 	</StgWzemPath>
 </PrefWzemcmbd>

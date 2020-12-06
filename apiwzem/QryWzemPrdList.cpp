@@ -3,7 +3,7 @@
 	* API code for job QryWzemPrdList (implementation)
 	* \copyright (C) 2016-2020 MPSI Technologies GmbH
 	* \author Alexander Wirthmueller (auto-generation)
-	* \date created: 1 Dec 2020
+	* \date created: 6 Dec 2020
 	*/
 // IP header --- ABOVE
 
@@ -22,9 +22,9 @@ uint QryWzemPrdList::VecVOrd::getIx(
 		) {
 	string s = StrMod::lc(sref);
 
-	if (s == "sta") return STA;
-	if (s == "own") return OWN;
 	if (s == "grp") return GRP;
+	if (s == "own") return OWN;
+	if (s == "sta") return STA;
 
 	return(0);
 };
@@ -32,9 +32,9 @@ uint QryWzemPrdList::VecVOrd::getIx(
 string QryWzemPrdList::VecVOrd::getSref(
 			const uint ix
 		) {
-	if (ix == STA) return("sta");
-	if (ix == OWN) return("own");
 	if (ix == GRP) return("grp");
+	if (ix == OWN) return("own");
+	if (ix == STA) return("sta");
 
 	return("");
 };

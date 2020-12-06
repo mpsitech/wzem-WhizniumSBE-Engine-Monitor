@@ -594,20 +594,24 @@ set<uint> StgWzemcmbd::diff(
  ******************************************************************************/
 
 StgWzemDatabase::StgWzemDatabase(
-			const string& dbspath
+			const uint ixDbsVDbstype
+			, const string& dbspath
 			, const string& dbsname
 			, const string& username
 			, const string& password
 			, const string& ip
+			, const usmallint port
 		) :
 			Block()
 		{
+	this->ixDbsVDbstype = ixDbsVDbstype;
 	this->dbspath = dbspath;
 	this->dbsname = dbsname;
 	this->username = username;
 	this->password = password;
 	this->ip = ip;
-	mask = {DBSPATH, DBSNAME, USERNAME, PASSWORD, IP};
+	this->port = port;
+	mask = {IXDBSVDBSTYPE, DBSPATH, DBSNAME, USERNAME, PASSWORD, IP, PORT};
 };
 
 bool StgWzemDatabase::readXML(
@@ -616,6 +620,8 @@ bool StgWzemDatabase::readXML(
 			, bool addbasetag
 		) {
 	clear();
+
+	string srefIxDbsVDbstype;
 
 	bool basefound;
 
@@ -627,11 +633,16 @@ bool StgWzemDatabase::readXML(
 	string itemtag = "StgitemWzemDatabase";
 
 	if (basefound) {
+		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "srefIxDbsVDbstype", srefIxDbsVDbstype)) {
+			ixDbsVDbstype = VecDbsVDbstype::getIx(srefIxDbsVDbstype);
+			add(IXDBSVDBSTYPE);
+		};
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "dbspath", dbspath)) add(DBSPATH);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "dbsname", dbsname)) add(DBSNAME);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "username", username)) add(USERNAME);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "password", password)) add(PASSWORD);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "ip", ip)) add(IP);
+		if (extractUsmallintAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "port", port)) add(PORT);
 	};
 
 	return basefound;
@@ -649,11 +660,13 @@ void StgWzemDatabase::writeXML(
 	else itemtag = "StgitemWzemDatabase";
 
 	xmlTextWriterStartElement(wr, BAD_CAST difftag.c_str());
+		writeStringAttr(wr, itemtag, "sref", "srefIxDbsVDbstype", VecDbsVDbstype::getSref(ixDbsVDbstype));
 		writeStringAttr(wr, itemtag, "sref", "dbspath", dbspath);
 		writeStringAttr(wr, itemtag, "sref", "dbsname", dbsname);
 		writeStringAttr(wr, itemtag, "sref", "username", username);
 		writeStringAttr(wr, itemtag, "sref", "password", password);
 		writeStringAttr(wr, itemtag, "sref", "ip", ip);
+		writeUsmallintAttr(wr, itemtag, "sref", "port", port);
 	xmlTextWriterEndElement(wr);
 };
 
@@ -662,11 +675,13 @@ set<uint> StgWzemDatabase::comm(
 		) {
 	set<uint> items;
 
+	if (ixDbsVDbstype == comp->ixDbsVDbstype) insert(items, IXDBSVDBSTYPE);
 	if (dbspath == comp->dbspath) insert(items, DBSPATH);
 	if (dbsname == comp->dbsname) insert(items, DBSNAME);
 	if (username == comp->username) insert(items, USERNAME);
 	if (password == comp->password) insert(items, PASSWORD);
 	if (ip == comp->ip) insert(items, IP);
+	if (port == comp->port) insert(items, PORT);
 
 	return(items);
 };
@@ -679,7 +694,7 @@ set<uint> StgWzemDatabase::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {DBSPATH, DBSNAME, USERNAME, PASSWORD, IP};
+	diffitems = {IXDBSVDBSTYPE, DBSPATH, DBSNAME, USERNAME, PASSWORD, IP, PORT};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);
@@ -801,7 +816,7 @@ DpchEngWzemAlert* AlrWzem::prepareAlrAbt(
 	continf.TxtCpt = StrMod::cap(continf.TxtCpt);
 
 	if (ixWzemVLocale == VecWzemVLocale::ENUS) {
-		continf.TxtMsg1 = "WhizniumSBE Engine Monitor version v1.0.0 released on 1-12-2020";
+		continf.TxtMsg1 = "WhizniumSBE Engine Monitor version v1.0.1 released on 6-12-2020";
 		continf.TxtMsg2 = "\\u00a9 MPSI Technologies GmbH";
 		continf.TxtMsg4 = "contributors: Alexander Wirthmueller";
 		continf.TxtMsg6 = "WhizniumSBE Engine Monitor serves as a debugging tool for projects developed with WhizniumSBE.";
@@ -1430,8 +1445,8 @@ void StmgrWzem::handleCall(
 		insert(icsWzemVStub, VecWzemVStub::STUBWZEMJOBSTD);
 		insert(icsWzemVStub, VecWzemVStub::STUBWZEMJOBXJREF);
 	} else if (call->ixVCall == VecWzemVCall::CALLWZEMNDEUPD_REFEQ) {
-		insert(icsWzemVStub, VecWzemVStub::STUBWZEMNDESTD);
 		insert(icsWzemVStub, VecWzemVStub::STUBWZEMNDEXNREF);
+		insert(icsWzemVStub, VecWzemVStub::STUBWZEMNDESTD);
 	} else if (call->ixVCall == VecWzemVCall::CALLWZEMOPXUPD_REFEQ) {
 		insert(icsWzemVStub, VecWzemVStub::STUBWZEMOPXSTD);
 	} else if (call->ixVCall == VecWzemVCall::CALLWZEMPRDUPD_REFEQ) {
@@ -1447,8 +1462,8 @@ void StmgrWzem::handleCall(
 		insert(icsWzemVStub, VecWzemVStub::STUBWZEMUSGSTD);
 		insert(icsWzemVStub, VecWzemVStub::STUBWZEMGROUP);
 	} else if (call->ixVCall == VecWzemVCall::CALLWZEMUSRUPD_REFEQ) {
-		insert(icsWzemVStub, VecWzemVStub::STUBWZEMUSRSTD);
 		insert(icsWzemVStub, VecWzemVStub::STUBWZEMOWNER);
+		insert(icsWzemVStub, VecWzemVStub::STUBWZEMUSRSTD);
 	};
 
 	for (auto it = icsWzemVStub.begin(); it != icsWzemVStub.end(); it++) {
@@ -1682,7 +1697,7 @@ void XchgWzemcmbd::startMon() {
 	Clstn* clstn = NULL;
 	Preset* preset = NULL;
 
-	mon.start("WhizniumSBE Engine Monitor v1.0.0", stgwzempath.monpath);
+	mon.start("WhizniumSBE Engine Monitor v1.0.1", stgwzempath.monpath);
 
 	rwmJobs.rlock("XchgWzemcmbd", "startMon");
 	for (auto it = jobs.begin(); it != jobs.end(); it++) {
@@ -3713,4 +3728,10 @@ void XchgWzemcmbd::runExtcall(
 
 	extcall->xchg->addReq(req);
 };
+
+
+
+
+
+
 

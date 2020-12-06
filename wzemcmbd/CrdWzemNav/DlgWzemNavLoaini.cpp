@@ -148,23 +148,23 @@ void DlgWzemNavLoaini::refresh(
 	muteRefresh = true;
 
 	StatShr oldStatshr(statshr);
-	ContInf oldContinf(continf);
 	ContIac oldContiac(contiac);
+	ContInf oldContinf(continf);
 
 	// IP refresh --- BEGIN
 	// statshr
 	statshr.ButDneActive = evalButDneActive(dbswzem);
 
-	// continf
-	continf.numFSge = ixVSge;
-
 	// contiac
 	contiac.numFDse = ixVDit;
 
+	// continf
+	continf.numFSge = ixVSge;
+
 	// IP refresh --- END
 	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
-	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
 	if (contiac.diff(&oldContiac).size() != 0) insert(moditems, DpchEngData::CONTIAC);
+	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
 
 	refreshIfi(dbswzem, moditems);
 	refreshImp(dbswzem, moditems);
@@ -229,8 +229,8 @@ void DlgWzemNavLoaini::handleRequest(
 
 	} else if (req->ixVBasetype == ReqWzem::VecVBasetype::TIMER) {
 		if (ixVSge == VecVSge::PRSIDLE) handleTimerInSgePrsidle(dbswzem, req->sref);
-		else if ((req->sref == "mon") && (ixVSge == VecVSge::IMPORT)) handleTimerWithSrefMonInSgeImport(dbswzem);
 		else if (ixVSge == VecVSge::IMPIDLE) handleTimerInSgeImpidle(dbswzem, req->sref);
+		else if ((req->sref == "mon") && (ixVSge == VecVSge::IMPORT)) handleTimerWithSrefMonInSgeImport(dbswzem);
 	};
 };
 
@@ -327,18 +327,18 @@ void DlgWzemNavLoaini::handleTimerInSgePrsidle(
 	changeStage(dbswzem, nextIxVSgeSuccess);
 };
 
-void DlgWzemNavLoaini::handleTimerWithSrefMonInSgeImport(
-			DbsWzem* dbswzem
-		) {
-	wrefLast = xchg->addWakeup(jref, "mon", 250000, true);
-	refreshWithDpchEng(dbswzem); // IP handleTimerWithSrefMonInSgeImport --- ILINE
-};
-
 void DlgWzemNavLoaini::handleTimerInSgeImpidle(
 			DbsWzem* dbswzem
 			, const string& sref
 		) {
 	changeStage(dbswzem, nextIxVSgeSuccess);
+};
+
+void DlgWzemNavLoaini::handleTimerWithSrefMonInSgeImport(
+			DbsWzem* dbswzem
+		) {
+	wrefLast = xchg->addWakeup(jref, "mon", 250000, true);
+	refreshWithDpchEng(dbswzem); // IP handleTimerWithSrefMonInSgeImport --- ILINE
 };
 
 void DlgWzemNavLoaini::changeStage(

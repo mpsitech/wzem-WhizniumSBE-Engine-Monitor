@@ -25,3 +25,9 @@ bool PnlWzemNdeList::evalButDeleteActive(
 	return(args.back());
 };
 
+
+
+
+
+
+

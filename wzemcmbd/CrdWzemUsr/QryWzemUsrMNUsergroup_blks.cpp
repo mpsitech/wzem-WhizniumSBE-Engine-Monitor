@@ -186,3 +186,9 @@ set<uint> QryWzemUsrMNUsergroup::StgIac::diff(
 	return(diffitems);
 };
 
+
+
+
+
+
+

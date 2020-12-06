@@ -161,9 +161,9 @@ void QryWzemCalList::rerun_orderSQL(
 			string& sqlstr
 			, const uint preIxOrd
 		) {
-	if (preIxOrd == VecVOrd::STO) sqlstr += " ORDER BY TblWzemMCall.x1Stopu ASC";
+	if (preIxOrd == VecVOrd::JOB) sqlstr += " ORDER BY TblWzemMCall.refWzemMJob ASC";
 	else if (preIxOrd == VecVOrd::STA) sqlstr += " ORDER BY TblWzemMCall.x1Startu ASC";
-	else if (preIxOrd == VecVOrd::JOB) sqlstr += " ORDER BY TblWzemMCall.refWzemMJob ASC";
+	else if (preIxOrd == VecVOrd::STO) sqlstr += " ORDER BY TblWzemMCall.x1Stopu ASC";
 };
 
 void QryWzemCalList::fetch(
@@ -370,4 +370,10 @@ bool QryWzemCalList::handleCallWzemStubChgFromSelf(
 	// IP handleCallWzemStubChgFromSelf --- INSERT
 	return retval;
 };
+
+
+
+
+
+
 

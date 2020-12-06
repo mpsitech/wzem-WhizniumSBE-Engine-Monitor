@@ -186,3 +186,9 @@ set<uint> QryWzemPrsADetail::StgIac::diff(
 	return(diffitems);
 };
 
+
+
+
+
+
+

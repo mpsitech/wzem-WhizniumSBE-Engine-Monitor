@@ -311,3 +311,9 @@ bool QryWzemUsrMNUsergroup::handleCallWzemStubChgFromSelf(
 	return retval;
 };
 
+
+
+
+
+
+

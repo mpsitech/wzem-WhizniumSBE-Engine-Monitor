@@ -257,3 +257,9 @@ bool PnlWzemNavHeadbar::evalMitCrdNdeAvail(
 	return(args.back());
 };
 
+
+
+
+
+
+

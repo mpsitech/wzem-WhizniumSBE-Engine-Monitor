@@ -291,6 +291,8 @@ function handleButDlgopenClick(ctlsref) {
 };
 
 function handleLstLoad(lstdoc, ctlsref, ncol, multsel) {
+	if (!srcdoc) return;
+
 	if (multsel) {
 		refreshLst(lstdoc, srcdoc, ncol, false, multsel, "FeedF" + ctlsref, parseInt(retrieveSi(srcdoc, "StatAppWzemPrsDetail", ctlsref + "NumFirstdisp")),
 					parseUintvec(retrieveCi(srcdoc, "ContIacWzemPrsDetail", "numsF" + ctlsref)));

@@ -130,3 +130,9 @@ bool PnlWzemOpxDetail::evalTxfStoActive(
 	return(args.back());
 };
 
+
+
+
+
+
+
