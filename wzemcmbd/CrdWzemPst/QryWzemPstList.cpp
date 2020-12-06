@@ -370,10 +370,3 @@ bool QryWzemPstList::handleCallWzemStubChgFromSelf(
 	// IP handleCallWzemStubChgFromSelf --- INSERT
 	return retval;
 };
-
-
-
-
-
-
-

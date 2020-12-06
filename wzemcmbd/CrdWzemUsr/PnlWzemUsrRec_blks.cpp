@@ -324,10 +324,3 @@ void PnlWzemUsrRec::DpchEngData::writeXML(
 		if (has(TAG)) Tag::writeXML(ixWzemVLocale, wr);
 	xmlTextWriterEndElement(wr);
 };
-
-
-
-
-
-
-

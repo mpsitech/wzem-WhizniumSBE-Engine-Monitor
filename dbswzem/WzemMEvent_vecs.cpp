@@ -96,4 +96,3 @@ void TblWzemMEvent::VecVBasetype::fillFeed(
 
 	for (unsigned int i = 1; i <= 29; i++) feed.appendIxSrefTitles(i, getSref(i), getSref(i));
 };
-

@@ -93,4 +93,3 @@ namespace PnlWzemClnHeadbar {
 };
 
 #endif
-

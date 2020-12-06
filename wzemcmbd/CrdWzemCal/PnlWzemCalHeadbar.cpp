@@ -114,10 +114,3 @@ void PnlWzemCalHeadbar::handleDpchAppWzemInit(
 		) {
 	*dpcheng = getNewDpchEng({DpchEngData::ALL});
 };
-
-
-
-
-
-
-

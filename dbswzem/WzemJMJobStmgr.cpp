@@ -1066,4 +1066,3 @@ ubigint LiteTblWzemJMJobStmgr::loadRstByJob(
 };
 
 #endif
-

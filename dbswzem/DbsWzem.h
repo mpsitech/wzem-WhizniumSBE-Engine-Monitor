@@ -10,10 +10,10 @@
 #ifndef DBSWZEM_H
 #define DBSWZEM_H
 
-#define WZEM_VERSION "1.0.1"
+#define WZEM_VERSION "1.0.2"
 #define WZEM_VERSION_MAJOR 1
 #define WZEM_VERSION_MINOR 0
-#define WZEM_VERSION_SUB 1
+#define WZEM_VERSION_SUB 2
 
 #include <sbecore/Types.h>
 
@@ -691,4 +691,3 @@ public:
 	TblWzemQUsrMNUsergroup* tblwzemqusrmnusergroup;
 };
 #endif
-

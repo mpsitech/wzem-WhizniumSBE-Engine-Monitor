@@ -24,10 +24,3 @@ bool PnlWzemNavPre::evalTxtPrdAvail(
 
 	return(args.back());
 };
-
-
-
-
-
-
-

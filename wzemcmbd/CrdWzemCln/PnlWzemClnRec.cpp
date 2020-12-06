@@ -279,10 +279,3 @@ bool PnlWzemClnRec::handleCallWzemCln_jobEq(
 	boolvalRet = (recCln.refWzemMJob == refInv); // IP handleCallWzemCln_jobEq --- LINE
 	return retval;
 };
-
-
-
-
-
-
-

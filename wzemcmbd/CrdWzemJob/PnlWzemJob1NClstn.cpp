@@ -351,10 +351,3 @@ bool PnlWzemJob1NClstn::handleCallWzemStatChg(
 	// IP handleCallWzemStatChg --- END
 	return retval;
 };
-
-
-
-
-
-
-

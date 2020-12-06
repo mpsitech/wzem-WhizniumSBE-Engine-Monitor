@@ -123,4 +123,3 @@ bool ListWzemQPrdList::readXML(
 
 	return basefound;
 };
-

@@ -118,9 +118,9 @@ function refreshB(chgcol) {
 			} else if (i == 4) {
 				doc.cols.push("TcoSta"); doc.widths.push(TcoStaWidth); doc.fs.push("sta"); doc.tos.push(3); wtot += TcoStaWidth;
 			} else if (i == 5) {
-				doc.cols.push("TcoSto"); doc.widths.push(TcoStoWidth); doc.fs.push("sto"); doc.tos.push(1); wtot += TcoStoWidth;
+				doc.cols.push("TcoSto"); doc.widths.push(TcoStoWidth); doc.fs.push("sto"); doc.tos.push(2); wtot += TcoStoWidth;
 			} else if (i == 6) {
-				doc.cols.push("TcoSup"); doc.widths.push(TcoSupWidth); doc.fs.push("sup"); doc.tos.push(2); wtot += TcoSupWidth;
+				doc.cols.push("TcoSup"); doc.widths.push(TcoSupWidth); doc.fs.push("sup"); doc.tos.push(1); wtot += TcoSupWidth;
 			} else {
 				ix--;
 			};
@@ -739,4 +739,3 @@ function handleDpchAppDataDoReply() {
 		};
 	};
 };
-

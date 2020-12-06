@@ -129,4 +129,3 @@ bool ListWzemQNdeList::readXML(
 
 	return basefound;
 };
-

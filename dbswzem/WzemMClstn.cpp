@@ -1222,4 +1222,3 @@ ubigint LiteTblWzemMClstn::loadRstByJob(
 };
 
 #endif
-

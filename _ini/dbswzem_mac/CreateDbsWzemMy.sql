@@ -742,4 +742,3 @@ CREATE TABLE TblWzemQUsrMNUsergroup(
 	INDEX (jref),
 	INDEX (jnum)
 ) ENGINE = MYISAM;
-

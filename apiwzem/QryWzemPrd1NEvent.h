@@ -98,4 +98,3 @@ namespace QryWzemPrd1NEvent {
 };
 
 #endif
-

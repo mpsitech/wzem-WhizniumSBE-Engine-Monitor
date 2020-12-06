@@ -925,10 +925,3 @@ public:
 	static void runExtcall(void* arg);
 };
 #endif
-
-
-
-
-
-
-

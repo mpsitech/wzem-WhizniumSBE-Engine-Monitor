@@ -328,10 +328,3 @@ bool QryWzemJobSup1NJob::handleCallWzemStubChgFromSelf(
 	// IP handleCallWzemStubChgFromSelf --- INSERT
 	return retval;
 };
-
-
-
-
-
-
-

@@ -178,10 +178,3 @@ bool PnlWzemPrsDetail::evalTxfSalActive(
 
 	return(args.back());
 };
-
-
-
-
-
-
-

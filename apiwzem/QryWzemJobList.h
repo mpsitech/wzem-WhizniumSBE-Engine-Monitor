@@ -28,8 +28,8 @@ namespace QryWzemJobList {
 	class VecVOrd {
 
 	public:
-		static const Sbecore::uint STO = 1;
-		static const Sbecore::uint SUP = 2;
+		static const Sbecore::uint SUP = 1;
+		static const Sbecore::uint STO = 2;
 		static const Sbecore::uint STA = 3;
 		static const Sbecore::uint PRD = 4;
 
@@ -115,4 +115,3 @@ namespace QryWzemJobList {
 };
 
 #endif
-

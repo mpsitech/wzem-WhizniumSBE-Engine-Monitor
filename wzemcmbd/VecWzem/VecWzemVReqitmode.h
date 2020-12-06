@@ -25,10 +25,3 @@ namespace VecWzemVReqitmode {
 };
 
 #endif
-
-
-
-
-
-
-

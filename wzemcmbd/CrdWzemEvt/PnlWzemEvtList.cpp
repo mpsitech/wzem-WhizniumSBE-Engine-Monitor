@@ -393,10 +393,3 @@ bool PnlWzemEvtList::handleCallWzemStatChg(
 	// IP handleCallWzemStatChg --- END
 	return retval;
 };
-
-
-
-
-
-
-

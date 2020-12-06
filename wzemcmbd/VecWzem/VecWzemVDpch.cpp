@@ -420,10 +420,3 @@ string VecWzemVDpch::getSref(
 
 	return("");
 };
-
-
-
-
-
-
-

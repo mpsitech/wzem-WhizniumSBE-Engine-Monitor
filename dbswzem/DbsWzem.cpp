@@ -1233,4 +1233,3 @@ void DbsWzem::fillFeedFromVlst(
 		feed.appendTitles(vlsAval->Val);
 	};
 };
-

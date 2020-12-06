@@ -795,4 +795,3 @@ CREATE TABLE TblWzemQUsrMNUsergroup(
 );
 CREATE INDEX TblWzemQUsrMNUsergroup_jref ON TblWzemQUsrMNUsergroup (jref);
 CREATE INDEX TblWzemQUsrMNUsergroup_jnum ON TblWzemQUsrMNUsergroup (jnum);
-

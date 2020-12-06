@@ -366,10 +366,3 @@ bool CrdWzemNav::evalMitAppLoiAvail(
 
 	return(args.back());
 };
-
-
-
-
-
-
-

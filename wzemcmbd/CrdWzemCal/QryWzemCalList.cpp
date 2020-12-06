@@ -46,8 +46,8 @@ QryWzemCalList::QryWzemCalList(
 
 	rerun(dbswzem);
 
-	xchg->addClstn(VecWzemVCall::CALLWZEMCALMOD, jref, Clstn::VecVJobmask::ALL, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 	xchg->addClstn(VecWzemVCall::CALLWZEMSTUBCHG, jref, Clstn::VecVJobmask::SELF, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
+	xchg->addClstn(VecWzemVCall::CALLWZEMCALMOD, jref, Clstn::VecVJobmask::ALL, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 
 	// IP constructor.cust3 --- INSERT
 
@@ -161,9 +161,9 @@ void QryWzemCalList::rerun_orderSQL(
 			string& sqlstr
 			, const uint preIxOrd
 		) {
-	if (preIxOrd == VecVOrd::JOB) sqlstr += " ORDER BY TblWzemMCall.refWzemMJob ASC";
+	if (preIxOrd == VecVOrd::STO) sqlstr += " ORDER BY TblWzemMCall.x1Stopu ASC";
 	else if (preIxOrd == VecVOrd::STA) sqlstr += " ORDER BY TblWzemMCall.x1Startu ASC";
-	else if (preIxOrd == VecVOrd::STO) sqlstr += " ORDER BY TblWzemMCall.x1Stopu ASC";
+	else if (preIxOrd == VecVOrd::JOB) sqlstr += " ORDER BY TblWzemMCall.refWzemMJob ASC";
 };
 
 void QryWzemCalList::fetch(
@@ -328,10 +328,10 @@ void QryWzemCalList::handleCall(
 		) {
 	if (call->ixVCall == VecWzemVCall::CALLWZEMCALUPD_REFEQ) {
 		call->abort = handleCallWzemCalUpd_refEq(dbswzem, call->jref);
-	} else if (call->ixVCall == VecWzemVCall::CALLWZEMCALMOD) {
-		call->abort = handleCallWzemCalMod(dbswzem, call->jref);
 	} else if ((call->ixVCall == VecWzemVCall::CALLWZEMSTUBCHG) && (call->jref == jref)) {
 		call->abort = handleCallWzemStubChgFromSelf(dbswzem);
+	} else if (call->ixVCall == VecWzemVCall::CALLWZEMCALMOD) {
+		call->abort = handleCallWzemCalMod(dbswzem, call->jref);
 	};
 };
 
@@ -349,6 +349,14 @@ bool QryWzemCalList::handleCallWzemCalUpd_refEq(
 	return retval;
 };
 
+bool QryWzemCalList::handleCallWzemStubChgFromSelf(
+			DbsWzem* dbswzem
+		) {
+	bool retval = false;
+	// IP handleCallWzemStubChgFromSelf --- INSERT
+	return retval;
+};
+
 bool QryWzemCalList::handleCallWzemCalMod(
 			DbsWzem* dbswzem
 			, const ubigint jrefTrig
@@ -362,18 +370,3 @@ bool QryWzemCalList::handleCallWzemCalMod(
 
 	return retval;
 };
-
-bool QryWzemCalList::handleCallWzemStubChgFromSelf(
-			DbsWzem* dbswzem
-		) {
-	bool retval = false;
-	// IP handleCallWzemStubChgFromSelf --- INSERT
-	return retval;
-};
-
-
-
-
-
-
-

@@ -16,7 +16,7 @@ STATLIBFLAGS = rcs
 INCPATH = -I=$(BUILDROOT)/dbswzem -I=$(BUILDROOT)/wzemcmbd/VecWzem -I=$(BUILDROOT)/wzemcmbd/IexWzem -I=$(BUILDROOT)/wzemcmbd
 INCPATH += -I=${WHIZSDKROOT}/build -I=/usr/include -I=/usr/include/libxml2
 
-OBJS = CrdWzemPrd.o PnlWzemPrdList.o QryWzemPrdList.o PnlWzemPrdHeadbar.o PnlWzemPrdRec.o PnlWzemPrd1NJob.o QryWzemPrd1NJob.o PnlWzemPrd1NNode.o QryWzemPrd1NNode.o PnlWzemPrdDetail.o PnlWzemPrd1NEvent.o QryWzemPrd1NEvent.o
+OBJS = CrdWzemPrd.o PnlWzemPrdList.o QryWzemPrdList.o PnlWzemPrdHeadbar.o PnlWzemPrdRec.o PnlWzemPrd1NJob.o QryWzemPrd1NJob.o PnlWzemPrd1NNode.o QryWzemPrd1NNode.o PnlWzemPrd1NEvent.o QryWzemPrd1NEvent.o PnlWzemPrdDetail.o
 
 LIB = libcrdwzemprd
 
@@ -36,4 +36,3 @@ install:
 
 clean:
 	rm -f *.o
-

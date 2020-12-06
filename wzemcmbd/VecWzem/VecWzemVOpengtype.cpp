@@ -59,10 +59,3 @@ void VecWzemVOpengtype::fillFeed(
 
 	for (unsigned int i = 1; i <= 0; i++) feed.appendIxSrefTitles(i, getSref(i), getTitle(i, ixWzemVLocale));
 };
-
-
-
-
-
-
-

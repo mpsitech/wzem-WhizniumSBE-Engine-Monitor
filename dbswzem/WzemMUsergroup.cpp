@@ -1115,4 +1115,3 @@ bool LiteTblWzemMUsergroup::loadSrfByRef(
 };
 
 #endif
-

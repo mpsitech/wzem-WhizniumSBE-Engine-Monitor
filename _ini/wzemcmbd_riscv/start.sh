@@ -8,4 +8,3 @@
 
 nohup ./Wzemcmbd -nocp &
 disown
-

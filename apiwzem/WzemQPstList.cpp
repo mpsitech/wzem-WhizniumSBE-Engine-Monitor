@@ -120,4 +120,3 @@ bool ListWzemQPstList::readXML(
 
 	return basefound;
 };
-

@@ -309,10 +309,3 @@ bool PnlWzemPstDetail::handleCallWzemPst_jobEq(
 	boolvalRet = (recPst.refWzemMJob == refInv); // IP handleCallWzemPst_jobEq --- LINE
 	return retval;
 };
-
-
-
-
-
-
-

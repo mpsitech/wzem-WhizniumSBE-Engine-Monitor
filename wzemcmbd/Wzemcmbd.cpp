@@ -816,7 +816,7 @@ DpchEngWzemAlert* AlrWzem::prepareAlrAbt(
 	continf.TxtCpt = StrMod::cap(continf.TxtCpt);
 
 	if (ixWzemVLocale == VecWzemVLocale::ENUS) {
-		continf.TxtMsg1 = "WhizniumSBE Engine Monitor version v1.0.1 released on 6-12-2020";
+		continf.TxtMsg1 = "WhizniumSBE Engine Monitor version v1.0.2 released on 6-12-2020";
 		continf.TxtMsg2 = "\\u00a9 MPSI Technologies GmbH";
 		continf.TxtMsg4 = "contributors: Alexander Wirthmueller";
 		continf.TxtMsg6 = "WhizniumSBE Engine Monitor serves as a debugging tool for projects developed with WhizniumSBE.";
@@ -1442,8 +1442,8 @@ void StmgrWzem::handleCall(
 	} else if (call->ixVCall == VecWzemVCall::CALLWZEMEVTUPD_REFEQ) {
 		insert(icsWzemVStub, VecWzemVStub::STUBWZEMEVTSTD);
 	} else if (call->ixVCall == VecWzemVCall::CALLWZEMJOBUPD_REFEQ) {
-		insert(icsWzemVStub, VecWzemVStub::STUBWZEMJOBSTD);
 		insert(icsWzemVStub, VecWzemVStub::STUBWZEMJOBXJREF);
+		insert(icsWzemVStub, VecWzemVStub::STUBWZEMJOBSTD);
 	} else if (call->ixVCall == VecWzemVCall::CALLWZEMNDEUPD_REFEQ) {
 		insert(icsWzemVStub, VecWzemVStub::STUBWZEMNDEXNREF);
 		insert(icsWzemVStub, VecWzemVStub::STUBWZEMNDESTD);
@@ -1697,7 +1697,7 @@ void XchgWzemcmbd::startMon() {
 	Clstn* clstn = NULL;
 	Preset* preset = NULL;
 
-	mon.start("WhizniumSBE Engine Monitor v1.0.1", stgwzempath.monpath);
+	mon.start("WhizniumSBE Engine Monitor v1.0.2", stgwzempath.monpath);
 
 	rwmJobs.rlock("XchgWzemcmbd", "startMon");
 	for (auto it = jobs.begin(); it != jobs.end(); it++) {
@@ -3728,10 +3728,3 @@ void XchgWzemcmbd::runExtcall(
 
 	extcall->xchg->addReq(req);
 };
-
-
-
-
-
-
-

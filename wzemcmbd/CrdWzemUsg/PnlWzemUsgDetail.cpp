@@ -231,10 +231,3 @@ bool PnlWzemUsgDetail::handleCallWzemUsgUpd_refEq(
 	// IP handleCallWzemUsgUpd_refEq --- INSERT
 	return retval;
 };
-
-
-
-
-
-
-

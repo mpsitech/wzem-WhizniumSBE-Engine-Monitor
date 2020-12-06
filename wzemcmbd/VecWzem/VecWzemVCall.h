@@ -119,10 +119,3 @@ namespace VecWzemVCall {
 };
 
 #endif
-
-
-
-
-
-
-

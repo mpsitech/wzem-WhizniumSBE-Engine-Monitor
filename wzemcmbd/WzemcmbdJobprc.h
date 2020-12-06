@@ -21,12 +21,3 @@ namespace WzemcmbdJobprc {
 };
 
 #endif
-
-
-
-
-
-
-
-
-

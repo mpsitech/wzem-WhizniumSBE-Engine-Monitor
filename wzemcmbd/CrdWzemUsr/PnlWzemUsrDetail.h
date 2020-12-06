@@ -314,16 +314,9 @@ public:
 private:
 	bool handleCallWzemUsrJsteMod_usrEq(DbsWzem* dbswzem, const Sbecore::ubigint jrefTrig);
 	bool handleCallWzemUsrUpd_refEq(DbsWzem* dbswzem, const Sbecore::ubigint jrefTrig);
-	bool handleCallWzemUsr_usgEq(DbsWzem* dbswzem, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 	bool handleCallWzemUsr_prsEq(DbsWzem* dbswzem, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
+	bool handleCallWzemUsr_usgEq(DbsWzem* dbswzem, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 
 };
 
 #endif
-
-
-
-
-
-
-

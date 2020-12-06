@@ -269,4 +269,3 @@ namespace PnlWzemPstList {
 };
 
 #endif
-

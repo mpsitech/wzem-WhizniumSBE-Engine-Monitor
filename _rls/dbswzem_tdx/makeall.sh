@@ -22,4 +22,3 @@ if [ $? -ne 0 ]; then
 fi
 
 make install
-

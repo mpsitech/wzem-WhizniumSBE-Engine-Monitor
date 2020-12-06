@@ -1007,4 +1007,3 @@ bool LiteTblWzemMPeriod::loadRecByRef(
 };
 
 #endif
-

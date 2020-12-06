@@ -3034,10 +3034,3 @@ uint IexWzemIni::getIxWzemVIop(
 
 	return ixWzemVIop;
 };
-
-
-
-
-
-
-

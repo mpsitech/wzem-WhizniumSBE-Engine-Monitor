@@ -269,4 +269,3 @@ namespace PnlWzemOpxList {
 };
 
 #endif
-

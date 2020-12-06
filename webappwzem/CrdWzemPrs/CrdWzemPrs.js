@@ -324,7 +324,7 @@ function changeHeight(pnlshort, height) {
 // --- view initialization and refresh
 function refresh() {
 
-	doc.title = retrieveCi(srcdoc, "ContInfWzemPrs", "MtxCrdPrs") + " - WhizniumSBE Engine Monitor v1.0.1";
+	doc.title = retrieveCi(srcdoc, "ContInfWzemPrs", "MtxCrdPrs") + " - WhizniumSBE Engine Monitor v1.0.2";
 };
 
 // --- event handlers
@@ -598,4 +598,3 @@ function iterateReqit(ev) {
 		};
 	};
 };
-

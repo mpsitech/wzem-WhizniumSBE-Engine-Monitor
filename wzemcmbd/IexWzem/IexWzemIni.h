@@ -788,10 +788,3 @@ namespace IexWzemIni {
 };
 
 #endif
-
-
-
-
-
-
-

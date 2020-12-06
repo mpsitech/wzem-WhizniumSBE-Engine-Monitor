@@ -1075,4 +1075,3 @@ ubigint LiteTblWzemQSelect::loadRstByJref(
 	return loadRstByStmt(stmtLoadRstByJref, append, rst);
 };
 #endif
-

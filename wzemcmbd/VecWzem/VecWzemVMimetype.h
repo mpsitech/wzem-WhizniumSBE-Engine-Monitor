@@ -54,10 +54,3 @@ namespace VecWzemVMimetype {
 };
 
 #endif
-
-
-
-
-
-
-

@@ -677,10 +677,3 @@ bool PnlWzemEvtDetail::evalTxfDchCntActive(
 
 	return(args.back());
 };
-
-
-
-
-
-
-

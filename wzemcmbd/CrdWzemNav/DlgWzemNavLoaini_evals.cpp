@@ -30,6 +30,20 @@ bool DlgWzemNavLoaini::evalButDneActive(
 	return(args.back());
 };
 
+bool DlgWzemNavLoaini::evalLfiDldActive(
+			DbsWzem* dbswzem
+		) {
+	// sge(done)
+
+	vector<bool> args;
+	bool a;
+
+	a = false; a = (ixVSge == VecVSge::DONE);
+	args.push_back(a);
+
+	return(args.back());
+};
+
 bool DlgWzemNavLoaini::evalImpButRunActive(
 			DbsWzem* dbswzem
 		) {
@@ -63,20 +77,6 @@ bool DlgWzemNavLoaini::evalImpButStoActive(
 	return(args.back());
 };
 
-bool DlgWzemNavLoaini::evalLfiDldActive(
-			DbsWzem* dbswzem
-		) {
-	// sge(done)
-
-	vector<bool> args;
-	bool a;
-
-	a = false; a = (ixVSge == VecVSge::DONE);
-	args.push_back(a);
-
-	return(args.back());
-};
-
 bool DlgWzemNavLoaini::evalIfiUldActive(
 			DbsWzem* dbswzem
 		) {
@@ -90,10 +90,3 @@ bool DlgWzemNavLoaini::evalIfiUldActive(
 
 	return(args.back());
 };
-
-
-
-
-
-
-

@@ -265,10 +265,3 @@ bool PnlWzemOpxRec::handleCallWzemOpx_jobEq(
 	boolvalRet = (recOpx.refWzemMJob == refInv); // IP handleCallWzemOpx_jobEq --- LINE
 	return retval;
 };
-
-
-
-
-
-
-

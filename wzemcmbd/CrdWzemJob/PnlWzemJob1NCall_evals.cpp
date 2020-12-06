@@ -87,10 +87,3 @@ bool PnlWzemJob1NCall::evalButDeleteActive(
 
 	return(args.back());
 };
-
-
-
-
-
-
-

@@ -479,10 +479,3 @@ void PnlWzemJobSup1NJob::DpchEngData::writeXML(
 		if (has(STGIACQRY)) stgiacqry.writeXML(wr);
 	xmlTextWriterEndElement(wr);
 };
-
-
-
-
-
-
-

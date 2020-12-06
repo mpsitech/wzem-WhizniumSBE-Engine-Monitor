@@ -298,10 +298,3 @@ bool QryWzemPrd1NEvent::handleCallWzemStubChgFromSelf(
 	// IP handleCallWzemStubChgFromSelf --- INSERT
 	return retval;
 };
-
-
-
-
-
-
-

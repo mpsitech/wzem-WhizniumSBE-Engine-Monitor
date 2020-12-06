@@ -1088,4 +1088,3 @@ ubigint LiteTblWzemRMUserMUsergroup::loadRstByUsr(
 };
 
 #endif
-

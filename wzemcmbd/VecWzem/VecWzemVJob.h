@@ -125,10 +125,3 @@ namespace VecWzemVJob {
 };
 
 #endif
-
-
-
-
-
-
-

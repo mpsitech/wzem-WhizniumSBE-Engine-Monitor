@@ -1088,4 +1088,3 @@ ubigint LiteTblWzemJMClstn::loadRstByCln(
 };
 
 #endif
-

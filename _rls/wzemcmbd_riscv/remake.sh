@@ -20,4 +20,3 @@ cd $REPROOT/wzem/_rls/wzemcmbd_riscv
 cd $BUILDROOT/wzemcmbd
 
 ./make.sh "$@"
-

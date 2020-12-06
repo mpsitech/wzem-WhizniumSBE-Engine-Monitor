@@ -529,4 +529,3 @@ void PnlWzemJobSup1NJob::DpchEngData::readXML(
 		stgiacqry = QryWzemJobSup1NJob::StgIac();
 	};
 };
-

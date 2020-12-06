@@ -301,4 +301,3 @@ function handleDpchAppDoCrdopenReply() {
 		};
 	};
 };
-

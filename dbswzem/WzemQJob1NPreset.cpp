@@ -1059,4 +1059,3 @@ ubigint LiteTblWzemQJob1NPreset::loadRstByJref(
 	return loadRstByStmt(stmtLoadRstByJref, append, rst);
 };
 #endif
-

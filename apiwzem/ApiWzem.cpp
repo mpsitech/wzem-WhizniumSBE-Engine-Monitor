@@ -396,4 +396,3 @@ void ApiWzem::writeDpchApp(
 
 	xmlBufferFree(xbuf);
 };
-

@@ -35,4 +35,3 @@ install:
 
 clean:
 	rm -f *.o
-

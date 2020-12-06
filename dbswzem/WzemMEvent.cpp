@@ -1472,4 +1472,3 @@ ubigint LiteTblWzemMEvent::loadRstByPrd(
 };
 
 #endif
-

@@ -177,4 +177,3 @@ namespace PnlWzemPrsRec {
 };
 
 #endif
-

@@ -945,10 +945,3 @@ void DlgWzemNavLoaini::DpchEngData::writeXML(
 		if (has(TAGLFI)) TagLfi::writeXML(ixWzemVLocale, wr);
 	xmlTextWriterEndElement(wr);
 };
-
-
-
-
-
-
-

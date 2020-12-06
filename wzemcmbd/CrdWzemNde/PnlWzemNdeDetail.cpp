@@ -283,10 +283,3 @@ bool PnlWzemNdeDetail::handleCallWzemNde_prdEq(
 	boolvalRet = (recNde.refWzemMPeriod == refInv); // IP handleCallWzemNde_prdEq --- LINE
 	return retval;
 };
-
-
-
-
-
-
-

@@ -238,10 +238,3 @@ string VecWzemVJob::getSref(
 
 	return("");
 };
-
-
-
-
-
-
-

@@ -427,4 +427,3 @@ DpchEngWzemSuspend::DpchEngWzemSuspend() :
 			DpchEngWzem(VecWzemVDpch::DPCHENGWZEMSUSPEND)
 		{
 };
-

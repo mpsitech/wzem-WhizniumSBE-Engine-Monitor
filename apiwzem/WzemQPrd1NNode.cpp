@@ -111,4 +111,3 @@ bool ListWzemQPrd1NNode::readXML(
 
 	return basefound;
 };
-

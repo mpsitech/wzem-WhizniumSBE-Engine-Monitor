@@ -480,10 +480,3 @@ void PnlWzemPstDetail::DpchEngData::writeXML(
 		if (has(TAG)) Tag::writeXML(ixWzemVLocale, wr);
 	xmlTextWriterEndElement(wr);
 };
-
-
-
-
-
-
-

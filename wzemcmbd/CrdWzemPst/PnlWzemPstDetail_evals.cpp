@@ -143,10 +143,3 @@ bool PnlWzemPstDetail::evalTxfArgActive(
 
 	return(args.back());
 };
-
-
-
-
-
-
-

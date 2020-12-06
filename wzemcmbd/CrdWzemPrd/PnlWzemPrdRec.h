@@ -16,8 +16,8 @@
 
 #include "PnlWzemPrd1NJob.h"
 #include "PnlWzemPrd1NNode.h"
-#include "PnlWzemPrdDetail.h"
 #include "PnlWzemPrd1NEvent.h"
+#include "PnlWzemPrdDetail.h"
 
 #define VecVWzemPrdRecDo PnlWzemPrdRec::VecVDo
 
@@ -176,8 +176,8 @@ public:
 
 	PnlWzemPrd1NJob* pnl1njob;
 	PnlWzemPrd1NNode* pnl1nnode;
-	PnlWzemPrdDetail* pnldetail;
 	PnlWzemPrd1NEvent* pnl1nevent;
+	PnlWzemPrdDetail* pnldetail;
 
 	WzemMPeriod recPrd;
 
@@ -216,10 +216,3 @@ private:
 };
 
 #endif
-
-
-
-
-
-
-

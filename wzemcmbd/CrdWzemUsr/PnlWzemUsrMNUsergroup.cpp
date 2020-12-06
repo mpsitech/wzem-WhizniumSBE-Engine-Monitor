@@ -349,10 +349,3 @@ bool PnlWzemUsrMNUsergroup::handleCallWzemStatChg(
 	// IP handleCallWzemStatChg --- END
 	return retval;
 };
-
-
-
-
-
-
-

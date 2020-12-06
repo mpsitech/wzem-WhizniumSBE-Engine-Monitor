@@ -254,4 +254,3 @@ namespace PnlWzemJob1NPreset {
 };
 
 #endif
-

@@ -597,4 +597,3 @@ void PnlWzemEvtList::DpchEngData::readXML(
 		stgiacqry = QryWzemEvtList::StgIac();
 	};
 };
-

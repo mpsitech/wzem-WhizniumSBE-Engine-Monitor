@@ -226,10 +226,3 @@ string VecWzemVCall::getSref(
 
 	return("");
 };
-
-
-
-
-
-
-

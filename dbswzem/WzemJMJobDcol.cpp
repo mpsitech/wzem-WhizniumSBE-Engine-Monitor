@@ -1066,4 +1066,3 @@ ubigint LiteTblWzemJMJobDcol::loadRstByJob(
 };
 
 #endif
-

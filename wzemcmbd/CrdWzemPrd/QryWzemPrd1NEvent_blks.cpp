@@ -185,10 +185,3 @@ set<uint> QryWzemPrd1NEvent::StgIac::diff(
 
 	return(diffitems);
 };
-
-
-
-
-
-
-

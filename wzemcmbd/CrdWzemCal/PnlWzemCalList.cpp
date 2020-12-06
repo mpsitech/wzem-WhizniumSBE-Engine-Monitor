@@ -247,7 +247,7 @@ void PnlWzemCalList::handleDpchAppDataContiac(
 	diffitems = _contiac->diff(&contiac);
 
 	if (has(diffitems, ContIac::NUMFTOS)) {
-		if ((_contiac->numFTos >= QryWzemCalList::VecVOrd::JOB) && (_contiac->numFTos <= QryWzemCalList::VecVOrd::STO)) {
+		if ((_contiac->numFTos >= QryWzemCalList::VecVOrd::STO) && (_contiac->numFTos <= QryWzemCalList::VecVOrd::JOB)) {
 			muteRefresh = true;
 
 			xchg->addIxPreset(VecWzemVPreset::PREWZEMIXORD, jref, _contiac->numFTos);
@@ -393,10 +393,3 @@ bool PnlWzemCalList::handleCallWzemStatChg(
 	// IP handleCallWzemStatChg --- END
 	return retval;
 };
-
-
-
-
-
-
-

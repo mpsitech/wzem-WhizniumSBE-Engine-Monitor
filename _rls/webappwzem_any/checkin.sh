@@ -16,4 +16,3 @@ export set REPROOT=${WHIZDEVROOT}/rep
 cp -r * $REPROOT/wzem/webappwzem/
 
 rm $REPROOT/wzem/webappwzem/checkin.sh
-

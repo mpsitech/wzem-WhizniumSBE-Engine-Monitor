@@ -21,4 +21,3 @@ cp Makefile $BUILDROOT/apiwzem/
 
 cp ../../apiwzem/*.h $BUILDROOT/apiwzem/
 cp ../../apiwzem/*.cpp $BUILDROOT/apiwzem/
-

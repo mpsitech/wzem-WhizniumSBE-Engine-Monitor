@@ -1509,10 +1509,3 @@ void DpchRetWzem::writeXML(
 		writeUtinyint(wr, "pdone", pdone);
 	xmlTextWriterEndElement(wr);
 };
-
-
-
-
-
-
-

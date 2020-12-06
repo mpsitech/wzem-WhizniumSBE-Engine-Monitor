@@ -329,10 +329,3 @@ bool PnlWzemPrsADetail::handleCallWzemStatChg(
 	// IP handleCallWzemStatChg --- END
 	return retval;
 };
-
-
-
-
-
-
-

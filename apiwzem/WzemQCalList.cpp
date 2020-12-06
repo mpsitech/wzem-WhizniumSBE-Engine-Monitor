@@ -120,4 +120,3 @@ bool ListWzemQCalList::readXML(
 
 	return basefound;
 };
-

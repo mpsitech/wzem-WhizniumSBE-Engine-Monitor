@@ -19,10 +19,3 @@ namespace WzemcmbdOpprc {
 };
 
 #endif
-
-
-
-
-
-
-

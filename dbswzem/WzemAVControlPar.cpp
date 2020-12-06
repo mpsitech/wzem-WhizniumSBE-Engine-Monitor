@@ -1125,4 +1125,3 @@ bool LiteTblWzemAVControlPar::loadValByCtlUsrPar(
 };
 
 #endif
-

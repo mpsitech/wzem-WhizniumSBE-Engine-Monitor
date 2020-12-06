@@ -80,10 +80,3 @@ bool PnlWzemPrdDetail::evalTxfStoActive(
 
 	return(args.back());
 };
-
-
-
-
-
-
-

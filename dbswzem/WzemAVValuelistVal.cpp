@@ -1074,4 +1074,3 @@ ubigint LiteTblWzemAVValuelistVal::loadRstByVlsLcl(
 };
 
 #endif
-

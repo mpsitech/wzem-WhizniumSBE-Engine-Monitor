@@ -20,4 +20,3 @@ cd $REPROOT/wzem/_rls/wzemcmbd_ubuntu
 cd $BUILDROOT/wzemcmbd
 
 ./make.sh "$@"
-

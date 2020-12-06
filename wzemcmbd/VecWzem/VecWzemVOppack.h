@@ -28,10 +28,3 @@ namespace VecWzemVOppack {
 };
 
 #endif
-
-
-
-
-
-
-

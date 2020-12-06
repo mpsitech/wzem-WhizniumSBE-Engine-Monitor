@@ -130,10 +130,3 @@ string VecWzemVMimetype::getTitle(
 
 	return("");
 };
-
-
-
-
-
-
-

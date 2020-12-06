@@ -1,7 +1,7 @@
-WZEM_VERSION = "1.0.1";
+WZEM_VERSION = "1.0.2";
 WZEM_VERSION_MAJOR = 1;
 WZEM_VERSION_MINOR = 0;
-WZEM_VERSION_SUB = 1;
+WZEM_VERSION_SUB = 2;
 
 function getCrdwnd() {
 	if (window.name == "Crd") return window;
@@ -332,4 +332,3 @@ function setTextContent(contdoc, elem, text) {
 	clearElem(elem);
 	elem.appendChild(contdoc.createTextNode(replaceUesc(text)));
 };
-

@@ -98,4 +98,3 @@ namespace QryWzemJob1NOp {
 };
 
 #endif
-

@@ -184,4 +184,3 @@ void TblWzemMClstn::VecWArgmask::fillFeed(
 
 	for (unsigned int i = 1; i <= TXTVAL; i *= 2) feed.appendIxSrefTitles(i, getSrefs(i), getSrefs(i));
 };
-

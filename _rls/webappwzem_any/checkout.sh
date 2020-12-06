@@ -18,4 +18,3 @@ mkdir $WEBROOT/appwzem
 cp checkin.sh $WEBROOT/appwzem/
 
 cp -r ../../webappwzem/* $WEBROOT/appwzem/
-

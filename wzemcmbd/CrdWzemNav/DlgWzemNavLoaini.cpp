@@ -229,8 +229,8 @@ void DlgWzemNavLoaini::handleRequest(
 
 	} else if (req->ixVBasetype == ReqWzem::VecVBasetype::TIMER) {
 		if (ixVSge == VecVSge::PRSIDLE) handleTimerInSgePrsidle(dbswzem, req->sref);
-		else if (ixVSge == VecVSge::IMPIDLE) handleTimerInSgeImpidle(dbswzem, req->sref);
 		else if ((req->sref == "mon") && (ixVSge == VecVSge::IMPORT)) handleTimerWithSrefMonInSgeImport(dbswzem);
+		else if (ixVSge == VecVSge::IMPIDLE) handleTimerInSgeImpidle(dbswzem, req->sref);
 	};
 };
 
@@ -327,18 +327,18 @@ void DlgWzemNavLoaini::handleTimerInSgePrsidle(
 	changeStage(dbswzem, nextIxVSgeSuccess);
 };
 
-void DlgWzemNavLoaini::handleTimerInSgeImpidle(
-			DbsWzem* dbswzem
-			, const string& sref
-		) {
-	changeStage(dbswzem, nextIxVSgeSuccess);
-};
-
 void DlgWzemNavLoaini::handleTimerWithSrefMonInSgeImport(
 			DbsWzem* dbswzem
 		) {
 	wrefLast = xchg->addWakeup(jref, "mon", 250000, true);
 	refreshWithDpchEng(dbswzem); // IP handleTimerWithSrefMonInSgeImport --- ILINE
+};
+
+void DlgWzemNavLoaini::handleTimerInSgeImpidle(
+			DbsWzem* dbswzem
+			, const string& sref
+		) {
+	changeStage(dbswzem, nextIxVSgeSuccess);
 };
 
 void DlgWzemNavLoaini::changeStage(
@@ -639,10 +639,3 @@ void DlgWzemNavLoaini::leaveSgeDone(
 		) {
 	// IP leaveSgeDone --- INSERT
 };
-
-
-
-
-
-
-

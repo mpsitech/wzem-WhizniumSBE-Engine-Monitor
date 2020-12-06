@@ -808,4 +808,3 @@ void PnlWzemEvtDetail::DpchEngData::readXML(
 		tag = Tag();
 	};
 };
-

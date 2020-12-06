@@ -1066,4 +1066,3 @@ ubigint LiteTblWzemJMCallArgRet::loadRstByCal(
 };
 
 #endif
-

@@ -40,10 +40,3 @@ string VecWzemVExpstate::getSref(
 
 	return("");
 };
-
-
-
-
-
-
-

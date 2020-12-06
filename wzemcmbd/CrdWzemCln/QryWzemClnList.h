@@ -145,16 +145,9 @@ public:
 
 private:
 	bool handleCallWzemClnUpd_refEq(DbsWzem* dbswzem, const Sbecore::ubigint jrefTrig);
-	bool handleCallWzemClnMod(DbsWzem* dbswzem, const Sbecore::ubigint jrefTrig);
 	bool handleCallWzemStubChgFromSelf(DbsWzem* dbswzem);
+	bool handleCallWzemClnMod(DbsWzem* dbswzem, const Sbecore::ubigint jrefTrig);
 
 };
 
 #endif
-
-
-
-
-
-
-

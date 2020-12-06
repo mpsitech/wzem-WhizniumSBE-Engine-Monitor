@@ -25,4 +25,3 @@ cp ../../dbswzem/DbsWzem.cpp $BUILDROOT/dbswzem/
 
 cp ../../dbswzem/Wzem*.h $BUILDROOT/dbswzem/
 cp ../../dbswzem/Wzem*.cpp $BUILDROOT/dbswzem/
-

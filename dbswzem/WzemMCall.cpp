@@ -1110,4 +1110,3 @@ ubigint LiteTblWzemMCall::loadRstByJob(
 };
 
 #endif
-

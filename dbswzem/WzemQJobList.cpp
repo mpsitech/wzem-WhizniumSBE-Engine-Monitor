@@ -1209,4 +1209,3 @@ ubigint LiteTblWzemQJobList::loadRstByJref(
 	return loadRstByStmt(stmtLoadRstByJref, append, rst);
 };
 #endif
-

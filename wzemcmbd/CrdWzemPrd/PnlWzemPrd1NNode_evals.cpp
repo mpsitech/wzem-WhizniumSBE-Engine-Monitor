@@ -87,10 +87,3 @@ bool PnlWzemPrd1NNode::evalButDeleteActive(
 
 	return(args.back());
 };
-
-
-
-
-
-
-

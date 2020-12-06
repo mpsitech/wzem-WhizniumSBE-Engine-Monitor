@@ -50,10 +50,3 @@ namespace VecWzemVError {
 };
 
 #endif
-
-
-
-
-
-
-

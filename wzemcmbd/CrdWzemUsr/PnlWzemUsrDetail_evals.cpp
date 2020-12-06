@@ -234,10 +234,3 @@ bool PnlWzemUsrDetail::evalTxfCmtActive(
 
 	return(args.back());
 };
-
-
-
-
-
-
-

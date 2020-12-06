@@ -32,10 +32,3 @@ namespace VecWzemVIop {
 };
 
 #endif
-
-
-
-
-
-
-

@@ -304,10 +304,3 @@ bool PnlWzemJobRec::handleCallWzemJob_prdEq(
 	boolvalRet = (recJob.refWzemMPeriod == refInv); // IP handleCallWzemJob_prdEq --- LINE
 	return retval;
 };
-
-
-
-
-
-
-

@@ -20,9 +20,9 @@ uint QryWzemPrdList::VecVOrd::getIx(
 		) {
 	string s = StrMod::lc(sref);
 
-	if (s == "grp") return GRP;
-	if (s == "own") return OWN;
 	if (s == "sta") return STA;
+	if (s == "own") return OWN;
+	if (s == "grp") return GRP;
 
 	return(0);
 };
@@ -30,9 +30,9 @@ uint QryWzemPrdList::VecVOrd::getIx(
 string QryWzemPrdList::VecVOrd::getSref(
 			const uint ix
 		) {
-	if (ix == GRP) return("grp");
-	if (ix == OWN) return("own");
 	if (ix == STA) return("sta");
+	if (ix == OWN) return("own");
+	if (ix == GRP) return("grp");
 
 	return("");
 };
@@ -219,10 +219,3 @@ set<uint> QryWzemPrdList::StgIac::diff(
 
 	return(diffitems);
 };
-
-
-
-
-
-
-

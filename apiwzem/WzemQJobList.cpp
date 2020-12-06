@@ -126,4 +126,3 @@ bool ListWzemQJobList::readXML(
 
 	return basefound;
 };
-

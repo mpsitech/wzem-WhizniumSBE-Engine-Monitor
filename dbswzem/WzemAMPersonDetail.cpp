@@ -1095,4 +1095,3 @@ ubigint LiteTblWzemAMPersonDetail::loadRstByPrs(
 };
 
 #endif
-

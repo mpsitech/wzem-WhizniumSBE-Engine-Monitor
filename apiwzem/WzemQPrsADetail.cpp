@@ -117,4 +117,3 @@ bool ListWzemQPrsADetail::readXML(
 
 	return basefound;
 };
-

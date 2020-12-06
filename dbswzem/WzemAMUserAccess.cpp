@@ -1114,4 +1114,3 @@ ubigint LiteTblWzemAMUserAccess::loadRstByUsr(
 };
 
 #endif
-

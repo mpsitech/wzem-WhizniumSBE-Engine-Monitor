@@ -114,4 +114,3 @@ namespace QryWzemUsgList {
 };
 
 #endif
-

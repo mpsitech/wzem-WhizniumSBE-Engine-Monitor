@@ -310,10 +310,3 @@ bool QryWzemUsrMNUsergroup::handleCallWzemStubChgFromSelf(
 	// IP handleCallWzemStubChgFromSelf --- INSERT
 	return retval;
 };
-
-
-
-
-
-
-

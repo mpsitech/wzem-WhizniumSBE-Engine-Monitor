@@ -1059,4 +1059,3 @@ ubigint LiteTblWzemQPrd1NEvent::loadRstByJref(
 	return loadRstByStmt(stmtLoadRstByJref, append, rst);
 };
 #endif
-

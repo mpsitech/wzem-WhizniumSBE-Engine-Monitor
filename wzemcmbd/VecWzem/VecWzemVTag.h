@@ -67,10 +67,3 @@ namespace VecWzemVTag {
 };
 
 #endif
-
-
-
-
-
-
-

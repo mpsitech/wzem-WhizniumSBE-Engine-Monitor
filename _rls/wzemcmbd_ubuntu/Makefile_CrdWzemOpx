@@ -16,7 +16,7 @@ STATLIBFLAGS = rcs
 INCPATH = -I$(BUILDROOT)/dbswzem -I$(BUILDROOT)/wzemcmbd/VecWzem -I$(BUILDROOT)/wzemcmbd/IexWzem -I$(BUILDROOT)/wzemcmbd
 INCPATH += -I${WHIZSDKROOT}/build -I/usr/include -I/usr/include/libxml2 -I/usr/include/mariadb
 
-OBJS = CrdWzemOpx.o PnlWzemOpxList.o QryWzemOpxList.o PnlWzemOpxHeadbar.o PnlWzemOpxRec.o PnlWzemOpxDetail.o
+OBJS = CrdWzemOpx.o PnlWzemOpxList.o QryWzemOpxList.o PnlWzemOpxRec.o PnlWzemOpxDetail.o PnlWzemOpxHeadbar.o
 
 LIB = libcrdwzemopx
 
@@ -36,4 +36,3 @@ install:
 
 clean:
 	rm -f *.o
-

@@ -835,4 +835,3 @@ function handleDpchAppDoCrdopenReply() {
 		};
 	};
 };
-

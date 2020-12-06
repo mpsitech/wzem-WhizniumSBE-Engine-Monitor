@@ -371,10 +371,3 @@ bool PnlWzemPrsDetail::handleCallWzemPrsUpd_refEq(
 	// IP handleCallWzemPrsUpd_refEq --- INSERT
 	return retval;
 };
-
-
-
-
-
-
-

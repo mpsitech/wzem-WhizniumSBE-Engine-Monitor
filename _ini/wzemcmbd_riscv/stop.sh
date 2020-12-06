@@ -8,4 +8,3 @@
 
 pid=$(pgrep Wzemcmbd)
 kill -15 $pid
-
