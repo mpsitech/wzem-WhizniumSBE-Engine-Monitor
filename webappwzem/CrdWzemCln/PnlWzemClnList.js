@@ -115,9 +115,9 @@ function refreshB(chgcol) {
 			} else if (i == 3) {
 				doc.cols.push("TcoSge"); doc.widths.push(TcoSgeWidth); doc.fs.push("sge"); doc.tos.push(0); wtot += TcoSgeWidth;
 			} else if (i == 4) {
-				doc.cols.push("TcoSta"); doc.widths.push(TcoStaWidth); doc.fs.push("sta"); doc.tos.push(2); wtot += TcoStaWidth;
+				doc.cols.push("TcoSta"); doc.widths.push(TcoStaWidth); doc.fs.push("sta"); doc.tos.push(1); wtot += TcoStaWidth;
 			} else if (i == 5) {
-				doc.cols.push("TcoSto"); doc.widths.push(TcoStoWidth); doc.fs.push("sto"); doc.tos.push(1); wtot += TcoStoWidth;
+				doc.cols.push("TcoSto"); doc.widths.push(TcoStoWidth); doc.fs.push("sto"); doc.tos.push(2); wtot += TcoStoWidth;
 			} else {
 				ix--;
 			};

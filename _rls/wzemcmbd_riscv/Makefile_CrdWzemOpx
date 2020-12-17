@@ -1,8 +1,8 @@
 # file Makefile
-# make file for CrdWzemOpx card job handler, release wzemcmbd_riscv(ubuntu cross-compilation)
+# make file for CrdWzemOpx card job handler, release wzemcmbd_riscv (ubuntu cross-compilation)
 # copyright: (C) 2016-2020 MPSI Technologies GmbH
 # author: Alexander Wirthmueller (auto-generation)
-# date created: 6 Dec 2020
+# date created: 15 Dec 2020
 # IP header --- ABOVE
 
 include ../Makefile.inc
@@ -16,7 +16,7 @@ STATLIBFLAGS = rcs
 INCPATH = -I=$(BUILDROOT)/dbswzem -I=$(BUILDROOT)/wzemcmbd/VecWzem -I=$(BUILDROOT)/wzemcmbd/IexWzem -I=$(BUILDROOT)/wzemcmbd
 INCPATH += -I=${WHIZSDKROOT}/build -I=/usr/include -I=/usr/include/libxml2
 
-OBJS = CrdWzemOpx.o PnlWzemOpxList.o QryWzemOpxList.o PnlWzemOpxRec.o PnlWzemOpxDetail.o PnlWzemOpxHeadbar.o
+OBJS = CrdWzemOpx.o PnlWzemOpxList.o QryWzemOpxList.o PnlWzemOpxHeadbar.o PnlWzemOpxRec.o PnlWzemOpxDetail.o
 
 LIB = libcrdwzemopx
 

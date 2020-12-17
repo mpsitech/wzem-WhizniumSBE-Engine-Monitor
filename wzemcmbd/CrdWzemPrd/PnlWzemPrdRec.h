@@ -14,9 +14,9 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWzemPrd1NJob.h"
-#include "PnlWzemPrd1NNode.h"
 #include "PnlWzemPrd1NEvent.h"
+#include "PnlWzemPrd1NNode.h"
+#include "PnlWzemPrd1NJob.h"
 #include "PnlWzemPrdDetail.h"
 
 #define VecVWzemPrdRecDo PnlWzemPrdRec::VecVDo
@@ -74,7 +74,7 @@ public:
 	class StatApp {
 
 	public:
-		static void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true, const bool initdoneDetail = false, const bool initdone1NEvent = false, const bool initdone1NNode = false, const bool initdone1NJob = false);
+		static void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true, const bool initdoneDetail = false, const bool initdone1NJob = false, const bool initdone1NNode = false, const bool initdone1NEvent = false);
 	};
 
 	/**
@@ -85,20 +85,20 @@ public:
 	public:
 		static const Sbecore::uint IXWZEMVEXPSTATE = 1;
 		static const Sbecore::uint JREFDETAIL = 2;
-		static const Sbecore::uint JREF1NEVENT = 3;
+		static const Sbecore::uint JREF1NJOB = 3;
 		static const Sbecore::uint JREF1NNODE = 4;
-		static const Sbecore::uint JREF1NJOB = 5;
+		static const Sbecore::uint JREF1NEVENT = 5;
 		static const Sbecore::uint BUTREGULARIZEACTIVE = 6;
 
 	public:
-		StatShr(const Sbecore::uint ixWzemVExpstate = VecWzemVExpstate::REGD, const Sbecore::ubigint jrefDetail = 0, const Sbecore::ubigint jref1NEvent = 0, const Sbecore::ubigint jref1NNode = 0, const Sbecore::ubigint jref1NJob = 0, const bool ButRegularizeActive = true);
+		StatShr(const Sbecore::uint ixWzemVExpstate = VecWzemVExpstate::REGD, const Sbecore::ubigint jrefDetail = 0, const Sbecore::ubigint jref1NJob = 0, const Sbecore::ubigint jref1NNode = 0, const Sbecore::ubigint jref1NEvent = 0, const bool ButRegularizeActive = true);
 
 	public:
 		Sbecore::uint ixWzemVExpstate;
 		Sbecore::ubigint jrefDetail;
-		Sbecore::ubigint jref1NEvent;
-		Sbecore::ubigint jref1NNode;
 		Sbecore::ubigint jref1NJob;
+		Sbecore::ubigint jref1NNode;
+		Sbecore::ubigint jref1NEvent;
 		bool ButRegularizeActive;
 
 	public:
@@ -174,9 +174,9 @@ public:
 	ContInf continf;
 	StatShr statshr;
 
-	PnlWzemPrd1NJob* pnl1njob;
-	PnlWzemPrd1NNode* pnl1nnode;
 	PnlWzemPrd1NEvent* pnl1nevent;
+	PnlWzemPrd1NNode* pnl1nnode;
+	PnlWzemPrd1NJob* pnl1njob;
 	PnlWzemPrdDetail* pnldetail;
 
 	WzemMPeriod recPrd;

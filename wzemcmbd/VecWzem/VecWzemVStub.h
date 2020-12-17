@@ -16,23 +16,23 @@
 	* VecWzemVStub
 	*/
 namespace VecWzemVStub {
-	const Sbecore::uint STUBWZEMPRDSTD = 1;
-	const Sbecore::uint STUBWZEMPRSSTD = 2;
-	const Sbecore::uint STUBWZEMPSTSTD = 3;
-	const Sbecore::uint STUBWZEMSESMENU = 4;
-	const Sbecore::uint STUBWZEMSESSTD = 5;
-	const Sbecore::uint STUBWZEMOWNER = 6;
-	const Sbecore::uint STUBWZEMUSRSTD = 7;
-	const Sbecore::uint STUBWZEMGROUP = 8;
-	const Sbecore::uint STUBWZEMUSGSTD = 9;
-	const Sbecore::uint STUBWZEMCLNSTD = 10;
-	const Sbecore::uint STUBWZEMDCHSTD = 11;
-	const Sbecore::uint STUBWZEMEVTSTD = 12;
+	const Sbecore::uint STUBWZEMGROUP = 1;
+	const Sbecore::uint STUBWZEMUSGSTD = 2;
+	const Sbecore::uint STUBWZEMOWNER = 3;
+	const Sbecore::uint STUBWZEMUSRSTD = 4;
+	const Sbecore::uint STUBWZEMSESMENU = 5;
+	const Sbecore::uint STUBWZEMSESSTD = 6;
+	const Sbecore::uint STUBWZEMPSTSTD = 7;
+	const Sbecore::uint STUBWZEMPRSSTD = 8;
+	const Sbecore::uint STUBWZEMPRDSTD = 9;
+	const Sbecore::uint STUBWZEMNDESTD = 10;
+	const Sbecore::uint STUBWZEMNDEXNREF = 11;
+	const Sbecore::uint STUBWZEMOPXSTD = 12;
 	const Sbecore::uint STUBWZEMJOBSTD = 13;
 	const Sbecore::uint STUBWZEMJOBXJREF = 14;
-	const Sbecore::uint STUBWZEMOPXSTD = 15;
-	const Sbecore::uint STUBWZEMNDESTD = 16;
-	const Sbecore::uint STUBWZEMNDEXNREF = 17;
+	const Sbecore::uint STUBWZEMEVTSTD = 15;
+	const Sbecore::uint STUBWZEMDCHSTD = 16;
+	const Sbecore::uint STUBWZEMCLNSTD = 17;
 	const Sbecore::uint STUBWZEMCALSTD = 18;
 
 	Sbecore::uint getIx(const std::string& sref);

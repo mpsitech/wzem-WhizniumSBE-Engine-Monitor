@@ -162,8 +162,8 @@ void QryWzemOpxList::rerun_orderSQL(
 			, const uint preIxOrd
 		) {
 	if (preIxOrd == VecVOrd::STO) sqlstr += " ORDER BY TblWzemMOp.x1Stopu ASC";
-	else if (preIxOrd == VecVOrd::JOB) sqlstr += " ORDER BY TblWzemMOp.refWzemMJob ASC";
 	else if (preIxOrd == VecVOrd::STA) sqlstr += " ORDER BY TblWzemMOp.x1Startu ASC";
+	else if (preIxOrd == VecVOrd::JOB) sqlstr += " ORDER BY TblWzemMOp.refWzemMJob ASC";
 };
 
 void QryWzemOpxList::fetch(

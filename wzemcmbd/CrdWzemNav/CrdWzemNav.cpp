@@ -42,9 +42,9 @@ CrdWzemNav::CrdWzemNav(
 	feedFSge.tag = "FeedFSge";
 	VecVSge::fillFeed(feedFSge);
 
-	pnlmon = NULL;
-	pnladmin = NULL;
 	pnlpre = NULL;
+	pnladmin = NULL;
+	pnlmon = NULL;
 	pnlheadbar = NULL;
 	dlgloaini = NULL;
 
@@ -53,9 +53,9 @@ CrdWzemNav::CrdWzemNav(
 	set<uint> moditems;
 	refresh(dbswzem, moditems);
 
-	pnlmon = new PnlWzemNavMon(xchg, dbswzem, jref, ixWzemVLocale);
-	pnladmin = new PnlWzemNavAdmin(xchg, dbswzem, jref, ixWzemVLocale);
 	pnlpre = new PnlWzemNavPre(xchg, dbswzem, jref, ixWzemVLocale);
+	pnladmin = new PnlWzemNavAdmin(xchg, dbswzem, jref, ixWzemVLocale);
+	pnlmon = new PnlWzemNavMon(xchg, dbswzem, jref, ixWzemVLocale);
 	pnlheadbar = new PnlWzemNavHeadbar(xchg, dbswzem, jref, ixWzemVLocale);
 
 	// IP constructor.cust2 --- INSERT

@@ -170,8 +170,8 @@ void QryWzemUsgList::rerun_orderSQL(
 			string& sqlstr
 			, const uint preIxOrd
 		) {
-	if (preIxOrd == VecVOrd::SRF) sqlstr += " ORDER BY TblWzemMUsergroup.sref ASC";
-	else if (preIxOrd == VecVOrd::OWN) sqlstr += " ORDER BY TblWzemMUsergroup.own ASC";
+	if (preIxOrd == VecVOrd::OWN) sqlstr += " ORDER BY TblWzemMUsergroup.own ASC";
+	else if (preIxOrd == VecVOrd::SRF) sqlstr += " ORDER BY TblWzemMUsergroup.sref ASC";
 	else if (preIxOrd == VecVOrd::GRP) sqlstr += " ORDER BY TblWzemMUsergroup.grp ASC";
 };
 

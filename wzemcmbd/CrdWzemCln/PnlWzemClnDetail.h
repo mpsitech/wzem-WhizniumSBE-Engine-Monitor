@@ -330,8 +330,8 @@ public:
 
 private:
 	bool handleCallWzemClnJMod_clnEq(DbsWzem* dbswzem, const Sbecore::ubigint jrefTrig);
-	bool handleCallWzemCln_tjbEq(DbsWzem* dbswzem, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 	bool handleCallWzemClnUpd_refEq(DbsWzem* dbswzem, const Sbecore::ubigint jrefTrig);
+	bool handleCallWzemCln_tjbEq(DbsWzem* dbswzem, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 	bool handleCallWzemCln_jobEq(DbsWzem* dbswzem, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 
 };

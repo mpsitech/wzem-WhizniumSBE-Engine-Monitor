@@ -1,8 +1,8 @@
 # file Makefile
-# make file for CrdWzemJob card job handler, release wzemcmbd_riscv(ubuntu cross-compilation)
+# make file for CrdWzemJob card job handler, release wzemcmbd_riscv (ubuntu cross-compilation)
 # copyright: (C) 2016-2020 MPSI Technologies GmbH
 # author: Alexander Wirthmueller (auto-generation)
-# date created: 6 Dec 2020
+# date created: 15 Dec 2020
 # IP header --- ABOVE
 
 include ../Makefile.inc
@@ -16,7 +16,7 @@ STATLIBFLAGS = rcs
 INCPATH = -I=$(BUILDROOT)/dbswzem -I=$(BUILDROOT)/wzemcmbd/VecWzem -I=$(BUILDROOT)/wzemcmbd/IexWzem -I=$(BUILDROOT)/wzemcmbd
 INCPATH += -I=${WHIZSDKROOT}/build -I=/usr/include -I=/usr/include/libxml2
 
-OBJS = CrdWzemJob.o PnlWzemJobList.o QryWzemJobList.o PnlWzemJobHeadbar.o PnlWzemJobRec.o PnlWzemJobSup1NJob.o QryWzemJobSup1NJob.o PnlWzemJob1NOp.o QryWzemJob1NOp.o PnlWzemJob1NCall.o QryWzemJob1NCall.o PnlWzemJob1NPreset.o QryWzemJob1NPreset.o PnlWzemJob1NClstn.o QryWzemJob1NClstn.o PnlWzemJobDetail.o
+OBJS = CrdWzemJob.o PnlWzemJobList.o QryWzemJobList.o PnlWzemJobHeadbar.o PnlWzemJobRec.o PnlWzemJob1NClstn.o QryWzemJob1NClstn.o PnlWzemJobSup1NJob.o QryWzemJobSup1NJob.o PnlWzemJob1NPreset.o QryWzemJob1NPreset.o PnlWzemJob1NOp.o QryWzemJob1NOp.o PnlWzemJob1NCall.o QryWzemJob1NCall.o PnlWzemJobDetail.o
 
 LIB = libcrdwzemjob
 

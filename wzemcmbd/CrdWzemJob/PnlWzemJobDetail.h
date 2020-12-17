@@ -270,9 +270,9 @@ public:
 
 	WzemMJob recJob;
 
-	WzemJMJobDcol recJobJdcl;
-
 	WzemJMJobStmgr recJobJstm;
+
+	WzemJMJobDcol recJobJdcl;
 
 	bool dirty;
 
@@ -285,8 +285,8 @@ public:
 	DpchEngWzem* getNewDpchEng(std::set<Sbecore::uint> items);
 
 	void refreshRecJob(DbsWzem* dbswzem, std::set<Sbecore::uint>& moditems);
-	void refreshRecJobJdcl(DbsWzem* dbswzem, std::set<Sbecore::uint>& moditems);
 	void refreshRecJobJstm(DbsWzem* dbswzem, std::set<Sbecore::uint>& moditems);
+	void refreshRecJobJdcl(DbsWzem* dbswzem, std::set<Sbecore::uint>& moditems);
 
 	void refresh(DbsWzem* dbswzem, std::set<Sbecore::uint>& moditems, const bool unmute = false);
 
@@ -310,8 +310,8 @@ public:
 	void handleCall(DbsWzem* dbswzem, Sbecore::Call* call);
 
 private:
-	bool handleCallWzemJobJstmMod_jobEq(DbsWzem* dbswzem, const Sbecore::ubigint jrefTrig);
 	bool handleCallWzemJobJdclMod_jobEq(DbsWzem* dbswzem, const Sbecore::ubigint jrefTrig);
+	bool handleCallWzemJobJstmMod_jobEq(DbsWzem* dbswzem, const Sbecore::ubigint jrefTrig);
 	bool handleCallWzemJobUpd_refEq(DbsWzem* dbswzem, const Sbecore::ubigint jrefTrig);
 	bool handleCallWzemJob_supEq(DbsWzem* dbswzem, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 	bool handleCallWzemJob_prdEq(DbsWzem* dbswzem, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);

@@ -14,9 +14,9 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWzemNavMon.h"
-#include "PnlWzemNavAdmin.h"
 #include "PnlWzemNavPre.h"
+#include "PnlWzemNavAdmin.h"
+#include "PnlWzemNavMon.h"
 #include "PnlWzemNavHeadbar.h"
 #include "DlgWzemNavLoaini.h"
 
@@ -272,9 +272,9 @@ public:
 	Sbecore::Xmlio::Feed feedFMcbAlert;
 	Sbecore::Xmlio::Feed feedFSge;
 
-	PnlWzemNavMon* pnlmon;
-	PnlWzemNavAdmin* pnladmin;
 	PnlWzemNavPre* pnlpre;
+	PnlWzemNavAdmin* pnladmin;
+	PnlWzemNavMon* pnlmon;
 	PnlWzemNavHeadbar* pnlheadbar;
 	DlgWzemNavLoaini* dlgloaini;
 

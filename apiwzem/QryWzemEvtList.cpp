@@ -22,8 +22,8 @@ uint QryWzemEvtList::VecVOrd::getIx(
 		) {
 	string s = StrMod::lc(sref);
 
-	if (s == "sta") return STA;
 	if (s == "prd") return PRD;
+	if (s == "sta") return STA;
 	if (s == "typ") return TYP;
 
 	return(0);
@@ -32,8 +32,8 @@ uint QryWzemEvtList::VecVOrd::getIx(
 string QryWzemEvtList::VecVOrd::getSref(
 			const uint ix
 		) {
-	if (ix == STA) return("sta");
 	if (ix == PRD) return("prd");
+	if (ix == STA) return("sta");
 	if (ix == TYP) return("typ");
 
 	return("");

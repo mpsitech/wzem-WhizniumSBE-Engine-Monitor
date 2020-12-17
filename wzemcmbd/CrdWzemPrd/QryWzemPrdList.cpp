@@ -171,8 +171,8 @@ void QryWzemPrdList::rerun_orderSQL(
 			, const uint preIxOrd
 		) {
 	if (preIxOrd == VecVOrd::STA) sqlstr += " ORDER BY TblWzemMPeriod.start ASC";
-	else if (preIxOrd == VecVOrd::OWN) sqlstr += " ORDER BY TblWzemMPeriod.own ASC";
 	else if (preIxOrd == VecVOrd::GRP) sqlstr += " ORDER BY TblWzemMPeriod.grp ASC";
+	else if (preIxOrd == VecVOrd::OWN) sqlstr += " ORDER BY TblWzemMPeriod.own ASC";
 };
 
 void QryWzemPrdList::fetch(

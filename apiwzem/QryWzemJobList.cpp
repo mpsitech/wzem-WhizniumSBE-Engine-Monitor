@@ -24,8 +24,8 @@ uint QryWzemJobList::VecVOrd::getIx(
 
 	if (s == "sup") return SUP;
 	if (s == "sto") return STO;
-	if (s == "sta") return STA;
 	if (s == "prd") return PRD;
+	if (s == "sta") return STA;
 
 	return(0);
 };
@@ -35,8 +35,8 @@ string QryWzemJobList::VecVOrd::getSref(
 		) {
 	if (ix == SUP) return("sup");
 	if (ix == STO) return("sto");
-	if (ix == STA) return("sta");
 	if (ix == PRD) return("prd");
+	if (ix == STA) return("sta");
 
 	return("");
 };

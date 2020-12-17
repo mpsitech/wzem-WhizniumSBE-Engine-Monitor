@@ -161,7 +161,7 @@ uint IexWzemIni::ImeIAVControlPar::VecWIel::getIx(
 	uint ix = 0;
 
 	vector<string> ss;
-	StrMod::stringToVector(StrMod::lc(srefs), ss);
+	StrMod::srefsToVector(StrMod::lc(srefs), ss);
 
 	for (unsigned int i = 0; i < ss.size(); i++) {
 		if (ss[i] == "srefixwzemvcontrol") ix |= SREFIXWZEMVCONTROL;
@@ -406,7 +406,7 @@ uint IexWzemIni::ImeIJAVKeylistKey::VecWIel::getIx(
 	uint ix = 0;
 
 	vector<string> ss;
-	StrMod::stringToVector(StrMod::lc(srefs), ss);
+	StrMod::srefsToVector(StrMod::lc(srefs), ss);
 
 	for (unsigned int i = 0; i < ss.size(); i++) {
 		if (ss[i] == "srefx1ixwzemvlocale") ix |= SREFX1IXWZEMVLOCALE;
@@ -687,7 +687,7 @@ uint IexWzemIni::ImeIAVKeylistKey::VecWIel::getIx(
 	uint ix = 0;
 
 	vector<string> ss;
-	StrMod::stringToVector(StrMod::lc(srefs), ss);
+	StrMod::srefsToVector(StrMod::lc(srefs), ss);
 
 	for (unsigned int i = 0; i < ss.size(); i++) {
 		if (ss[i] == "srefklsixwzemvkeylist") ix |= SREFKLSIXWZEMVKEYLIST;
@@ -938,7 +938,7 @@ uint IexWzemIni::ImeIAVValuelistVal::VecWIel::getIx(
 	uint ix = 0;
 
 	vector<string> ss;
-	StrMod::stringToVector(StrMod::lc(srefs), ss);
+	StrMod::srefsToVector(StrMod::lc(srefs), ss);
 
 	for (unsigned int i = 0; i < ss.size(); i++) {
 		if (ss[i] == "srefvlsixwzemvvaluelist") ix |= SREFVLSIXWZEMVVALUELIST;
@@ -1183,7 +1183,7 @@ uint IexWzemIni::ImeIAMUsergroupAccess::VecWIel::getIx(
 	uint ix = 0;
 
 	vector<string> ss;
-	StrMod::stringToVector(StrMod::lc(srefs), ss);
+	StrMod::srefsToVector(StrMod::lc(srefs), ss);
 
 	for (unsigned int i = 0; i < ss.size(); i++) {
 		if (ss[i] == "srefx1ixwzemvfeatgroup") ix |= SREFX1IXWZEMVFEATGROUP;
@@ -1431,7 +1431,7 @@ uint IexWzemIni::ImeIAMUserAccess::VecWIel::getIx(
 	uint ix = 0;
 
 	vector<string> ss;
-	StrMod::stringToVector(StrMod::lc(srefs), ss);
+	StrMod::srefsToVector(StrMod::lc(srefs), ss);
 
 	for (unsigned int i = 0; i < ss.size(); i++) {
 		if (ss[i] == "srefx1ixwzemvfeatgroup") ix |= SREFX1IXWZEMVFEATGROUP;
@@ -1668,7 +1668,7 @@ uint IexWzemIni::ImeIJMUserState::VecWIel::getIx(
 	uint ix = 0;
 
 	vector<string> ss;
-	StrMod::stringToVector(StrMod::lc(srefs), ss);
+	StrMod::srefsToVector(StrMod::lc(srefs), ss);
 
 	for (unsigned int i = 0; i < ss.size(); i++) {
 		if (ss[i] == "srefixvstate") ix |= SREFIXVSTATE;
@@ -1901,7 +1901,7 @@ uint IexWzemIni::ImeIJMPersonLastname::VecWIel::getIx(
 	uint ix = 0;
 
 	vector<string> ss;
-	StrMod::stringToVector(StrMod::lc(srefs), ss);
+	StrMod::srefsToVector(StrMod::lc(srefs), ss);
 
 	for (unsigned int i = 0; i < ss.size(); i++) {
 		if (ss[i] == "lastname") ix |= LASTNAME;
@@ -2164,7 +2164,7 @@ uint IexWzemIni::ImeIMPerson::VecWIel::getIx(
 	uint ix = 0;
 
 	vector<string> ss;
-	StrMod::stringToVector(StrMod::lc(srefs), ss);
+	StrMod::srefsToVector(StrMod::lc(srefs), ss);
 
 	for (unsigned int i = 0; i < ss.size(); i++) {
 		if (ss[i] == "srefixvsex") ix |= SREFIXVSEX;
@@ -2467,7 +2467,7 @@ uint IexWzemIni::ImeIMUser::VecWIel::getIx(
 	uint ix = 0;
 
 	vector<string> ss;
-	StrMod::stringToVector(StrMod::lc(srefs), ss);
+	StrMod::srefsToVector(StrMod::lc(srefs), ss);
 
 	for (unsigned int i = 0; i < ss.size(); i++) {
 		if (ss[i] == "sref") ix |= SREF;
@@ -2735,7 +2735,7 @@ uint IexWzemIni::ImeIMUsergroup::VecWIel::getIx(
 	uint ix = 0;
 
 	vector<string> ss;
-	StrMod::stringToVector(StrMod::lc(srefs), ss);
+	StrMod::srefsToVector(StrMod::lc(srefs), ss);
 
 	for (unsigned int i = 0; i < ss.size(); i++) {
 		if (ss[i] == "sref") ix |= SREF;

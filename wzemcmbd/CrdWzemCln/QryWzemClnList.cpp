@@ -46,8 +46,8 @@ QryWzemClnList::QryWzemClnList(
 
 	rerun(dbswzem);
 
-	xchg->addClstn(VecWzemVCall::CALLWZEMSTUBCHG, jref, Clstn::VecVJobmask::SELF, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 	xchg->addClstn(VecWzemVCall::CALLWZEMCLNMOD, jref, Clstn::VecVJobmask::ALL, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
+	xchg->addClstn(VecWzemVCall::CALLWZEMSTUBCHG, jref, Clstn::VecVJobmask::SELF, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 
 	// IP constructor.cust3 --- INSERT
 
@@ -161,8 +161,8 @@ void QryWzemClnList::rerun_orderSQL(
 			string& sqlstr
 			, const uint preIxOrd
 		) {
-	if (preIxOrd == VecVOrd::STO) sqlstr += " ORDER BY TblWzemMClstn.x1Stopu ASC";
-	else if (preIxOrd == VecVOrd::STA) sqlstr += " ORDER BY TblWzemMClstn.x1Startu ASC";
+	if (preIxOrd == VecVOrd::STA) sqlstr += " ORDER BY TblWzemMClstn.x1Startu ASC";
+	else if (preIxOrd == VecVOrd::STO) sqlstr += " ORDER BY TblWzemMClstn.x1Stopu ASC";
 	else if (preIxOrd == VecVOrd::JOB) sqlstr += " ORDER BY TblWzemMClstn.refWzemMJob ASC";
 };
 
@@ -330,10 +330,10 @@ void QryWzemClnList::handleCall(
 		) {
 	if (call->ixVCall == VecWzemVCall::CALLWZEMCLNUPD_REFEQ) {
 		call->abort = handleCallWzemClnUpd_refEq(dbswzem, call->jref);
-	} else if ((call->ixVCall == VecWzemVCall::CALLWZEMSTUBCHG) && (call->jref == jref)) {
-		call->abort = handleCallWzemStubChgFromSelf(dbswzem);
 	} else if (call->ixVCall == VecWzemVCall::CALLWZEMCLNMOD) {
 		call->abort = handleCallWzemClnMod(dbswzem, call->jref);
+	} else if ((call->ixVCall == VecWzemVCall::CALLWZEMSTUBCHG) && (call->jref == jref)) {
+		call->abort = handleCallWzemStubChgFromSelf(dbswzem);
 	};
 };
 
@@ -351,14 +351,6 @@ bool QryWzemClnList::handleCallWzemClnUpd_refEq(
 	return retval;
 };
 
-bool QryWzemClnList::handleCallWzemStubChgFromSelf(
-			DbsWzem* dbswzem
-		) {
-	bool retval = false;
-	// IP handleCallWzemStubChgFromSelf --- INSERT
-	return retval;
-};
-
 bool QryWzemClnList::handleCallWzemClnMod(
 			DbsWzem* dbswzem
 			, const ubigint jrefTrig
@@ -370,5 +362,13 @@ bool QryWzemClnList::handleCallWzemClnMod(
 		xchg->triggerCall(dbswzem, VecWzemVCall::CALLWZEMSTATCHG, jref);
 	};
 
+	return retval;
+};
+
+bool QryWzemClnList::handleCallWzemStubChgFromSelf(
+			DbsWzem* dbswzem
+		) {
+	bool retval = false;
+	// IP handleCallWzemStubChgFromSelf --- INSERT
 	return retval;
 };

@@ -33,8 +33,8 @@ public:
 
 	public:
 		static const Sbecore::uint STO = 1;
-		static const Sbecore::uint JOB = 2;
-		static const Sbecore::uint STA = 3;
+		static const Sbecore::uint STA = 2;
+		static const Sbecore::uint JOB = 3;
 
 		static Sbecore::uint getIx(const std::string& sref);
 		static std::string getSref(const Sbecore::uint ix);

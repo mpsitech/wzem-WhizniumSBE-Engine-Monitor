@@ -1,9 +1,9 @@
 #!/bin/bash
 # file makeall.sh
-# make script for Wzem API library, release apiwzem_plnx(ubuntu cross-compilation)
+# make script for Wzem API library, release apiwzem_plnx (ubuntu cross-compilation)
 # copyright: (C) 2016-2020 MPSI Technologies GmbH
 # author: Alexander Wirthmueller (auto-generation)
-# date created: 6 Dec 2020
+# date created: 15 Dec 2020
 # IP header --- ABOVE
 
 if [ -z ${WHIZROOT+x} ]; then

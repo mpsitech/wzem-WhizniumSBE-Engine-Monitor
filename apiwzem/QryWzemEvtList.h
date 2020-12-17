@@ -28,8 +28,8 @@ namespace QryWzemEvtList {
 	class VecVOrd {
 
 	public:
-		static const Sbecore::uint STA = 1;
-		static const Sbecore::uint PRD = 2;
+		static const Sbecore::uint PRD = 1;
+		static const Sbecore::uint STA = 2;
 		static const Sbecore::uint TYP = 3;
 
 		static Sbecore::uint getIx(const std::string& sref);

@@ -170,8 +170,8 @@ void QryWzemJobList::rerun_orderSQL(
 		) {
 	if (preIxOrd == VecVOrd::SUP) sqlstr += " ORDER BY TblWzemMJob.supRefWzemMJob ASC";
 	else if (preIxOrd == VecVOrd::STO) sqlstr += " ORDER BY TblWzemMJob.x1Stopu ASC";
-	else if (preIxOrd == VecVOrd::STA) sqlstr += " ORDER BY TblWzemMJob.x1Startu ASC";
 	else if (preIxOrd == VecVOrd::PRD) sqlstr += " ORDER BY TblWzemMJob.refWzemMPeriod ASC";
+	else if (preIxOrd == VecVOrd::STA) sqlstr += " ORDER BY TblWzemMJob.x1Startu ASC";
 };
 
 void QryWzemJobList::fetch(

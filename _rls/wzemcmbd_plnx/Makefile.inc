@@ -1,8 +1,8 @@
 # file Makefile.inc
-# make file paths for Wzem combined daemon, release wzemcmbd_plnx(ubuntu cross-compilation)
+# make file paths for Wzem combined daemon, release wzemcmbd_plnx (ubuntu cross-compilation)
 # copyright: (C) 2016-2020 MPSI Technologies GmbH
 # author: Alexander Wirthmueller (auto-generation)
-# date created: 6 Dec 2020
+# date created: 15 Dec 2020
 # IP header --- ABOVE
 
 BUILDROOT = ${WHIZSDKROOT}/build

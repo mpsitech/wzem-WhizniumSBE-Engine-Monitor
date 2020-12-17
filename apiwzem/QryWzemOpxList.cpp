@@ -23,8 +23,8 @@ uint QryWzemOpxList::VecVOrd::getIx(
 	string s = StrMod::lc(sref);
 
 	if (s == "sto") return STO;
-	if (s == "job") return JOB;
 	if (s == "sta") return STA;
+	if (s == "job") return JOB;
 
 	return(0);
 };
@@ -33,8 +33,8 @@ string QryWzemOpxList::VecVOrd::getSref(
 			const uint ix
 		) {
 	if (ix == STO) return("sto");
-	if (ix == JOB) return("job");
 	if (ix == STA) return("sta");
+	if (ix == JOB) return("job");
 
 	return("");
 };

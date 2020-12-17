@@ -104,22 +104,22 @@ set<uint> PnlWzemJobRec::ContInf::diff(
 
 PnlWzemJobRec::StatApp::StatApp(
 			const bool initdoneDetail
-			, const bool initdone1NClstn
-			, const bool initdone1NPreset
-			, const bool initdone1NCall
 			, const bool initdone1NOp
+			, const bool initdone1NCall
+			, const bool initdone1NPreset
+			, const bool initdone1NClstn
 			, const bool initdoneSup1NJob
 		) :
 			Block()
 		{
 	this->initdoneDetail = initdoneDetail;
-	this->initdone1NClstn = initdone1NClstn;
-	this->initdone1NPreset = initdone1NPreset;
-	this->initdone1NCall = initdone1NCall;
 	this->initdone1NOp = initdone1NOp;
+	this->initdone1NCall = initdone1NCall;
+	this->initdone1NPreset = initdone1NPreset;
+	this->initdone1NClstn = initdone1NClstn;
 	this->initdoneSup1NJob = initdoneSup1NJob;
 
-	mask = {INITDONEDETAIL, INITDONE1NCLSTN, INITDONE1NPRESET, INITDONE1NCALL, INITDONE1NOP, INITDONESUP1NJOB};
+	mask = {INITDONEDETAIL, INITDONE1NOP, INITDONE1NCALL, INITDONE1NPRESET, INITDONE1NCLSTN, INITDONESUP1NJOB};
 };
 
 bool PnlWzemJobRec::StatApp::readXML(
@@ -140,10 +140,10 @@ bool PnlWzemJobRec::StatApp::readXML(
 
 	if (basefound) {
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneDetail", initdoneDetail)) add(INITDONEDETAIL);
-		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdone1NClstn", initdone1NClstn)) add(INITDONE1NCLSTN);
-		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdone1NPreset", initdone1NPreset)) add(INITDONE1NPRESET);
-		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdone1NCall", initdone1NCall)) add(INITDONE1NCALL);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdone1NOp", initdone1NOp)) add(INITDONE1NOP);
+		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdone1NCall", initdone1NCall)) add(INITDONE1NCALL);
+		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdone1NPreset", initdone1NPreset)) add(INITDONE1NPRESET);
+		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdone1NClstn", initdone1NClstn)) add(INITDONE1NCLSTN);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneSup1NJob", initdoneSup1NJob)) add(INITDONESUP1NJOB);
 	};
 
@@ -156,10 +156,10 @@ set<uint> PnlWzemJobRec::StatApp::comm(
 	set<uint> items;
 
 	if (initdoneDetail == comp->initdoneDetail) insert(items, INITDONEDETAIL);
-	if (initdone1NClstn == comp->initdone1NClstn) insert(items, INITDONE1NCLSTN);
-	if (initdone1NPreset == comp->initdone1NPreset) insert(items, INITDONE1NPRESET);
-	if (initdone1NCall == comp->initdone1NCall) insert(items, INITDONE1NCALL);
 	if (initdone1NOp == comp->initdone1NOp) insert(items, INITDONE1NOP);
+	if (initdone1NCall == comp->initdone1NCall) insert(items, INITDONE1NCALL);
+	if (initdone1NPreset == comp->initdone1NPreset) insert(items, INITDONE1NPRESET);
+	if (initdone1NClstn == comp->initdone1NClstn) insert(items, INITDONE1NCLSTN);
 	if (initdoneSup1NJob == comp->initdoneSup1NJob) insert(items, INITDONESUP1NJOB);
 
 	return(items);
@@ -173,7 +173,7 @@ set<uint> PnlWzemJobRec::StatApp::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {INITDONEDETAIL, INITDONE1NCLSTN, INITDONE1NPRESET, INITDONE1NCALL, INITDONE1NOP, INITDONESUP1NJOB};
+	diffitems = {INITDONEDETAIL, INITDONE1NOP, INITDONE1NCALL, INITDONE1NPRESET, INITDONE1NCLSTN, INITDONESUP1NJOB};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);
@@ -186,10 +186,10 @@ set<uint> PnlWzemJobRec::StatApp::diff(
 PnlWzemJobRec::StatShr::StatShr(
 			const uint ixWzemVExpstate
 			, const string& scrJrefDetail
-			, const string& scrJref1NClstn
-			, const string& scrJref1NPreset
-			, const string& scrJref1NCall
 			, const string& scrJref1NOp
+			, const string& scrJref1NCall
+			, const string& scrJref1NPreset
+			, const string& scrJref1NClstn
 			, const string& scrJrefSup1NJob
 			, const bool ButRegularizeActive
 		) :
@@ -197,14 +197,14 @@ PnlWzemJobRec::StatShr::StatShr(
 		{
 	this->ixWzemVExpstate = ixWzemVExpstate;
 	this->scrJrefDetail = scrJrefDetail;
-	this->scrJref1NClstn = scrJref1NClstn;
-	this->scrJref1NPreset = scrJref1NPreset;
-	this->scrJref1NCall = scrJref1NCall;
 	this->scrJref1NOp = scrJref1NOp;
+	this->scrJref1NCall = scrJref1NCall;
+	this->scrJref1NPreset = scrJref1NPreset;
+	this->scrJref1NClstn = scrJref1NClstn;
 	this->scrJrefSup1NJob = scrJrefSup1NJob;
 	this->ButRegularizeActive = ButRegularizeActive;
 
-	mask = {IXWZEMVEXPSTATE, SCRJREFDETAIL, SCRJREF1NCLSTN, SCRJREF1NPRESET, SCRJREF1NCALL, SCRJREF1NOP, SCRJREFSUP1NJOB, BUTREGULARIZEACTIVE};
+	mask = {IXWZEMVEXPSTATE, SCRJREFDETAIL, SCRJREF1NOP, SCRJREF1NCALL, SCRJREF1NPRESET, SCRJREF1NCLSTN, SCRJREFSUP1NJOB, BUTREGULARIZEACTIVE};
 };
 
 bool PnlWzemJobRec::StatShr::readXML(
@@ -231,10 +231,10 @@ bool PnlWzemJobRec::StatShr::readXML(
 			add(IXWZEMVEXPSTATE);
 		};
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefDetail", scrJrefDetail)) add(SCRJREFDETAIL);
-		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJref1NClstn", scrJref1NClstn)) add(SCRJREF1NCLSTN);
-		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJref1NPreset", scrJref1NPreset)) add(SCRJREF1NPRESET);
-		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJref1NCall", scrJref1NCall)) add(SCRJREF1NCALL);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJref1NOp", scrJref1NOp)) add(SCRJREF1NOP);
+		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJref1NCall", scrJref1NCall)) add(SCRJREF1NCALL);
+		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJref1NPreset", scrJref1NPreset)) add(SCRJREF1NPRESET);
+		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJref1NClstn", scrJref1NClstn)) add(SCRJREF1NCLSTN);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefSup1NJob", scrJrefSup1NJob)) add(SCRJREFSUP1NJOB);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "ButRegularizeActive", ButRegularizeActive)) add(BUTREGULARIZEACTIVE);
 	};
@@ -249,10 +249,10 @@ set<uint> PnlWzemJobRec::StatShr::comm(
 
 	if (ixWzemVExpstate == comp->ixWzemVExpstate) insert(items, IXWZEMVEXPSTATE);
 	if (scrJrefDetail == comp->scrJrefDetail) insert(items, SCRJREFDETAIL);
-	if (scrJref1NClstn == comp->scrJref1NClstn) insert(items, SCRJREF1NCLSTN);
-	if (scrJref1NPreset == comp->scrJref1NPreset) insert(items, SCRJREF1NPRESET);
-	if (scrJref1NCall == comp->scrJref1NCall) insert(items, SCRJREF1NCALL);
 	if (scrJref1NOp == comp->scrJref1NOp) insert(items, SCRJREF1NOP);
+	if (scrJref1NCall == comp->scrJref1NCall) insert(items, SCRJREF1NCALL);
+	if (scrJref1NPreset == comp->scrJref1NPreset) insert(items, SCRJREF1NPRESET);
+	if (scrJref1NClstn == comp->scrJref1NClstn) insert(items, SCRJREF1NCLSTN);
 	if (scrJrefSup1NJob == comp->scrJrefSup1NJob) insert(items, SCRJREFSUP1NJOB);
 	if (ButRegularizeActive == comp->ButRegularizeActive) insert(items, BUTREGULARIZEACTIVE);
 
@@ -267,7 +267,7 @@ set<uint> PnlWzemJobRec::StatShr::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {IXWZEMVEXPSTATE, SCRJREFDETAIL, SCRJREF1NCLSTN, SCRJREF1NPRESET, SCRJREF1NCALL, SCRJREF1NOP, SCRJREFSUP1NJOB, BUTREGULARIZEACTIVE};
+	diffitems = {IXWZEMVEXPSTATE, SCRJREFDETAIL, SCRJREF1NOP, SCRJREF1NCALL, SCRJREF1NPRESET, SCRJREF1NCLSTN, SCRJREFSUP1NJOB, BUTREGULARIZEACTIVE};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);

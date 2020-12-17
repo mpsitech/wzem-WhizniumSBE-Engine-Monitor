@@ -125,27 +125,6 @@ void PnlWzemJobDetail::refreshRecJob(
 
 };
 
-void PnlWzemJobDetail::refreshRecJobJdcl(
-			DbsWzem* dbswzem
-			, set<uint>& moditems
-		) {
-	ContIac oldContiac(contiac);
-	ContInf oldContinf(continf);
-	StatShr oldStatshr(statshr);
-
-	WzemJMJobDcol* _recJobJdcl = NULL;
-
-	if (dbswzem->tblwzemjmjobdcol->loadRecByRef(recJobJdcl.ref, &_recJobJdcl)) {
-		recJobJdcl = *_recJobJdcl;
-		delete _recJobJdcl;
-	} else recJobJdcl = WzemJMJobDcol();
-
-	if (contiac.diff(&oldContiac).size() != 0) insert(moditems, DpchEngData::CONTIAC);
-	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
-	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
-
-};
-
 void PnlWzemJobDetail::refreshRecJobJstm(
 			DbsWzem* dbswzem
 			, set<uint>& moditems
@@ -160,6 +139,27 @@ void PnlWzemJobDetail::refreshRecJobJstm(
 		recJobJstm = *_recJobJstm;
 		delete _recJobJstm;
 	} else recJobJstm = WzemJMJobStmgr();
+
+	if (contiac.diff(&oldContiac).size() != 0) insert(moditems, DpchEngData::CONTIAC);
+	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
+	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
+
+};
+
+void PnlWzemJobDetail::refreshRecJobJdcl(
+			DbsWzem* dbswzem
+			, set<uint>& moditems
+		) {
+	ContIac oldContiac(contiac);
+	ContInf oldContinf(continf);
+	StatShr oldStatshr(statshr);
+
+	WzemJMJobDcol* _recJobJdcl = NULL;
+
+	if (dbswzem->tblwzemjmjobdcol->loadRecByRef(recJobJdcl.ref, &_recJobJdcl)) {
+		recJobJdcl = *_recJobJdcl;
+		delete _recJobJdcl;
+	} else recJobJdcl = WzemJMJobDcol();
 
 	if (contiac.diff(&oldContiac).size() != 0) insert(moditems, DpchEngData::CONTIAC);
 	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
@@ -330,10 +330,10 @@ void PnlWzemJobDetail::handleCall(
 			DbsWzem* dbswzem
 			, Call* call
 		) {
-	if (call->ixVCall == VecWzemVCall::CALLWZEMJOBJSTMMOD_JOBEQ) {
-		call->abort = handleCallWzemJobJstmMod_jobEq(dbswzem, call->jref);
-	} else if (call->ixVCall == VecWzemVCall::CALLWZEMJOBJDCLMOD_JOBEQ) {
+	if (call->ixVCall == VecWzemVCall::CALLWZEMJOBJDCLMOD_JOBEQ) {
 		call->abort = handleCallWzemJobJdclMod_jobEq(dbswzem, call->jref);
+	} else if (call->ixVCall == VecWzemVCall::CALLWZEMJOBJSTMMOD_JOBEQ) {
+		call->abort = handleCallWzemJobJstmMod_jobEq(dbswzem, call->jref);
 	} else if (call->ixVCall == VecWzemVCall::CALLWZEMJOBUPD_REFEQ) {
 		call->abort = handleCallWzemJobUpd_refEq(dbswzem, call->jref);
 	} else if (call->ixVCall == VecWzemVCall::CALLWZEMJOB_SUPEQ) {
@@ -343,21 +343,21 @@ void PnlWzemJobDetail::handleCall(
 	};
 };
 
-bool PnlWzemJobDetail::handleCallWzemJobJstmMod_jobEq(
-			DbsWzem* dbswzem
-			, const ubigint jrefTrig
-		) {
-	bool retval = false;
-	// IP handleCallWzemJobJstmMod_jobEq --- INSERT
-	return retval;
-};
-
 bool PnlWzemJobDetail::handleCallWzemJobJdclMod_jobEq(
 			DbsWzem* dbswzem
 			, const ubigint jrefTrig
 		) {
 	bool retval = false;
 	// IP handleCallWzemJobJdclMod_jobEq --- INSERT
+	return retval;
+};
+
+bool PnlWzemJobDetail::handleCallWzemJobJstmMod_jobEq(
+			DbsWzem* dbswzem
+			, const ubigint jrefTrig
+		) {
+	bool retval = false;
+	// IP handleCallWzemJobJstmMod_jobEq --- INSERT
 	return retval;
 };
 

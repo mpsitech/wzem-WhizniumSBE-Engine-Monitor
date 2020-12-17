@@ -22,10 +22,10 @@
 #include "CrdWzemJob.h"
 #include "CrdWzemEvt.h"
 #include "CrdWzemPrd.h"
-#include "CrdWzemNav.h"
 #include "CrdWzemPrs.h"
 #include "CrdWzemUsr.h"
 #include "CrdWzemUsg.h"
+#include "CrdWzemNav.h"
 
 #define StatShrSessWzem SessWzem::StatShr
 
@@ -97,10 +97,10 @@ public:
 	std::list<CrdWzemJob*> crdjobs;
 	std::list<CrdWzemEvt*> crdevts;
 	std::list<CrdWzemPrd*> crdprds;
-	CrdWzemNav* crdnav;
 	std::list<CrdWzemPrs*> crdprss;
 	std::list<CrdWzemUsr*> crdusrs;
 	std::list<CrdWzemUsg*> crdusgs;
+	CrdWzemNav* crdnav;
 
 	std::map<Sbecore::ubigint,Sbecore::uint> usgaccs;
 

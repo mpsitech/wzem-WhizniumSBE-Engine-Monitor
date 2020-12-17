@@ -98,10 +98,10 @@ void PnlWzemJobRec::StatApp::writeXML(
 			, string difftag
 			, bool shorttags
 			, const bool initdoneDetail
-			, const bool initdone1NClstn
-			, const bool initdone1NPreset
-			, const bool initdone1NCall
 			, const bool initdone1NOp
+			, const bool initdone1NCall
+			, const bool initdone1NPreset
+			, const bool initdone1NClstn
 			, const bool initdoneSup1NJob
 		) {
 	if (difftag.length() == 0) difftag = "StatAppWzemJobRec";
@@ -112,10 +112,10 @@ void PnlWzemJobRec::StatApp::writeXML(
 
 	xmlTextWriterStartElement(wr, BAD_CAST difftag.c_str());
 		writeBoolAttr(wr, itemtag, "sref", "initdoneDetail", initdoneDetail);
-		writeBoolAttr(wr, itemtag, "sref", "initdone1NClstn", initdone1NClstn);
-		writeBoolAttr(wr, itemtag, "sref", "initdone1NPreset", initdone1NPreset);
-		writeBoolAttr(wr, itemtag, "sref", "initdone1NCall", initdone1NCall);
 		writeBoolAttr(wr, itemtag, "sref", "initdone1NOp", initdone1NOp);
+		writeBoolAttr(wr, itemtag, "sref", "initdone1NCall", initdone1NCall);
+		writeBoolAttr(wr, itemtag, "sref", "initdone1NPreset", initdone1NPreset);
+		writeBoolAttr(wr, itemtag, "sref", "initdone1NClstn", initdone1NClstn);
 		writeBoolAttr(wr, itemtag, "sref", "initdoneSup1NJob", initdoneSup1NJob);
 	xmlTextWriterEndElement(wr);
 };
@@ -127,10 +127,10 @@ void PnlWzemJobRec::StatApp::writeXML(
 PnlWzemJobRec::StatShr::StatShr(
 			const uint ixWzemVExpstate
 			, const ubigint jrefDetail
-			, const ubigint jref1NClstn
-			, const ubigint jref1NPreset
-			, const ubigint jref1NCall
 			, const ubigint jref1NOp
+			, const ubigint jref1NCall
+			, const ubigint jref1NPreset
+			, const ubigint jref1NClstn
 			, const ubigint jrefSup1NJob
 			, const bool ButRegularizeActive
 		) :
@@ -138,14 +138,14 @@ PnlWzemJobRec::StatShr::StatShr(
 		{
 	this->ixWzemVExpstate = ixWzemVExpstate;
 	this->jrefDetail = jrefDetail;
-	this->jref1NClstn = jref1NClstn;
-	this->jref1NPreset = jref1NPreset;
-	this->jref1NCall = jref1NCall;
 	this->jref1NOp = jref1NOp;
+	this->jref1NCall = jref1NCall;
+	this->jref1NPreset = jref1NPreset;
+	this->jref1NClstn = jref1NClstn;
 	this->jrefSup1NJob = jrefSup1NJob;
 	this->ButRegularizeActive = ButRegularizeActive;
 
-	mask = {IXWZEMVEXPSTATE, JREFDETAIL, JREF1NCLSTN, JREF1NPRESET, JREF1NCALL, JREF1NOP, JREFSUP1NJOB, BUTREGULARIZEACTIVE};
+	mask = {IXWZEMVEXPSTATE, JREFDETAIL, JREF1NOP, JREF1NCALL, JREF1NPRESET, JREF1NCLSTN, JREFSUP1NJOB, BUTREGULARIZEACTIVE};
 };
 
 void PnlWzemJobRec::StatShr::writeXML(
@@ -162,10 +162,10 @@ void PnlWzemJobRec::StatShr::writeXML(
 	xmlTextWriterStartElement(wr, BAD_CAST difftag.c_str());
 		writeStringAttr(wr, itemtag, "sref", "srefIxWzemVExpstate", VecWzemVExpstate::getSref(ixWzemVExpstate));
 		writeStringAttr(wr, itemtag, "sref", "scrJrefDetail", Scr::scramble(jrefDetail));
-		writeStringAttr(wr, itemtag, "sref", "scrJref1NClstn", Scr::scramble(jref1NClstn));
-		writeStringAttr(wr, itemtag, "sref", "scrJref1NPreset", Scr::scramble(jref1NPreset));
-		writeStringAttr(wr, itemtag, "sref", "scrJref1NCall", Scr::scramble(jref1NCall));
 		writeStringAttr(wr, itemtag, "sref", "scrJref1NOp", Scr::scramble(jref1NOp));
+		writeStringAttr(wr, itemtag, "sref", "scrJref1NCall", Scr::scramble(jref1NCall));
+		writeStringAttr(wr, itemtag, "sref", "scrJref1NPreset", Scr::scramble(jref1NPreset));
+		writeStringAttr(wr, itemtag, "sref", "scrJref1NClstn", Scr::scramble(jref1NClstn));
 		writeStringAttr(wr, itemtag, "sref", "scrJrefSup1NJob", Scr::scramble(jrefSup1NJob));
 		writeBoolAttr(wr, itemtag, "sref", "ButRegularizeActive", ButRegularizeActive);
 	xmlTextWriterEndElement(wr);
@@ -178,10 +178,10 @@ set<uint> PnlWzemJobRec::StatShr::comm(
 
 	if (ixWzemVExpstate == comp->ixWzemVExpstate) insert(items, IXWZEMVEXPSTATE);
 	if (jrefDetail == comp->jrefDetail) insert(items, JREFDETAIL);
-	if (jref1NClstn == comp->jref1NClstn) insert(items, JREF1NCLSTN);
-	if (jref1NPreset == comp->jref1NPreset) insert(items, JREF1NPRESET);
-	if (jref1NCall == comp->jref1NCall) insert(items, JREF1NCALL);
 	if (jref1NOp == comp->jref1NOp) insert(items, JREF1NOP);
+	if (jref1NCall == comp->jref1NCall) insert(items, JREF1NCALL);
+	if (jref1NPreset == comp->jref1NPreset) insert(items, JREF1NPRESET);
+	if (jref1NClstn == comp->jref1NClstn) insert(items, JREF1NCLSTN);
 	if (jrefSup1NJob == comp->jrefSup1NJob) insert(items, JREFSUP1NJOB);
 	if (ButRegularizeActive == comp->ButRegularizeActive) insert(items, BUTREGULARIZEACTIVE);
 
@@ -196,7 +196,7 @@ set<uint> PnlWzemJobRec::StatShr::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {IXWZEMVEXPSTATE, JREFDETAIL, JREF1NCLSTN, JREF1NPRESET, JREF1NCALL, JREF1NOP, JREFSUP1NJOB, BUTREGULARIZEACTIVE};
+	diffitems = {IXWZEMVEXPSTATE, JREFDETAIL, JREF1NOP, JREF1NCALL, JREF1NPRESET, JREF1NCLSTN, JREFSUP1NJOB, BUTREGULARIZEACTIVE};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);

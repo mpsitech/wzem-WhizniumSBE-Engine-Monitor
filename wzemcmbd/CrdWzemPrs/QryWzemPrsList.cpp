@@ -170,9 +170,9 @@ void QryWzemPrsList::rerun_orderSQL(
 			string& sqlstr
 			, const uint preIxOrd
 		) {
-	if (preIxOrd == VecVOrd::LNM) sqlstr += " ORDER BY TblWzemMPerson.Lastname ASC";
+	if (preIxOrd == VecVOrd::GRP) sqlstr += " ORDER BY TblWzemMPerson.grp ASC";
 	else if (preIxOrd == VecVOrd::OWN) sqlstr += " ORDER BY TblWzemMPerson.own ASC";
-	else if (preIxOrd == VecVOrd::GRP) sqlstr += " ORDER BY TblWzemMPerson.grp ASC";
+	else if (preIxOrd == VecVOrd::LNM) sqlstr += " ORDER BY TblWzemMPerson.Lastname ASC";
 };
 
 void QryWzemPrsList::fetch(
