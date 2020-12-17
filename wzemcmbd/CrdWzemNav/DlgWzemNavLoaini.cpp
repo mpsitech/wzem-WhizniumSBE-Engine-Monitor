@@ -451,7 +451,6 @@ uint DlgWzemNavLoaini::enterSgeParse(
 	nextIxVSgeFailure = VecVSge::ALRWZEMPER;
 
 	// IP enterSgeParse --- IBEGIN
-
 	ifstream ififile;
 
 	char* buf;
@@ -469,15 +468,15 @@ uint DlgWzemNavLoaini::enterSgeParse(
 	ififile.get(buf, 16);
 	s = string(buf);
 
-	ifitxt = (s.find("- ") == 0);
+	ifitxt = (s.find("IexWzemIni") == 0);
 	ifixml = (s.find("<?xml") == 0);		
 
 	delete[] buf;
 	ififile.close();
 
 	// parse file accordingly
-	if (ifitxt) iex->parseFromFile(dbswzem, infilename, false);
-	else if (ifixml) iex->parseFromFile(dbswzem, infilename, true);
+	if (ifitxt) iex->parseFromFile(dbswzem, infilename, false, "");
+	else if (ifixml) iex->parseFromFile(dbswzem, infilename, true, "");
 
 	if (iex->ixVSge != JobWzemIexIni::VecVSge::PRSDONE) {
 		if (reqCmd) {
