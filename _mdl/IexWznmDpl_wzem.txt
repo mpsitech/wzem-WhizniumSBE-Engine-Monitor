@@ -19,6 +19,7 @@ dbs	dbswzem	WhizniumSBE Engine Monitor database access library
 webapp	webappwzem	WhizniumSBE Engine Monitor web app user interface files
 	ImeIMRelease.hsrefRefWznmMMachine	sref	srefsKOption	Comment
 	any	webappwzem_any
+	any;yocto	webappwzem_yocto
 	ImeIMRelease.end
 api	apiwzem	WhizniumSBE Engine Monitor API library
 	ImeIMRelease.hsrefRefWznmMMachine	sref	srefsKOption	Comment

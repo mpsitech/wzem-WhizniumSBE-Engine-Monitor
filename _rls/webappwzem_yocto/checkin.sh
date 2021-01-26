@@ -1,6 +1,6 @@
 #!/bin/bash
-# file checkout.sh
-# checkout script for Wzem web-based UI, release webappwzem_any
+# file checkin.sh
+# checkin script for Wzem web-based UI, release webappwzem_yocto
 # copyright: (C) 2016-2020 MPSI Technologies GmbH
 # author: Alexander Wirthmueller (auto-generation)
 # date created: 15 Dec 2020
@@ -11,10 +11,8 @@ if [ -z ${WHIZROOT+x} ]; then
 	exit 1
 fi
 
-export set WEBROOT=${WHIZROOT}/web
+export set REPROOT=${WHIZDEVROOT}/rep
 
-mkdir $WEBROOT/appwzem
+cp -r * $REPROOT/wzem/webappwzem/
 
-cp checkin.sh $WEBROOT/appwzem/
-
-cp -r ../../webappwzem/* $WEBROOT/appwzem/
+rm $REPROOT/wzem/webappwzem/checkin.sh
