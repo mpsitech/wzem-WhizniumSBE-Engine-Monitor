@@ -51,12 +51,13 @@ RootWzem::RootWzem(
 
 	// IP constructor.spec2 --- INSERT
 
+	xchg->addClstn(VecWzemVCall::CALLWZEMREFPRESET, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 	xchg->addClstn(VecWzemVCall::CALLWZEMSUSPSESS, jref, Clstn::VecVJobmask::IMM, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 	xchg->addClstn(VecWzemVCall::CALLWZEMLOGOUT, jref, Clstn::VecVJobmask::IMM, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 
 	// IP constructor.cust3 --- INSERT
 
-	// IP constructor.spec3 --- INSERT
+	if (xchg->stgwzemappearance.roottterm != 0) wrefLast = xchg->addWakeup(jref, "warnterm", 1e6 * xchg->stgwzemappearance.roottterm);
 };
 
 RootWzem::~RootWzem() {
@@ -254,6 +255,9 @@ void RootWzem::handleRequest(
 			handleDpchAppLogin(dbswzem, (DpchAppLogin*) (req->dpchapp), req->ip, &(req->dpcheng));
 
 		};
+
+	} else if (req->ixVBasetype == ReqWzem::VecVBasetype::TIMER) {
+		if (req->sref == "warnterm") handleTimerWithSrefWarnterm(dbswzem);
 	};
 };
 
@@ -288,6 +292,8 @@ bool RootWzem::handleCreateSess(
 
 		cout << "\tjob reference: " << sess->jref << endl;
 		xchg->jrefCmd = sess->jref;
+
+		if ((xchg->stgwzemappearance.sesstterm != 0) && (sesss.size() == 1)) wrefLast = xchg->addWakeup(jref, "warnterm", 1e6 * (xchg->stgwzemappearance.sesstterm - xchg->stgwzemappearance.sesstwarn));
 
 		xchg->appendToLogfile("command line session created for user '" + input + "'");
 
@@ -360,6 +366,8 @@ void RootWzem::handleDpchAppLogin(
 				sess = new SessWzem(xchg, dbswzem, jref, refUsr, ip);
 				sesss.push_back(sess);
 
+				if ((xchg->stgwzemappearance.sesstterm != 0) && (sesss.size() == 1)) wrefLast = xchg->addWakeup(jref, "warnterm", 1e6 * (xchg->stgwzemappearance.sesstterm - xchg->stgwzemappearance.sesstwarn));
+
 				xchg->appendToLogfile("session created for user '" + dpchapplogin->username + "' from IP " + ip);
 
 				*dpcheng = new DpchEngWzemConfirm(true, sess->jref, "");
@@ -378,15 +386,84 @@ void RootWzem::handleDpchAppLogin(
 	};
 };
 
+void RootWzem::handleTimerWithSrefWarnterm(
+			DbsWzem* dbswzem
+		) {
+	SessWzem* sess = NULL;
+
+	time_t tlast;
+	time_t tnext = 0;
+
+	time_t rawtime;
+	time(&rawtime);
+
+	bool term;
+
+	if (xchg->stgwzemappearance.sesstterm != 0) {
+		for (auto it = sesss.begin(); it != sesss.end();) {
+			sess = *it;
+
+			term = false;
+
+			tlast = xchg->getRefPreset(VecWzemVPreset::PREWZEMTLAST, sess->jref);
+
+			if ((tlast + ((int) xchg->stgwzemappearance.sesstterm)) <= rawtime) term = true;
+			else if ((tlast + ((int) xchg->stgwzemappearance.sesstterm) - ((int) xchg->stgwzemappearance.sesstwarn)) <= rawtime) {
+				sess->warnTerm(dbswzem);
+				if ((tnext == 0) || ((tlast + ((int) xchg->stgwzemappearance.sesstterm)) < tnext)) tnext = tlast + ((int) xchg->stgwzemappearance.sesstterm);
+			} else if ((tnext == 0) || ((tlast + ((int) xchg->stgwzemappearance.sesstterm) - ((int) xchg->stgwzemappearance.sesstwarn)) < tnext)) tnext = tlast + xchg->stgwzemappearance.sesstterm - xchg->stgwzemappearance.sesstwarn;
+
+			if (term) {
+				sess->term(dbswzem);
+				it = sesss.erase(it);
+
+				delete sess;
+
+			} else it++;
+		};
+	};
+
+	term = false;
+
+	if (xchg->stgwzemappearance.roottterm != 0) {
+		tlast = xchg->getRefPreset(VecWzemVPreset::PREWZEMTLAST, jref);
+
+		if ((tlast + ((int) xchg->stgwzemappearance.roottterm)) <= rawtime) term = true;
+		else if ((tnext == 0) || ((tlast + ((int) xchg->stgwzemappearance.roottterm)) < tnext)) tnext = tlast + xchg->stgwzemappearance.roottterm;
+	};
+
+	if (term) {
+		cout << endl << "\tterminating due to inactivity" << endl;
+		kill(getpid(), SIGTERM);
+	} else if (tnext != 0) wrefLast = xchg->addWakeup(jref, "warnterm", 1e6 * (tnext - rawtime));
+};
+
 void RootWzem::handleCall(
 			DbsWzem* dbswzem
 			, Call* call
 		) {
-	if (call->ixVCall == VecWzemVCall::CALLWZEMSUSPSESS) {
+	if (call->ixVCall == VecWzemVCall::CALLWZEMREFPRESET) {
+		call->abort = handleCallWzemRefPreSet(dbswzem, call->jref, call->argInv.ix, call->argInv.ref);
+	} else if (call->ixVCall == VecWzemVCall::CALLWZEMSUSPSESS) {
 		call->abort = handleCallWzemSuspsess(dbswzem, call->jref);
 	} else if (call->ixVCall == VecWzemVCall::CALLWZEMLOGOUT) {
 		call->abort = handleCallWzemLogout(dbswzem, call->jref, call->argInv.boolval);
 	};
+};
+
+bool RootWzem::handleCallWzemRefPreSet(
+			DbsWzem* dbswzem
+			, const ubigint jrefTrig
+			, const uint ixInv
+			, const ubigint refInv
+		) {
+	bool retval = false;
+
+	if (ixInv == VecWzemVPreset::PREWZEMTLAST) {
+		xchg->addRefPreset(ixInv, jref, refInv);
+	};
+
+	return retval;
 };
 
 bool RootWzem::handleCallWzemSuspsess(
@@ -410,6 +487,8 @@ bool RootWzem::handleCallWzemLogout(
 
 	SessWzem* sess = NULL;
 
+	time_t rawtime;
+
 	if (!boolvalInv) {
 		for (auto it = sesss.begin(); it != sesss.end();) {
 			sess = *it;
@@ -420,6 +499,11 @@ bool RootWzem::handleCallWzemLogout(
 				delete sess;
 				break;
 			} else it++;
+		};
+
+		if (xchg->stgwzemappearance.roottterm) {
+			time(&rawtime);
+			xchg->addRefPreset(VecWzemVPreset::PREWZEMTLAST, jref, rawtime);
 		};
 	};
 

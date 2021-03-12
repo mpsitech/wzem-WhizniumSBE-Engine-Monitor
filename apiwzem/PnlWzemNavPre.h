@@ -40,7 +40,7 @@ namespace PnlWzemNavPre {
 	/**
 	  * ContInf (full: ContInfWzemNavPre)
 	  */
-	class ContInf : public Sbecore::Xmlio::Block {
+	class ContInf : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint TXTPRD = 1;
@@ -60,7 +60,7 @@ namespace PnlWzemNavPre {
 	/**
 	  * StatShr (full: StatShrWzemNavPre)
 	  */
-	class StatShr : public Sbecore::Xmlio::Block {
+	class StatShr : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint TXTPRDAVAIL = 1;
@@ -80,7 +80,7 @@ namespace PnlWzemNavPre {
 	/**
 	  * Tag (full: TagWzemNavPre)
 	  */
-	class Tag : public Sbecore::Xmlio::Block {
+	class Tag : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint CPTPRD = 1;

@@ -2,15 +2,15 @@
 # make file for CrdWzemNde card job handler, release wzemcmbd_riscv (ubuntu cross-compilation)
 # copyright: (C) 2016-2020 MPSI Technologies GmbH
 # author: Alexander Wirthmueller (auto-generation)
-# date created: 15 Dec 2020
+# date created: 12 Mar 2021
 # IP header --- ABOVE
 
 include ../Makefile.inc
 
-CPP = 
-CPPFLAGS = --sysroot=${SYSROOT} -DWZEMCMBD
+CPP = ${TCHROOT}/riscv64-oe-linux-g++
+CPPFLAGS = --sysroot=${SYSROOT} --sysroot=${SYSROOT} -std=c++11 -fstack-protector-strong -g -Wall -Os -pthread -DWZEMCMBD
 
-STATLIB = 
+STATLIB = ${TCHROOT}/riscv64-oe-linux-ar
 STATLIBFLAGS = rcs
 
 INCPATH = -I=$(BUILDROOT)/dbswzem -I=$(BUILDROOT)/wzemcmbd/VecWzem -I=$(BUILDROOT)/wzemcmbd/IexWzem -I=$(BUILDROOT)/wzemcmbd

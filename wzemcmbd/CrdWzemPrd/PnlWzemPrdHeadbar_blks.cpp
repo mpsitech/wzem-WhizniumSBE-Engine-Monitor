@@ -15,6 +15,23 @@ using namespace Xmlio;
  class PnlWzemPrdHeadbar::StgInf
  ******************************************************************************/
 
+void PnlWzemPrdHeadbar::StgInf::writeJSON(
+			const uint ixWzemVLocale
+			, Json::Value& sup
+			, string difftag
+		) {
+	if (difftag.length() == 0) difftag = "StgInfWzemPrdHeadbar";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	if (ixWzemVLocale == VecWzemVLocale::ENUS) {
+		me["MenAppCptwidth"] = "270";
+		me["MenAppWidth"] = "295";
+		me["MenCrdCptwidth"] = "163";
+		me["MenCrdWidth"] = "323";
+	};
+};
+
 void PnlWzemPrdHeadbar::StgInf::writeXML(
 			const uint ixWzemVLocale
 			, xmlTextWriter* wr
@@ -40,6 +57,21 @@ void PnlWzemPrdHeadbar::StgInf::writeXML(
 /******************************************************************************
  class PnlWzemPrdHeadbar::Tag
  ******************************************************************************/
+
+void PnlWzemPrdHeadbar::Tag::writeJSON(
+			const uint ixWzemVLocale
+			, Json::Value& sup
+			, string difftag
+		) {
+	if (difftag.length() == 0) difftag = "TagWzemPrdHeadbar";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	if (ixWzemVLocale == VecWzemVLocale::ENUS) {
+		me["MenApp"] = "WhizniumSBE Engine Monitor";
+		me["MenCrd"] = "Monitoring period";
+	};
+};
 
 void PnlWzemPrdHeadbar::Tag::writeXML(
 			const uint ixWzemVLocale
@@ -97,6 +129,17 @@ void PnlWzemPrdHeadbar::DpchEngData::merge(
 	if (src->has(JREF)) {jref = src->jref; add(JREF);};
 	if (src->has(STGINF)) add(STGINF);
 	if (src->has(TAG)) add(TAG);
+};
+
+void PnlWzemPrdHeadbar::DpchEngData::writeJSON(
+			const uint ixWzemVLocale
+			, Json::Value& sup
+		) {
+	Json::Value& me = sup["DpchEngWzemPrdHeadbarData"] = Json::Value(Json::objectValue);
+
+	if (has(JREF)) me["scrJref"] = Scr::scramble(jref);
+	if (has(STGINF)) StgInf::writeJSON(ixWzemVLocale, me);
+	if (has(TAG)) Tag::writeJSON(ixWzemVLocale, me);
 };
 
 void PnlWzemPrdHeadbar::DpchEngData::writeXML(

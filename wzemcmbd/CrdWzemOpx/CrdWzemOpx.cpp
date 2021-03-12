@@ -43,8 +43,8 @@ CrdWzemOpx::CrdWzemOpx(
 	VecVSge::fillFeed(feedFSge);
 
 	pnllist = NULL;
-	pnlheadbar = NULL;
 	pnlrec = NULL;
+	pnlheadbar = NULL;
 
 	// IP constructor.cust1 --- INSERT
 
@@ -54,8 +54,8 @@ CrdWzemOpx::CrdWzemOpx(
 	changeRef(dbswzem, jref, ((ref + 1) == 0) ? 0 : ref, false);
 
 	pnllist = new PnlWzemOpxList(xchg, dbswzem, jref, ixWzemVLocale);
-	pnlheadbar = new PnlWzemOpxHeadbar(xchg, dbswzem, jref, ixWzemVLocale);
 	pnlrec = new PnlWzemOpxRec(xchg, dbswzem, jref, ixWzemVLocale);
+	pnlheadbar = new PnlWzemOpxHeadbar(xchg, dbswzem, jref, ixWzemVLocale);
 
 	// IP constructor.cust2 --- INSERT
 

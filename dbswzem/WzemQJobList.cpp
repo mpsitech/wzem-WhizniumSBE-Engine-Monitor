@@ -45,6 +45,31 @@ WzemQJobList::WzemQJobList(
 	this->stubSupRefWzemMJob = stubSupRefWzemMJob;
 };
 
+void WzemQJobList::writeJSON(
+			Json::Value& sup
+			, bool jnumattr
+			, bool shorttags
+		) {
+	Json::Value& me = sup.append(Json::Value(Json::objectValue));
+
+	if (jnumattr) me["jnum"] = jnum;
+	if (shorttags) {
+		me["prd"] = stubRefWzemMPeriod;
+		me["job"] = srefIxVJob;
+		me["xjr"] = xjref;
+		me["sta"] = x1Startu;
+		me["sto"] = x1Stopu;
+		me["sup"] = stubSupRefWzemMJob;
+	} else {
+		me["stubRefWzemMPeriod"] = stubRefWzemMPeriod;
+		me["srefIxVJob"] = srefIxVJob;
+		me["xjref"] = xjref;
+		me["x1Startu"] = x1Startu;
+		me["x1Stopu"] = x1Stopu;
+		me["stubSupRefWzemMJob"] = stubSupRefWzemMJob;
+	};
+};
+
 void WzemQJobList::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -120,6 +145,16 @@ ListWzemQJobList& ListWzemQJobList::operator=(
 	};
 
 	return(*this);
+};
+
+void ListWzemQJobList::writeJSON(
+			Json::Value& sup
+			, std::string difftag
+		) {
+	if (difftag == "") difftag = "ListWzemQJobList";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::arrayValue);
+	for (unsigned int i = 0; i < nodes.size(); i++) nodes[i]->writeJSON(me, true, true);
 };
 
 void ListWzemQJobList::writeXML(

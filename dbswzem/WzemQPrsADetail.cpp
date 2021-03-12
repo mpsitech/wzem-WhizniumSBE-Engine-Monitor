@@ -35,6 +35,25 @@ WzemQPrsADetail::WzemQPrsADetail(
 	this->Val = Val;
 };
 
+void WzemQPrsADetail::writeJSON(
+			Json::Value& sup
+			, bool jnumattr
+			, bool shorttags
+		) {
+	Json::Value& me = sup.append(Json::Value(Json::objectValue));
+
+	if (jnumattr) me["jnum"] = jnum;
+	if (shorttags) {
+		me["typ"] = x1SrefKType;
+		me["typ2"] = titX1SrefKType;
+		me["val"] = Val;
+	} else {
+		me["x1SrefKType"] = x1SrefKType;
+		me["titX1SrefKType"] = titX1SrefKType;
+		me["Val"] = Val;
+	};
+};
+
 void WzemQPrsADetail::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -104,6 +123,16 @@ ListWzemQPrsADetail& ListWzemQPrsADetail::operator=(
 	};
 
 	return(*this);
+};
+
+void ListWzemQPrsADetail::writeJSON(
+			Json::Value& sup
+			, std::string difftag
+		) {
+	if (difftag == "") difftag = "ListWzemQPrsADetail";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::arrayValue);
+	for (unsigned int i = 0; i < nodes.size(); i++) nodes[i]->writeJSON(me, true, true);
 };
 
 void ListWzemQPrsADetail::writeXML(

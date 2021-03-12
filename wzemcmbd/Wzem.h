@@ -10,10 +10,10 @@
 #ifndef WZEM_H
 #define WZEM_H
 
-#define WZEM_VERSION "1.0.3"
+#define WZEM_VERSION "1.0.5"
 #define WZEM_VERSION_MAJOR 1
 #define WZEM_VERSION_MINOR 0
-#define WZEM_VERSION_SUB 3
+#define WZEM_VERSION_SUB 5
 
 // IP include.cust --- INSERT
 
@@ -138,7 +138,7 @@ public:
 /**
 	* ContInfWzemAlert
 	*/
-class ContInfWzemAlert : public Sbecore::Xmlio::Block {
+class ContInfWzemAlert : public Sbecore::Block {
 
 public:
 	static const Sbecore::uint TXTCPT = 1;
@@ -175,6 +175,7 @@ public:
 
 public:
 	static bool all(const std::set<Sbecore::uint>& items);
+	void writeJSON(Json::Value& sup, std::string difftag = "");
 	void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true);
 	std::set<Sbecore::uint> compare(const ContInfWzemAlert* comp);
 };
@@ -182,7 +183,7 @@ public:
 /**
 	* DpchWzem
 	*/
-class DpchWzem : public Sbecore::Xmlio::Block {
+class DpchWzem : public Sbecore::Block {
 
 public:
 	DpchWzem(const Sbecore::uint ixWzemVDpch = 0);

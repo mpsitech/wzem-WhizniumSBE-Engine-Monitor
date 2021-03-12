@@ -113,9 +113,9 @@ function refreshB(chgcol) {
 			if (i == 1) {
 				doc.cols.push("TcoTyp"); doc.widths.push(TcoTypWidth); doc.fs.push("typ"); doc.tos.push(3); wtot += TcoTypWidth;
 			} else if (i == 2) {
-				doc.cols.push("TcoPrd"); doc.widths.push(TcoPrdWidth); doc.fs.push("prd"); doc.tos.push(1); wtot += TcoPrdWidth;
+				doc.cols.push("TcoPrd"); doc.widths.push(TcoPrdWidth); doc.fs.push("prd"); doc.tos.push(2); wtot += TcoPrdWidth;
 			} else if (i == 3) {
-				doc.cols.push("TcoSta"); doc.widths.push(TcoStaWidth); doc.fs.push("sta"); doc.tos.push(2); wtot += TcoStaWidth;
+				doc.cols.push("TcoSta"); doc.widths.push(TcoStaWidth); doc.fs.push("sta"); doc.tos.push(1); wtot += TcoStaWidth;
 			} else if (i == 4) {
 				doc.cols.push("TcoCmd"); doc.widths.push(TcoCmdWidth); doc.fs.push("cmd"); doc.tos.push(0); wtot += TcoCmdWidth;
 			} else if (i == 5) {

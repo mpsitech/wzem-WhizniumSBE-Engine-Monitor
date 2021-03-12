@@ -18,7 +18,7 @@
 /**
 	* ContInfWzemAlert
 	*/
-class ContInfWzemAlert : public Sbecore::Xmlio::Block {
+class ContInfWzemAlert : public Sbecore::Block {
 
 public:
 	static const Sbecore::uint TXTCPT = 1;
@@ -62,7 +62,7 @@ public:
 /**
 	* DpchWzem
 	*/
-class DpchWzem : public Sbecore::Xmlio::Block {
+class DpchWzem : public Sbecore::Block {
 
 public:
 	DpchWzem(const Sbecore::uint ixWzemVDpch = 0);
@@ -181,7 +181,7 @@ public:
 
 public:
 	ContInfWzemAlert continf;
-	Sbecore::Xmlio::Feed feedFMcb;
+	Sbecore::Feed feedFMcb;
 
 public:
 	static bool all(const std::set<Sbecore::uint>& items);

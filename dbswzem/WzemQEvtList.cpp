@@ -49,6 +49,33 @@ WzemQEvtList::WzemQEvtList(
 	this->xsref = xsref;
 };
 
+void WzemQEvtList::writeJSON(
+			Json::Value& sup
+			, bool jnumattr
+			, bool shorttags
+		) {
+	Json::Value& me = sup.append(Json::Value(Json::objectValue));
+
+	if (jnumattr) me["jnum"] = jnum;
+	if (shorttags) {
+		me["typ"] = srefIxVBasetype;
+		me["prd"] = stubRefWzemMPeriod;
+		me["sta"] = startu;
+		me["cmd"] = Cmd;
+		me["feg"] = srefIxVFeatgroup;
+		me["mtd"] = srefIxVMethod;
+		me["xsr"] = xsref;
+	} else {
+		me["srefIxVBasetype"] = srefIxVBasetype;
+		me["stubRefWzemMPeriod"] = stubRefWzemMPeriod;
+		me["startu"] = startu;
+		me["Cmd"] = Cmd;
+		me["srefIxVFeatgroup"] = srefIxVFeatgroup;
+		me["srefIxVMethod"] = srefIxVMethod;
+		me["xsref"] = xsref;
+	};
+};
+
 void WzemQEvtList::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -126,6 +153,16 @@ ListWzemQEvtList& ListWzemQEvtList::operator=(
 	};
 
 	return(*this);
+};
+
+void ListWzemQEvtList::writeJSON(
+			Json::Value& sup
+			, std::string difftag
+		) {
+	if (difftag == "") difftag = "ListWzemQEvtList";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::arrayValue);
+	for (unsigned int i = 0; i < nodes.size(); i++) nodes[i]->writeJSON(me, true, true);
 };
 
 void ListWzemQEvtList::writeXML(

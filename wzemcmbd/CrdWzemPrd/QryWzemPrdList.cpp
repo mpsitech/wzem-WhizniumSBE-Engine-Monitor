@@ -171,8 +171,8 @@ void QryWzemPrdList::rerun_orderSQL(
 			, const uint preIxOrd
 		) {
 	if (preIxOrd == VecVOrd::STA) sqlstr += " ORDER BY TblWzemMPeriod.start ASC";
-	else if (preIxOrd == VecVOrd::GRP) sqlstr += " ORDER BY TblWzemMPeriod.grp ASC";
 	else if (preIxOrd == VecVOrd::OWN) sqlstr += " ORDER BY TblWzemMPeriod.own ASC";
+	else if (preIxOrd == VecVOrd::GRP) sqlstr += " ORDER BY TblWzemMPeriod.grp ASC";
 };
 
 void QryWzemPrdList::fetch(
@@ -346,27 +346,13 @@ void QryWzemPrdList::handleCall(
 			DbsWzem* dbswzem
 			, Call* call
 		) {
-	if (call->ixVCall == VecWzemVCall::CALLWZEMPRDUPD_REFEQ) {
-		call->abort = handleCallWzemPrdUpd_refEq(dbswzem, call->jref);
-	} else if (call->ixVCall == VecWzemVCall::CALLWZEMPRDMOD) {
+	if (call->ixVCall == VecWzemVCall::CALLWZEMPRDMOD) {
 		call->abort = handleCallWzemPrdMod(dbswzem, call->jref);
+	} else if (call->ixVCall == VecWzemVCall::CALLWZEMPRDUPD_REFEQ) {
+		call->abort = handleCallWzemPrdUpd_refEq(dbswzem, call->jref);
 	} else if ((call->ixVCall == VecWzemVCall::CALLWZEMSTUBCHG) && (call->jref == jref)) {
 		call->abort = handleCallWzemStubChgFromSelf(dbswzem);
 	};
-};
-
-bool QryWzemPrdList::handleCallWzemPrdUpd_refEq(
-			DbsWzem* dbswzem
-			, const ubigint jrefTrig
-		) {
-	bool retval = false;
-
-	if (ixWzemVQrystate != VecWzemVQrystate::OOD) {
-		ixWzemVQrystate = VecWzemVQrystate::OOD;
-		xchg->triggerCall(dbswzem, VecWzemVCall::CALLWZEMSTATCHG, jref);
-	};
-
-	return retval;
 };
 
 bool QryWzemPrdList::handleCallWzemPrdMod(
@@ -377,6 +363,20 @@ bool QryWzemPrdList::handleCallWzemPrdMod(
 
 	if ((ixWzemVQrystate == VecWzemVQrystate::UTD) || (ixWzemVQrystate == VecWzemVQrystate::SLM)) {
 		ixWzemVQrystate = VecWzemVQrystate::MNR;
+		xchg->triggerCall(dbswzem, VecWzemVCall::CALLWZEMSTATCHG, jref);
+	};
+
+	return retval;
+};
+
+bool QryWzemPrdList::handleCallWzemPrdUpd_refEq(
+			DbsWzem* dbswzem
+			, const ubigint jrefTrig
+		) {
+	bool retval = false;
+
+	if (ixWzemVQrystate != VecWzemVQrystate::OOD) {
+		ixWzemVQrystate = VecWzemVQrystate::OOD;
 		xchg->triggerCall(dbswzem, VecWzemVCall::CALLWZEMSTATCHG, jref);
 	};
 

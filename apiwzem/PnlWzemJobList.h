@@ -52,7 +52,7 @@ namespace PnlWzemJobList {
 	/**
 	  * ContIac (full: ContIacWzemJobList)
 	  */
-	class ContIac : public Sbecore::Xmlio::Block {
+	class ContIac : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint NUMFTOS = 1;
@@ -73,7 +73,7 @@ namespace PnlWzemJobList {
 	/**
 	  * ContInf (full: ContInfWzemJobList)
 	  */
-	class ContInf : public Sbecore::Xmlio::Block {
+	class ContInf : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint BUTFILTERON = 1;
@@ -95,7 +95,7 @@ namespace PnlWzemJobList {
 	/**
 	  * StatShr (full: StatShrWzemJobList)
 	  */
-	class StatShr : public Sbecore::Xmlio::Block {
+	class StatShr : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint IXWZEMVEXPSTATE = 1;
@@ -117,7 +117,7 @@ namespace PnlWzemJobList {
 	/**
 	  * StgIac (full: StgIacWzemJobList)
 	  */
-	class StgIac : public Sbecore::Xmlio::Block {
+	class StgIac : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint TCOPRDWIDTH = 1;
@@ -148,7 +148,7 @@ namespace PnlWzemJobList {
 	/**
 	  * Tag (full: TagWzemJobList)
 	  */
-	class Tag : public Sbecore::Xmlio::Block {
+	class Tag : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint CPT = 1;
@@ -258,8 +258,8 @@ namespace PnlWzemJobList {
 	public:
 		ContIac contiac;
 		ContInf continf;
-		Sbecore::Xmlio::Feed feedFCsiQst;
-		Sbecore::Xmlio::Feed feedFTos;
+		Sbecore::Feed feedFCsiQst;
+		Sbecore::Feed feedFTos;
 		StatShr statshr;
 		StgIac stgiac;
 		Tag tag;

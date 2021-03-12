@@ -41,6 +41,29 @@ WzemQClnList::WzemQClnList(
 	this->x1Stopu = x1Stopu;
 };
 
+void WzemQClnList::writeJSON(
+			Json::Value& sup
+			, bool jnumattr
+			, bool shorttags
+		) {
+	Json::Value& me = sup.append(Json::Value(Json::objectValue));
+
+	if (jnumattr) me["jnum"] = jnum;
+	if (shorttags) {
+		me["job"] = stubRefWzemMJob;
+		me["cal"] = srefIxVCall;
+		me["sge"] = srefIxVSge;
+		me["sta"] = x1Startu;
+		me["sto"] = x1Stopu;
+	} else {
+		me["stubRefWzemMJob"] = stubRefWzemMJob;
+		me["srefIxVCall"] = srefIxVCall;
+		me["srefIxVSge"] = srefIxVSge;
+		me["x1Startu"] = x1Startu;
+		me["x1Stopu"] = x1Stopu;
+	};
+};
+
 void WzemQClnList::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -114,6 +137,16 @@ ListWzemQClnList& ListWzemQClnList::operator=(
 	};
 
 	return(*this);
+};
+
+void ListWzemQClnList::writeJSON(
+			Json::Value& sup
+			, std::string difftag
+		) {
+	if (difftag == "") difftag = "ListWzemQClnList";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::arrayValue);
+	for (unsigned int i = 0; i < nodes.size(); i++) nodes[i]->writeJSON(me, true, true);
 };
 
 void ListWzemQClnList::writeXML(

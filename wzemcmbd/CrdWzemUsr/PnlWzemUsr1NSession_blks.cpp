@@ -49,6 +49,17 @@ PnlWzemUsr1NSession::ContInf::ContInf(
 	mask = {NUMFCSIQST};
 };
 
+void PnlWzemUsr1NSession::ContInf::writeJSON(
+			Json::Value& sup
+			, string difftag
+		) {
+	if (difftag.length() == 0) difftag = "ContInfWzemUsr1NSession";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	me["numFCsiQst"] = numFCsiQst;
+};
+
 void PnlWzemUsr1NSession::ContInf::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -93,6 +104,18 @@ set<uint> PnlWzemUsr1NSession::ContInf::diff(
  class PnlWzemUsr1NSession::StatApp
  ******************************************************************************/
 
+void PnlWzemUsr1NSession::StatApp::writeJSON(
+			Json::Value& sup
+			, string difftag
+			, const uint ixWzemVExpstate
+		) {
+	if (difftag.length() == 0) difftag = "StatAppWzemUsr1NSession";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	me["srefIxWzemVExpstate"] = VecWzemVExpstate::getSref(ixWzemVExpstate);
+};
+
 void PnlWzemUsr1NSession::StatApp::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -124,6 +147,18 @@ PnlWzemUsr1NSession::StatShr::StatShr(
 	this->ButDeleteActive = ButDeleteActive;
 
 	mask = {BUTDELETEAVAIL, BUTDELETEACTIVE};
+};
+
+void PnlWzemUsr1NSession::StatShr::writeJSON(
+			Json::Value& sup
+			, string difftag
+		) {
+	if (difftag.length() == 0) difftag = "StatShrWzemUsr1NSession";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	me["ButDeleteAvail"] = ButDeleteAvail;
+	me["ButDeleteActive"] = ButDeleteActive;
 };
 
 void PnlWzemUsr1NSession::StatShr::writeXML(
@@ -181,6 +216,26 @@ PnlWzemUsr1NSession::StgIac::StgIac(
 	mask = {TCOREFWIDTH};
 };
 
+bool PnlWzemUsr1NSession::StgIac::readJSON(
+			Json::Value& sup
+			, bool addbasetag
+		) {
+	clear();
+
+	bool basefound;
+
+	Json::Value& me = sup;
+	if (addbasetag) me = sup["StgIacWzemUsr1NSession"];
+
+	basefound = (me != Json::nullValue);
+
+	if (basefound) {
+		if (me.isMember("TcoRefWidth")) {TcoRefWidth = me["TcoRefWidth"].asUInt(); add(TCOREFWIDTH);};
+	};
+
+	return basefound;
+};
+
 bool PnlWzemUsr1NSession::StgIac::readXML(
 			xmlXPathContext* docctx
 			, string basexpath
@@ -202,6 +257,17 @@ bool PnlWzemUsr1NSession::StgIac::readXML(
 	};
 
 	return basefound;
+};
+
+void PnlWzemUsr1NSession::StgIac::writeJSON(
+			Json::Value& sup
+			, string difftag
+		) {
+	if (difftag.length() == 0) difftag = "StgIacWzemUsr1NSession";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	me["TcoRefWidth"] = TcoRefWidth;
 };
 
 void PnlWzemUsr1NSession::StgIac::writeXML(
@@ -248,6 +314,26 @@ set<uint> PnlWzemUsr1NSession::StgIac::diff(
  class PnlWzemUsr1NSession::Tag
  ******************************************************************************/
 
+void PnlWzemUsr1NSession::Tag::writeJSON(
+			const uint ixWzemVLocale
+			, Json::Value& sup
+			, string difftag
+		) {
+	if (difftag.length() == 0) difftag = "TagWzemUsr1NSession";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	if (ixWzemVLocale == VecWzemVLocale::ENUS) {
+		me["Cpt"] = "Sessions";
+		me["TcoRef"] = "Session";
+	};
+	me["TxtRecord1"] = StrMod::cap(VecWzemVTag::getTitle(VecWzemVTag::REC, ixWzemVLocale));
+	me["TxtRecord2"] = StrMod::cap(VecWzemVTag::getTitle(VecWzemVTag::EMPLONG, ixWzemVLocale));
+	me["Trs"] = StrMod::cap(VecWzemVTag::getTitle(VecWzemVTag::GOTO, ixWzemVLocale)) + " ...";
+	me["TxtShowing1"] = VecWzemVTag::getTitle(VecWzemVTag::SHOWSHORT, ixWzemVLocale);
+	me["TxtShowing2"] = VecWzemVTag::getTitle(VecWzemVTag::EMPSHORT, ixWzemVLocale);
+};
+
 void PnlWzemUsr1NSession::Tag::writeXML(
 			const uint ixWzemVLocale
 			, xmlTextWriter* wr
@@ -293,6 +379,29 @@ string PnlWzemUsr1NSession::DpchAppData::getSrefsMask() {
 	StrMod::vectorToString(ss, srefs);
 
 	return(srefs);
+};
+
+void PnlWzemUsr1NSession::DpchAppData::readJSON(
+			Json::Value& sup
+			, bool addbasetag
+		) {
+	clear();
+
+	bool basefound;
+
+	Json::Value& me = sup;
+	if (addbasetag) me = sup["DpchAppWzemUsr1NSessionData"];
+
+	basefound = (me != Json::nullValue);
+
+	if (basefound) {
+		if (me.isMember("scrJref")) {jref = Scr::descramble(me["scrJref"].asString()); add(JREF);};
+		if (stgiac.readJSON(me, true)) add(STGIAC);
+		if (stgiacqry.readJSON(me, true)) add(STGIACQRY);
+	} else {
+		stgiac = StgIac();
+		stgiacqry = QryWzemUsr1NSession::StgIac();
+	};
 };
 
 void PnlWzemUsr1NSession::DpchAppData::readXML(
@@ -344,6 +453,26 @@ string PnlWzemUsr1NSession::DpchAppDo::getSrefsMask() {
 	StrMod::vectorToString(ss, srefs);
 
 	return(srefs);
+};
+
+void PnlWzemUsr1NSession::DpchAppDo::readJSON(
+			Json::Value& sup
+			, bool addbasetag
+		) {
+	clear();
+
+	bool basefound;
+
+	Json::Value& me = sup;
+	if (addbasetag) me = sup["DpchAppWzemUsr1NSessionDo"];
+
+	basefound = (me != Json::nullValue);
+
+	if (basefound) {
+		if (me.isMember("scrJref")) {jref = Scr::descramble(me["scrJref"].asString()); add(JREF);};
+		if (me.isMember("srefIxVDo")) {ixVDo = VecVDo::getIx(me["srefIxVDo"].asString()); add(IXVDO);};
+	} else {
+	};
 };
 
 void PnlWzemUsr1NSession::DpchAppDo::readXML(
@@ -442,6 +571,25 @@ void PnlWzemUsr1NSession::DpchEngData::merge(
 	if (src->has(STATAPPQRY)) add(STATAPPQRY);
 	if (src->has(STATSHRQRY)) {statshrqry = src->statshrqry; add(STATSHRQRY);};
 	if (src->has(STGIACQRY)) {stgiacqry = src->stgiacqry; add(STGIACQRY);};
+};
+
+void PnlWzemUsr1NSession::DpchEngData::writeJSON(
+			const uint ixWzemVLocale
+			, Json::Value& sup
+		) {
+	Json::Value& me = sup["DpchEngWzemUsr1NSessionData"] = Json::Value(Json::objectValue);
+
+	if (has(JREF)) me["scrJref"] = Scr::scramble(jref);
+	if (has(CONTINF)) continf.writeJSON(me);
+	if (has(FEEDFCSIQST)) feedFCsiQst.writeJSON(me);
+	if (has(STATAPP)) StatApp::writeJSON(me);
+	if (has(STATSHR)) statshr.writeJSON(me);
+	if (has(STGIAC)) stgiac.writeJSON(me);
+	if (has(TAG)) Tag::writeJSON(ixWzemVLocale, me);
+	if (has(RST)) rst.writeJSON(me);
+	if (has(STATAPPQRY)) QryWzemUsr1NSession::StatApp::writeJSON(me);
+	if (has(STATSHRQRY)) statshrqry.writeJSON(me);
+	if (has(STGIACQRY)) stgiacqry.writeJSON(me);
 };
 
 void PnlWzemUsr1NSession::DpchEngData::writeXML(

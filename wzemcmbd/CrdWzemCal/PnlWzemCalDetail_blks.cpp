@@ -57,6 +57,30 @@ PnlWzemCalDetail::ContIac::ContIac(
 	mask = {TXFCAL, TXFSTA, TXFSTO, TXFINV, TXFRET};
 };
 
+bool PnlWzemCalDetail::ContIac::readJSON(
+			Json::Value& sup
+			, bool addbasetag
+		) {
+	clear();
+
+	bool basefound;
+
+	Json::Value& me = sup;
+	if (addbasetag) me = sup["ContIacWzemCalDetail"];
+
+	basefound = (me != Json::nullValue);
+
+	if (basefound) {
+		if (me.isMember("TxfCal")) {TxfCal = me["TxfCal"].asString(); add(TXFCAL);};
+		if (me.isMember("TxfSta")) {TxfSta = me["TxfSta"].asString(); add(TXFSTA);};
+		if (me.isMember("TxfSto")) {TxfSto = me["TxfSto"].asString(); add(TXFSTO);};
+		if (me.isMember("TxfInv")) {TxfInv = me["TxfInv"].asString(); add(TXFINV);};
+		if (me.isMember("TxfRet")) {TxfRet = me["TxfRet"].asString(); add(TXFRET);};
+	};
+
+	return basefound;
+};
+
 bool PnlWzemCalDetail::ContIac::readXML(
 			xmlXPathContext* docctx
 			, string basexpath
@@ -82,6 +106,21 @@ bool PnlWzemCalDetail::ContIac::readXML(
 	};
 
 	return basefound;
+};
+
+void PnlWzemCalDetail::ContIac::writeJSON(
+			Json::Value& sup
+			, string difftag
+		) {
+	if (difftag.length() == 0) difftag = "ContIacWzemCalDetail";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	me["TxfCal"] = TxfCal;
+	me["TxfSta"] = TxfSta;
+	me["TxfSto"] = TxfSto;
+	me["TxfInv"] = TxfInv;
+	me["TxfRet"] = TxfRet;
 };
 
 void PnlWzemCalDetail::ContIac::writeXML(
@@ -146,6 +185,17 @@ PnlWzemCalDetail::ContInf::ContInf(
 	mask = {TXTJOB};
 };
 
+void PnlWzemCalDetail::ContInf::writeJSON(
+			Json::Value& sup
+			, string difftag
+		) {
+	if (difftag.length() == 0) difftag = "ContInfWzemCalDetail";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	me["TxtJob"] = TxtJob;
+};
+
 void PnlWzemCalDetail::ContInf::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -189,6 +239,18 @@ set<uint> PnlWzemCalDetail::ContInf::diff(
 /******************************************************************************
  class PnlWzemCalDetail::StatApp
  ******************************************************************************/
+
+void PnlWzemCalDetail::StatApp::writeJSON(
+			Json::Value& sup
+			, string difftag
+			, const uint ixWzemVExpstate
+		) {
+	if (difftag.length() == 0) difftag = "StatAppWzemCalDetail";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	me["srefIxWzemVExpstate"] = VecWzemVExpstate::getSref(ixWzemVExpstate);
+};
 
 void PnlWzemCalDetail::StatApp::writeXML(
 			xmlTextWriter* wr
@@ -237,6 +299,26 @@ PnlWzemCalDetail::StatShr::StatShr(
 	this->TxfRetActive = TxfRetActive;
 
 	mask = {BUTSAVEAVAIL, BUTSAVEACTIVE, TXTJOBACTIVE, BUTJOBVIEWAVAIL, BUTJOBVIEWACTIVE, TXFCALACTIVE, TXFSTAACTIVE, TXFSTOACTIVE, TXFINVACTIVE, TXFRETACTIVE};
+};
+
+void PnlWzemCalDetail::StatShr::writeJSON(
+			Json::Value& sup
+			, string difftag
+		) {
+	if (difftag.length() == 0) difftag = "StatShrWzemCalDetail";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	me["ButSaveAvail"] = ButSaveAvail;
+	me["ButSaveActive"] = ButSaveActive;
+	me["TxtJobActive"] = TxtJobActive;
+	me["ButJobViewAvail"] = ButJobViewAvail;
+	me["ButJobViewActive"] = ButJobViewActive;
+	me["TxfCalActive"] = TxfCalActive;
+	me["TxfStaActive"] = TxfStaActive;
+	me["TxfStoActive"] = TxfStoActive;
+	me["TxfInvActive"] = TxfInvActive;
+	me["TxfRetActive"] = TxfRetActive;
 };
 
 void PnlWzemCalDetail::StatShr::writeXML(
@@ -301,6 +383,26 @@ set<uint> PnlWzemCalDetail::StatShr::diff(
  class PnlWzemCalDetail::Tag
  ******************************************************************************/
 
+void PnlWzemCalDetail::Tag::writeJSON(
+			const uint ixWzemVLocale
+			, Json::Value& sup
+			, string difftag
+		) {
+	if (difftag.length() == 0) difftag = "TagWzemCalDetail";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	if (ixWzemVLocale == VecWzemVLocale::ENUS) {
+		me["CptJob"] = "job";
+		me["CptCal"] = "type";
+		me["CptSta"] = "added";
+		me["CptSto"] = "removed";
+		me["CptInv"] = "invocation arguments";
+		me["CptRet"] = "return arguments";
+	};
+	me["Cpt"] = StrMod::cap(VecWzemVTag::getTitle(VecWzemVTag::DETAIL, ixWzemVLocale));
+};
+
 void PnlWzemCalDetail::Tag::writeXML(
 			const uint ixWzemVLocale
 			, xmlTextWriter* wr
@@ -345,6 +447,27 @@ string PnlWzemCalDetail::DpchAppData::getSrefsMask() {
 	StrMod::vectorToString(ss, srefs);
 
 	return(srefs);
+};
+
+void PnlWzemCalDetail::DpchAppData::readJSON(
+			Json::Value& sup
+			, bool addbasetag
+		) {
+	clear();
+
+	bool basefound;
+
+	Json::Value& me = sup;
+	if (addbasetag) me = sup["DpchAppWzemCalDetailData"];
+
+	basefound = (me != Json::nullValue);
+
+	if (basefound) {
+		if (me.isMember("scrJref")) {jref = Scr::descramble(me["scrJref"].asString()); add(JREF);};
+		if (contiac.readJSON(me, true)) add(CONTIAC);
+	} else {
+		contiac = ContIac();
+	};
 };
 
 void PnlWzemCalDetail::DpchAppData::readXML(
@@ -394,6 +517,26 @@ string PnlWzemCalDetail::DpchAppDo::getSrefsMask() {
 	StrMod::vectorToString(ss, srefs);
 
 	return(srefs);
+};
+
+void PnlWzemCalDetail::DpchAppDo::readJSON(
+			Json::Value& sup
+			, bool addbasetag
+		) {
+	clear();
+
+	bool basefound;
+
+	Json::Value& me = sup;
+	if (addbasetag) me = sup["DpchAppWzemCalDetailDo"];
+
+	basefound = (me != Json::nullValue);
+
+	if (basefound) {
+		if (me.isMember("scrJref")) {jref = Scr::descramble(me["scrJref"].asString()); add(JREF);};
+		if (me.isMember("srefIxVDo")) {ixVDo = VecVDo::getIx(me["srefIxVDo"].asString()); add(IXVDO);};
+	} else {
+	};
 };
 
 void PnlWzemCalDetail::DpchAppDo::readXML(
@@ -474,6 +617,20 @@ void PnlWzemCalDetail::DpchEngData::merge(
 	if (src->has(STATAPP)) add(STATAPP);
 	if (src->has(STATSHR)) {statshr = src->statshr; add(STATSHR);};
 	if (src->has(TAG)) add(TAG);
+};
+
+void PnlWzemCalDetail::DpchEngData::writeJSON(
+			const uint ixWzemVLocale
+			, Json::Value& sup
+		) {
+	Json::Value& me = sup["DpchEngWzemCalDetailData"] = Json::Value(Json::objectValue);
+
+	if (has(JREF)) me["scrJref"] = Scr::scramble(jref);
+	if (has(CONTIAC)) contiac.writeJSON(me);
+	if (has(CONTINF)) continf.writeJSON(me);
+	if (has(STATAPP)) StatApp::writeJSON(me);
+	if (has(STATSHR)) statshr.writeJSON(me);
+	if (has(TAG)) Tag::writeJSON(ixWzemVLocale, me);
 };
 
 void PnlWzemCalDetail::DpchEngData::writeXML(

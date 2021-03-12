@@ -788,8 +788,8 @@ rel	rel	41	TblWzemHistRMUserUniversal	husrRunv
 	tblref		43	tbl		unvUref	unv	trefuniv	void		true	false
 	vecref		0	vec	VecWzemVCard	ixWzemVCard	crd	vreflin	void	idx	true	false
 	vecref		0	vec	VecWzemVPreset	ixWzemVPreset	pre	vreflin	void	idx	true	false
-	vecref		210	vec	VecWzemVMaintable	preIxWzemVMaintable	prm	vreflin	void	idx	true	false
-	tblref		210	tbl		preUref	pru	trefuniv	void		true	false
+	vecref		3	vec	VecWzemVMaintable	preIxWzemVMaintable	prm	vreflin	void	idx	true	false
+	tblref		3	tbl		preUref	pru	trefuniv	void		true	false
 	timeval		0	void		start	sta	tmstamp	void		true	false
 		ImeIAMTablecolTitle.srefX1IxVType	srefX2RefWznmMLocale	Title
 		full	enus	access time
@@ -827,6 +827,7 @@ ImeIMTable.end
 ImeIMRelation.iref	srefIxVBasetype	irefRefWznmCRelation	irefSupRefWznmMRelation	srefSupIxVSubrole	srefFrRefWznmMTable	srefFrsRefWznmMSubset	srefToRefWznmMTable	srefTosRefWznmMSubset	srefRefWznmMTable	Prefix	srefsKOption
 1	grp	0	0	void	TblWzemMUsergroup		TblWzemMPerson
 2	own	0	0	void	TblWzemMUser		TblWzemMPerson
+3	um1n	0	0	void			TblWzemHistRMUserUniversal			pre
 12	j	0	0	void	TblWzemMPerson		TblWzemJMPersonLastname				pref
 13	jpref	0	12	pref	TblWzemJMPersonLastname		TblWzemMPerson
 14	aux	0	0	void	TblWzemMPerson		TblWzemAMPersonDetail				pref

@@ -28,9 +28,9 @@ namespace QryWzemOpxList {
 	class VecVOrd {
 
 	public:
-		static const Sbecore::uint STO = 1;
+		static const Sbecore::uint JOB = 1;
 		static const Sbecore::uint STA = 2;
-		static const Sbecore::uint JOB = 3;
+		static const Sbecore::uint STO = 3;
 
 		static Sbecore::uint getIx(const std::string& sref);
 		static std::string getSref(const Sbecore::uint ix);
@@ -39,7 +39,7 @@ namespace QryWzemOpxList {
 	/**
 	  * StatApp (full: StatAppQryWzemOpxList)
 	  */
-	class StatApp : public Sbecore::Xmlio::Block {
+	class StatApp : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint FIRSTCOL = 1;
@@ -65,7 +65,7 @@ namespace QryWzemOpxList {
 	/**
 	  * StatShr (full: StatShrQryWzemOpxList)
 	  */
-	class StatShr : public Sbecore::Xmlio::Block {
+	class StatShr : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint NTOT = 1;
@@ -89,7 +89,7 @@ namespace QryWzemOpxList {
 	/**
 	  * StgIac (full: StgIacQryWzemOpxList)
 	  */
-	class StgIac : public Sbecore::Xmlio::Block {
+	class StgIac : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint JNUM = 1;

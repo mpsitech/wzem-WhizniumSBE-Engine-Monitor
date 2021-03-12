@@ -57,7 +57,7 @@ namespace PnlWzemNavMon {
 	/**
 	  * ContIac (full: ContIacWzemNavMon)
 	  */
-	class ContIac : public Sbecore::Xmlio::Block {
+	class ContIac : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint NUMFLSTPRD = 1;
@@ -92,7 +92,7 @@ namespace PnlWzemNavMon {
 	/**
 	  * StatApp (full: StatAppWzemNavMon)
 	  */
-	class StatApp : public Sbecore::Xmlio::Block {
+	class StatApp : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint IXWZEMVEXPSTATE = 1;
@@ -144,7 +144,7 @@ namespace PnlWzemNavMon {
 	/**
 	  * StatShr (full: StatShrWzemNavMon)
 	  */
-	class StatShr : public Sbecore::Xmlio::Block {
+	class StatShr : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint LSTPRDAVAIL = 1;
@@ -194,7 +194,7 @@ namespace PnlWzemNavMon {
 	/**
 	  * Tag (full: TagWzemNavMon)
 	  */
-	class Tag : public Sbecore::Xmlio::Block {
+	class Tag : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint CPT = 1;
@@ -294,14 +294,14 @@ namespace PnlWzemNavMon {
 
 	public:
 		ContIac contiac;
-		Sbecore::Xmlio::Feed feedFLstCal;
-		Sbecore::Xmlio::Feed feedFLstCln;
-		Sbecore::Xmlio::Feed feedFLstEvt;
-		Sbecore::Xmlio::Feed feedFLstJob;
-		Sbecore::Xmlio::Feed feedFLstNde;
-		Sbecore::Xmlio::Feed feedFLstOpx;
-		Sbecore::Xmlio::Feed feedFLstPrd;
-		Sbecore::Xmlio::Feed feedFLstPst;
+		Sbecore::Feed feedFLstCal;
+		Sbecore::Feed feedFLstCln;
+		Sbecore::Feed feedFLstEvt;
+		Sbecore::Feed feedFLstJob;
+		Sbecore::Feed feedFLstNde;
+		Sbecore::Feed feedFLstOpx;
+		Sbecore::Feed feedFLstPrd;
+		Sbecore::Feed feedFLstPst;
 		StatApp statapp;
 		StatShr statshr;
 		Tag tag;

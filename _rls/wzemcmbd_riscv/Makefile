@@ -2,19 +2,19 @@
 # make file for Wzem combined daemon, release wzemcmbd_riscv (ubuntu cross-compilation)
 # copyright: (C) 2016-2020 MPSI Technologies GmbH
 # author: Alexander Wirthmueller (auto-generation)
-# date created: 15 Dec 2020
+# date created: 12 Mar 2021
 # IP header --- ABOVE
 
 include Makefile.inc
 
-CPP = 
-CPPFLAGS = --sysroot=${SYSROOT} -DWZEMCMBD
+CPP = ${TCHROOT}/riscv64-oe-linux-g++
+CPPFLAGS = --sysroot=${SYSROOT} --sysroot=${SYSROOT} -std=c++11 -fstack-protector-strong -g -Wall -Os -pthread -DWZEMCMBD
 
-LINK = 
+LINK = ${TCHROOT}/riscv64-oe-linux-g++
 LINKFLAGS = --sysroot=${SYSROOT} -s
 
 INCPATH = -I=$(BUILDROOT)/dbswzem -I=$(BUILDROOT)/wzemcmbd/VecWzem -I=$(BUILDROOT)/wzemcmbd/IexWzem -I=$(BUILDROOT)/wzemcmbd
-INCPATH += -I=$(BUILDROOT)/wzemcmbd/CrdWzemNav -I=$(BUILDROOT)/wzemcmbd/CrdWzemUsg -I=$(BUILDROOT)/wzemcmbd/CrdWzemUsr -I=$(BUILDROOT)/wzemcmbd/CrdWzemPrs -I=$(BUILDROOT)/wzemcmbd/CrdWzemPrd -I=$(BUILDROOT)/wzemcmbd/CrdWzemEvt -I=$(BUILDROOT)/wzemcmbd/CrdWzemJob -I=$(BUILDROOT)/wzemcmbd/CrdWzemCal -I=$(BUILDROOT)/wzemcmbd/CrdWzemCln -I=$(BUILDROOT)/wzemcmbd/CrdWzemOpx -I=$(BUILDROOT)/wzemcmbd/CrdWzemPst -I=$(BUILDROOT)/wzemcmbd/CrdWzemNde
+INCPATH += -I=$(BUILDROOT)/wzemcmbd/CrdWzemUsg -I=$(BUILDROOT)/wzemcmbd/CrdWzemUsr -I=$(BUILDROOT)/wzemcmbd/CrdWzemPrs -I=$(BUILDROOT)/wzemcmbd/CrdWzemNav -I=$(BUILDROOT)/wzemcmbd/CrdWzemPrd -I=$(BUILDROOT)/wzemcmbd/CrdWzemEvt -I=$(BUILDROOT)/wzemcmbd/CrdWzemJob -I=$(BUILDROOT)/wzemcmbd/CrdWzemCal -I=$(BUILDROOT)/wzemcmbd/CrdWzemCln -I=$(BUILDROOT)/wzemcmbd/CrdWzemOpx -I=$(BUILDROOT)/wzemcmbd/CrdWzemPst -I=$(BUILDROOT)/wzemcmbd/CrdWzemNde
 INCPATH += -I=${WHIZSDKROOT}/build -I=/usr/include -I=/usr/include/libxml2
 
 PCHS = Wzemcmbd.h.gch
@@ -28,12 +28,12 @@ LIBPATH += -L=$(LIBROOT)/wzemcmbd
 LIBPATH += -L=${WHIZSDKROOT}/lib -L=/usr/lib
 LIBPATH += -L=/lib
 
-LIBS = -lcrdwzemnav -lcrdwzemusg -lcrdwzemusr -lcrdwzemprs -lcrdwzemprd -lcrdwzemevt -lcrdwzemjob -lcrdwzemcal -lcrdwzemcln -lcrdwzemopx -lcrdwzempst -lcrdwzemnde
+LIBS = -lcrdwzemusg -lcrdwzemusr -lcrdwzemprs -lcrdwzemnav -lcrdwzemprd -lcrdwzemevt -lcrdwzemjob -lcrdwzemcal -lcrdwzemcln -lcrdwzemopx -lcrdwzempst -lcrdwzemnde
 LIBS += -liexwzem -lvecwzem -ldbswzem
 LIBS += -lmicrohttpd -lsbecore_lite -lsbecore_mon
 LIBS += -lsbecore_plus -lsqlite3
 LIBS += -lsbecore
-LIBS += -lxml2
+LIBS += -ljsoncpp -lxml2
 LIBS += -lpthread
 
 EXE = Wzemcmbd

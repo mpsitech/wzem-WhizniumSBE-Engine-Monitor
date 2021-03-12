@@ -22,10 +22,10 @@ uint QryWzemJobList::VecVOrd::getIx(
 		) {
 	string s = StrMod::lc(sref);
 
-	if (s == "sup") return SUP;
 	if (s == "sto") return STO;
-	if (s == "prd") return PRD;
+	if (s == "sup") return SUP;
 	if (s == "sta") return STA;
+	if (s == "prd") return PRD;
 
 	return(0);
 };
@@ -33,10 +33,10 @@ uint QryWzemJobList::VecVOrd::getIx(
 string QryWzemJobList::VecVOrd::getSref(
 			const uint ix
 		) {
-	if (ix == SUP) return("sup");
 	if (ix == STO) return("sto");
-	if (ix == PRD) return("prd");
+	if (ix == SUP) return("sup");
 	if (ix == STA) return("sta");
+	if (ix == PRD) return("prd");
 
 	return("");
 };

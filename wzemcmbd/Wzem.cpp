@@ -1330,6 +1330,29 @@ bool ContInfWzemAlert::all(
 	return true;
 };
 
+void ContInfWzemAlert::writeJSON(
+			Json::Value& sup
+			, string difftag
+		) {
+	if (difftag == "") difftag = "ContInfWzemAlert";
+
+	Json::Value& me = sup["DpchEngWzemConfirm"] = Json::Value(Json::objectValue);
+
+	me["TxtCpt"] = TxtCpt;
+	me["TxtMsg1"] = TxtMsg1;
+	me["TxtMsg2"] = TxtMsg2;
+	me["TxtMsg3"] = TxtMsg3;
+	me["TxtMsg4"] = TxtMsg4;
+	me["TxtMsg5"] = TxtMsg5;
+	me["TxtMsg6"] = TxtMsg6;
+	me["TxtMsg7"] = TxtMsg7;
+	me["TxtMsg8"] = TxtMsg8;
+	me["TxtMsg9"] = TxtMsg9;
+	me["TxtMsg10"] = TxtMsg10;
+	me["TxtMsg11"] = TxtMsg11;
+	me["TxtMsg12"] = TxtMsg12;
+};
+
 void ContInfWzemAlert::writeXML(
 			xmlTextWriter* wr
 			, string difftag

@@ -3,7 +3,7 @@
 # make script for Wzem combined daemon, release wzemcmbd_ubuntu
 # copyright: (C) 2016-2020 MPSI Technologies GmbH
 # author: Alexander Wirthmueller (auto-generation)
-# date created: 15 Dec 2020
+# date created: 12 Mar 2021
 # IP header --- ABOVE
 
 if [ -z ${WHIZROOT+x} ]; then
@@ -17,7 +17,7 @@ if [ $? -ne 0 ]; then
 fi
 
 if [ "$1" = "all" ]; then
-	subs=("IexWzem" "VecWzem" "CrdWzemNav" "CrdWzemUsg" "CrdWzemUsr" "CrdWzemPrs" "CrdWzemPrd" "CrdWzemEvt" "CrdWzemJob" "CrdWzemCal" "CrdWzemCln" "CrdWzemOpx" "CrdWzemPst" "CrdWzemNde")
+	subs=("IexWzem" "VecWzem" "CrdWzemUsg" "CrdWzemUsr" "CrdWzemPrs" "CrdWzemNav" "CrdWzemPrd" "CrdWzemEvt" "CrdWzemJob" "CrdWzemCal" "CrdWzemCln" "CrdWzemOpx" "CrdWzemPst" "CrdWzemNde")
 else
 	subs=("$@")
 fi

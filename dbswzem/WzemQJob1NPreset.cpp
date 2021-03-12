@@ -31,6 +31,21 @@ WzemQJob1NPreset::WzemQJob1NPreset(
 	this->stubRef = stubRef;
 };
 
+void WzemQJob1NPreset::writeJSON(
+			Json::Value& sup
+			, bool jnumattr
+			, bool shorttags
+		) {
+	Json::Value& me = sup.append(Json::Value(Json::objectValue));
+
+	if (jnumattr) me["jnum"] = jnum;
+	if (shorttags) {
+		me["ref"] = stubRef;
+	} else {
+		me["stubRef"] = stubRef;
+	};
+};
+
 void WzemQJob1NPreset::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -96,6 +111,16 @@ ListWzemQJob1NPreset& ListWzemQJob1NPreset::operator=(
 	};
 
 	return(*this);
+};
+
+void ListWzemQJob1NPreset::writeJSON(
+			Json::Value& sup
+			, std::string difftag
+		) {
+	if (difftag == "") difftag = "ListWzemQJob1NPreset";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::arrayValue);
+	for (unsigned int i = 0; i < nodes.size(); i++) nodes[i]->writeJSON(me, true, true);
 };
 
 void ListWzemQJob1NPreset::writeXML(

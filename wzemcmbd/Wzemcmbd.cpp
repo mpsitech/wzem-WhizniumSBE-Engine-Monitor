@@ -41,6 +41,27 @@ string DpchAppWzem::getSrefsMask() {
 	else return("");
 };
 
+void DpchAppWzem::readJSON(
+			Json::Value& sup
+			, bool addbasetag
+		) {
+	clear();
+
+	bool basefound;
+
+	Json::Value& me = sup;
+	if (addbasetag) me = sup[VecWzemVDpch::getSref(ixWzemVDpch)];
+
+	basefound = (me != Json::nullValue);
+
+	if (basefound) {
+		if (me.isMember("scrJref")) {
+			jref = Scr::descramble(me["scrJref"].asString());
+			add(JREF);
+		};
+	};
+};
+
 void DpchAppWzem::readXML(
 			xmlXPathContext* docctx
 			, string basexpath
@@ -93,6 +114,28 @@ string DpchAppWzemAlert::getSrefsMask() {
 	StrMod::vectorToString(ss, srefs);
 
 	return(srefs);
+};
+
+void DpchAppWzemAlert::readJSON(
+			Json::Value& sup
+			, bool addbasetag
+		) {
+	clear();
+
+	bool basefound;
+
+	Json::Value& me = sup;
+	if (addbasetag) me = sup["DpchAppWzemAlert"];
+
+	basefound = (me != Json::nullValue);
+
+	if (basefound) {
+		if (me.isMember("scrJref")) {
+			jref = Scr::descramble(me["scrJref"].asString());
+			add(JREF);
+		};
+		if (me.isMember("numFMcb")) {numFMcb = me["numFMcb"].asInt(); add(NUMFMCB);};
+	};
 };
 
 void DpchAppWzemAlert::readXML(
@@ -178,6 +221,15 @@ void DpchEngWzem::merge(
 	if (src->has(JREF)) {jref = src->jref; add(JREF);};
 };
 
+void DpchEngWzem::writeJSON(
+			const uint ixWzemVLocale
+			, Json::Value& sup
+		) {
+	Json::Value& me = sup[VecWzemVDpch::getSref(ixWzemVDpch)] = Json::Value(Json::objectValue);
+
+	if (has(JREF)) me["scrJref"] = Scr::scramble(jref);
+};
+
 void DpchEngWzem::writeXML(
 			const uint ixWzemVLocale
 			, xmlTextWriter* wr
@@ -253,6 +305,17 @@ void DpchEngWzemAlert::merge(
 	if (src->has(FEEDFMCB)) {feedFMcb = src->feedFMcb; add(FEEDFMCB);};
 };
 
+void DpchEngWzemAlert::writeJSON(
+			const uint ixWzemVLocale
+			, Json::Value& sup
+		) {
+	Json::Value& me = sup["DpchEngWzemAlert"] = Json::Value(Json::objectValue);
+
+	if (has(JREF)) me["scrJref"] = Scr::scramble(jref);
+	if (has(CONTINF)) continf.writeJSON(me);
+	if (has(FEEDFMCB)) feedFMcb.writeJSON(me);
+};
+
 void DpchEngWzemAlert::writeXML(
 			const uint ixWzemVLocale
 			, xmlTextWriter* wr
@@ -318,6 +381,17 @@ void DpchEngWzemConfirm::merge(
 	if (src->has(SREF)) {sref = src->sref; add(SREF);};
 };
 
+void DpchEngWzemConfirm::writeJSON(
+			const uint ixWzemVLocale
+			, Json::Value& sup
+		) {
+	Json::Value& me = sup["DpchEngWzemConfirm"] = Json::Value(Json::objectValue);
+
+	if (has(ACCEPTED)) me["accepted"] = accepted;
+	if (has(JREF)) me["scrJref"] = Scr::scramble(jref);
+	if (has(SREF)) me["sref"] = sref;
+};
+
 void DpchEngWzemConfirm::writeXML(
 			const uint ixWzemVLocale
 			, xmlTextWriter* wr
@@ -348,12 +422,18 @@ DpchEngWzemSuspend::DpchEngWzemSuspend(
 StgWzemAppearance::StgWzemAppearance(
 			const usmallint histlength
 			, const bool suspsess
+			, const uint sesstterm
+			, const uint sesstwarn
+			, const uint roottterm
 		) :
 			Block()
 		{
 	this->histlength = histlength;
 	this->suspsess = suspsess;
-	mask = {HISTLENGTH, SUSPSESS};
+	this->sesstterm = sesstterm;
+	this->sesstwarn = sesstwarn;
+	this->roottterm = roottterm;
+	mask = {HISTLENGTH, SUSPSESS, SESSTTERM, SESSTWARN, ROOTTTERM};
 };
 
 bool StgWzemAppearance::readXML(
@@ -375,6 +455,9 @@ bool StgWzemAppearance::readXML(
 	if (basefound) {
 		if (extractUsmallintAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "histlength", histlength)) add(HISTLENGTH);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "suspsess", suspsess)) add(SUSPSESS);
+		if (extractUintAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "sesstterm", sesstterm)) add(SESSTTERM);
+		if (extractUintAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "sesstwarn", sesstwarn)) add(SESSTWARN);
+		if (extractUintAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "roottterm", roottterm)) add(ROOTTTERM);
 	};
 
 	return basefound;
@@ -394,6 +477,9 @@ void StgWzemAppearance::writeXML(
 	xmlTextWriterStartElement(wr, BAD_CAST difftag.c_str());
 		writeUsmallintAttr(wr, itemtag, "sref", "histlength", histlength);
 		writeBoolAttr(wr, itemtag, "sref", "suspsess", suspsess);
+		writeUintAttr(wr, itemtag, "sref", "sesstterm", sesstterm);
+		writeUintAttr(wr, itemtag, "sref", "sesstwarn", sesstwarn);
+		writeUintAttr(wr, itemtag, "sref", "roottterm", roottterm);
 	xmlTextWriterEndElement(wr);
 };
 
@@ -404,6 +490,9 @@ set<uint> StgWzemAppearance::comm(
 
 	if (histlength == comp->histlength) insert(items, HISTLENGTH);
 	if (suspsess == comp->suspsess) insert(items, SUSPSESS);
+	if (sesstterm == comp->sesstterm) insert(items, SESSTTERM);
+	if (sesstwarn == comp->sesstwarn) insert(items, SESSTWARN);
+	if (roottterm == comp->roottterm) insert(items, ROOTTTERM);
 
 	return(items);
 };
@@ -416,7 +505,7 @@ set<uint> StgWzemAppearance::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {HISTLENGTH, SUSPSESS};
+	diffitems = {HISTLENGTH, SUSPSESS, SESSTTERM, SESSTWARN, ROOTTTERM};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);
@@ -816,7 +905,7 @@ DpchEngWzemAlert* AlrWzem::prepareAlrAbt(
 	continf.TxtCpt = StrMod::cap(continf.TxtCpt);
 
 	if (ixWzemVLocale == VecWzemVLocale::ENUS) {
-		continf.TxtMsg1 = "WhizniumSBE Engine Monitor version v1.0.3 released on 15-12-2020";
+		continf.TxtMsg1 = "WhizniumSBE Engine Monitor version v1.0.5 released on 12-3-2021";
 		continf.TxtMsg2 = "\\u00a9 MPSI Technologies GmbH";
 		continf.TxtMsg4 = "contributors: Alexander Wirthmueller";
 		continf.TxtMsg6 = "WhizniumSBE Engine Monitor serves as a debugging tool for projects developed with WhizniumSBE.";
@@ -902,6 +991,58 @@ DpchEngWzemAlert* AlrWzem::prepareAlrSav(
 	return(new DpchEngWzemAlert(jref, &continf, &feedFMcbAlert, {DpchEngWzemAlert::ALL}));
 };
 
+DpchEngWzemAlert* AlrWzem::prepareAlrTrm(
+			const ubigint jref
+			, const uint ixWzemVLocale
+			, const uint sesstterm
+			, const uint sesstwarn
+			, Feed& feedFMcbAlert
+		) {
+	ContInfWzemAlert continf;
+	// IP prepareAlrTrm --- BEGIN
+	continf.TxtCpt = VecWzemVTag::getTitle(VecWzemVTag::ANNOUNCE, ixWzemVLocale);
+	continf.TxtCpt = StrMod::cap(continf.TxtCpt);
+
+	if (ixWzemVLocale == VecWzemVLocale::ENUS) {
+		continf.TxtMsg1 = "Your session has been inactive for " + prepareAlrTrm_dtToString(ixWzemVLocale, sesstterm) + ". It will be terminated in " + prepareAlrTrm_dtToString(ixWzemVLocale, sesstwarn) + ".";
+	};
+
+	feedFMcbAlert.clear();
+
+	VecWzemVTag::appendToFeed(VecWzemVTag::OK, ixWzemVLocale, feedFMcbAlert);
+	feedFMcbAlert.cap();
+	// IP prepareAlrTrm --- END
+	return(new DpchEngWzemAlert(jref, &continf, &feedFMcbAlert, {DpchEngWzemAlert::ALL}));
+};
+
+string AlrWzem::prepareAlrTrm_dtToString(
+			const uint ixWzemVLocale
+			, const time_t dt
+		) {
+	string s;
+
+	if ((dt%3600) == 0) {
+		s = to_string(dt/3600);
+
+		if (dt == 3600) s += " " + VecWzemVTag::getTitle(VecWzemVTag::HOUR, ixWzemVLocale);
+		else s += " " + VecWzemVTag::getTitle(VecWzemVTag::HOURS, ixWzemVLocale);
+
+	} else if ((dt%60) == 0) {
+		s = to_string(dt/60);
+
+		if (dt == 60) s += " " + VecWzemVTag::getTitle(VecWzemVTag::MINUTE, ixWzemVLocale);
+		else s += " " + VecWzemVTag::getTitle(VecWzemVTag::MINUTES, ixWzemVLocale);
+
+	} else {
+		s = to_string(dt);
+
+		if (dt == 1) s += " " + VecWzemVTag::getTitle(VecWzemVTag::SECOND, ixWzemVLocale);
+		else s += " " + VecWzemVTag::getTitle(VecWzemVTag::SECONDS, ixWzemVLocale);
+	};
+
+	return s;
+};
+
 /******************************************************************************
  class ReqWzem
  ******************************************************************************/
@@ -927,6 +1068,8 @@ ReqWzem::ReqWzem(
 
 	request = NULL;
 	requestlen = 0;
+
+	jsonNotXml = false;
 
 	jref = 0;
 
@@ -1456,14 +1599,14 @@ void StmgrWzem::handleCall(
 	} else if (call->ixVCall == VecWzemVCall::CALLWZEMPSTUPD_REFEQ) {
 		insert(icsWzemVStub, VecWzemVStub::STUBWZEMPSTSTD);
 	} else if (call->ixVCall == VecWzemVCall::CALLWZEMSESUPD_REFEQ) {
-		insert(icsWzemVStub, VecWzemVStub::STUBWZEMSESSTD);
 		insert(icsWzemVStub, VecWzemVStub::STUBWZEMSESMENU);
+		insert(icsWzemVStub, VecWzemVStub::STUBWZEMSESSTD);
 	} else if (call->ixVCall == VecWzemVCall::CALLWZEMUSGUPD_REFEQ) {
-		insert(icsWzemVStub, VecWzemVStub::STUBWZEMUSGSTD);
 		insert(icsWzemVStub, VecWzemVStub::STUBWZEMGROUP);
+		insert(icsWzemVStub, VecWzemVStub::STUBWZEMUSGSTD);
 	} else if (call->ixVCall == VecWzemVCall::CALLWZEMUSRUPD_REFEQ) {
-		insert(icsWzemVStub, VecWzemVStub::STUBWZEMOWNER);
 		insert(icsWzemVStub, VecWzemVStub::STUBWZEMUSRSTD);
+		insert(icsWzemVStub, VecWzemVStub::STUBWZEMOWNER);
 	};
 
 	for (auto it = icsWzemVStub.begin(); it != icsWzemVStub.end(); it++) {
@@ -1567,7 +1710,7 @@ WakeupWzem::WakeupWzem(
 			, const ubigint wref
 			, const ubigint jref
 			, const string sref
-			, const unsigned int deltat
+			, const uint64_t deltat
 			, const bool weak
 		) {
 	this->xchg = xchg;
@@ -1697,7 +1840,7 @@ void XchgWzemcmbd::startMon() {
 	Clstn* clstn = NULL;
 	Preset* preset = NULL;
 
-	mon.start("WhizniumSBE Engine Monitor v1.0.3", stgwzempath.monpath);
+	mon.start("WhizniumSBE Engine Monitor v1.0.5", stgwzempath.monpath);
 
 	rwmJobs.rlock("XchgWzemcmbd", "startMon");
 	for (auto it = jobs.begin(); it != jobs.end(); it++) {
@@ -1960,11 +2103,16 @@ Arg XchgWzemcmbd::getPreset(
 		time_t rawtime;
 		time(&rawtime);
 
-		arg.mask = Arg::INTVAL;
+		if (ixWzemVPreset == VecWzemVPreset::PREWZEMSYSSTAMP) {
+			arg.mask = Arg::REF;
+			arg.ref = rawtime;
 
-		if (ixWzemVPreset == VecWzemVPreset::PREWZEMSYSDATE) arg.intval = (rawtime-rawtime%(3600*24))/(3600*24);
-		else if (ixWzemVPreset == VecWzemVPreset::PREWZEMSYSTIME) arg.intval = rawtime%(3600*24);
-		else if (ixWzemVPreset == VecWzemVPreset::PREWZEMSYSSTAMP) arg.intval = rawtime;
+		} else {
+			arg.mask = Arg::INTVAL;
+
+			if (ixWzemVPreset == VecWzemVPreset::PREWZEMSYSDATE) arg.intval = (rawtime-rawtime%(3600*24))/(3600*24);
+			else arg.intval = rawtime%(3600*24);
+		};
 
 	} else {
 		rwmJobs.rlock("XchgWzemcmbd", "getPreset", "jref=" + to_string(jref));
@@ -3649,7 +3797,7 @@ set<ubigint> XchgWzemcmbd::getCsjobClisByJref(
 ubigint XchgWzemcmbd::addWakeup(
 			const ubigint jref
 			, const string sref
-			, const unsigned int deltat
+			, const uint64_t deltat
 			, const bool weak
 		) {
 	int res;

@@ -211,11 +211,11 @@ public:
 	static const Sbecore::uint ALL = 4;
 
 public:
-	DpchEngWzemAlert(const Sbecore::ubigint jref = 0, ContInfWzemAlert* continf = NULL, Sbecore::Xmlio::Feed* feedFMcb = NULL, const std::set<Sbecore::uint>& mask = {NONE});
+	DpchEngWzemAlert(const Sbecore::ubigint jref = 0, ContInfWzemAlert* continf = NULL, Sbecore::Feed* feedFMcb = NULL, const std::set<Sbecore::uint>& mask = {NONE});
 
 public:
 	ContInfWzemAlert continf;
-	Sbecore::Xmlio::Feed feedFMcb;
+	Sbecore::Feed feedFMcb;
 
 public:
 	static bool all(const std::set<Sbecore::uint>& items);
@@ -263,7 +263,7 @@ public:
 /**
 	* StgWzemAppearance
 	*/
-class StgWzemAppearance : public Sbecore::Xmlio::Block {
+class StgWzemAppearance : public Sbecore::Block {
 
 public:
 	static const Sbecore::uint HISTLENGTH = 1;
@@ -286,7 +286,7 @@ public:
 /**
 	* StgWzemAppsrv
 	*/
-class StgWzemAppsrv : public Sbecore::Xmlio::Block {
+class StgWzemAppsrv : public Sbecore::Block {
 
 public:
 	static const Sbecore::uint PORT = 1;
@@ -309,7 +309,7 @@ public:
 /**
 	* StgWzemd
 	*/
-class StgWzemd : public Sbecore::Xmlio::Block {
+class StgWzemd : public Sbecore::Block {
 
 public:
 	static const Sbecore::uint JOBPRCN = 1;
@@ -334,7 +334,7 @@ public:
 /**
 	* StgWzemDatabase
 	*/
-class StgWzemDatabase : public Sbecore::Xmlio::Block {
+class StgWzemDatabase : public Sbecore::Block {
 
 public:
 	static const Sbecore::uint IXDBSVDBSTYPE = 1;
@@ -367,7 +367,7 @@ public:
 /**
 	* StgWzemPath
 	*/
-class StgWzemPath : public Sbecore::Xmlio::Block {
+class StgWzemPath : public Sbecore::Block {
 
 public:
 	static const Sbecore::uint ACVPATH = 1;
@@ -399,10 +399,10 @@ public:
 	* AlrWzem
 	*/
 namespace AlrWzem {
-	DpchEngWzemAlert* prepareAlrAbt(const Sbecore::ubigint jref, const Sbecore::uint ixWzemVLocale, Sbecore::Xmlio::Feed& feedFMcbAlert);
-	DpchEngWzemAlert* prepareAlrIer(const Sbecore::ubigint jref, const Sbecore::uint ixWzemVLocale, const std::string& iexsqk, Sbecore::Xmlio::Feed& feedFMcbAlert);
-	DpchEngWzemAlert* prepareAlrPer(const Sbecore::ubigint jref, const Sbecore::uint ixWzemVLocale, const std::string& iexsqk, Sbecore::Xmlio::Feed& feedFMcbAlert);
-	DpchEngWzemAlert* prepareAlrSav(const Sbecore::ubigint jref, const Sbecore::uint ixWzemVLocale, Sbecore::Xmlio::Feed& feedFMcbAlert);
+	DpchEngWzemAlert* prepareAlrAbt(const Sbecore::ubigint jref, const Sbecore::uint ixWzemVLocale, Sbecore::Feed& feedFMcbAlert);
+	DpchEngWzemAlert* prepareAlrIer(const Sbecore::ubigint jref, const Sbecore::uint ixWzemVLocale, const std::string& iexsqk, Sbecore::Feed& feedFMcbAlert);
+	DpchEngWzemAlert* prepareAlrPer(const Sbecore::ubigint jref, const Sbecore::uint ixWzemVLocale, const std::string& iexsqk, Sbecore::Feed& feedFMcbAlert);
+	DpchEngWzemAlert* prepareAlrSav(const Sbecore::ubigint jref, const Sbecore::uint ixWzemVLocale, Sbecore::Feed& feedFMcbAlert);
 };
 
 /**

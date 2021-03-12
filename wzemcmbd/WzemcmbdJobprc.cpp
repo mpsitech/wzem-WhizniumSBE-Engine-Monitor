@@ -183,8 +183,17 @@ void WzemcmbdJobprc::accessJob(
 			, DbsWzem* dbswzem
 			, ReqWzem* req
 		) {
+	time_t rawtime;
+
 	JobWzem* job = NULL;
-	
+
+	if ((req->ixVBasetype == ReqWzem::VecVBasetype::CMD) || (req->ixVBasetype == ReqWzem::VecVBasetype::DPCHAPP) || (req->ixVBasetype == ReqWzem::VecVBasetype::UPLOAD) || (req->ixVBasetype == ReqWzem::VecVBasetype::DOWNLOAD)) {
+		if ((xchg->stgwzemappearance.roottterm != 0) || (xchg->stgwzemappearance.sesstterm != 0)) {
+			time(&rawtime);
+			xchg->triggerIxRefCall(dbswzem, VecWzemVCall::CALLWZEMREFPRESET, req->jref, VecWzemVPreset::PREWZEMTLAST, rawtime);
+		};
+	};
+
 	job = xchg->getJobByJref(req->jref);
 	if (job) {
 		if (!req->weak) job->lockAccess("WzemcmbdJobprc", "accessJob");

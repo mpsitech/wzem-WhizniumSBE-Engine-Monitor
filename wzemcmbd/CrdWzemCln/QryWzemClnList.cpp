@@ -161,8 +161,8 @@ void QryWzemClnList::rerun_orderSQL(
 			string& sqlstr
 			, const uint preIxOrd
 		) {
-	if (preIxOrd == VecVOrd::STA) sqlstr += " ORDER BY TblWzemMClstn.x1Startu ASC";
-	else if (preIxOrd == VecVOrd::STO) sqlstr += " ORDER BY TblWzemMClstn.x1Stopu ASC";
+	if (preIxOrd == VecVOrd::STO) sqlstr += " ORDER BY TblWzemMClstn.x1Stopu ASC";
+	else if (preIxOrd == VecVOrd::STA) sqlstr += " ORDER BY TblWzemMClstn.x1Startu ASC";
 	else if (preIxOrd == VecVOrd::JOB) sqlstr += " ORDER BY TblWzemMClstn.refWzemMJob ASC";
 };
 

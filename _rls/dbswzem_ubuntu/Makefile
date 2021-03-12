@@ -2,7 +2,7 @@
 # make file for Wzem database access library, release dbswzem_ubuntu
 # copyright: (C) 2016-2020 MPSI Technologies GmbH
 # author: Alexander Wirthmueller (auto-generation)
-# date created: 15 Dec 2020
+# date created: 12 Mar 2021
 # IP header --- ABOVE
 
 LIBROOT = ${WHIZSDKROOT}/lib
@@ -17,7 +17,7 @@ DYNLIB = g++
 DYNLIBFLAGS = -shared
 DYNLIBEXT = so
 
-INCPATH = -I${WHIZSDKROOT}/build -I/usr/include/libxml2 -I/usr/include/mariadb
+INCPATH = -I${WHIZSDKROOT}/build -I/usr/include/jsoncpp -I/usr/include/libxml2 -I/usr/include/mariadb
 
 PCHS = DbsWzem.h.gch
 

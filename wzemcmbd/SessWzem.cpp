@@ -129,11 +129,11 @@ SessWzem::SessWzem(
 	statshr.jrefCrdnav = crdnav->jref;
 
 	xchg->addClstn(VecWzemVCall::CALLWZEMREFPRESET, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
+	xchg->addClstn(VecWzemVCall::CALLWZEMCRDACTIVE, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 	xchg->addClstn(VecWzemVCall::CALLWZEMRECACCESS, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 	xchg->addClstn(VecWzemVCall::CALLWZEMLOG, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 	xchg->addClstn(VecWzemVCall::CALLWZEMCRDOPEN, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 	xchg->addClstn(VecWzemVCall::CALLWZEMCRDCLOSE, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
-	xchg->addClstn(VecWzemVCall::CALLWZEMCRDACTIVE, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 
 	// IP constructor.cust3 --- INSERT
 
@@ -149,6 +149,12 @@ SessWzem::~SessWzem() {
 };
 
 // IP cust --- INSERT
+
+void SessWzem::warnTerm(
+			DbsWzem* dbswzem
+		) {
+	crdnav->warnTerm(dbswzem);
+};
 
 void SessWzem::term(
 			DbsWzem* dbswzem
@@ -989,6 +995,8 @@ void SessWzem::handleCall(
 		) {
 	if (call->ixVCall == VecWzemVCall::CALLWZEMREFPRESET) {
 		call->abort = handleCallWzemRefPreSet(dbswzem, call->jref, call->argInv.ix, call->argInv.ref);
+	} else if (call->ixVCall == VecWzemVCall::CALLWZEMCRDACTIVE) {
+		call->abort = handleCallWzemCrdActive(dbswzem, call->jref, call->argInv.ix, call->argRet.ix);
 	} else if (call->ixVCall == VecWzemVCall::CALLWZEMRECACCESS) {
 		call->abort = handleCallWzemRecaccess(dbswzem, call->jref, call->argInv.ix, call->argInv.ref, call->argRet.ix);
 	} else if (call->ixVCall == VecWzemVCall::CALLWZEMLOG) {
@@ -997,8 +1005,6 @@ void SessWzem::handleCall(
 		call->abort = handleCallWzemCrdOpen(dbswzem, call->jref, call->argInv.ix, call->argInv.ref, call->argInv.sref, call->argInv.intval, call->argRet.ref);
 	} else if (call->ixVCall == VecWzemVCall::CALLWZEMCRDCLOSE) {
 		call->abort = handleCallWzemCrdClose(dbswzem, call->jref, call->argInv.ix);
-	} else if (call->ixVCall == VecWzemVCall::CALLWZEMCRDACTIVE) {
-		call->abort = handleCallWzemCrdActive(dbswzem, call->jref, call->argInv.ix, call->argRet.ix);
 	};
 };
 
@@ -1019,12 +1025,26 @@ bool SessWzem::handleCallWzemRefPreSet(
 			else xchg->addRefPreset(ixInv, jref, refInv);
 		};
 
+	} else if (ixInv == VecWzemVPreset::PREWZEMTLAST) {
+		if (xchg->stgwzemappearance.sesstterm != 0) xchg->addRefPreset(ixInv, jref, refInv);
+
 	} else if ((ixInv == VecWzemVPreset::PREWZEMREFPRD)) {
 		if (refInv == 0) xchg->removePreset(ixInv, jref);
 		else xchg->addRefPreset(ixInv, jref, refInv);
 
 		if (crdnav) crdnav->updatePreset(dbswzem, ixInv, jrefTrig, true);
 	};
+	return retval;
+};
+
+bool SessWzem::handleCallWzemCrdActive(
+			DbsWzem* dbswzem
+			, const ubigint jrefTrig
+			, const uint ixInv
+			, uint& ixRet
+		) {
+	bool retval = false;
+	ixRet = checkCrdActive(ixInv);
 	return retval;
 };
 
@@ -1112,8 +1132,7 @@ bool SessWzem::handleCallWzemCrdOpen(
 		refRet = 0;
 
 	} else {
-		if (ixWzemVCard == VecWzemVCard::CRDWZEMNAV) {
-		} else if (ixWzemVCard == VecWzemVCard::CRDWZEMUSG) {
+		if (ixWzemVCard == VecWzemVCard::CRDWZEMUSG) {
 			CrdWzemUsg* crdusg = NULL;
 
 			crdusg = new CrdWzemUsg(xchg, dbswzem, jref, ixWzemVLocale, ref);
@@ -1137,6 +1156,7 @@ bool SessWzem::handleCallWzemCrdOpen(
 
 			refRet = crdprs->jref;
 
+		} else if (ixWzemVCard == VecWzemVCard::CRDWZEMNAV) {
 		} else if (ixWzemVCard == VecWzemVCard::CRDWZEMPRD) {
 			CrdWzemPrd* crdprd = NULL;
 
@@ -1219,13 +1239,7 @@ bool SessWzem::handleCallWzemCrdClose(
 	ubigint jrefNotif = xchg->getRefPreset(VecWzemVPreset::PREWZEMJREFNOTIFY, jref);
 	if (jrefNotif == jrefTrig) xchg->removePreset(VecWzemVPreset::PREWZEMJREFNOTIFY, jref);
 
-	if (ixInv == VecWzemVCard::CRDWZEMNAV) {
-		if (crdnav) {
-			delete crdnav;
-			crdnav = NULL;
-		};
-
-	} else if (ixInv == VecWzemVCard::CRDWZEMUSG) {
+	if (ixInv == VecWzemVCard::CRDWZEMUSG) {
 		CrdWzemUsg* crdusg = NULL;
 
 		for (auto it = crdusgs.begin(); it != crdusgs.end();) {
@@ -1258,6 +1272,12 @@ bool SessWzem::handleCallWzemCrdClose(
 				break;
 			} else it++;
 		};
+	} else if (ixInv == VecWzemVCard::CRDWZEMNAV) {
+		if (crdnav) {
+			delete crdnav;
+			crdnav = NULL;
+		};
+
 	} else if (ixInv == VecWzemVCard::CRDWZEMPRD) {
 		CrdWzemPrd* crdprd = NULL;
 
@@ -1347,16 +1367,5 @@ bool SessWzem::handleCallWzemCrdClose(
 			} else it++;
 		};
 	};
-	return retval;
-};
-
-bool SessWzem::handleCallWzemCrdActive(
-			DbsWzem* dbswzem
-			, const ubigint jrefTrig
-			, const uint ixInv
-			, uint& ixRet
-		) {
-	bool retval = false;
-	ixRet = checkCrdActive(ixInv);
 	return retval;
 };

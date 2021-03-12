@@ -28,7 +28,7 @@ namespace VecWzemVIop {
 
 	std::string getTitle(const Sbecore::uint ix, const Sbecore::uint ixWzemVLocale);
 
-	void fillFeed(const Sbecore::uint ixWzemVLocale, Sbecore::Xmlio::Feed& feed);
+	void fillFeed(const Sbecore::uint ixWzemVLocale, Sbecore::Feed& feed);
 };
 
 #endif

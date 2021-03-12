@@ -39,7 +39,7 @@ namespace QryWzemPstList {
 	/**
 	  * StatApp (full: StatAppQryWzemPstList)
 	  */
-	class StatApp : public Sbecore::Xmlio::Block {
+	class StatApp : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint FIRSTCOL = 1;
@@ -65,7 +65,7 @@ namespace QryWzemPstList {
 	/**
 	  * StatShr (full: StatShrQryWzemPstList)
 	  */
-	class StatShr : public Sbecore::Xmlio::Block {
+	class StatShr : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint NTOT = 1;
@@ -89,7 +89,7 @@ namespace QryWzemPstList {
 	/**
 	  * StgIac (full: StgIacQryWzemPstList)
 	  */
-	class StgIac : public Sbecore::Xmlio::Block {
+	class StgIac : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint JNUM = 1;

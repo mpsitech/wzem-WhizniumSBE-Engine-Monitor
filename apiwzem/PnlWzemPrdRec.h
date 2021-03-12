@@ -42,7 +42,7 @@ namespace PnlWzemPrdRec {
 	/**
 	  * ContInf (full: ContInfWzemPrdRec)
 	  */
-	class ContInf : public Sbecore::Xmlio::Block {
+	class ContInf : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint TXTREF = 1;
@@ -62,21 +62,21 @@ namespace PnlWzemPrdRec {
 	/**
 	  * StatApp (full: StatAppWzemPrdRec)
 	  */
-	class StatApp : public Sbecore::Xmlio::Block {
+	class StatApp : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint INITDONEDETAIL = 1;
-		static const Sbecore::uint INITDONE1NJOB = 2;
-		static const Sbecore::uint INITDONE1NNODE = 3;
+		static const Sbecore::uint INITDONE1NNODE = 2;
+		static const Sbecore::uint INITDONE1NJOB = 3;
 		static const Sbecore::uint INITDONE1NEVENT = 4;
 
 	public:
-		StatApp(const bool initdoneDetail = false, const bool initdone1NJob = false, const bool initdone1NNode = false, const bool initdone1NEvent = false);
+		StatApp(const bool initdoneDetail = false, const bool initdone1NNode = false, const bool initdone1NJob = false, const bool initdone1NEvent = false);
 
 	public:
 		bool initdoneDetail;
-		bool initdone1NJob;
 		bool initdone1NNode;
+		bool initdone1NJob;
 		bool initdone1NEvent;
 
 	public:
@@ -88,24 +88,24 @@ namespace PnlWzemPrdRec {
 	/**
 	  * StatShr (full: StatShrWzemPrdRec)
 	  */
-	class StatShr : public Sbecore::Xmlio::Block {
+	class StatShr : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint IXWZEMVEXPSTATE = 1;
 		static const Sbecore::uint SCRJREFDETAIL = 2;
-		static const Sbecore::uint SCRJREF1NJOB = 3;
-		static const Sbecore::uint SCRJREF1NNODE = 4;
+		static const Sbecore::uint SCRJREF1NNODE = 3;
+		static const Sbecore::uint SCRJREF1NJOB = 4;
 		static const Sbecore::uint SCRJREF1NEVENT = 5;
 		static const Sbecore::uint BUTREGULARIZEACTIVE = 6;
 
 	public:
-		StatShr(const Sbecore::uint ixWzemVExpstate = VecWzemVExpstate::REGD, const std::string& scrJrefDetail = "", const std::string& scrJref1NJob = "", const std::string& scrJref1NNode = "", const std::string& scrJref1NEvent = "", const bool ButRegularizeActive = true);
+		StatShr(const Sbecore::uint ixWzemVExpstate = VecWzemVExpstate::REGD, const std::string& scrJrefDetail = "", const std::string& scrJref1NNode = "", const std::string& scrJref1NJob = "", const std::string& scrJref1NEvent = "", const bool ButRegularizeActive = true);
 
 	public:
 		Sbecore::uint ixWzemVExpstate;
 		std::string scrJrefDetail;
-		std::string scrJref1NJob;
 		std::string scrJref1NNode;
+		std::string scrJref1NJob;
 		std::string scrJref1NEvent;
 		bool ButRegularizeActive;
 
@@ -118,7 +118,7 @@ namespace PnlWzemPrdRec {
 	/**
 	  * Tag (full: TagWzemPrdRec)
 	  */
-	class Tag : public Sbecore::Xmlio::Block {
+	class Tag : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint CPT = 1;

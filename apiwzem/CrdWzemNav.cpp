@@ -76,6 +76,7 @@ uint CrdWzemNav::VecVSge::getIx(
 
 	if (s == "idle") return IDLE;
 	if (s == "alrwzemabt") return ALRWZEMABT;
+	if (s == "alrwzemtrm") return ALRWZEMTRM;
 
 	return(0);
 };
@@ -85,6 +86,7 @@ string CrdWzemNav::VecVSge::getSref(
 		) {
 	if (ix == IDLE) return("idle");
 	if (ix == ALRWZEMABT) return("alrwzemabt");
+	if (ix == ALRWZEMTRM) return("alrwzemtrm");
 
 	return("");
 };

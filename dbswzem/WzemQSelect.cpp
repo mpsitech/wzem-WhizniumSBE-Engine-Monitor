@@ -31,6 +31,19 @@ WzemQSelect::WzemQSelect(
 	this->ref = ref;
 };
 
+void WzemQSelect::writeJSON(
+			Json::Value& sup
+			, bool jnumattr
+			, bool shorttags
+		) {
+	Json::Value& me = sup.append(Json::Value(Json::objectValue));
+
+	if (jnumattr) me["jnum"] = jnum;
+	if (shorttags) {
+	} else {
+	};
+};
+
 void WzemQSelect::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -94,6 +107,16 @@ ListWzemQSelect& ListWzemQSelect::operator=(
 	};
 
 	return(*this);
+};
+
+void ListWzemQSelect::writeJSON(
+			Json::Value& sup
+			, std::string difftag
+		) {
+	if (difftag == "") difftag = "ListWzemQSelect";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::arrayValue);
+	for (unsigned int i = 0; i < nodes.size(); i++) nodes[i]->writeJSON(me, true, true);
 };
 
 void ListWzemQSelect::writeXML(

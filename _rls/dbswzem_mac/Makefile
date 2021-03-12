@@ -2,7 +2,7 @@
 # make file for Wzem database access library, release dbswzem_mac
 # copyright: (C) 2016-2020 MPSI Technologies GmbH
 # author: Alexander Wirthmueller (auto-generation)
-# date created: 15 Dec 2020
+# date created: 12 Mar 2021
 # IP header --- ABOVE
 
 LIBROOT = ${WHIZSDKROOT}/lib
@@ -17,7 +17,7 @@ DYNLIB = g++
 DYNLIBFLAGS = -dynamiclib -undefined dynamic_lookup
 DYNLIBEXT = dylib
 
-INCPATH = -I${WHIZSDKROOT}/build -I/usr/local/include/libxml2 -I/usr/local/mysql/include -I/usr/local/opt/sqlite/include
+INCPATH = -I${WHIZSDKROOT}/build -I/usr/local/include -I/usr/local/include/libxml2 -I/usr/local/mysql/include -I/usr/local/opt/sqlite/include
 
 PCHS = DbsWzem.h.gch
 

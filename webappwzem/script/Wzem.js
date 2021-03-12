@@ -1,7 +1,7 @@
-WZEM_VERSION = "1.0.3";
+WZEM_VERSION = "1.0.5";
 WZEM_VERSION_MAJOR = 1;
 WZEM_VERSION_MINOR = 0;
-WZEM_VERSION_SUB = 3;
+WZEM_VERSION_SUB = 5;
 
 function getCrdwnd() {
 	if (window.name == "Crd") return window;

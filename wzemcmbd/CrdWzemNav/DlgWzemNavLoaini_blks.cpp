@@ -166,6 +166,26 @@ DlgWzemNavLoaini::ContIac::ContIac(
 	mask = {NUMFDSE};
 };
 
+bool DlgWzemNavLoaini::ContIac::readJSON(
+			Json::Value& sup
+			, bool addbasetag
+		) {
+	clear();
+
+	bool basefound;
+
+	Json::Value& me = sup;
+	if (addbasetag) me = sup["ContIacDlgWzemNavLoaini"];
+
+	basefound = (me != Json::nullValue);
+
+	if (basefound) {
+		if (me.isMember("numFDse")) {numFDse = me["numFDse"].asUInt(); add(NUMFDSE);};
+	};
+
+	return basefound;
+};
+
 bool DlgWzemNavLoaini::ContIac::readXML(
 			xmlXPathContext* docctx
 			, string basexpath
@@ -187,6 +207,17 @@ bool DlgWzemNavLoaini::ContIac::readXML(
 	};
 
 	return basefound;
+};
+
+void DlgWzemNavLoaini::ContIac::writeJSON(
+			Json::Value& sup
+			, string difftag
+		) {
+	if (difftag.length() == 0) difftag = "ContIacDlgWzemNavLoaini";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	me["numFDse"] = numFDse;
 };
 
 void DlgWzemNavLoaini::ContIac::writeXML(
@@ -243,6 +274,17 @@ DlgWzemNavLoaini::ContInf::ContInf(
 	mask = {NUMFSGE};
 };
 
+void DlgWzemNavLoaini::ContInf::writeJSON(
+			Json::Value& sup
+			, string difftag
+		) {
+	if (difftag.length() == 0) difftag = "ContInfDlgWzemNavLoaini";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	me["numFSge"] = numFSge;
+};
+
 void DlgWzemNavLoaini::ContInf::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -295,6 +337,17 @@ DlgWzemNavLoaini::ContInfImp::ContInfImp(
 	this->TxtPrg = TxtPrg;
 
 	mask = {TXTPRG};
+};
+
+void DlgWzemNavLoaini::ContInfImp::writeJSON(
+			Json::Value& sup
+			, string difftag
+		) {
+	if (difftag.length() == 0) difftag = "ContInfDlgWzemNavLoainiImp";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	me["TxtPrg"] = TxtPrg;
 };
 
 void DlgWzemNavLoaini::ContInfImp::writeXML(
@@ -351,6 +404,17 @@ DlgWzemNavLoaini::ContInfLfi::ContInfLfi(
 	mask = {DLD};
 };
 
+void DlgWzemNavLoaini::ContInfLfi::writeJSON(
+			Json::Value& sup
+			, string difftag
+		) {
+	if (difftag.length() == 0) difftag = "ContInfDlgWzemNavLoainiLfi";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	me["Dld"] = Dld;
+};
+
 void DlgWzemNavLoaini::ContInfLfi::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -395,6 +459,20 @@ set<uint> DlgWzemNavLoaini::ContInfLfi::diff(
  class DlgWzemNavLoaini::StatApp
  ******************************************************************************/
 
+void DlgWzemNavLoaini::StatApp::writeJSON(
+			Json::Value& sup
+			, string difftag
+			, const bool initdone
+			, const string& shortMenu
+		) {
+	if (difftag.length() == 0) difftag = "StatAppDlgWzemNavLoaini";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	me["initdone"] = initdone;
+	me["shortMenu"] = shortMenu;
+};
+
 void DlgWzemNavLoaini::StatApp::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -426,6 +504,17 @@ DlgWzemNavLoaini::StatShr::StatShr(
 	this->ButDneActive = ButDneActive;
 
 	mask = {BUTDNEACTIVE};
+};
+
+void DlgWzemNavLoaini::StatShr::writeJSON(
+			Json::Value& sup
+			, string difftag
+		) {
+	if (difftag.length() == 0) difftag = "StatShrDlgWzemNavLoaini";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	me["ButDneActive"] = ButDneActive;
 };
 
 void DlgWzemNavLoaini::StatShr::writeXML(
@@ -480,6 +569,17 @@ DlgWzemNavLoaini::StatShrIfi::StatShrIfi(
 	this->UldActive = UldActive;
 
 	mask = {ULDACTIVE};
+};
+
+void DlgWzemNavLoaini::StatShrIfi::writeJSON(
+			Json::Value& sup
+			, string difftag
+		) {
+	if (difftag.length() == 0) difftag = "StatShrDlgWzemNavLoainiIfi";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	me["UldActive"] = UldActive;
 };
 
 void DlgWzemNavLoaini::StatShrIfi::writeXML(
@@ -538,6 +638,18 @@ DlgWzemNavLoaini::StatShrImp::StatShrImp(
 	mask = {BUTRUNACTIVE, BUTSTOACTIVE};
 };
 
+void DlgWzemNavLoaini::StatShrImp::writeJSON(
+			Json::Value& sup
+			, string difftag
+		) {
+	if (difftag.length() == 0) difftag = "StatShrDlgWzemNavLoainiImp";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	me["ButRunActive"] = ButRunActive;
+	me["ButStoActive"] = ButStoActive;
+};
+
 void DlgWzemNavLoaini::StatShrImp::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -594,6 +706,17 @@ DlgWzemNavLoaini::StatShrLfi::StatShrLfi(
 	mask = {DLDACTIVE};
 };
 
+void DlgWzemNavLoaini::StatShrLfi::writeJSON(
+			Json::Value& sup
+			, string difftag
+		) {
+	if (difftag.length() == 0) difftag = "StatShrDlgWzemNavLoainiLfi";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	me["DldActive"] = DldActive;
+};
+
 void DlgWzemNavLoaini::StatShrLfi::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -638,6 +761,21 @@ set<uint> DlgWzemNavLoaini::StatShrLfi::diff(
  class DlgWzemNavLoaini::Tag
  ******************************************************************************/
 
+void DlgWzemNavLoaini::Tag::writeJSON(
+			const uint ixWzemVLocale
+			, Json::Value& sup
+			, string difftag
+		) {
+	if (difftag.length() == 0) difftag = "TagDlgWzemNavLoaini";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	if (ixWzemVLocale == VecWzemVLocale::ENUS) {
+	};
+	me["Cpt"] = StrMod::cap(VecWzemVTag::getTitle(VecWzemVTag::LOAINI, ixWzemVLocale));
+	me["ButDne"] = StrMod::cap(VecWzemVTag::getTitle(VecWzemVTag::DONE, ixWzemVLocale));
+};
+
 void DlgWzemNavLoaini::Tag::writeXML(
 			const uint ixWzemVLocale
 			, xmlTextWriter* wr
@@ -661,6 +799,21 @@ void DlgWzemNavLoaini::Tag::writeXML(
 /******************************************************************************
  class DlgWzemNavLoaini::TagIfi
  ******************************************************************************/
+
+void DlgWzemNavLoaini::TagIfi::writeJSON(
+			const uint ixWzemVLocale
+			, Json::Value& sup
+			, string difftag
+		) {
+	if (difftag.length() == 0) difftag = "TagDlgWzemNavLoainiIfi";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	if (ixWzemVLocale == VecWzemVLocale::ENUS) {
+	};
+	me["Uld"] = StrMod::cap(VecWzemVTag::getTitle(VecWzemVTag::UPLOAD, ixWzemVLocale));
+	me["Cpt"] = StrMod::cap(VecWzemVTag::getTitle(VecWzemVTag::FILENAME, ixWzemVLocale));
+};
 
 void DlgWzemNavLoaini::TagIfi::writeXML(
 			const uint ixWzemVLocale
@@ -686,6 +839,22 @@ void DlgWzemNavLoaini::TagIfi::writeXML(
  class DlgWzemNavLoaini::TagImp
  ******************************************************************************/
 
+void DlgWzemNavLoaini::TagImp::writeJSON(
+			const uint ixWzemVLocale
+			, Json::Value& sup
+			, string difftag
+		) {
+	if (difftag.length() == 0) difftag = "TagDlgWzemNavLoainiImp";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	if (ixWzemVLocale == VecWzemVLocale::ENUS) {
+	};
+	me["CptPrg"] = StrMod::cap(VecWzemVTag::getTitle(VecWzemVTag::PROGRESS, ixWzemVLocale));
+	me["ButRun"] = StrMod::cap(VecWzemVTag::getTitle(VecWzemVTag::RUN, ixWzemVLocale));
+	me["ButSto"] = StrMod::cap(VecWzemVTag::getTitle(VecWzemVTag::STOP, ixWzemVLocale));
+};
+
 void DlgWzemNavLoaini::TagImp::writeXML(
 			const uint ixWzemVLocale
 			, xmlTextWriter* wr
@@ -710,6 +879,20 @@ void DlgWzemNavLoaini::TagImp::writeXML(
 /******************************************************************************
  class DlgWzemNavLoaini::TagLfi
  ******************************************************************************/
+
+void DlgWzemNavLoaini::TagLfi::writeJSON(
+			const uint ixWzemVLocale
+			, Json::Value& sup
+			, string difftag
+		) {
+	if (difftag.length() == 0) difftag = "TagDlgWzemNavLoainiLfi";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	if (ixWzemVLocale == VecWzemVLocale::ENUS) {
+	};
+	me["Dld"] = StrMod::cap(VecWzemVTag::getTitle(VecWzemVTag::DOWNLOAD, ixWzemVLocale));
+};
 
 void DlgWzemNavLoaini::TagLfi::writeXML(
 			const uint ixWzemVLocale
@@ -749,6 +932,27 @@ string DlgWzemNavLoaini::DpchAppData::getSrefsMask() {
 	StrMod::vectorToString(ss, srefs);
 
 	return(srefs);
+};
+
+void DlgWzemNavLoaini::DpchAppData::readJSON(
+			Json::Value& sup
+			, bool addbasetag
+		) {
+	clear();
+
+	bool basefound;
+
+	Json::Value& me = sup;
+	if (addbasetag) me = sup["DpchAppDlgWzemNavLoainiData"];
+
+	basefound = (me != Json::nullValue);
+
+	if (basefound) {
+		if (me.isMember("scrJref")) {jref = Scr::descramble(me["scrJref"].asString()); add(JREF);};
+		if (contiac.readJSON(me, true)) add(CONTIAC);
+	} else {
+		contiac = ContIac();
+	};
 };
 
 void DlgWzemNavLoaini::DpchAppData::readXML(
@@ -800,6 +1004,27 @@ string DlgWzemNavLoaini::DpchAppDo::getSrefsMask() {
 	StrMod::vectorToString(ss, srefs);
 
 	return(srefs);
+};
+
+void DlgWzemNavLoaini::DpchAppDo::readJSON(
+			Json::Value& sup
+			, bool addbasetag
+		) {
+	clear();
+
+	bool basefound;
+
+	Json::Value& me = sup;
+	if (addbasetag) me = sup["DpchAppDlgWzemNavLoainiDo"];
+
+	basefound = (me != Json::nullValue);
+
+	if (basefound) {
+		if (me.isMember("scrJref")) {jref = Scr::descramble(me["scrJref"].asString()); add(JREF);};
+		if (me.isMember("srefIxVDo")) {ixVDo = VecVDo::getIx(me["srefIxVDo"].asString()); add(IXVDO);};
+		if (me.isMember("srefIxVDoImp")) {ixVDoImp = VecVDoImp::getIx(me["srefIxVDoImp"].asString()); add(IXVDOIMP);};
+	} else {
+	};
 };
 
 void DlgWzemNavLoaini::DpchAppDo::readXML(
@@ -919,6 +1144,30 @@ void DlgWzemNavLoaini::DpchEngData::merge(
 	if (src->has(TAGIFI)) add(TAGIFI);
 	if (src->has(TAGIMP)) add(TAGIMP);
 	if (src->has(TAGLFI)) add(TAGLFI);
+};
+
+void DlgWzemNavLoaini::DpchEngData::writeJSON(
+			const uint ixWzemVLocale
+			, Json::Value& sup
+		) {
+	Json::Value& me = sup["DpchEngDlgWzemNavLoainiData"] = Json::Value(Json::objectValue);
+
+	if (has(JREF)) me["scrJref"] = Scr::scramble(jref);
+	if (has(CONTIAC)) contiac.writeJSON(me);
+	if (has(CONTINF)) continf.writeJSON(me);
+	if (has(CONTINFIMP)) continfimp.writeJSON(me);
+	if (has(CONTINFLFI)) continflfi.writeJSON(me);
+	if (has(FEEDFDSE)) feedFDse.writeJSON(me);
+	if (has(FEEDFSGE)) feedFSge.writeJSON(me);
+	if (has(STATAPP)) StatApp::writeJSON(me);
+	if (has(STATSHR)) statshr.writeJSON(me);
+	if (has(STATSHRIFI)) statshrifi.writeJSON(me);
+	if (has(STATSHRIMP)) statshrimp.writeJSON(me);
+	if (has(STATSHRLFI)) statshrlfi.writeJSON(me);
+	if (has(TAG)) Tag::writeJSON(ixWzemVLocale, me);
+	if (has(TAGIFI)) TagIfi::writeJSON(ixWzemVLocale, me);
+	if (has(TAGIMP)) TagImp::writeJSON(ixWzemVLocale, me);
+	if (has(TAGLFI)) TagLfi::writeJSON(ixWzemVLocale, me);
 };
 
 void DlgWzemNavLoaini::DpchEngData::writeXML(

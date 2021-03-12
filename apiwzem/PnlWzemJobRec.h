@@ -42,7 +42,7 @@ namespace PnlWzemJobRec {
 	/**
 	  * ContInf (full: ContInfWzemJobRec)
 	  */
-	class ContInf : public Sbecore::Xmlio::Block {
+	class ContInf : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint TXTREF = 1;
@@ -62,25 +62,25 @@ namespace PnlWzemJobRec {
 	/**
 	  * StatApp (full: StatAppWzemJobRec)
 	  */
-	class StatApp : public Sbecore::Xmlio::Block {
+	class StatApp : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint INITDONEDETAIL = 1;
-		static const Sbecore::uint INITDONE1NOP = 2;
-		static const Sbecore::uint INITDONE1NCALL = 3;
-		static const Sbecore::uint INITDONE1NPRESET = 4;
-		static const Sbecore::uint INITDONE1NCLSTN = 5;
+		static const Sbecore::uint INITDONE1NCLSTN = 2;
+		static const Sbecore::uint INITDONE1NPRESET = 3;
+		static const Sbecore::uint INITDONE1NCALL = 4;
+		static const Sbecore::uint INITDONE1NOP = 5;
 		static const Sbecore::uint INITDONESUP1NJOB = 6;
 
 	public:
-		StatApp(const bool initdoneDetail = false, const bool initdone1NOp = false, const bool initdone1NCall = false, const bool initdone1NPreset = false, const bool initdone1NClstn = false, const bool initdoneSup1NJob = false);
+		StatApp(const bool initdoneDetail = false, const bool initdone1NClstn = false, const bool initdone1NPreset = false, const bool initdone1NCall = false, const bool initdone1NOp = false, const bool initdoneSup1NJob = false);
 
 	public:
 		bool initdoneDetail;
-		bool initdone1NOp;
-		bool initdone1NCall;
-		bool initdone1NPreset;
 		bool initdone1NClstn;
+		bool initdone1NPreset;
+		bool initdone1NCall;
+		bool initdone1NOp;
 		bool initdoneSup1NJob;
 
 	public:
@@ -92,28 +92,28 @@ namespace PnlWzemJobRec {
 	/**
 	  * StatShr (full: StatShrWzemJobRec)
 	  */
-	class StatShr : public Sbecore::Xmlio::Block {
+	class StatShr : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint IXWZEMVEXPSTATE = 1;
 		static const Sbecore::uint SCRJREFDETAIL = 2;
-		static const Sbecore::uint SCRJREF1NOP = 3;
-		static const Sbecore::uint SCRJREF1NCALL = 4;
-		static const Sbecore::uint SCRJREF1NPRESET = 5;
-		static const Sbecore::uint SCRJREF1NCLSTN = 6;
+		static const Sbecore::uint SCRJREF1NCLSTN = 3;
+		static const Sbecore::uint SCRJREF1NPRESET = 4;
+		static const Sbecore::uint SCRJREF1NCALL = 5;
+		static const Sbecore::uint SCRJREF1NOP = 6;
 		static const Sbecore::uint SCRJREFSUP1NJOB = 7;
 		static const Sbecore::uint BUTREGULARIZEACTIVE = 8;
 
 	public:
-		StatShr(const Sbecore::uint ixWzemVExpstate = VecWzemVExpstate::REGD, const std::string& scrJrefDetail = "", const std::string& scrJref1NOp = "", const std::string& scrJref1NCall = "", const std::string& scrJref1NPreset = "", const std::string& scrJref1NClstn = "", const std::string& scrJrefSup1NJob = "", const bool ButRegularizeActive = true);
+		StatShr(const Sbecore::uint ixWzemVExpstate = VecWzemVExpstate::REGD, const std::string& scrJrefDetail = "", const std::string& scrJref1NClstn = "", const std::string& scrJref1NPreset = "", const std::string& scrJref1NCall = "", const std::string& scrJref1NOp = "", const std::string& scrJrefSup1NJob = "", const bool ButRegularizeActive = true);
 
 	public:
 		Sbecore::uint ixWzemVExpstate;
 		std::string scrJrefDetail;
-		std::string scrJref1NOp;
-		std::string scrJref1NCall;
-		std::string scrJref1NPreset;
 		std::string scrJref1NClstn;
+		std::string scrJref1NPreset;
+		std::string scrJref1NCall;
+		std::string scrJref1NOp;
 		std::string scrJrefSup1NJob;
 		bool ButRegularizeActive;
 
@@ -126,7 +126,7 @@ namespace PnlWzemJobRec {
 	/**
 	  * Tag (full: TagWzemJobRec)
 	  */
-	class Tag : public Sbecore::Xmlio::Block {
+	class Tag : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint CPT = 1;

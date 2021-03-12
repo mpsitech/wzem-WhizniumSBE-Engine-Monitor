@@ -2,7 +2,7 @@
 # make file for Wzem combined daemon, release wzemcmbd_ubuntu
 # copyright: (C) 2016-2020 MPSI Technologies GmbH
 # author: Alexander Wirthmueller (auto-generation)
-# date created: 15 Dec 2020
+# date created: 12 Mar 2021
 # IP header --- ABOVE
 
 include Makefile.inc
@@ -14,8 +14,8 @@ LINK = g++
 LINKFLAGS = -s
 
 INCPATH = -I$(BUILDROOT)/dbswzem -I$(BUILDROOT)/wzemcmbd/VecWzem -I$(BUILDROOT)/wzemcmbd/IexWzem -I$(BUILDROOT)/wzemcmbd
-INCPATH += -I$(BUILDROOT)/wzemcmbd/CrdWzemNav -I$(BUILDROOT)/wzemcmbd/CrdWzemUsg -I$(BUILDROOT)/wzemcmbd/CrdWzemUsr -I$(BUILDROOT)/wzemcmbd/CrdWzemPrs -I$(BUILDROOT)/wzemcmbd/CrdWzemPrd -I$(BUILDROOT)/wzemcmbd/CrdWzemEvt -I$(BUILDROOT)/wzemcmbd/CrdWzemJob -I$(BUILDROOT)/wzemcmbd/CrdWzemCal -I$(BUILDROOT)/wzemcmbd/CrdWzemCln -I$(BUILDROOT)/wzemcmbd/CrdWzemOpx -I$(BUILDROOT)/wzemcmbd/CrdWzemPst -I$(BUILDROOT)/wzemcmbd/CrdWzemNde
-INCPATH += -I${WHIZSDKROOT}/build -I/usr/include -I/usr/include/libxml2 -I/usr/include/mariadb
+INCPATH += -I$(BUILDROOT)/wzemcmbd/CrdWzemUsg -I$(BUILDROOT)/wzemcmbd/CrdWzemUsr -I$(BUILDROOT)/wzemcmbd/CrdWzemPrs -I$(BUILDROOT)/wzemcmbd/CrdWzemNav -I$(BUILDROOT)/wzemcmbd/CrdWzemPrd -I$(BUILDROOT)/wzemcmbd/CrdWzemEvt -I$(BUILDROOT)/wzemcmbd/CrdWzemJob -I$(BUILDROOT)/wzemcmbd/CrdWzemCal -I$(BUILDROOT)/wzemcmbd/CrdWzemCln -I$(BUILDROOT)/wzemcmbd/CrdWzemOpx -I$(BUILDROOT)/wzemcmbd/CrdWzemPst -I$(BUILDROOT)/wzemcmbd/CrdWzemNde
+INCPATH += -I${WHIZSDKROOT}/build -I/usr/include -I/usr/include/jsoncpp -I/usr/include/libxml2 -I/usr/include/mariadb
 
 PCHS = Wzemcmbd.h.gch
 
@@ -28,12 +28,12 @@ LIBPATH += -L$(LIBROOT)/wzemcmbd
 LIBPATH += -L${WHIZSDKROOT}/lib -L/usr/lib/x86_64-linux-gnu
 LIBPATH += -L/lib/x86_64-linux-gnu
 
-LIBS = -lcrdwzemnav -lcrdwzemusg -lcrdwzemusr -lcrdwzemprs -lcrdwzemprd -lcrdwzemevt -lcrdwzemjob -lcrdwzemcal -lcrdwzemcln -lcrdwzemopx -lcrdwzempst -lcrdwzemnde
+LIBS = -lcrdwzemusg -lcrdwzemusr -lcrdwzemprs -lcrdwzemnav -lcrdwzemprd -lcrdwzemevt -lcrdwzemjob -lcrdwzemcal -lcrdwzemcln -lcrdwzemopx -lcrdwzempst -lcrdwzemnde
 LIBS += -liexwzem -lvecwzem -ldbswzem
 LIBS += -lmicrohttpd -lsbecore_lite -lsbecore_mar -lsbecore_mon
 LIBS += -lmariadbclient -lsbecore_plus -lsqlite3
 LIBS += -lsbecore
-LIBS += -lxml2
+LIBS += -ljsoncpp -lxml2
 LIBS += -lpthread
 
 EXE = Wzemcmbd

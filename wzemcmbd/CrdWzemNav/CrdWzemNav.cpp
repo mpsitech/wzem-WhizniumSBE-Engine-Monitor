@@ -42,9 +42,9 @@ CrdWzemNav::CrdWzemNav(
 	feedFSge.tag = "FeedFSge";
 	VecVSge::fillFeed(feedFSge);
 
-	pnlpre = NULL;
-	pnladmin = NULL;
 	pnlmon = NULL;
+	pnladmin = NULL;
+	pnlpre = NULL;
 	pnlheadbar = NULL;
 	dlgloaini = NULL;
 
@@ -53,9 +53,9 @@ CrdWzemNav::CrdWzemNav(
 	set<uint> moditems;
 	refresh(dbswzem, moditems);
 
-	pnlpre = new PnlWzemNavPre(xchg, dbswzem, jref, ixWzemVLocale);
-	pnladmin = new PnlWzemNavAdmin(xchg, dbswzem, jref, ixWzemVLocale);
 	pnlmon = new PnlWzemNavMon(xchg, dbswzem, jref, ixWzemVLocale);
+	pnladmin = new PnlWzemNavAdmin(xchg, dbswzem, jref, ixWzemVLocale);
+	pnlpre = new PnlWzemNavPre(xchg, dbswzem, jref, ixWzemVLocale);
 	pnlheadbar = new PnlWzemNavHeadbar(xchg, dbswzem, jref, ixWzemVLocale);
 
 	// IP constructor.cust2 --- INSERT
@@ -170,6 +170,12 @@ void CrdWzemNav::updatePreset(
 	if (pnladmin) pnladmin->updatePreset(dbswzem, ixWzemVPreset, jrefTrig, notif);
 	if (pnlmon) pnlmon->updatePreset(dbswzem, ixWzemVPreset, jrefTrig, notif);
 	// IP updatePreset --- END
+};
+
+void CrdWzemNav::warnTerm(
+			DbsWzem* dbswzem
+		) {
+	if (ixVSge == VecVSge::IDLE) changeStage(dbswzem, VecVSge::ALRWZEMTRM);
 };
 
 void CrdWzemNav::handleRequest(
@@ -441,6 +447,8 @@ void CrdWzemNav::handleDpchAppWzemAlert(
 	// IP handleDpchAppWzemAlert --- BEGIN
 	if (ixVSge == VecVSge::ALRWZEMABT) {
 		changeStage(dbswzem, nextIxVSgeSuccess);
+	} else if (ixVSge == VecVSge::ALRWZEMTRM) {
+		changeStage(dbswzem, nextIxVSgeSuccess);
 	};
 
 	*dpcheng = new DpchEngWzemConfirm(true, jref, "");
@@ -485,6 +493,7 @@ void CrdWzemNav::changeStage(
 			switch (ixVSge) {
 				case VecVSge::IDLE: leaveSgeIdle(dbswzem); break;
 				case VecVSge::ALRWZEMABT: leaveSgeAlrwzemabt(dbswzem); break;
+				case VecVSge::ALRWZEMTRM: leaveSgeAlrwzemtrm(dbswzem); break;
 			};
 
 			setStage(dbswzem, _ixVSge);
@@ -495,6 +504,7 @@ void CrdWzemNav::changeStage(
 		switch (_ixVSge) {
 			case VecVSge::IDLE: _ixVSge = enterSgeIdle(dbswzem, reenter); break;
 			case VecVSge::ALRWZEMABT: _ixVSge = enterSgeAlrwzemabt(dbswzem, reenter); break;
+			case VecVSge::ALRWZEMTRM: _ixVSge = enterSgeAlrwzemtrm(dbswzem, reenter); break;
 		};
 
 		// IP changeStage.refresh2 --- INSERT
@@ -544,4 +554,22 @@ void CrdWzemNav::leaveSgeAlrwzemabt(
 			DbsWzem* dbswzem
 		) {
 	// IP leaveSgeAlrwzemabt --- INSERT
+};
+
+uint CrdWzemNav::enterSgeAlrwzemtrm(
+			DbsWzem* dbswzem
+			, const bool reenter
+		) {
+	uint retval = VecVSge::ALRWZEMTRM;
+	nextIxVSgeSuccess = VecVSge::IDLE;
+
+	xchg->submitDpch(AlrWzem::prepareAlrTrm(jref, ixWzemVLocale, xchg->stgwzemappearance.sesstterm, xchg->stgwzemappearance.sesstwarn, feedFMcbAlert)); // IP enterSgeAlrwzemtrm --- LINE
+
+	return retval;
+};
+
+void CrdWzemNav::leaveSgeAlrwzemtrm(
+			DbsWzem* dbswzem
+		) {
+	// IP leaveSgeAlrwzemtrm --- INSERT
 };

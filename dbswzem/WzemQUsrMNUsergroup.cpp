@@ -39,6 +39,25 @@ WzemQUsrMNUsergroup::WzemQUsrMNUsergroup(
 	this->titIxWzemVUserlevel = titIxWzemVUserlevel;
 };
 
+void WzemQUsrMNUsergroup::writeJSON(
+			Json::Value& sup
+			, bool jnumattr
+			, bool shorttags
+		) {
+	Json::Value& me = sup.append(Json::Value(Json::objectValue));
+
+	if (jnumattr) me["jnum"] = jnum;
+	if (shorttags) {
+		me["mref"] = stubMref;
+		me["ulv"] = srefIxWzemVUserlevel;
+		me["ulv2"] = titIxWzemVUserlevel;
+	} else {
+		me["stubMref"] = stubMref;
+		me["srefIxWzemVUserlevel"] = srefIxWzemVUserlevel;
+		me["titIxWzemVUserlevel"] = titIxWzemVUserlevel;
+	};
+};
+
 void WzemQUsrMNUsergroup::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -108,6 +127,16 @@ ListWzemQUsrMNUsergroup& ListWzemQUsrMNUsergroup::operator=(
 	};
 
 	return(*this);
+};
+
+void ListWzemQUsrMNUsergroup::writeJSON(
+			Json::Value& sup
+			, std::string difftag
+		) {
+	if (difftag == "") difftag = "ListWzemQUsrMNUsergroup";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::arrayValue);
+	for (unsigned int i = 0; i < nodes.size(); i++) nodes[i]->writeJSON(me, true, true);
 };
 
 void ListWzemQUsrMNUsergroup::writeXML(

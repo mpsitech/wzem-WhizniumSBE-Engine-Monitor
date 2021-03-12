@@ -23,7 +23,7 @@ namespace QryWzemJob1NPreset {
 	/**
 	  * StatApp (full: StatAppQryWzemJob1NPreset)
 	  */
-	class StatApp : public Sbecore::Xmlio::Block {
+	class StatApp : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint FIRSTCOL = 1;
@@ -49,7 +49,7 @@ namespace QryWzemJob1NPreset {
 	/**
 	  * StatShr (full: StatShrQryWzemJob1NPreset)
 	  */
-	class StatShr : public Sbecore::Xmlio::Block {
+	class StatShr : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint NTOT = 1;
@@ -73,7 +73,7 @@ namespace QryWzemJob1NPreset {
 	/**
 	  * StgIac (full: StgIacQryWzemJob1NPreset)
 	  */
-	class StgIac : public Sbecore::Xmlio::Block {
+	class StgIac : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint JNUM = 1;

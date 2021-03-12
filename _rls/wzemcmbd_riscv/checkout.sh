@@ -3,7 +3,7 @@
 # checkout script for Wzem combined daemon, release wzemcmbd_riscv (ubuntu cross-compilation)
 # copyright: (C) 2016-2020 MPSI Technologies GmbH
 # author: Alexander Wirthmueller (auto-generation)
-# date created: 15 Dec 2020
+# date created: 12 Mar 2021
 # IP header --- ABOVE
 
 if [ -z ${WHIZROOT+x} ]; then
@@ -18,10 +18,10 @@ export set BINROOT=${SYSROOT}${WHIZROOT}/bin
 mkdir $BUILDROOT/wzemcmbd
 mkdir $BUILDROOT/wzemcmbd/IexWzem
 mkdir $BUILDROOT/wzemcmbd/VecWzem
-mkdir $BUILDROOT/wzemcmbd/CrdWzemNav
 mkdir $BUILDROOT/wzemcmbd/CrdWzemUsg
 mkdir $BUILDROOT/wzemcmbd/CrdWzemUsr
 mkdir $BUILDROOT/wzemcmbd/CrdWzemPrs
+mkdir $BUILDROOT/wzemcmbd/CrdWzemNav
 mkdir $BUILDROOT/wzemcmbd/CrdWzemPrd
 mkdir $BUILDROOT/wzemcmbd/CrdWzemEvt
 mkdir $BUILDROOT/wzemcmbd/CrdWzemJob
@@ -81,11 +81,6 @@ cp Makefile_VecWzem $BUILDROOT/wzemcmbd/VecWzem/Makefile
 cp ../../wzemcmbd/VecWzem/Vec*.h $BUILDROOT/wzemcmbd/VecWzem/
 cp ../../wzemcmbd/VecWzem/Vec*.cpp $BUILDROOT/wzemcmbd/VecWzem/
 
-cp Makefile_CrdWzemNav $BUILDROOT/wzemcmbd/CrdWzemNav/Makefile
-
-cp ../../wzemcmbd/CrdWzemNav/*.h $BUILDROOT/wzemcmbd/CrdWzemNav/
-cp ../../wzemcmbd/CrdWzemNav/*.cpp $BUILDROOT/wzemcmbd/CrdWzemNav/
-
 cp Makefile_CrdWzemUsg $BUILDROOT/wzemcmbd/CrdWzemUsg/Makefile
 
 cp ../../wzemcmbd/CrdWzemUsg/*.h $BUILDROOT/wzemcmbd/CrdWzemUsg/
@@ -100,6 +95,11 @@ cp Makefile_CrdWzemPrs $BUILDROOT/wzemcmbd/CrdWzemPrs/Makefile
 
 cp ../../wzemcmbd/CrdWzemPrs/*.h $BUILDROOT/wzemcmbd/CrdWzemPrs/
 cp ../../wzemcmbd/CrdWzemPrs/*.cpp $BUILDROOT/wzemcmbd/CrdWzemPrs/
+
+cp Makefile_CrdWzemNav $BUILDROOT/wzemcmbd/CrdWzemNav/Makefile
+
+cp ../../wzemcmbd/CrdWzemNav/*.h $BUILDROOT/wzemcmbd/CrdWzemNav/
+cp ../../wzemcmbd/CrdWzemNav/*.cpp $BUILDROOT/wzemcmbd/CrdWzemNav/
 
 cp Makefile_CrdWzemPrd $BUILDROOT/wzemcmbd/CrdWzemPrd/Makefile
 

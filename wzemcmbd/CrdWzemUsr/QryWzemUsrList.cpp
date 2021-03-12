@@ -194,9 +194,9 @@ void QryWzemUsrList::rerun_orderSQL(
 	if (preIxOrd == VecVOrd::STE) sqlstr += " ORDER BY TblWzemMUser.ixVState ASC";
 	else if (preIxOrd == VecVOrd::USG) sqlstr += " ORDER BY TblWzemMUser.refWzemMUsergroup ASC";
 	else if (preIxOrd == VecVOrd::SRF) sqlstr += " ORDER BY TblWzemMUser.sref ASC";
+	else if (preIxOrd == VecVOrd::OWN) sqlstr += " ORDER BY TblWzemMUser.own ASC";
 	else if (preIxOrd == VecVOrd::PRS) sqlstr += " ORDER BY TblWzemMUser.refWzemMPerson ASC";
 	else if (preIxOrd == VecVOrd::GRP) sqlstr += " ORDER BY TblWzemMUser.grp ASC";
-	else if (preIxOrd == VecVOrd::OWN) sqlstr += " ORDER BY TblWzemMUser.own ASC";
 };
 
 void QryWzemUsrList::fetch(

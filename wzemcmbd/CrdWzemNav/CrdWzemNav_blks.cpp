@@ -74,6 +74,7 @@ uint CrdWzemNav::VecVSge::getIx(
 
 	if (s == "idle") return IDLE;
 	if (s == "alrwzemabt") return ALRWZEMABT;
+	if (s == "alrwzemtrm") return ALRWZEMTRM;
 
 	return(0);
 };
@@ -83,6 +84,7 @@ string CrdWzemNav::VecVSge::getSref(
 		) {
 	if (ix == IDLE) return("idle");
 	if (ix == ALRWZEMABT) return("alrwzemabt");
+	if (ix == ALRWZEMTRM) return("alrwzemtrm");
 
 	return("");
 };
@@ -92,7 +94,7 @@ void CrdWzemNav::VecVSge::fillFeed(
 		) {
 	feed.clear();
 
-	for (unsigned int i = 1; i <= 2; i++) feed.appendIxSrefTitles(i, getSref(i), getSref(i));
+	for (unsigned int i = 1; i <= 3; i++) feed.appendIxSrefTitles(i, getSref(i), getSref(i));
 };
 
 /******************************************************************************
@@ -115,6 +117,21 @@ CrdWzemNav::ContInf::ContInf(
 	this->MtxSesSes3 = MtxSesSes3;
 
 	mask = {NUMFSGE, MRLAPPHLP, MTXSESSES1, MTXSESSES2, MTXSESSES3};
+};
+
+void CrdWzemNav::ContInf::writeJSON(
+			Json::Value& sup
+			, string difftag
+		) {
+	if (difftag.length() == 0) difftag = "ContInfWzemNav";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	me["numFSge"] = numFSge;
+	me["MrlAppHlp"] = MrlAppHlp;
+	me["MtxSesSes1"] = MtxSesSes1;
+	me["MtxSesSes2"] = MtxSesSes2;
+	me["MtxSesSes3"] = MtxSesSes3;
 };
 
 void CrdWzemNav::ContInf::writeXML(
@@ -168,6 +185,32 @@ set<uint> CrdWzemNav::ContInf::diff(
 /******************************************************************************
  class CrdWzemNav::StatApp
  ******************************************************************************/
+
+void CrdWzemNav::StatApp::writeJSON(
+			Json::Value& sup
+			, string difftag
+			, const uint ixWzemVReqitmode
+			, const usmallint latency
+			, const string& shortMenu
+			, const uint widthMenu
+			, const bool initdoneHeadbar
+			, const bool initdonePre
+			, const bool initdoneAdmin
+			, const bool initdoneMon
+		) {
+	if (difftag.length() == 0) difftag = "StatAppWzemNav";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	me["srefIxWzemVReqitmode"] = VecWzemVReqitmode::getSref(ixWzemVReqitmode);
+	me["latency"] = latency;
+	me["shortMenu"] = shortMenu;
+	me["widthMenu"] = widthMenu;
+	me["initdoneHeadbar"] = initdoneHeadbar;
+	me["initdonePre"] = initdonePre;
+	me["initdoneAdmin"] = initdoneAdmin;
+	me["initdoneMon"] = initdoneMon;
+};
 
 void CrdWzemNav::StatApp::writeXML(
 			xmlTextWriter* wr
@@ -260,6 +303,40 @@ CrdWzemNav::StatShr::StatShr(
 	mask = {JREFDLGLOAINI, JREFHEADBAR, JREFPRE, PNLPREAVAIL, JREFADMIN, PNLADMINAVAIL, JREFMON, PNLMONAVAIL, MITSESSPSAVAIL, MSPCRD1AVAIL, MITCRDUSGAVAIL, MITCRDUSRAVAIL, MITCRDPRSAVAIL, MSPCRD2AVAIL, MITCRDPRDAVAIL, MITCRDEVTAVAIL, MITCRDJOBAVAIL, MITCRDCALAVAIL, MITCRDCLNAVAIL, MITCRDOPXAVAIL, MITCRDPSTAVAIL, MITCRDNDEAVAIL, MSPAPP2AVAIL, MITAPPLOIAVAIL};
 };
 
+void CrdWzemNav::StatShr::writeJSON(
+			Json::Value& sup
+			, string difftag
+		) {
+	if (difftag.length() == 0) difftag = "StatShrWzemNav";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	me["scrJrefDlgloaini"] = Scr::scramble(jrefDlgloaini);
+	me["scrJrefHeadbar"] = Scr::scramble(jrefHeadbar);
+	me["scrJrefPre"] = Scr::scramble(jrefPre);
+	me["pnlpreAvail"] = pnlpreAvail;
+	me["scrJrefAdmin"] = Scr::scramble(jrefAdmin);
+	me["pnladminAvail"] = pnladminAvail;
+	me["scrJrefMon"] = Scr::scramble(jrefMon);
+	me["pnlmonAvail"] = pnlmonAvail;
+	me["MitSesSpsAvail"] = MitSesSpsAvail;
+	me["MspCrd1Avail"] = MspCrd1Avail;
+	me["MitCrdUsgAvail"] = MitCrdUsgAvail;
+	me["MitCrdUsrAvail"] = MitCrdUsrAvail;
+	me["MitCrdPrsAvail"] = MitCrdPrsAvail;
+	me["MspCrd2Avail"] = MspCrd2Avail;
+	me["MitCrdPrdAvail"] = MitCrdPrdAvail;
+	me["MitCrdEvtAvail"] = MitCrdEvtAvail;
+	me["MitCrdJobAvail"] = MitCrdJobAvail;
+	me["MitCrdCalAvail"] = MitCrdCalAvail;
+	me["MitCrdClnAvail"] = MitCrdClnAvail;
+	me["MitCrdOpxAvail"] = MitCrdOpxAvail;
+	me["MitCrdPstAvail"] = MitCrdPstAvail;
+	me["MitCrdNdeAvail"] = MitCrdNdeAvail;
+	me["MspApp2Avail"] = MspApp2Avail;
+	me["MitAppLoiAvail"] = MitAppLoiAvail;
+};
+
 void CrdWzemNav::StatShr::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -350,6 +427,35 @@ set<uint> CrdWzemNav::StatShr::diff(
  class CrdWzemNav::Tag
  ******************************************************************************/
 
+void CrdWzemNav::Tag::writeJSON(
+			const uint ixWzemVLocale
+			, Json::Value& sup
+			, string difftag
+		) {
+	if (difftag.length() == 0) difftag = "TagWzemNav";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	if (ixWzemVLocale == VecWzemVLocale::ENUS) {
+		me["MitCrdUsg"] = "User groups ...";
+		me["MitCrdUsr"] = "Users ...";
+		me["MitCrdPrs"] = "Persons ...";
+		me["MitCrdPrd"] = "Monitoring periods ...";
+		me["MitCrdEvt"] = "Events ...";
+		me["MitCrdJob"] = "Jobs ...";
+		me["MitCrdCal"] = "Calls ...";
+		me["MitCrdCln"] = "Call listeners ...";
+		me["MitCrdOpx"] = "Operations ...";
+		me["MitCrdPst"] = "Presettings ...";
+		me["MitCrdNde"] = "Nodes ...";
+	};
+	me["MitAppAbt"] = StrMod::cap(VecWzemVTag::getTitle(VecWzemVTag::ABOUT, ixWzemVLocale)) + " ...";
+	me["MrlAppHlp"] = StrMod::cap(VecWzemVTag::getTitle(VecWzemVTag::HELP, ixWzemVLocale)) + " ...";
+	me["MitSesSps"] = StrMod::cap(VecWzemVTag::getTitle(VecWzemVTag::SUSPSESS, ixWzemVLocale));
+	me["MitSesTrm"] = StrMod::cap(VecWzemVTag::getTitle(VecWzemVTag::CLSESS, ixWzemVLocale));
+	me["MitAppLoi"] = StrMod::cap(VecWzemVTag::getTitle(VecWzemVTag::LOAINI, ixWzemVLocale)) + " ...";
+};
+
 void CrdWzemNav::Tag::writeXML(
 			const uint ixWzemVLocale
 			, xmlTextWriter* wr
@@ -404,6 +510,26 @@ string CrdWzemNav::DpchAppDo::getSrefsMask() {
 	StrMod::vectorToString(ss, srefs);
 
 	return(srefs);
+};
+
+void CrdWzemNav::DpchAppDo::readJSON(
+			Json::Value& sup
+			, bool addbasetag
+		) {
+	clear();
+
+	bool basefound;
+
+	Json::Value& me = sup;
+	if (addbasetag) me = sup["DpchAppWzemNavDo"];
+
+	basefound = (me != Json::nullValue);
+
+	if (basefound) {
+		if (me.isMember("scrJref")) {jref = Scr::descramble(me["scrJref"].asString()); add(JREF);};
+		if (me.isMember("srefIxVDo")) {ixVDo = VecVDo::getIx(me["srefIxVDo"].asString()); add(IXVDO);};
+	} else {
+	};
 };
 
 void CrdWzemNav::DpchAppDo::readXML(
@@ -484,6 +610,20 @@ void CrdWzemNav::DpchEngData::merge(
 	if (src->has(STATAPP)) add(STATAPP);
 	if (src->has(STATSHR)) {statshr = src->statshr; add(STATSHR);};
 	if (src->has(TAG)) add(TAG);
+};
+
+void CrdWzemNav::DpchEngData::writeJSON(
+			const uint ixWzemVLocale
+			, Json::Value& sup
+		) {
+	Json::Value& me = sup["DpchEngWzemNavData"] = Json::Value(Json::objectValue);
+
+	if (has(JREF)) me["scrJref"] = Scr::scramble(jref);
+	if (has(CONTINF)) continf.writeJSON(me);
+	if (has(FEEDFSGE)) feedFSge.writeJSON(me);
+	if (has(STATAPP)) StatApp::writeJSON(me);
+	if (has(STATSHR)) statshr.writeJSON(me);
+	if (has(TAG)) Tag::writeJSON(ixWzemVLocale, me);
 };
 
 void CrdWzemNav::DpchEngData::writeXML(

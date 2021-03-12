@@ -2,18 +2,18 @@
 # make file for Wzem database access library, release dbswzem_tdx (ubuntu cross-compilation)
 # copyright: (C) 2016-2020 MPSI Technologies GmbH
 # author: Alexander Wirthmueller (auto-generation)
-# date created: 15 Dec 2020
+# date created: 12 Mar 2021
 # IP header --- ABOVE
 
 LIBROOT = ${SYSROOT}${WHIZSDKROOT}/lib
 
 CPP = ${TCHROOT}/arm-tdx-linux-gnueabi-g++
-CPPFLAGS = --sysroot=${SYSROOT} -std=c++11 -march=armv7-a -mthumb -mfpu=neon -mfloat-abi=hard -g -Wall -Os -pthread
+CPPFLAGS = --sysroot=${SYSROOT} --sysroot=${SYSROOT} -std=c++11 -march=armv7-a -mthumb -mfpu=neon -mfloat-abi=hard -g -Wall -Os -pthread
 
 STATLIB = ${TCHROOT}/arm-tdx-linux-gnueabi-ar
 STATLIBFLAGS = rcs
 
-INCPATH = -I=${WHIZSDKROOT}/build -I=/usr/include/libxml2
+INCPATH = -I=${WHIZSDKROOT}/build -I=/usr/include -I=/usr/include/libxml2
 
 PCHS = DbsWzem.h.gch
 

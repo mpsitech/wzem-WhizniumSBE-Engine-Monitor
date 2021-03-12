@@ -10,7 +10,7 @@
 #ifndef ROOTWZEM_H
 #define ROOTWZEM_H
 
-// IP include.spec --- INSERT
+#include <signal.h>
 
 // IP include.cust --- INSERT
 
@@ -49,6 +49,7 @@ public:
 	public:
 		std::string getSrefsMask();
 
+		void readJSON(Json::Value& sup, bool addbasetag = false);
 		void readXML(xmlXPathContext* docctx, std::string basexpath = "", bool addbasetag = false);
 	};
 
@@ -63,15 +64,16 @@ public:
 		static const Sbecore::uint ALL = 3;
 
 	public:
-		DpchEngData(const Sbecore::ubigint jref = 0, Sbecore::Xmlio::Feed* feedFEnsSps = NULL, const std::set<Sbecore::uint>& mask = {NONE});
+		DpchEngData(const Sbecore::ubigint jref = 0, Sbecore::Feed* feedFEnsSps = NULL, const std::set<Sbecore::uint>& mask = {NONE});
 
 	public:
-		Sbecore::Xmlio::Feed feedFEnsSps;
+		Sbecore::Feed feedFEnsSps;
 
 	public:
 		std::string getSrefsMask();
 		void merge(DpchEngWzem* dpcheng);
 
+		void writeJSON(const Sbecore::uint ixWzskVLocale, Json::Value& sup);
 		void writeXML(const Sbecore::uint ixWzemVLocale, xmlTextWriter* wr);
 	};
 
@@ -108,10 +110,13 @@ private:
 
 	void handleDpchAppLogin(DbsWzem* dbswzem, DpchAppLogin* dpchapplogin, const std::string ip, DpchEngWzem** dpcheng);
 
+	void handleTimerWithSrefWarnterm(DbsWzem* dbswzem);
+
 public:
 	void handleCall(DbsWzem* dbswzem, Sbecore::Call* call);
 
 private:
+	bool handleCallWzemRefPreSet(DbsWzem* dbswzem, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, const Sbecore::ubigint refInv);
 	bool handleCallWzemSuspsess(DbsWzem* dbswzem, const Sbecore::ubigint jrefTrig);
 	bool handleCallWzemLogout(DbsWzem* dbswzem, const Sbecore::ubigint jrefTrig, const bool boolvalInv);
 

@@ -22,10 +22,10 @@
 #include "CrdWzemJob.h"
 #include "CrdWzemEvt.h"
 #include "CrdWzemPrd.h"
+#include "CrdWzemNav.h"
 #include "CrdWzemPrs.h"
 #include "CrdWzemUsr.h"
 #include "CrdWzemUsg.h"
-#include "CrdWzemNav.h"
 
 #define StatShrSessWzem SessWzem::StatShr
 
@@ -40,7 +40,7 @@ public:
 	/**
 		* StatShr (full: StatShrSessWzem)
 		*/
-	class StatShr : public Sbecore::Xmlio::Block {
+	class StatShr : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint JREFCRDNAV = 1;
@@ -52,6 +52,7 @@ public:
 		Sbecore::ubigint jrefCrdnav;
 
 	public:
+		void writeJSON(Json::Value& sup, std::string difftag = "");
 		void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true);
 		std::set<Sbecore::uint> comm(const StatShr* comp);
 		std::set<Sbecore::uint> diff(const StatShr* comp);
@@ -69,16 +70,17 @@ public:
 		static const Sbecore::uint ALL = 4;
 
 	public:
-		DpchEngData(const Sbecore::ubigint jref = 0, Sbecore::Xmlio::Feed* feedFEnsSec = NULL, StatShr* statshr = NULL, const std::set<Sbecore::uint>& mask = {NONE});
+		DpchEngData(const Sbecore::ubigint jref = 0, Sbecore::Feed* feedFEnsSec = NULL, StatShr* statshr = NULL, const std::set<Sbecore::uint>& mask = {NONE});
 
 	public:
-		Sbecore::Xmlio::Feed feedFEnsSec;
+		Sbecore::Feed feedFEnsSec;
 		StatShr statshr;
 
 	public:
 		std::string getSrefsMask();
 		void merge(DpchEngWzem* dpcheng);
 
+		void writeJSON(const Sbecore::uint ixWzskVLocale, Json::Value& sup);
 		void writeXML(const Sbecore::uint ixWzemVLocale, xmlTextWriter* wr);
 	};
 
@@ -97,10 +99,10 @@ public:
 	std::list<CrdWzemJob*> crdjobs;
 	std::list<CrdWzemEvt*> crdevts;
 	std::list<CrdWzemPrd*> crdprds;
+	CrdWzemNav* crdnav;
 	std::list<CrdWzemPrs*> crdprss;
 	std::list<CrdWzemUsr*> crdusrs;
 	std::list<CrdWzemUsg*> crdusgs;
-	CrdWzemNav* crdnav;
 
 	std::map<Sbecore::ubigint,Sbecore::uint> usgaccs;
 
@@ -113,6 +115,7 @@ public:
 	// IP cust --- INSERT
 
 public:
+	void warnTerm(DbsWzem* dbswzem);
 	void term(DbsWzem* dbswzem);
 
 	Sbecore::uint checkCrdActive(const Sbecore::uint ixWzemVCard);
@@ -164,11 +167,11 @@ public:
 
 private:
 	bool handleCallWzemRefPreSet(DbsWzem* dbswzem, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, const Sbecore::ubigint refInv);
+	bool handleCallWzemCrdActive(DbsWzem* dbswzem, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, Sbecore::uint& ixRet);
 	bool handleCallWzemRecaccess(DbsWzem* dbswzem, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, const Sbecore::ubigint refInv, Sbecore::uint& ixRet);
 	bool handleCallWzemLog(DbsWzem* dbswzem, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, const Sbecore::ubigint refInv, const std::string& srefInv, const int intvalInv);
 	bool handleCallWzemCrdOpen(DbsWzem* dbswzem, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, const Sbecore::ubigint refInv, const std::string& srefInv, const int intvalInv, Sbecore::ubigint& refRet);
 	bool handleCallWzemCrdClose(DbsWzem* dbswzem, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv);
-	bool handleCallWzemCrdActive(DbsWzem* dbswzem, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, Sbecore::uint& ixRet);
 
 };
 

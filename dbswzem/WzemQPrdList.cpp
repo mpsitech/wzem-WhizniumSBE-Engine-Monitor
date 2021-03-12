@@ -47,6 +47,29 @@ WzemQPrdList::WzemQPrdList(
 	this->ftmStop = ftmStop;
 };
 
+void WzemQPrdList::writeJSON(
+			Json::Value& sup
+			, bool jnumattr
+			, bool shorttags
+		) {
+	Json::Value& me = sup.append(Json::Value(Json::objectValue));
+
+	if (jnumattr) me["jnum"] = jnum;
+	if (shorttags) {
+		me["grp"] = stubGrp;
+		me["own"] = stubOwn;
+		me["ver"] = Version;
+		me["sta"] = ftmStart;
+		me["sto"] = ftmStop;
+	} else {
+		me["stubGrp"] = stubGrp;
+		me["stubOwn"] = stubOwn;
+		me["Version"] = Version;
+		me["ftmStart"] = ftmStart;
+		me["ftmStop"] = ftmStop;
+	};
+};
+
 void WzemQPrdList::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -120,6 +143,16 @@ ListWzemQPrdList& ListWzemQPrdList::operator=(
 	};
 
 	return(*this);
+};
+
+void ListWzemQPrdList::writeJSON(
+			Json::Value& sup
+			, std::string difftag
+		) {
+	if (difftag == "") difftag = "ListWzemQPrdList";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::arrayValue);
+	for (unsigned int i = 0; i < nodes.size(); i++) nodes[i]->writeJSON(me, true, true);
 };
 
 void ListWzemQPrdList::writeXML(

@@ -10,10 +10,10 @@
 #ifndef DBSWZEM_H
 #define DBSWZEM_H
 
-#define WZEM_VERSION "1.0.3"
+#define WZEM_VERSION "1.0.5"
 #define WZEM_VERSION_MAJOR 1
 #define WZEM_VERSION_MINOR 0
-#define WZEM_VERSION_SUB 3
+#define WZEM_VERSION_SUB 5
 
 #include <sbecore/Types.h>
 
@@ -115,10 +115,10 @@ public:
 	class VecVCard {
 
 	public:
-		static const Sbecore::uint CRDWZEMNAV = 1;
-		static const Sbecore::uint CRDWZEMUSG = 2;
-		static const Sbecore::uint CRDWZEMUSR = 3;
-		static const Sbecore::uint CRDWZEMPRS = 4;
+		static const Sbecore::uint CRDWZEMUSG = 1;
+		static const Sbecore::uint CRDWZEMUSR = 2;
+		static const Sbecore::uint CRDWZEMPRS = 3;
+		static const Sbecore::uint CRDWZEMNAV = 4;
 		static const Sbecore::uint CRDWZEMPRD = 5;
 		static const Sbecore::uint CRDWZEMEVT = 6;
 		static const Sbecore::uint CRDWZEMJOB = 7;
@@ -133,7 +133,7 @@ public:
 
 		static std::string getTitle(const Sbecore::uint ix, const Sbecore::uint ixWzemVLocale);
 
-		static void fillFeed(const Sbecore::uint ixWzemVLocale, Sbecore::Xmlio::Feed& feed);
+		static void fillFeed(const Sbecore::uint ixWzemVLocale, Sbecore::Feed& feed);
 	};
 
 	/**
@@ -179,8 +179,8 @@ public:
 		static const Sbecore::uint PNLWZEMPRDLIST_TCOVER = 35;
 		static const Sbecore::uint PNLWZEMPRDLIST_TCOSTA = 36;
 		static const Sbecore::uint PNLWZEMPRDLIST_TCOSTO = 37;
-		static const Sbecore::uint PNLWZEMPRD1NJOB_TCOREF = 38;
-		static const Sbecore::uint PNLWZEMPRD1NNODE_TCOREF = 39;
+		static const Sbecore::uint PNLWZEMPRD1NNODE_TCOREF = 38;
+		static const Sbecore::uint PNLWZEMPRD1NJOB_TCOREF = 39;
 		static const Sbecore::uint PNLWZEMPRD1NEVENT_TCOREF = 40;
 		static const Sbecore::uint PNLWZEMEVTLIST_TCOTYP = 41;
 		static const Sbecore::uint PNLWZEMEVTLIST_TCOPRD = 42;
@@ -195,10 +195,10 @@ public:
 		static const Sbecore::uint PNLWZEMJOBLIST_TCOSTA = 51;
 		static const Sbecore::uint PNLWZEMJOBLIST_TCOSTO = 52;
 		static const Sbecore::uint PNLWZEMJOBLIST_TCOSUP = 53;
-		static const Sbecore::uint PNLWZEMJOB1NOP_TCOREF = 54;
-		static const Sbecore::uint PNLWZEMJOB1NCALL_TCOREF = 55;
-		static const Sbecore::uint PNLWZEMJOB1NPRESET_TCOREF = 56;
-		static const Sbecore::uint PNLWZEMJOB1NCLSTN_TCOREF = 57;
+		static const Sbecore::uint PNLWZEMJOB1NCLSTN_TCOREF = 54;
+		static const Sbecore::uint PNLWZEMJOB1NPRESET_TCOREF = 55;
+		static const Sbecore::uint PNLWZEMJOB1NCALL_TCOREF = 56;
+		static const Sbecore::uint PNLWZEMJOB1NOP_TCOREF = 57;
 		static const Sbecore::uint PNLWZEMJOBSUP1NJOB_TCOREF = 58;
 		static const Sbecore::uint PNLWZEMCALLIST_TCOJOB = 59;
 		static const Sbecore::uint PNLWZEMCALLIST_TCOCAL = 60;
@@ -242,7 +242,7 @@ public:
 
 		static std::string getTitle(const Sbecore::uint ix, const Sbecore::uint ixWzemVLocale);
 
-		static void fillFeed(const Sbecore::uint ixWzemVLocale, Sbecore::Xmlio::Feed& feed);
+		static void fillFeed(const Sbecore::uint ixWzemVLocale, Sbecore::Feed& feed);
 	};
 
 	/**
@@ -285,7 +285,7 @@ public:
 
 		static std::string getTitle(const Sbecore::uint ix, const Sbecore::uint ixWzemVLocale);
 
-		static void fillFeed(const Sbecore::uint ixWzemVLocale, Sbecore::Xmlio::Feed& feed);
+		static void fillFeed(const Sbecore::uint ixWzemVLocale, Sbecore::Feed& feed);
 	};
 
 	/**
@@ -327,7 +327,7 @@ public:
 
 		static std::string getTitle(const Sbecore::uint ix, const Sbecore::uint ixWzemVLocale);
 
-		static void fillFeed(const Sbecore::uint ixWzemVLocale, Sbecore::Xmlio::Feed& feed);
+		static void fillFeed(const Sbecore::uint ixWzemVLocale, Sbecore::Feed& feed);
 	};
 
 	/**
@@ -431,19 +431,20 @@ public:
 		static const Sbecore::uint PREWZEMSYSDATE = 76;
 		static const Sbecore::uint PREWZEMSYSSTAMP = 77;
 		static const Sbecore::uint PREWZEMSYSTIME = 78;
-		static const Sbecore::uint PREWZEMUSGAACCESS_X1 = 79;
-		static const Sbecore::uint PREWZEMUSGAACCESS_X2 = 80;
-		static const Sbecore::uint PREWZEMUSGLIST_GRP = 81;
-		static const Sbecore::uint PREWZEMUSGLIST_OWN = 82;
-		static const Sbecore::uint PREWZEMUSGLIST_SRF = 83;
-		static const Sbecore::uint PREWZEMUSRAACCESS_X1 = 84;
-		static const Sbecore::uint PREWZEMUSRAACCESS_X2 = 85;
-		static const Sbecore::uint PREWZEMUSRLIST_GRP = 86;
-		static const Sbecore::uint PREWZEMUSRLIST_OWN = 87;
-		static const Sbecore::uint PREWZEMUSRLIST_PRS = 88;
-		static const Sbecore::uint PREWZEMUSRLIST_SRF = 89;
-		static const Sbecore::uint PREWZEMUSRLIST_STE = 90;
-		static const Sbecore::uint PREWZEMUSRLIST_USG = 91;
+		static const Sbecore::uint PREWZEMTLAST = 79;
+		static const Sbecore::uint PREWZEMUSGAACCESS_X1 = 80;
+		static const Sbecore::uint PREWZEMUSGAACCESS_X2 = 81;
+		static const Sbecore::uint PREWZEMUSGLIST_GRP = 82;
+		static const Sbecore::uint PREWZEMUSGLIST_OWN = 83;
+		static const Sbecore::uint PREWZEMUSGLIST_SRF = 84;
+		static const Sbecore::uint PREWZEMUSRAACCESS_X1 = 85;
+		static const Sbecore::uint PREWZEMUSRAACCESS_X2 = 86;
+		static const Sbecore::uint PREWZEMUSRLIST_GRP = 87;
+		static const Sbecore::uint PREWZEMUSRLIST_OWN = 88;
+		static const Sbecore::uint PREWZEMUSRLIST_PRS = 89;
+		static const Sbecore::uint PREWZEMUSRLIST_SRF = 90;
+		static const Sbecore::uint PREWZEMUSRLIST_STE = 91;
+		static const Sbecore::uint PREWZEMUSRLIST_USG = 92;
 
 		static Sbecore::uint getIx(const std::string& sref);
 		static std::string getSref(const Sbecore::uint ix);
@@ -466,7 +467,7 @@ public:
 
 		static std::string getTitle(const Sbecore::uint ix, const Sbecore::uint ixWzemVLocale);
 
-		static void fillFeed(const Sbecore::uint ixWzemVLocale, Sbecore::Xmlio::Feed& feed);
+		static void fillFeed(const Sbecore::uint ixWzemVLocale, Sbecore::Feed& feed);
 	};
 
 	/**
@@ -485,7 +486,7 @@ public:
 
 		static std::string getTitle(const Sbecore::uint ix, const Sbecore::uint ixWzemVLocale);
 
-		static void fillFeed(const Sbecore::uint ixWzemVLocale, Sbecore::Xmlio::Feed& feed);
+		static void fillFeed(const Sbecore::uint ixWzemVLocale, Sbecore::Feed& feed);
 	};
 
 	/**
@@ -518,7 +519,7 @@ public:
 
 		static std::string getTitle(const Sbecore::uint ix, const Sbecore::uint ixWzemVLocale);
 
-		static void fillFeed(const Sbecore::uint ixWzemVLocale, Sbecore::Xmlio::Feed& feed);
+		static void fillFeed(const Sbecore::uint ixWzemVLocale, Sbecore::Feed& feed);
 	};
 
 public:
@@ -620,13 +621,13 @@ public:
 
 public:
 
-	void fillFeedFromKlst(const Sbecore::uint klsIxWzemVKeylist, const Sbecore::uint ixWzemVLocale, Sbecore::Xmlio::Feed& feed);
-	void fillFeedFromKlstByMtbUref(const Sbecore::uint klsIxWzemVKeylist, const Sbecore::uint x1IxWzemVMaintable, const Sbecore::ubigint x1Uref, const Sbecore::uint ixWzemVLocale, Sbecore::Xmlio::Feed& feed);
+	void fillFeedFromKlst(const Sbecore::uint klsIxWzemVKeylist, const Sbecore::uint ixWzemVLocale, Sbecore::Feed& feed);
+	void fillFeedFromKlstByMtbUref(const Sbecore::uint klsIxWzemVKeylist, const Sbecore::uint x1IxWzemVMaintable, const Sbecore::ubigint x1Uref, const Sbecore::uint ixWzemVLocale, Sbecore::Feed& feed);
 
 	std::string getKlstTitleBySref(const Sbecore::uint klsIxWzemVKeylist, const std::string& sref, const Sbecore::uint ixWzemVLocale = 0);
 	std::string getKlstTitleByMtbUrefSref(const Sbecore::uint klsIxWzemVKeylist, const Sbecore::uint x1IxWzemVMaintable, const Sbecore::ubigint x1Uref, const std::string& sref, const Sbecore::uint ixWzemVLocale = 0);
 
-	void fillFeedFromVlst(const Sbecore::uint vlsIxWzemVValuelist, const Sbecore::uint x1IxWzemVLocale, Sbecore::Xmlio::Feed& feed);
+	void fillFeedFromVlst(const Sbecore::uint vlsIxWzemVValuelist, const Sbecore::uint x1IxWzemVLocale, Sbecore::Feed& feed);
 
 public:
 	TblWzemAccRMUserUniversal* tblwzemaccrmuseruniversal;

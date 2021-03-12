@@ -2,7 +2,7 @@
 # make file for CrdWzemCln card job handler, release wzemcmbd_ubuntu
 # copyright: (C) 2016-2020 MPSI Technologies GmbH
 # author: Alexander Wirthmueller (auto-generation)
-# date created: 15 Dec 2020
+# date created: 12 Mar 2021
 # IP header --- ABOVE
 
 include ../Makefile.inc
@@ -14,7 +14,7 @@ STATLIB = ar
 STATLIBFLAGS = rcs
 
 INCPATH = -I$(BUILDROOT)/dbswzem -I$(BUILDROOT)/wzemcmbd/VecWzem -I$(BUILDROOT)/wzemcmbd/IexWzem -I$(BUILDROOT)/wzemcmbd
-INCPATH += -I${WHIZSDKROOT}/build -I/usr/include -I/usr/include/libxml2 -I/usr/include/mariadb
+INCPATH += -I${WHIZSDKROOT}/build -I/usr/include -I/usr/include/jsoncpp -I/usr/include/libxml2 -I/usr/include/mariadb
 
 OBJS = CrdWzemCln.o PnlWzemClnList.o QryWzemClnList.o PnlWzemClnHeadbar.o PnlWzemClnRec.o PnlWzemClnDetail.o
 

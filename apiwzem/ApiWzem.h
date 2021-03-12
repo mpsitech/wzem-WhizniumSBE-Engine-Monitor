@@ -10,10 +10,10 @@
 #ifndef APIWZEM_H
 #define APIWZEM_H
 
-#define WZEM_VERSION "1.0.3"
+#define WZEM_VERSION "1.0.5"
 #define WZEM_VERSION_MAJOR 1
 #define WZEM_VERSION_MINOR 0
-#define WZEM_VERSION_SUB 3
+#define WZEM_VERSION_SUB 5
 
 #include "ApiWzem_blks.h"
 
@@ -149,7 +149,7 @@
 /**
 	* StgWzemapi
 	*/
-class StgWzemapi : public Sbecore::Xmlio::Block {
+class StgWzemapi : public Sbecore::Block {
 
 public:
 	static const Sbecore::uint ENGIP = 1;

@@ -22,8 +22,8 @@ uint QryWzemClnList::VecVOrd::getIx(
 		) {
 	string s = StrMod::lc(sref);
 
-	if (s == "sta") return STA;
 	if (s == "sto") return STO;
+	if (s == "sta") return STA;
 	if (s == "job") return JOB;
 
 	return(0);
@@ -32,8 +32,8 @@ uint QryWzemClnList::VecVOrd::getIx(
 string QryWzemClnList::VecVOrd::getSref(
 			const uint ix
 		) {
-	if (ix == STA) return("sta");
 	if (ix == STO) return("sto");
+	if (ix == STA) return("sta");
 	if (ix == JOB) return("job");
 
 	return("");

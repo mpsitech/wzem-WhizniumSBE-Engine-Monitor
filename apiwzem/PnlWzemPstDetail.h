@@ -44,7 +44,7 @@ namespace PnlWzemPstDetail {
 	/**
 	  * ContIac (full: ContIacWzemPstDetail)
 	  */
-	class ContIac : public Sbecore::Xmlio::Block {
+	class ContIac : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint TXFPST = 1;
@@ -71,7 +71,7 @@ namespace PnlWzemPstDetail {
 	/**
 	  * ContInf (full: ContInfWzemPstDetail)
 	  */
-	class ContInf : public Sbecore::Xmlio::Block {
+	class ContInf : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint TXTJOB = 1;
@@ -91,7 +91,7 @@ namespace PnlWzemPstDetail {
 	/**
 	  * StatApp (full: StatAppWzemPstDetail)
 	  */
-	class StatApp : public Sbecore::Xmlio::Block {
+	class StatApp : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint IXWZEMVEXPSTATE = 1;
@@ -111,7 +111,7 @@ namespace PnlWzemPstDetail {
 	/**
 	  * StatShr (full: StatShrWzemPstDetail)
 	  */
-	class StatShr : public Sbecore::Xmlio::Block {
+	class StatShr : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint BUTSAVEAVAIL = 1;
@@ -147,7 +147,7 @@ namespace PnlWzemPstDetail {
 	/**
 	  * Tag (full: TagWzemPstDetail)
 	  */
-	class Tag : public Sbecore::Xmlio::Block {
+	class Tag : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint CPT = 1;

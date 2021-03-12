@@ -20,10 +20,10 @@ uint DbsWzem::VecVCard::getIx(
 		) {
 	string s = StrMod::lc(sref);
 
-	if (s == "crdwzemnav") return CRDWZEMNAV;
 	if (s == "crdwzemusg") return CRDWZEMUSG;
 	if (s == "crdwzemusr") return CRDWZEMUSR;
 	if (s == "crdwzemprs") return CRDWZEMPRS;
+	if (s == "crdwzemnav") return CRDWZEMNAV;
 	if (s == "crdwzemprd") return CRDWZEMPRD;
 	if (s == "crdwzemevt") return CRDWZEMEVT;
 	if (s == "crdwzemjob") return CRDWZEMJOB;
@@ -39,10 +39,10 @@ uint DbsWzem::VecVCard::getIx(
 string DbsWzem::VecVCard::getSref(
 			const uint ix
 		) {
-	if (ix == CRDWZEMNAV) return("CrdWzemNav");
 	if (ix == CRDWZEMUSG) return("CrdWzemUsg");
 	if (ix == CRDWZEMUSR) return("CrdWzemUsr");
 	if (ix == CRDWZEMPRS) return("CrdWzemPrs");
+	if (ix == CRDWZEMNAV) return("CrdWzemNav");
 	if (ix == CRDWZEMPRD) return("CrdWzemPrd");
 	if (ix == CRDWZEMEVT) return("CrdWzemEvt");
 	if (ix == CRDWZEMJOB) return("CrdWzemJob");
@@ -132,8 +132,8 @@ uint DbsWzem::VecVControl::getIx(
 	if (s == "pnlwzemprdlist.tcover") return PNLWZEMPRDLIST_TCOVER;
 	if (s == "pnlwzemprdlist.tcosta") return PNLWZEMPRDLIST_TCOSTA;
 	if (s == "pnlwzemprdlist.tcosto") return PNLWZEMPRDLIST_TCOSTO;
-	if (s == "pnlwzemprd1njob.tcoref") return PNLWZEMPRD1NJOB_TCOREF;
 	if (s == "pnlwzemprd1nnode.tcoref") return PNLWZEMPRD1NNODE_TCOREF;
+	if (s == "pnlwzemprd1njob.tcoref") return PNLWZEMPRD1NJOB_TCOREF;
 	if (s == "pnlwzemprd1nevent.tcoref") return PNLWZEMPRD1NEVENT_TCOREF;
 	if (s == "pnlwzemevtlist.tcotyp") return PNLWZEMEVTLIST_TCOTYP;
 	if (s == "pnlwzemevtlist.tcoprd") return PNLWZEMEVTLIST_TCOPRD;
@@ -148,10 +148,10 @@ uint DbsWzem::VecVControl::getIx(
 	if (s == "pnlwzemjoblist.tcosta") return PNLWZEMJOBLIST_TCOSTA;
 	if (s == "pnlwzemjoblist.tcosto") return PNLWZEMJOBLIST_TCOSTO;
 	if (s == "pnlwzemjoblist.tcosup") return PNLWZEMJOBLIST_TCOSUP;
-	if (s == "pnlwzemjob1nop.tcoref") return PNLWZEMJOB1NOP_TCOREF;
-	if (s == "pnlwzemjob1ncall.tcoref") return PNLWZEMJOB1NCALL_TCOREF;
-	if (s == "pnlwzemjob1npreset.tcoref") return PNLWZEMJOB1NPRESET_TCOREF;
 	if (s == "pnlwzemjob1nclstn.tcoref") return PNLWZEMJOB1NCLSTN_TCOREF;
+	if (s == "pnlwzemjob1npreset.tcoref") return PNLWZEMJOB1NPRESET_TCOREF;
+	if (s == "pnlwzemjob1ncall.tcoref") return PNLWZEMJOB1NCALL_TCOREF;
+	if (s == "pnlwzemjob1nop.tcoref") return PNLWZEMJOB1NOP_TCOREF;
 	if (s == "pnlwzemjobsup1njob.tcoref") return PNLWZEMJOBSUP1NJOB_TCOREF;
 	if (s == "pnlwzemcallist.tcojob") return PNLWZEMCALLIST_TCOJOB;
 	if (s == "pnlwzemcallist.tcocal") return PNLWZEMCALLIST_TCOCAL;
@@ -221,8 +221,8 @@ string DbsWzem::VecVControl::getSref(
 	if (ix == PNLWZEMPRDLIST_TCOVER) return("PnlWzemPrdList.TcoVer");
 	if (ix == PNLWZEMPRDLIST_TCOSTA) return("PnlWzemPrdList.TcoSta");
 	if (ix == PNLWZEMPRDLIST_TCOSTO) return("PnlWzemPrdList.TcoSto");
-	if (ix == PNLWZEMPRD1NJOB_TCOREF) return("PnlWzemPrd1NJob.TcoRef");
 	if (ix == PNLWZEMPRD1NNODE_TCOREF) return("PnlWzemPrd1NNode.TcoRef");
+	if (ix == PNLWZEMPRD1NJOB_TCOREF) return("PnlWzemPrd1NJob.TcoRef");
 	if (ix == PNLWZEMPRD1NEVENT_TCOREF) return("PnlWzemPrd1NEvent.TcoRef");
 	if (ix == PNLWZEMEVTLIST_TCOTYP) return("PnlWzemEvtList.TcoTyp");
 	if (ix == PNLWZEMEVTLIST_TCOPRD) return("PnlWzemEvtList.TcoPrd");
@@ -237,10 +237,10 @@ string DbsWzem::VecVControl::getSref(
 	if (ix == PNLWZEMJOBLIST_TCOSTA) return("PnlWzemJobList.TcoSta");
 	if (ix == PNLWZEMJOBLIST_TCOSTO) return("PnlWzemJobList.TcoSto");
 	if (ix == PNLWZEMJOBLIST_TCOSUP) return("PnlWzemJobList.TcoSup");
-	if (ix == PNLWZEMJOB1NOP_TCOREF) return("PnlWzemJob1NOp.TcoRef");
-	if (ix == PNLWZEMJOB1NCALL_TCOREF) return("PnlWzemJob1NCall.TcoRef");
-	if (ix == PNLWZEMJOB1NPRESET_TCOREF) return("PnlWzemJob1NPreset.TcoRef");
 	if (ix == PNLWZEMJOB1NCLSTN_TCOREF) return("PnlWzemJob1NClstn.TcoRef");
+	if (ix == PNLWZEMJOB1NPRESET_TCOREF) return("PnlWzemJob1NPreset.TcoRef");
+	if (ix == PNLWZEMJOB1NCALL_TCOREF) return("PnlWzemJob1NCall.TcoRef");
+	if (ix == PNLWZEMJOB1NOP_TCOREF) return("PnlWzemJob1NOp.TcoRef");
 	if (ix == PNLWZEMJOBSUP1NJOB_TCOREF) return("PnlWzemJobSup1NJob.TcoRef");
 	if (ix == PNLWZEMCALLIST_TCOJOB) return("PnlWzemCalList.TcoJob");
 	if (ix == PNLWZEMCALLIST_TCOCAL) return("PnlWzemCalList.TcoCal");
@@ -639,6 +639,7 @@ uint DbsWzem::VecVPreset::getIx(
 	if (s == "prewzemsysdate") return PREWZEMSYSDATE;
 	if (s == "prewzemsysstamp") return PREWZEMSYSSTAMP;
 	if (s == "prewzemsystime") return PREWZEMSYSTIME;
+	if (s == "prewzemtlast") return PREWZEMTLAST;
 	if (s == "prewzemusgaaccess.x1") return PREWZEMUSGAACCESS_X1;
 	if (s == "prewzemusgaaccess.x2") return PREWZEMUSGAACCESS_X2;
 	if (s == "prewzemusglist.grp") return PREWZEMUSGLIST_GRP;
@@ -737,6 +738,7 @@ string DbsWzem::VecVPreset::getSref(
 	if (ix == PREWZEMSYSDATE) return("PreWzemSysdate");
 	if (ix == PREWZEMSYSSTAMP) return("PreWzemSysstamp");
 	if (ix == PREWZEMSYSTIME) return("PreWzemSystime");
+	if (ix == PREWZEMTLAST) return("PreWzemTlast");
 	if (ix == PREWZEMUSGAACCESS_X1) return("PreWzemUsgAAccess.x1");
 	if (ix == PREWZEMUSGAACCESS_X2) return("PreWzemUsgAAccess.x2");
 	if (ix == PREWZEMUSGLIST_GRP) return("PreWzemUsgList.grp");

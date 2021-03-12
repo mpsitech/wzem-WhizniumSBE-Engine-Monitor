@@ -39,6 +39,27 @@ WzemQCalList::WzemQCalList(
 	this->x1Stopu = x1Stopu;
 };
 
+void WzemQCalList::writeJSON(
+			Json::Value& sup
+			, bool jnumattr
+			, bool shorttags
+		) {
+	Json::Value& me = sup.append(Json::Value(Json::objectValue));
+
+	if (jnumattr) me["jnum"] = jnum;
+	if (shorttags) {
+		me["job"] = stubRefWzemMJob;
+		me["cal"] = srefIxVCall;
+		me["sta"] = x1Startu;
+		me["sto"] = x1Stopu;
+	} else {
+		me["stubRefWzemMJob"] = stubRefWzemMJob;
+		me["srefIxVCall"] = srefIxVCall;
+		me["x1Startu"] = x1Startu;
+		me["x1Stopu"] = x1Stopu;
+	};
+};
+
 void WzemQCalList::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -110,6 +131,16 @@ ListWzemQCalList& ListWzemQCalList::operator=(
 	};
 
 	return(*this);
+};
+
+void ListWzemQCalList::writeJSON(
+			Json::Value& sup
+			, std::string difftag
+		) {
+	if (difftag == "") difftag = "ListWzemQCalList";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::arrayValue);
+	for (unsigned int i = 0; i < nodes.size(); i++) nodes[i]->writeJSON(me, true, true);
 };
 
 void ListWzemQCalList::writeXML(

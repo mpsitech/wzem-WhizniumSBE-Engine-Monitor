@@ -2,7 +2,7 @@
 # make file for Wzem API library, release apiwzem_mac
 # copyright: (C) 2016-2020 MPSI Technologies GmbH
 # author: Alexander Wirthmueller (auto-generation)
-# date created: 15 Dec 2020
+# date created: 12 Mar 2021
 # IP header --- ABOVE
 
 LIBROOT = ${WHIZSDKROOT}/lib
@@ -17,7 +17,7 @@ DYNLIB = g++
 DYNLIBFLAGS = -dynamiclib -undefined dynamic_lookup
 DYNLIBEXT = dylib
 
-INCPATH = -I${WHIZSDKROOT}/build -I/usr/local/include/libxml2
+INCPATH = -I${WHIZSDKROOT}/build -I/usr/local/include -I/usr/local/include/libxml2
 
 PCHS = ApiWzem.h.gch
 
