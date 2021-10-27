@@ -14,8 +14,8 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWzemPrsHeadbar.h"
 #include "PnlWzemPrsList.h"
+#include "PnlWzemPrsHeadbar.h"
 #include "PnlWzemPrsRec.h"
 
 #define VecVWzemPrsDo CrdWzemPrs::VecVDo
@@ -181,7 +181,7 @@ public:
 		std::string getSrefsMask();
 		void merge(DpchEngWzem* dpcheng);
 
-		void writeJSON(const Sbecore::uint ixWzemVLocale, Json::Value& sup);
+		void writeJSON(const Sbecore::uint ixWzskVLocale, Json::Value& sup);
 		void writeXML(const Sbecore::uint ixWzemVLocale, xmlTextWriter* wr);
 	};
 
@@ -196,8 +196,8 @@ public:
 	Sbecore::Feed feedFMcbAlert;
 	Sbecore::Feed feedFSge;
 
-	PnlWzemPrsHeadbar* pnlheadbar;
 	PnlWzemPrsList* pnllist;
+	PnlWzemPrsHeadbar* pnlheadbar;
 	PnlWzemPrsRec* pnlrec;
 
 	// IP vars.cust --- INSERT

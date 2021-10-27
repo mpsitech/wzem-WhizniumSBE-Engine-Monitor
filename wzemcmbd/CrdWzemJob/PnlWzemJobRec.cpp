@@ -40,8 +40,8 @@ PnlWzemJobRec::PnlWzemJobRec(
 
 	pnlsup1njob = NULL;
 	pnl1nop = NULL;
-	pnl1npreset = NULL;
 	pnl1ncall = NULL;
+	pnl1npreset = NULL;
 	pnl1nclstn = NULL;
 	pnldetail = NULL;
 

@@ -16,8 +16,8 @@
 
 #include "PnlWzemJobSup1NJob.h"
 #include "PnlWzemJob1NOp.h"
-#include "PnlWzemJob1NPreset.h"
 #include "PnlWzemJob1NCall.h"
+#include "PnlWzemJob1NPreset.h"
 #include "PnlWzemJob1NClstn.h"
 #include "PnlWzemJobDetail.h"
 
@@ -172,7 +172,7 @@ public:
 		std::string getSrefsMask();
 		void merge(DpchEngWzem* dpcheng);
 
-		void writeJSON(const Sbecore::uint ixWzemVLocale, Json::Value& sup);
+		void writeJSON(const Sbecore::uint ixWzskVLocale, Json::Value& sup);
 		void writeXML(const Sbecore::uint ixWzemVLocale, xmlTextWriter* wr);
 	};
 
@@ -188,8 +188,8 @@ public:
 
 	PnlWzemJobSup1NJob* pnlsup1njob;
 	PnlWzemJob1NOp* pnl1nop;
-	PnlWzemJob1NPreset* pnl1npreset;
 	PnlWzemJob1NCall* pnl1ncall;
+	PnlWzemJob1NPreset* pnl1npreset;
 	PnlWzemJob1NClstn* pnl1nclstn;
 	PnlWzemJobDetail* pnldetail;
 

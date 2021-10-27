@@ -2,6 +2,7 @@ IexWznmDpl v1.0.9
 ImeIMComponent.srefIxVBasetype	sref	Title	Comment
 cmbeng	wzemcmbd	WhizniumSBE Engine Monitor combined engine
 	ImeIMRelease.hsrefRefWznmMMachine	sref	srefsKOption	Comment
+	any;yocto;armv7;mcv	wzemcmbd_mcv	stripdbg
 	any;yocto;armv7;plnx	wzemcmbd_plnx	stripdbg
 	any;yocto;riscv64	wzemcmbd_riscv	stripdbg
 	any;yocto;armv7;tdx	wzemcmbd_tdx	stripdbg
@@ -10,6 +11,7 @@ cmbeng	wzemcmbd	WhizniumSBE Engine Monitor combined engine
 	ImeIMRelease.end
 dbs	dbswzem	WhizniumSBE Engine Monitor database access library
 	ImeIMRelease.hsrefRefWznmMMachine	sref	srefsKOption	Comment
+	any;yocto;armv7;mcv	dbswzem_mcv
 	any;yocto;armv7;plnx	dbswzem_plnx
 	any;yocto;riscv64	dbswzem_riscv
 	any;yocto;armv7;tdx	dbswzem_tdx
@@ -23,6 +25,7 @@ webapp	webappwzem	WhizniumSBE Engine Monitor web app user interface files
 	ImeIMRelease.end
 api	apiwzem	WhizniumSBE Engine Monitor API library
 	ImeIMRelease.hsrefRefWznmMMachine	sref	srefsKOption	Comment
+	any;yocto;armv7;mcv	apiwzem_mcv
 	any;yocto;armv7;plnx	apiwzem_plnx
 	any;yocto;riscv64	apiwzem_riscv
 	any;yocto;armv7;tdx	apiwzem_tdx

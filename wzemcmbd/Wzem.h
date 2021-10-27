@@ -10,10 +10,10 @@
 #ifndef WZEM_H
 #define WZEM_H
 
-#define WZEM_VERSION "1.0.5"
+#define WZEM_VERSION "1.0.6"
 #define WZEM_VERSION_MAJOR 1
 #define WZEM_VERSION_MINOR 0
-#define WZEM_VERSION_SUB 5
+#define WZEM_VERSION_SUB 6
 
 // IP include.cust --- INSERT
 

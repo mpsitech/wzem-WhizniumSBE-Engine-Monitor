@@ -3,7 +3,7 @@
 # checkout script for Wzem API library, release apiwzem_riscv (ubuntu cross-compilation)
 # copyright: (C) 2016-2020 MPSI Technologies GmbH
 # author: Alexander Wirthmueller (auto-generation)
-# date created: 12 Mar 2021
+# date created: 3 May 2021
 # IP header --- ABOVE
 
 if [ -z ${WHIZROOT+x} ]; then

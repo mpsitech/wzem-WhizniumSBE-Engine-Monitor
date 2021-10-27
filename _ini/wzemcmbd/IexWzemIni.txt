@@ -1,4 +1,4 @@
-IexWzemIni v1.0.5
+IexWzemIni v1.0.6
 ImeIAVKeylistKey.srefKlsIxWzemVKeylist	sref	Avail	Implied	Title	Comment
 KlstWzemKAMPersonDetailType	eml			e-mail	
 KlstWzemKAMPersonDetailType	fax			fax	

@@ -421,14 +421,14 @@ public:
 		std::string getSrefsMask();
 		void merge(DpchEngWzem* dpcheng);
 
-		void writeJSON(const Sbecore::uint ixWzemVLocale, Json::Value& sup);
+		void writeJSON(const Sbecore::uint ixWzskVLocale, Json::Value& sup);
 		void writeXML(const Sbecore::uint ixWzemVLocale, xmlTextWriter* wr);
 	};
 
 	bool evalButDneActive(DbsWzem* dbswzem);
+	bool evalLfiDldActive(DbsWzem* dbswzem);
 	bool evalImpButRunActive(DbsWzem* dbswzem);
 	bool evalImpButStoActive(DbsWzem* dbswzem);
-	bool evalLfiDldActive(DbsWzem* dbswzem);
 	bool evalIfiUldActive(DbsWzem* dbswzem);
 
 public:

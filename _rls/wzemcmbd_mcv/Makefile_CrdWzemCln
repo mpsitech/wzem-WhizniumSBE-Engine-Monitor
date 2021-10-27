@@ -1,0 +1,38 @@
+# file Makefile
+# make file for CrdWzemCln card job handler, release wzemcmbd_mcv (ubuntu cross-compilation)
+# copyright: (C) 2016-2020 MPSI Technologies GmbH
+# author: Alexander Wirthmueller (auto-generation)
+# date created: 3 May 2021
+# IP header --- ABOVE
+
+include ../Makefile.inc
+
+CPP = ${TCHROOT}/arm-poky-linux-gnueabi-g++
+CPPFLAGS = --sysroot=${SYSROOT} --sysroot=${SYSROOT} -std=c++11 -march=armv7-a -mthumb -mfpu=neon -mfloat-abi=hard -g -Wall -Os -pthread -DWZEMCMBD
+
+STATLIB = ${TCHROOT}/arm-poky-linux-gnueabi-ar
+STATLIBFLAGS = rcs
+
+INCPATH = -I=$(BUILDROOT)/dbswzem -I=$(BUILDROOT)/wzemcmbd/VecWzem -I=$(BUILDROOT)/wzemcmbd/IexWzem -I=$(BUILDROOT)/wzemcmbd
+INCPATH += -I=${WHIZSDKROOT}/build -I=/usr/include -I=/usr/include/libxml2
+
+OBJS = CrdWzemCln.o PnlWzemClnList.o QryWzemClnList.o PnlWzemClnHeadbar.o PnlWzemClnRec.o PnlWzemClnDetail.o
+
+LIB = libcrdwzemcln
+
+.SUFFIXES: .cpp
+
+.cpp.o :
+	$(CPP) $(CPPFLAGS) $(INCPATH) -o $@ -c $<
+
+all:	$(LIB)
+
+$(LIB):	$(OBJS)
+	$(STATLIB) $(STATLIBFLAGS) $(LIB).a $(OBJS)
+	rm -f *.o
+
+install:
+	mv $(LIB).a ${SYSROOT}$(LIBROOT)/wzemcmbd/
+
+clean:
+	rm -f *.o

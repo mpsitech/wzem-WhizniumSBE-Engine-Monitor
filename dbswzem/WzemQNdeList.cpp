@@ -55,7 +55,7 @@ void WzemQNdeList::writeJSON(
 	if (jnumattr) me["jnum"] = jnum;
 	if (shorttags) {
 		me["prd"] = stubRefWzemMPeriod;
-		me["xnr"] = xnref;
+		me["xnr"] = Json::Value::UInt64(xnref);
 		me["ip"] = Ip;
 		me["sta"] = x1Startu;
 		me["sto"] = x1Stopu;
@@ -63,7 +63,7 @@ void WzemQNdeList::writeJSON(
 		me["orn"] = Opprcn;
 	} else {
 		me["stubRefWzemMPeriod"] = stubRefWzemMPeriod;
-		me["xnref"] = xnref;
+		me["xnref"] = Json::Value::UInt64(xnref);
 		me["Ip"] = Ip;
 		me["x1Startu"] = x1Startu;
 		me["x1Stopu"] = x1Stopu;

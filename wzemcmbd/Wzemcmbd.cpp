@@ -905,7 +905,7 @@ DpchEngWzemAlert* AlrWzem::prepareAlrAbt(
 	continf.TxtCpt = StrMod::cap(continf.TxtCpt);
 
 	if (ixWzemVLocale == VecWzemVLocale::ENUS) {
-		continf.TxtMsg1 = "WhizniumSBE Engine Monitor version v1.0.5 released on 12-3-2021";
+		continf.TxtMsg1 = "WhizniumSBE Engine Monitor version v1.0.6 released on 3-5-2021";
 		continf.TxtMsg2 = "\\u00a9 MPSI Technologies GmbH";
 		continf.TxtMsg4 = "contributors: Alexander Wirthmueller";
 		continf.TxtMsg6 = "WhizniumSBE Engine Monitor serves as a debugging tool for projects developed with WhizniumSBE.";
@@ -1599,14 +1599,14 @@ void StmgrWzem::handleCall(
 	} else if (call->ixVCall == VecWzemVCall::CALLWZEMPSTUPD_REFEQ) {
 		insert(icsWzemVStub, VecWzemVStub::STUBWZEMPSTSTD);
 	} else if (call->ixVCall == VecWzemVCall::CALLWZEMSESUPD_REFEQ) {
-		insert(icsWzemVStub, VecWzemVStub::STUBWZEMSESMENU);
 		insert(icsWzemVStub, VecWzemVStub::STUBWZEMSESSTD);
+		insert(icsWzemVStub, VecWzemVStub::STUBWZEMSESMENU);
 	} else if (call->ixVCall == VecWzemVCall::CALLWZEMUSGUPD_REFEQ) {
-		insert(icsWzemVStub, VecWzemVStub::STUBWZEMGROUP);
 		insert(icsWzemVStub, VecWzemVStub::STUBWZEMUSGSTD);
+		insert(icsWzemVStub, VecWzemVStub::STUBWZEMGROUP);
 	} else if (call->ixVCall == VecWzemVCall::CALLWZEMUSRUPD_REFEQ) {
-		insert(icsWzemVStub, VecWzemVStub::STUBWZEMUSRSTD);
 		insert(icsWzemVStub, VecWzemVStub::STUBWZEMOWNER);
+		insert(icsWzemVStub, VecWzemVStub::STUBWZEMUSRSTD);
 	};
 
 	for (auto it = icsWzemVStub.begin(); it != icsWzemVStub.end(); it++) {
@@ -1840,7 +1840,7 @@ void XchgWzemcmbd::startMon() {
 	Clstn* clstn = NULL;
 	Preset* preset = NULL;
 
-	mon.start("WhizniumSBE Engine Monitor v1.0.5", stgwzempath.monpath);
+	mon.start("WhizniumSBE Engine Monitor v1.0.6", stgwzempath.monpath);
 
 	rwmJobs.rlock("XchgWzemcmbd", "startMon");
 	for (auto it = jobs.begin(); it != jobs.end(); it++) {
