@@ -49,7 +49,7 @@ public:
 	public:
 		std::string getSrefsMask();
 
-		void readJSON(Json::Value& sup, bool addbasetag = false);
+		void readJSON(const Json::Value& sup, bool addbasetag = false);
 		void readXML(xmlXPathContext* docctx, std::string basexpath = "", bool addbasetag = false);
 	};
 
@@ -73,7 +73,7 @@ public:
 		std::string getSrefsMask();
 		void merge(DpchEngWzem* dpcheng);
 
-		void writeJSON(const Sbecore::uint ixWzskVLocale, Json::Value& sup);
+		void writeJSON(const Sbecore::uint ixWzemVLocale, Json::Value& sup);
 		void writeXML(const Sbecore::uint ixWzemVLocale, xmlTextWriter* wr);
 	};
 
@@ -83,7 +83,7 @@ public:
 
 public:
 
-	std::list<SessWzem*> sesss;
+	std::map<Sbecore::ubigint, JobWzem*> sesss;
 
 	// IP vars.spec --- INSERT
 
@@ -97,6 +97,7 @@ public:
 	void clearQtb(DbsWzem* dbswzem);
 
 	bool authenticate(DbsWzem* dbswzem, const std::string& username, const std::string& password, Sbecore::ubigint& refWzemMUser);
+	void termSess(DbsWzem* dbswzem, const Sbecore::ubigint jref);
 
 public:
 

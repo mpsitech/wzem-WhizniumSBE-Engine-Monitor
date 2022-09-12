@@ -255,6 +255,20 @@ bool CrdWzemNav::evalMitCrdEvtAvail(
 	return(args.back());
 };
 
+bool CrdWzemNav::evalMitCrdEvtActive(
+			DbsWzem* dbswzem
+		) {
+	// pre.refPrd()
+
+	vector<bool> args;
+	bool a;
+
+	a = false; a = (xchg->getRefPreset(VecWzemVPreset::PREWZEMREFPRD, jref) != 0);
+	args.push_back(a);
+
+	return(args.back());
+};
+
 bool CrdWzemNav::evalMitCrdJobAvail(
 			DbsWzem* dbswzem
 		) {
@@ -264,6 +278,20 @@ bool CrdWzemNav::evalMitCrdJobAvail(
 	bool a;
 
 	a = false; a = (xchg->getIxPreset(VecWzemVPreset::PREWZEMIXCRDACCJOB, jref) != 0);
+	args.push_back(a);
+
+	return(args.back());
+};
+
+bool CrdWzemNav::evalMitCrdJobActive(
+			DbsWzem* dbswzem
+		) {
+	// pre.refPrd()
+
+	vector<bool> args;
+	bool a;
+
+	a = false; a = (xchg->getRefPreset(VecWzemVPreset::PREWZEMREFPRD, jref) != 0);
 	args.push_back(a);
 
 	return(args.back());
@@ -283,6 +311,20 @@ bool CrdWzemNav::evalMitCrdCalAvail(
 	return(args.back());
 };
 
+bool CrdWzemNav::evalMitCrdCalActive(
+			DbsWzem* dbswzem
+		) {
+	// pre.refPrd()
+
+	vector<bool> args;
+	bool a;
+
+	a = false; a = (xchg->getRefPreset(VecWzemVPreset::PREWZEMREFPRD, jref) != 0);
+	args.push_back(a);
+
+	return(args.back());
+};
+
 bool CrdWzemNav::evalMitCrdClnAvail(
 			DbsWzem* dbswzem
 		) {
@@ -292,6 +334,20 @@ bool CrdWzemNav::evalMitCrdClnAvail(
 	bool a;
 
 	a = false; a = (xchg->getIxPreset(VecWzemVPreset::PREWZEMIXCRDACCCLN, jref) != 0);
+	args.push_back(a);
+
+	return(args.back());
+};
+
+bool CrdWzemNav::evalMitCrdClnActive(
+			DbsWzem* dbswzem
+		) {
+	// pre.refPrd()
+
+	vector<bool> args;
+	bool a;
+
+	a = false; a = (xchg->getRefPreset(VecWzemVPreset::PREWZEMREFPRD, jref) != 0);
 	args.push_back(a);
 
 	return(args.back());
@@ -311,6 +367,20 @@ bool CrdWzemNav::evalMitCrdOpxAvail(
 	return(args.back());
 };
 
+bool CrdWzemNav::evalMitCrdOpxActive(
+			DbsWzem* dbswzem
+		) {
+	// pre.refPrd()
+
+	vector<bool> args;
+	bool a;
+
+	a = false; a = (xchg->getRefPreset(VecWzemVPreset::PREWZEMREFPRD, jref) != 0);
+	args.push_back(a);
+
+	return(args.back());
+};
+
 bool CrdWzemNav::evalMitCrdPstAvail(
 			DbsWzem* dbswzem
 		) {
@@ -325,6 +395,20 @@ bool CrdWzemNav::evalMitCrdPstAvail(
 	return(args.back());
 };
 
+bool CrdWzemNav::evalMitCrdPstActive(
+			DbsWzem* dbswzem
+		) {
+	// pre.refPrd()
+
+	vector<bool> args;
+	bool a;
+
+	a = false; a = (xchg->getRefPreset(VecWzemVPreset::PREWZEMREFPRD, jref) != 0);
+	args.push_back(a);
+
+	return(args.back());
+};
+
 bool CrdWzemNav::evalMitCrdNdeAvail(
 			DbsWzem* dbswzem
 		) {
@@ -334,6 +418,20 @@ bool CrdWzemNav::evalMitCrdNdeAvail(
 	bool a;
 
 	a = false; a = (xchg->getIxPreset(VecWzemVPreset::PREWZEMIXCRDACCNDE, jref) != 0);
+	args.push_back(a);
+
+	return(args.back());
+};
+
+bool CrdWzemNav::evalMitCrdNdeActive(
+			DbsWzem* dbswzem
+		) {
+	// pre.refPrd()
+
+	vector<bool> args;
+	bool a;
+
+	a = false; a = (xchg->getRefPreset(VecWzemVPreset::PREWZEMREFPRD, jref) != 0);
 	args.push_back(a);
 
 	return(args.back());

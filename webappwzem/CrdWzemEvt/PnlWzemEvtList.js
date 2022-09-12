@@ -60,7 +60,17 @@ function init() {
 };
 
 function refreshA() {
-	setTextContent(contdoc, contdoc.getElementById("Cpt"), retrieveTi(srcdoc, "TagWzemEvtList", "Cpt") + " (" + retrieveSi(srcdoc, "StatShrQryWzemEvtList", "ntot") + ")");
+	var TxtFor = retrieveCi(srcdoc, "ContInfWzemEvtList", "TxtFor");
+
+	setTextContent(contdoc, contdoc.getElementById("TxtFor"), strFor(retrieveTi(srcdoc, "TagWzemEvtList", "TxtFor"), TxtFor));
+
+	if (TxtFor == "") {
+		setTextContent(contdoc, contdoc.getElementById("Cpt"), retrieveTi(srcdoc, "TagWzemEvtList", "Cpt") + " (" + retrieveSi(srcdoc, "StatShrQryWzemEvtList", "ntot") + ")");
+		clearElem(contdoc.getElementById("TxtPre"));
+	} else {
+		setTextContent(contdoc, contdoc.getElementById("Cpt"), retrieveTi(srcdoc, "TagWzemEvtList", "Cpt"));
+		setTextContent(contdoc, contdoc.getElementById("TxtPre"), retrieveCi(srcdoc, "ContInfWzemEvtList", "TxtPre") + " (" + retrieveSi(srcdoc, "StatShrQryWzemEvtList", "ntot") + ")");
+	};
 };
 
 function refreshB(chgcol) {
@@ -80,6 +90,14 @@ function refreshB(chgcol) {
 	var rownode;
 
 	var height;
+
+	var TxtFor = retrieveCi(srcdoc, "ContInfWzemEvtList", "TxtFor");
+
+	// header row
+	setTextContent(hdrdoc, hdrdoc.getElementById("TxtFor"), strFor(retrieveTi(srcdoc, "TagWzemEvtList", "TxtFor"), TxtFor));
+
+	if (TxtFor == "") clearElem(hdrdoc.getElementById("TxtPre"));
+	else setTextContent(hdrdoc, hdrdoc.getElementById("TxtPre"), retrieveCi(srcdoc, "ContInfWzemEvtList", "TxtPre"));
 
 	// update column characteristics
 	if (chgcol) {

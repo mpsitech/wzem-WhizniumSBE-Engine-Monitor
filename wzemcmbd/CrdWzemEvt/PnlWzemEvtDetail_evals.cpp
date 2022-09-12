@@ -201,7 +201,7 @@ bool PnlWzemEvtDetail::evalTxtCalActive(
 bool PnlWzemEvtDetail::evalButCalViewAvail(
 			DbsWzem* dbswzem
 		) {
-	// evt.calEq(0)|(pre.ixCrdaccCal())
+	// evt.calEq(0)|(pre.ixCrdaccCal()&pre.refPrd())
 
 	vector<bool> args;
 	bool a, b;
@@ -210,6 +210,11 @@ bool PnlWzemEvtDetail::evalButCalViewAvail(
 	args.push_back(a);
 	a = false; a = (xchg->getIxPreset(VecWzemVPreset::PREWZEMIXCRDACCCAL, jref) != 0);
 	args.push_back(a);
+	a = false; a = (xchg->getRefPreset(VecWzemVPreset::PREWZEMREFPRD, jref) != 0);
+	args.push_back(a);
+	b = args.back(); args.pop_back();
+	a = args.back(); args.pop_back();
+	args.push_back(a && b);
 	b = args.back(); args.pop_back();
 	a = args.back(); args.pop_back();
 	args.push_back(a || b);
@@ -250,7 +255,7 @@ bool PnlWzemEvtDetail::evalTxtClnActive(
 bool PnlWzemEvtDetail::evalButClnViewAvail(
 			DbsWzem* dbswzem
 		) {
-	// evt.clnEq(0)|(pre.ixCrdaccCln())
+	// evt.clnEq(0)|(pre.ixCrdaccCln()&pre.refPrd())
 
 	vector<bool> args;
 	bool a, b;
@@ -259,6 +264,11 @@ bool PnlWzemEvtDetail::evalButClnViewAvail(
 	args.push_back(a);
 	a = false; a = (xchg->getIxPreset(VecWzemVPreset::PREWZEMIXCRDACCCLN, jref) != 0);
 	args.push_back(a);
+	a = false; a = (xchg->getRefPreset(VecWzemVPreset::PREWZEMREFPRD, jref) != 0);
+	args.push_back(a);
+	b = args.back(); args.pop_back();
+	a = args.back(); args.pop_back();
+	args.push_back(a && b);
 	b = args.back(); args.pop_back();
 	a = args.back(); args.pop_back();
 	args.push_back(a || b);
@@ -299,7 +309,7 @@ bool PnlWzemEvtDetail::evalTxtJobActive(
 bool PnlWzemEvtDetail::evalButJobViewAvail(
 			DbsWzem* dbswzem
 		) {
-	// evt.jobEq(0)|(pre.ixCrdaccJob())
+	// evt.jobEq(0)|(pre.ixCrdaccJob()&pre.refPrd())
 
 	vector<bool> args;
 	bool a, b;
@@ -308,6 +318,11 @@ bool PnlWzemEvtDetail::evalButJobViewAvail(
 	args.push_back(a);
 	a = false; a = (xchg->getIxPreset(VecWzemVPreset::PREWZEMIXCRDACCJOB, jref) != 0);
 	args.push_back(a);
+	a = false; a = (xchg->getRefPreset(VecWzemVPreset::PREWZEMREFPRD, jref) != 0);
+	args.push_back(a);
+	b = args.back(); args.pop_back();
+	a = args.back(); args.pop_back();
+	args.push_back(a && b);
 	b = args.back(); args.pop_back();
 	a = args.back(); args.pop_back();
 	args.push_back(a || b);
@@ -348,7 +363,7 @@ bool PnlWzemEvtDetail::evalTxtNdeActive(
 bool PnlWzemEvtDetail::evalButNdeViewAvail(
 			DbsWzem* dbswzem
 		) {
-	// evt.ndeEq(0)|(pre.ixCrdaccNde())
+	// evt.ndeEq(0)|(pre.ixCrdaccNde()&pre.refPrd())
 
 	vector<bool> args;
 	bool a, b;
@@ -357,6 +372,11 @@ bool PnlWzemEvtDetail::evalButNdeViewAvail(
 	args.push_back(a);
 	a = false; a = (xchg->getIxPreset(VecWzemVPreset::PREWZEMIXCRDACCNDE, jref) != 0);
 	args.push_back(a);
+	a = false; a = (xchg->getRefPreset(VecWzemVPreset::PREWZEMREFPRD, jref) != 0);
+	args.push_back(a);
+	b = args.back(); args.pop_back();
+	a = args.back(); args.pop_back();
+	args.push_back(a && b);
 	b = args.back(); args.pop_back();
 	a = args.back(); args.pop_back();
 	args.push_back(a || b);
@@ -397,7 +417,7 @@ bool PnlWzemEvtDetail::evalTxtOpxActive(
 bool PnlWzemEvtDetail::evalButOpxViewAvail(
 			DbsWzem* dbswzem
 		) {
-	// evt.opxEq(0)|(pre.ixCrdaccOpx())
+	// evt.opxEq(0)|(pre.ixCrdaccOpx()&pre.refPrd())
 
 	vector<bool> args;
 	bool a, b;
@@ -406,6 +426,11 @@ bool PnlWzemEvtDetail::evalButOpxViewAvail(
 	args.push_back(a);
 	a = false; a = (xchg->getIxPreset(VecWzemVPreset::PREWZEMIXCRDACCOPX, jref) != 0);
 	args.push_back(a);
+	a = false; a = (xchg->getRefPreset(VecWzemVPreset::PREWZEMREFPRD, jref) != 0);
+	args.push_back(a);
+	b = args.back(); args.pop_back();
+	a = args.back(); args.pop_back();
+	args.push_back(a && b);
 	b = args.back(); args.pop_back();
 	a = args.back(); args.pop_back();
 	args.push_back(a || b);
@@ -446,7 +471,7 @@ bool PnlWzemEvtDetail::evalTxtPstActive(
 bool PnlWzemEvtDetail::evalButPstViewAvail(
 			DbsWzem* dbswzem
 		) {
-	// evt.pstEq(0)|(pre.ixCrdaccPst())
+	// evt.pstEq(0)|(pre.ixCrdaccPst()&pre.refPrd())
 
 	vector<bool> args;
 	bool a, b;
@@ -455,6 +480,11 @@ bool PnlWzemEvtDetail::evalButPstViewAvail(
 	args.push_back(a);
 	a = false; a = (xchg->getIxPreset(VecWzemVPreset::PREWZEMIXCRDACCPST, jref) != 0);
 	args.push_back(a);
+	a = false; a = (xchg->getRefPreset(VecWzemVPreset::PREWZEMREFPRD, jref) != 0);
+	args.push_back(a);
+	b = args.back(); args.pop_back();
+	a = args.back(); args.pop_back();
+	args.push_back(a && b);
 	b = args.back(); args.pop_back();
 	a = args.back(); args.pop_back();
 	args.push_back(a || b);

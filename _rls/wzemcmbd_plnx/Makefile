@@ -2,7 +2,7 @@
 # make file for Wzem combined daemon, release wzemcmbd_plnx (ubuntu cross-compilation)
 # copyright: (C) 2016-2020 MPSI Technologies GmbH
 # author: Alexander Wirthmueller (auto-generation)
-# date created: 3 May 2021
+# date created: 11 Sep 2022
 # IP header --- ABOVE
 
 include Makefile.inc
@@ -50,7 +50,6 @@ all:	$(PCHS) $(EXE)
 
 $(EXE):	$(OBJS)
 	$(LINK) $(LINKFLAGS) $(OBJS) $(LIBPATH) $(LIBS) -o $(EXE)
-	rm -f *.o
 
 pch:	$(PCHS)
 

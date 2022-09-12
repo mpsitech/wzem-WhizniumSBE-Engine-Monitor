@@ -37,6 +37,7 @@ uint VecWzemVTag::getIx(
 	if (s == "error") return ERROR;
 	if (s == "filename") return FILENAME;
 	if (s == "fls") return FLS;
+	if (s == "for") return FOR;
 	if (s == "general") return GENERAL;
 	if (s == "goto") return GOTO;
 	if (s == "grp") return GRP;
@@ -92,6 +93,7 @@ string VecWzemVTag::getSref(
 	if (ix == ERROR) return("error");
 	if (ix == FILENAME) return("filename");
 	if (ix == FLS) return("fls");
+	if (ix == FOR) return("for");
 	if (ix == GENERAL) return("general");
 	if (ix == GOTO) return("goto");
 	if (ix == GRP) return("grp");
@@ -149,6 +151,7 @@ string VecWzemVTag::getTitle(
 		if (ix == ERROR) return("error");
 		if (ix == FILENAME) return("file name");
 		if (ix == FLS) return("No");
+		if (ix == FOR) return("for &pretit;");
 		if (ix == GENERAL) return("generally");
 		if (ix == GOTO) return("go to");
 		if (ix == GRP) return("group");

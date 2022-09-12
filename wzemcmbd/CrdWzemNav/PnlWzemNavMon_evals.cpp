@@ -67,6 +67,20 @@ bool PnlWzemNavMon::evalButEvtViewActive(
 	return(args.back());
 };
 
+bool PnlWzemNavMon::evalButEvtNewcrdActive(
+			DbsWzem* dbswzem
+		) {
+	// pre.refPrd()
+
+	vector<bool> args;
+	bool a;
+
+	a = false; a = (xchg->getRefPreset(VecWzemVPreset::PREWZEMREFPRD, jref) != 0);
+	args.push_back(a);
+
+	return(args.back());
+};
+
 bool PnlWzemNavMon::evalLstJobAvail(
 			DbsWzem* dbswzem
 		) {
@@ -90,6 +104,20 @@ bool PnlWzemNavMon::evalButJobViewActive(
 	bool a;
 
 	a = false; a = (contiac.numFLstJob != 0);
+	args.push_back(a);
+
+	return(args.back());
+};
+
+bool PnlWzemNavMon::evalButJobNewcrdActive(
+			DbsWzem* dbswzem
+		) {
+	// pre.refPrd()
+
+	vector<bool> args;
+	bool a;
+
+	a = false; a = (xchg->getRefPreset(VecWzemVPreset::PREWZEMREFPRD, jref) != 0);
 	args.push_back(a);
 
 	return(args.back());
@@ -123,6 +151,20 @@ bool PnlWzemNavMon::evalButCalViewActive(
 	return(args.back());
 };
 
+bool PnlWzemNavMon::evalButCalNewcrdActive(
+			DbsWzem* dbswzem
+		) {
+	// pre.refPrd()
+
+	vector<bool> args;
+	bool a;
+
+	a = false; a = (xchg->getRefPreset(VecWzemVPreset::PREWZEMREFPRD, jref) != 0);
+	args.push_back(a);
+
+	return(args.back());
+};
+
 bool PnlWzemNavMon::evalLstClnAvail(
 			DbsWzem* dbswzem
 		) {
@@ -146,6 +188,20 @@ bool PnlWzemNavMon::evalButClnViewActive(
 	bool a;
 
 	a = false; a = (contiac.numFLstCln != 0);
+	args.push_back(a);
+
+	return(args.back());
+};
+
+bool PnlWzemNavMon::evalButClnNewcrdActive(
+			DbsWzem* dbswzem
+		) {
+	// pre.refPrd()
+
+	vector<bool> args;
+	bool a;
+
+	a = false; a = (xchg->getRefPreset(VecWzemVPreset::PREWZEMREFPRD, jref) != 0);
 	args.push_back(a);
 
 	return(args.back());
@@ -179,6 +235,20 @@ bool PnlWzemNavMon::evalButOpxViewActive(
 	return(args.back());
 };
 
+bool PnlWzemNavMon::evalButOpxNewcrdActive(
+			DbsWzem* dbswzem
+		) {
+	// pre.refPrd()
+
+	vector<bool> args;
+	bool a;
+
+	a = false; a = (xchg->getRefPreset(VecWzemVPreset::PREWZEMREFPRD, jref) != 0);
+	args.push_back(a);
+
+	return(args.back());
+};
+
 bool PnlWzemNavMon::evalLstPstAvail(
 			DbsWzem* dbswzem
 		) {
@@ -207,6 +277,20 @@ bool PnlWzemNavMon::evalButPstViewActive(
 	return(args.back());
 };
 
+bool PnlWzemNavMon::evalButPstNewcrdActive(
+			DbsWzem* dbswzem
+		) {
+	// pre.refPrd()
+
+	vector<bool> args;
+	bool a;
+
+	a = false; a = (xchg->getRefPreset(VecWzemVPreset::PREWZEMREFPRD, jref) != 0);
+	args.push_back(a);
+
+	return(args.back());
+};
+
 bool PnlWzemNavMon::evalLstNdeAvail(
 			DbsWzem* dbswzem
 		) {
@@ -230,6 +314,20 @@ bool PnlWzemNavMon::evalButNdeViewActive(
 	bool a;
 
 	a = false; a = (contiac.numFLstNde != 0);
+	args.push_back(a);
+
+	return(args.back());
+};
+
+bool PnlWzemNavMon::evalButNdeNewcrdActive(
+			DbsWzem* dbswzem
+		) {
+	// pre.refPrd()
+
+	vector<bool> args;
+	bool a;
+
+	a = false; a = (xchg->getRefPreset(VecWzemVPreset::PREWZEMREFPRD, jref) != 0);
 	args.push_back(a);
 
 	return(args.back());

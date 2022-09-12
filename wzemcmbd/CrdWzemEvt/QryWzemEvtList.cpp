@@ -79,9 +79,15 @@ void QryWzemEvtList::rerun(
 		) {
 	string sqlstr;
 
-	uint cnt;
+	vector<ubigint> cnts;
+	uint cnt, cntsum;
 
+	vector<ubigint> lims;
+	vector<ubigint> ofss;
+
+	uint preIxPre = xchg->getIxPreset(VecWzemVPreset::PREWZEMIXPRE, jref);
 	uint preIxOrd = xchg->getIxPreset(VecWzemVPreset::PREWZEMIXORD, jref);
+	ubigint preRefPrd = xchg->getRefPreset(VecWzemVPreset::PREWZEMREFPRD, jref);
 	uint preTyp = xchg->getIxPreset(VecWzemVPreset::PREWZEMEVTLIST_TYP, jref);
 	ubigint prePrd = xchg->getRefPreset(VecWzemVPreset::PREWZEMEVTLIST_PRD, jref);
 	double preSta = xchg->getDblvalPreset(VecWzemVPreset::PREWZEMEVTLIST_STA, jref);
@@ -89,26 +95,69 @@ void QryWzemEvtList::rerun(
 	dbswzem->tblwzemqselect->removeRstByJref(jref);
 	dbswzem->tblwzemqevtlist->removeRstByJref(jref);
 
-	sqlstr = "SELECT COUNT(TblWzemMEvent.ref)";
-	sqlstr += " FROM TblWzemMEvent";
-	rerun_filtSQL(sqlstr, preTyp, prePrd, preSta, true);
-	dbswzem->loadUintBySQL(sqlstr, cnt);
+	cntsum = 0;
 
-	statshr.ntot = cnt;
+	if (preIxPre == VecWzemVPreset::PREWZEMREFPRD) {
+		sqlstr = "SELECT COUNT(TblWzemMEvent.ref)";
+		sqlstr += " FROM TblWzemMEvent";
+		sqlstr += " WHERE TblWzemMEvent.refWzemMPeriod = " + to_string(preRefPrd) + "";
+		rerun_filtSQL(sqlstr, preTyp, prePrd, preSta, false);
+		dbswzem->loadUintBySQL(sqlstr, cnt);
+		cnts.push_back(cnt); lims.push_back(0); ofss.push_back(0);
+		cntsum += cnt;
+
+	} else {
+		sqlstr = "SELECT COUNT(TblWzemMEvent.ref)";
+		sqlstr += " FROM TblWzemMEvent";
+		rerun_filtSQL(sqlstr, preTyp, prePrd, preSta, true);
+		dbswzem->loadUintBySQL(sqlstr, cnt);
+		cnts.push_back(cnt); lims.push_back(0); ofss.push_back(0);
+		cntsum += cnt;
+	};
+
+	statshr.ntot = 0;
 	statshr.nload = 0;
 
-	if (stgiac.jnumFirstload > cnt) {
-		if (cnt >= stgiac.nload) stgiac.jnumFirstload = cnt-stgiac.nload+1;
+	if (stgiac.jnumFirstload > cntsum) {
+		if (cntsum >= stgiac.nload) stgiac.jnumFirstload = cntsum-stgiac.nload+1;
 		else stgiac.jnumFirstload = 1;
 	};
 
-	sqlstr = "INSERT INTO TblWzemQEvtList(jref, jnum, ref, ixVBasetype, refWzemMPeriod, startu, refWzemMDpch, Cmd, srefIxVFeatgroup, srefIxVMethod, xsref)";
-	sqlstr += " SELECT " + to_string(jref) + ", 0, TblWzemMEvent.ref, TblWzemMEvent.ixVBasetype, TblWzemMEvent.refWzemMPeriod, TblWzemMEvent.startu, TblWzemMEvent.refWzemMDpch, TblWzemMEvent.Cmd, TblWzemMEvent.srefIxVFeatgroup, TblWzemMEvent.srefIxVMethod, TblWzemMEvent.xsref";
-	sqlstr += " FROM TblWzemMEvent";
-	rerun_filtSQL(sqlstr, preTyp, prePrd, preSta, true);
-	rerun_orderSQL(sqlstr, preIxOrd);
-	sqlstr += " LIMIT " + to_string(stgiac.nload) + " OFFSET " + to_string(stgiac.jnumFirstload-1);
-	dbswzem->executeQuery(sqlstr);
+	for (unsigned int i = 0; i < cnts.size(); i++) {
+		if (statshr.nload < stgiac.nload) {
+			if ((statshr.ntot+cnts[i]) >= stgiac.jnumFirstload) {
+				if (statshr.ntot >= stgiac.jnumFirstload) {
+					ofss[i] = 0;
+				} else {
+					ofss[i] = stgiac.jnumFirstload-statshr.ntot-1;
+				};
+
+				if ((statshr.nload+cnts[i]-ofss[i]) > stgiac.nload) lims[i] = stgiac.nload-statshr.nload;
+				else lims[i] = cnts[i]-ofss[i];
+			};
+		};
+
+		statshr.ntot += cnts[i];
+		statshr.nload += lims[i];
+	};
+
+	if (preIxPre == VecWzemVPreset::PREWZEMREFPRD) {
+		rerun_baseSQL(sqlstr);
+		sqlstr += " FROM TblWzemMEvent";
+		sqlstr += " WHERE TblWzemMEvent.refWzemMPeriod = " + to_string(preRefPrd) + "";
+		rerun_filtSQL(sqlstr, preTyp, prePrd, preSta, false);
+		rerun_orderSQL(sqlstr, preIxOrd);
+		sqlstr += " LIMIT " + to_string(lims[0]) + " OFFSET " + to_string(ofss[0]);
+		dbswzem->executeQuery(sqlstr);
+
+	} else {
+		rerun_baseSQL(sqlstr);
+		sqlstr += " FROM TblWzemMEvent";
+		rerun_filtSQL(sqlstr, preTyp, prePrd, preSta, true);
+		rerun_orderSQL(sqlstr, preIxOrd);
+		sqlstr += " LIMIT " + to_string(lims[0]) + " OFFSET " + to_string(ofss[0]);
+		dbswzem->executeQuery(sqlstr);
+	};
 
 	sqlstr = "UPDATE TblWzemQEvtList SET jnum = qref WHERE jref = " + to_string(jref);
 	dbswzem->executeQuery(sqlstr);
@@ -120,6 +169,13 @@ void QryWzemEvtList::rerun(
 
 	if (call) xchg->triggerCall(dbswzem, VecWzemVCall::CALLWZEMSTATCHG, jref);
 
+};
+
+void QryWzemEvtList::rerun_baseSQL(
+			string& sqlstr
+		) {
+	sqlstr = "INSERT INTO TblWzemQEvtList(jref, jnum, ref, ixVBasetype, refWzemMPeriod, startu, refWzemMDpch, Cmd, srefIxVFeatgroup, srefIxVMethod, xsref)";
+	sqlstr += " SELECT " + to_string(jref) + ", 0, TblWzemMEvent.ref, TblWzemMEvent.ixVBasetype, TblWzemMEvent.refWzemMPeriod, TblWzemMEvent.startu, TblWzemMEvent.refWzemMDpch, TblWzemMEvent.Cmd, TblWzemMEvent.srefIxVFeatgroup, TblWzemMEvent.srefIxVMethod, TblWzemMEvent.xsref";
 };
 
 void QryWzemEvtList::rerun_filtSQL(

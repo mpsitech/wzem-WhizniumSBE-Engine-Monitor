@@ -149,15 +149,14 @@ QryWzemJob1NPreset::StgIac::StgIac(
 };
 
 bool QryWzemJob1NPreset::StgIac::readJSON(
-			Json::Value& sup
+			const Json::Value& sup
 			, bool addbasetag
 		) {
 	clear();
 
 	bool basefound;
 
-	Json::Value& me = sup;
-	if (addbasetag) me = sup["StgIacQryWzemJob1NPreset"];
+	const Json::Value& me = [&]{if (!addbasetag) return sup; return sup["StgIacQryWzemJob1NPreset"];}();
 
 	basefound = (me != Json::nullValue);
 

@@ -1,0 +1,36 @@
+# file Makefile
+# make file for Wzem system vectors, release wzemcmbd_pl64 (ubuntu cross-compilation)
+# copyright: (C) 2016-2020 MPSI Technologies GmbH
+# author: Alexander Wirthmueller (auto-generation)
+# date created: 11 Sep 2022
+# IP header --- ABOVE
+
+include ../Makefile.inc
+
+CPP = ${TCHROOT}/aarch64-xilinx-linux-g++
+CPPFLAGS = --sysroot=${SYSROOT} --sysroot=${SYSROOT} -std=c++11 -march=armv8-a -mtune=cortex-a53 -g -Wall -Os -pthread
+
+STATLIB = ${TCHROOT}/aarch64-xilinx-linux-ar
+STATLIBFLAGS = rcs
+
+INCPATH = -I=${WHIZSDKROOT}/build -I=/usr/include -I=/usr/include/libxml2
+
+OBJS = VecWzemVCall.o VecWzemVDpch.o VecWzemVError.o VecWzemVExpstate.o VecWzemVIop.o VecWzemVJob.o VecWzemVMimetype.o VecWzemVOpengtype.o VecWzemVOppack.o VecWzemVQrystate.o VecWzemVReqitmode.o VecWzemVStub.o VecWzemVTag.o
+
+LIB = libvecwzem
+
+.SUFFIXES: .cpp
+
+.cpp.o :
+	$(CPP) $(CPPFLAGS) $(INCPATH) -o $@ -c $<
+
+all:	$(LIB)
+
+$(LIB):	$(OBJS)
+	$(STATLIB) $(STATLIBFLAGS) $(LIB).a $(OBJS)
+
+install:
+	mv $(LIB).a ${SYSROOT}$(LIBROOT)/
+
+clean:
+	rm -f *.o

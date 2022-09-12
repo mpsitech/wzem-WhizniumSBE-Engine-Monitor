@@ -129,11 +129,11 @@ SessWzem::SessWzem(
 	statshr.jrefCrdnav = crdnav->jref;
 
 	xchg->addClstn(VecWzemVCall::CALLWZEMREFPRESET, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
-	xchg->addClstn(VecWzemVCall::CALLWZEMRECACCESS, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 	xchg->addClstn(VecWzemVCall::CALLWZEMLOG, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
+	xchg->addClstn(VecWzemVCall::CALLWZEMCRDACTIVE, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 	xchg->addClstn(VecWzemVCall::CALLWZEMCRDCLOSE, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 	xchg->addClstn(VecWzemVCall::CALLWZEMCRDOPEN, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
-	xchg->addClstn(VecWzemVCall::CALLWZEMCRDACTIVE, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
+	xchg->addClstn(VecWzemVCall::CALLWZEMRECACCESS, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 
 	// IP constructor.cust3 --- INSERT
 
@@ -174,11 +174,102 @@ void SessWzem::term(
 	};
 };
 
+void SessWzem::eraseCrd(
+			map<ubigint, JobWzem*>& subjobs
+		) {
+	string input;
+	ubigint iinput;
+
+	cout << "\tjob reference: ";
+	cin >> input;
+	iinput = atoll(input.c_str());
+
+	if (!eraseSubjobByJref(subjobs, iinput)) cout << "\tjob reference doesn't exist!" << endl;
+	else cout << "\tcard erased." << endl;
+};
+
 uint SessWzem::checkCrdActive(
 			const uint ixWzemVCard
 		) {
+	if (ixWzemVCard == VecWzemVCard::CRDWZEMEVT) return evalCrdevtActive();
+	else if (ixWzemVCard == VecWzemVCard::CRDWZEMJOB) return evalCrdjobActive();
+	else if (ixWzemVCard == VecWzemVCard::CRDWZEMCAL) return evalCrdcalActive();
+	else if (ixWzemVCard == VecWzemVCard::CRDWZEMCLN) return evalCrdclnActive();
+	else if (ixWzemVCard == VecWzemVCard::CRDWZEMOPX) return evalCrdopxActive();
+	else if (ixWzemVCard == VecWzemVCard::CRDWZEMPST) return evalCrdpstActive();
+	else if (ixWzemVCard == VecWzemVCard::CRDWZEMNDE) return evalCrdndeActive();
 
 	return 0;
+};
+
+uint SessWzem::evalCrdevtActive() {
+	// pre.refPrd()
+
+	vector<uint> args;
+
+	args.push_back((xchg->getRefPreset(VecWzemVPreset::PREWZEMREFPRD, jref)) ? VecWzemVPreset::PREWZEMREFPRD : 0);
+
+	return(args.back());
+};
+
+uint SessWzem::evalCrdjobActive() {
+	// pre.refPrd()
+
+	vector<uint> args;
+
+	args.push_back((xchg->getRefPreset(VecWzemVPreset::PREWZEMREFPRD, jref)) ? VecWzemVPreset::PREWZEMREFPRD : 0);
+
+	return(args.back());
+};
+
+uint SessWzem::evalCrdcalActive() {
+	// pre.refPrd()
+
+	vector<uint> args;
+
+	args.push_back((xchg->getRefPreset(VecWzemVPreset::PREWZEMREFPRD, jref)) ? VecWzemVPreset::PREWZEMREFPRD : 0);
+
+	return(args.back());
+};
+
+uint SessWzem::evalCrdclnActive() {
+	// pre.refPrd()
+
+	vector<uint> args;
+
+	args.push_back((xchg->getRefPreset(VecWzemVPreset::PREWZEMREFPRD, jref)) ? VecWzemVPreset::PREWZEMREFPRD : 0);
+
+	return(args.back());
+};
+
+uint SessWzem::evalCrdopxActive() {
+	// pre.refPrd()
+
+	vector<uint> args;
+
+	args.push_back((xchg->getRefPreset(VecWzemVPreset::PREWZEMREFPRD, jref)) ? VecWzemVPreset::PREWZEMREFPRD : 0);
+
+	return(args.back());
+};
+
+uint SessWzem::evalCrdpstActive() {
+	// pre.refPrd()
+
+	vector<uint> args;
+
+	args.push_back((xchg->getRefPreset(VecWzemVPreset::PREWZEMREFPRD, jref)) ? VecWzemVPreset::PREWZEMREFPRD : 0);
+
+	return(args.back());
+};
+
+uint SessWzem::evalCrdndeActive() {
+	// pre.refPrd()
+
+	vector<uint> args;
+
+	args.push_back((xchg->getRefPreset(VecWzemVPreset::PREWZEMREFPRD, jref)) ? VecWzemVPreset::PREWZEMREFPRD : 0);
+
+	return(args.back());
 };
 
 uint SessWzem::checkCrdaccess(
@@ -405,7 +496,7 @@ uint SessWzem::preToMtb(
 bool SessWzem::hasActive(
 			const uint ixWzemVCard
 		) {
-	return(false);
+	return((ixWzemVCard == VecWzemVCard::CRDWZEMEVT) || (ixWzemVCard == VecWzemVCard::CRDWZEMJOB) || (ixWzemVCard == VecWzemVCard::CRDWZEMCAL) || (ixWzemVCard == VecWzemVCard::CRDWZEMCLN) || (ixWzemVCard == VecWzemVCard::CRDWZEMOPX) || (ixWzemVCard == VecWzemVCard::CRDWZEMPST) || (ixWzemVCard == VecWzemVCard::CRDWZEMNDE));
 };
 
 bool SessWzem::hasGrpown(
@@ -528,14 +619,16 @@ bool SessWzem::handleCreateCrdcal(
 			DbsWzem* dbswzem
 		) {
 	bool retval = false;
-	CrdWzemCal* crdcal = NULL;
 
-	crdcal = new CrdWzemCal(xchg, dbswzem, jref, ixWzemVLocale, 0);
-	crdcals.push_back(crdcal);
-	cout << "\tjob reference: " << crdcal->jref << endl;
-	xchg->jrefCmd = crdcal->jref;
+	uint ixWzemVPreset = evalCrdcalActive();
 
-	return false;
+	if (ixWzemVPreset == 0) {
+		cout << "\tcard is not activated!" << endl;
+	} else {
+		xchg->jrefCmd = insertSubjob(crdcals, new CrdWzemCal(xchg, dbswzem, jref, ixWzemVLocale, 0, ixWzemVPreset, xchg->getRefPreset(ixWzemVPreset, jref)));
+		cout << "\tjob reference: " << xchg->jrefCmd << endl;
+	};
+
 	return retval;
 };
 
@@ -543,14 +636,16 @@ bool SessWzem::handleCreateCrdcln(
 			DbsWzem* dbswzem
 		) {
 	bool retval = false;
-	CrdWzemCln* crdcln = NULL;
 
-	crdcln = new CrdWzemCln(xchg, dbswzem, jref, ixWzemVLocale, 0);
-	crdclns.push_back(crdcln);
-	cout << "\tjob reference: " << crdcln->jref << endl;
-	xchg->jrefCmd = crdcln->jref;
+	uint ixWzemVPreset = evalCrdclnActive();
 
-	return false;
+	if (ixWzemVPreset == 0) {
+		cout << "\tcard is not activated!" << endl;
+	} else {
+		xchg->jrefCmd = insertSubjob(crdclns, new CrdWzemCln(xchg, dbswzem, jref, ixWzemVLocale, 0, ixWzemVPreset, xchg->getRefPreset(ixWzemVPreset, jref)));
+		cout << "\tjob reference: " << xchg->jrefCmd << endl;
+	};
+
 	return retval;
 };
 
@@ -558,14 +653,16 @@ bool SessWzem::handleCreateCrdevt(
 			DbsWzem* dbswzem
 		) {
 	bool retval = false;
-	CrdWzemEvt* crdevt = NULL;
 
-	crdevt = new CrdWzemEvt(xchg, dbswzem, jref, ixWzemVLocale, 0);
-	crdevts.push_back(crdevt);
-	cout << "\tjob reference: " << crdevt->jref << endl;
-	xchg->jrefCmd = crdevt->jref;
+	uint ixWzemVPreset = evalCrdevtActive();
 
-	return false;
+	if (ixWzemVPreset == 0) {
+		cout << "\tcard is not activated!" << endl;
+	} else {
+		xchg->jrefCmd = insertSubjob(crdevts, new CrdWzemEvt(xchg, dbswzem, jref, ixWzemVLocale, 0, ixWzemVPreset, xchg->getRefPreset(ixWzemVPreset, jref)));
+		cout << "\tjob reference: " << xchg->jrefCmd << endl;
+	};
+
 	return retval;
 };
 
@@ -573,14 +670,16 @@ bool SessWzem::handleCreateCrdjob(
 			DbsWzem* dbswzem
 		) {
 	bool retval = false;
-	CrdWzemJob* crdjob = NULL;
 
-	crdjob = new CrdWzemJob(xchg, dbswzem, jref, ixWzemVLocale, 0);
-	crdjobs.push_back(crdjob);
-	cout << "\tjob reference: " << crdjob->jref << endl;
-	xchg->jrefCmd = crdjob->jref;
+	uint ixWzemVPreset = evalCrdjobActive();
 
-	return false;
+	if (ixWzemVPreset == 0) {
+		cout << "\tcard is not activated!" << endl;
+	} else {
+		xchg->jrefCmd = insertSubjob(crdjobs, new CrdWzemJob(xchg, dbswzem, jref, ixWzemVLocale, 0, ixWzemVPreset, xchg->getRefPreset(ixWzemVPreset, jref)));
+		cout << "\tjob reference: " << xchg->jrefCmd << endl;
+	};
+
 	return retval;
 };
 
@@ -588,14 +687,16 @@ bool SessWzem::handleCreateCrdnde(
 			DbsWzem* dbswzem
 		) {
 	bool retval = false;
-	CrdWzemNde* crdnde = NULL;
 
-	crdnde = new CrdWzemNde(xchg, dbswzem, jref, ixWzemVLocale, 0);
-	crdndes.push_back(crdnde);
-	cout << "\tjob reference: " << crdnde->jref << endl;
-	xchg->jrefCmd = crdnde->jref;
+	uint ixWzemVPreset = evalCrdndeActive();
 
-	return false;
+	if (ixWzemVPreset == 0) {
+		cout << "\tcard is not activated!" << endl;
+	} else {
+		xchg->jrefCmd = insertSubjob(crdndes, new CrdWzemNde(xchg, dbswzem, jref, ixWzemVLocale, 0, ixWzemVPreset, xchg->getRefPreset(ixWzemVPreset, jref)));
+		cout << "\tjob reference: " << xchg->jrefCmd << endl;
+	};
+
 	return retval;
 };
 
@@ -603,14 +704,16 @@ bool SessWzem::handleCreateCrdopx(
 			DbsWzem* dbswzem
 		) {
 	bool retval = false;
-	CrdWzemOpx* crdopx = NULL;
 
-	crdopx = new CrdWzemOpx(xchg, dbswzem, jref, ixWzemVLocale, 0);
-	crdopxs.push_back(crdopx);
-	cout << "\tjob reference: " << crdopx->jref << endl;
-	xchg->jrefCmd = crdopx->jref;
+	uint ixWzemVPreset = evalCrdopxActive();
 
-	return false;
+	if (ixWzemVPreset == 0) {
+		cout << "\tcard is not activated!" << endl;
+	} else {
+		xchg->jrefCmd = insertSubjob(crdopxs, new CrdWzemOpx(xchg, dbswzem, jref, ixWzemVLocale, 0, ixWzemVPreset, xchg->getRefPreset(ixWzemVPreset, jref)));
+		cout << "\tjob reference: " << xchg->jrefCmd << endl;
+	};
+
 	return retval;
 };
 
@@ -618,14 +721,10 @@ bool SessWzem::handleCreateCrdprd(
 			DbsWzem* dbswzem
 		) {
 	bool retval = false;
-	CrdWzemPrd* crdprd = NULL;
 
-	crdprd = new CrdWzemPrd(xchg, dbswzem, jref, ixWzemVLocale, 0);
-	crdprds.push_back(crdprd);
-	cout << "\tjob reference: " << crdprd->jref << endl;
-	xchg->jrefCmd = crdprd->jref;
+	xchg->jrefCmd = insertSubjob(crdprds, new CrdWzemPrd(xchg, dbswzem, jref, ixWzemVLocale, 0));
+	cout << "\tjob reference: " << xchg->jrefCmd << endl;
 
-	return false;
 	return retval;
 };
 
@@ -633,14 +732,10 @@ bool SessWzem::handleCreateCrdprs(
 			DbsWzem* dbswzem
 		) {
 	bool retval = false;
-	CrdWzemPrs* crdprs = NULL;
 
-	crdprs = new CrdWzemPrs(xchg, dbswzem, jref, ixWzemVLocale, 0);
-	crdprss.push_back(crdprs);
-	cout << "\tjob reference: " << crdprs->jref << endl;
-	xchg->jrefCmd = crdprs->jref;
+	xchg->jrefCmd = insertSubjob(crdprss, new CrdWzemPrs(xchg, dbswzem, jref, ixWzemVLocale, 0));
+	cout << "\tjob reference: " << xchg->jrefCmd << endl;
 
-	return false;
 	return retval;
 };
 
@@ -648,14 +743,16 @@ bool SessWzem::handleCreateCrdpst(
 			DbsWzem* dbswzem
 		) {
 	bool retval = false;
-	CrdWzemPst* crdpst = NULL;
 
-	crdpst = new CrdWzemPst(xchg, dbswzem, jref, ixWzemVLocale, 0);
-	crdpsts.push_back(crdpst);
-	cout << "\tjob reference: " << crdpst->jref << endl;
-	xchg->jrefCmd = crdpst->jref;
+	uint ixWzemVPreset = evalCrdpstActive();
 
-	return false;
+	if (ixWzemVPreset == 0) {
+		cout << "\tcard is not activated!" << endl;
+	} else {
+		xchg->jrefCmd = insertSubjob(crdpsts, new CrdWzemPst(xchg, dbswzem, jref, ixWzemVLocale, 0, ixWzemVPreset, xchg->getRefPreset(ixWzemVPreset, jref)));
+		cout << "\tjob reference: " << xchg->jrefCmd << endl;
+	};
+
 	return retval;
 };
 
@@ -663,14 +760,10 @@ bool SessWzem::handleCreateCrdusg(
 			DbsWzem* dbswzem
 		) {
 	bool retval = false;
-	CrdWzemUsg* crdusg = NULL;
 
-	crdusg = new CrdWzemUsg(xchg, dbswzem, jref, ixWzemVLocale, 0);
-	crdusgs.push_back(crdusg);
-	cout << "\tjob reference: " << crdusg->jref << endl;
-	xchg->jrefCmd = crdusg->jref;
+	xchg->jrefCmd = insertSubjob(crdusgs, new CrdWzemUsg(xchg, dbswzem, jref, ixWzemVLocale, 0));
+	cout << "\tjob reference: " << xchg->jrefCmd << endl;
 
-	return false;
 	return retval;
 };
 
@@ -678,14 +771,10 @@ bool SessWzem::handleCreateCrdusr(
 			DbsWzem* dbswzem
 		) {
 	bool retval = false;
-	CrdWzemUsr* crdusr = NULL;
 
-	crdusr = new CrdWzemUsr(xchg, dbswzem, jref, ixWzemVLocale, 0);
-	crdusrs.push_back(crdusr);
-	cout << "\tjob reference: " << crdusr->jref << endl;
-	xchg->jrefCmd = crdusr->jref;
+	xchg->jrefCmd = insertSubjob(crdusrs, new CrdWzemUsr(xchg, dbswzem, jref, ixWzemVLocale, 0));
+	cout << "\tjob reference: " << xchg->jrefCmd << endl;
 
-	return false;
 	return retval;
 };
 
@@ -693,24 +782,7 @@ bool SessWzem::handleEraseCrdcal(
 			DbsWzem* dbswzem
 		) {
 	bool retval = false;
-	string input;
-	uint iinput;
-
-	CrdWzemCal* crdcal = NULL;
-
-	cout << "\tjob reference: ";
-	cin >> input;
-	iinput = atoi(input.c_str());
-
-	for (auto it = crdcals.begin(); it != crdcals.end();) {
-		crdcal = *it;
-		if (crdcal->jref == iinput) {
-			it = crdcals.erase(it);
-			delete crdcal;
-			break;
-		} else it++;
-	};
-
+	eraseCrd(crdcals);
 	return retval;
 };
 
@@ -718,24 +790,7 @@ bool SessWzem::handleEraseCrdcln(
 			DbsWzem* dbswzem
 		) {
 	bool retval = false;
-	string input;
-	uint iinput;
-
-	CrdWzemCln* crdcln = NULL;
-
-	cout << "\tjob reference: ";
-	cin >> input;
-	iinput = atoi(input.c_str());
-
-	for (auto it = crdclns.begin(); it != crdclns.end();) {
-		crdcln = *it;
-		if (crdcln->jref == iinput) {
-			it = crdclns.erase(it);
-			delete crdcln;
-			break;
-		} else it++;
-	};
-
+	eraseCrd(crdclns);
 	return retval;
 };
 
@@ -743,24 +798,7 @@ bool SessWzem::handleEraseCrdevt(
 			DbsWzem* dbswzem
 		) {
 	bool retval = false;
-	string input;
-	uint iinput;
-
-	CrdWzemEvt* crdevt = NULL;
-
-	cout << "\tjob reference: ";
-	cin >> input;
-	iinput = atoi(input.c_str());
-
-	for (auto it = crdevts.begin(); it != crdevts.end();) {
-		crdevt = *it;
-		if (crdevt->jref == iinput) {
-			it = crdevts.erase(it);
-			delete crdevt;
-			break;
-		} else it++;
-	};
-
+	eraseCrd(crdevts);
 	return retval;
 };
 
@@ -768,24 +806,7 @@ bool SessWzem::handleEraseCrdjob(
 			DbsWzem* dbswzem
 		) {
 	bool retval = false;
-	string input;
-	uint iinput;
-
-	CrdWzemJob* crdjob = NULL;
-
-	cout << "\tjob reference: ";
-	cin >> input;
-	iinput = atoi(input.c_str());
-
-	for (auto it = crdjobs.begin(); it != crdjobs.end();) {
-		crdjob = *it;
-		if (crdjob->jref == iinput) {
-			it = crdjobs.erase(it);
-			delete crdjob;
-			break;
-		} else it++;
-	};
-
+	eraseCrd(crdjobs);
 	return retval;
 };
 
@@ -793,24 +814,7 @@ bool SessWzem::handleEraseCrdnde(
 			DbsWzem* dbswzem
 		) {
 	bool retval = false;
-	string input;
-	uint iinput;
-
-	CrdWzemNde* crdnde = NULL;
-
-	cout << "\tjob reference: ";
-	cin >> input;
-	iinput = atoi(input.c_str());
-
-	for (auto it = crdndes.begin(); it != crdndes.end();) {
-		crdnde = *it;
-		if (crdnde->jref == iinput) {
-			it = crdndes.erase(it);
-			delete crdnde;
-			break;
-		} else it++;
-	};
-
+	eraseCrd(crdndes);
 	return retval;
 };
 
@@ -818,24 +822,7 @@ bool SessWzem::handleEraseCrdopx(
 			DbsWzem* dbswzem
 		) {
 	bool retval = false;
-	string input;
-	uint iinput;
-
-	CrdWzemOpx* crdopx = NULL;
-
-	cout << "\tjob reference: ";
-	cin >> input;
-	iinput = atoi(input.c_str());
-
-	for (auto it = crdopxs.begin(); it != crdopxs.end();) {
-		crdopx = *it;
-		if (crdopx->jref == iinput) {
-			it = crdopxs.erase(it);
-			delete crdopx;
-			break;
-		} else it++;
-	};
-
+	eraseCrd(crdopxs);
 	return retval;
 };
 
@@ -843,24 +830,7 @@ bool SessWzem::handleEraseCrdprd(
 			DbsWzem* dbswzem
 		) {
 	bool retval = false;
-	string input;
-	uint iinput;
-
-	CrdWzemPrd* crdprd = NULL;
-
-	cout << "\tjob reference: ";
-	cin >> input;
-	iinput = atoi(input.c_str());
-
-	for (auto it = crdprds.begin(); it != crdprds.end();) {
-		crdprd = *it;
-		if (crdprd->jref == iinput) {
-			it = crdprds.erase(it);
-			delete crdprd;
-			break;
-		} else it++;
-	};
-
+	eraseCrd(crdprds);
 	return retval;
 };
 
@@ -868,24 +838,7 @@ bool SessWzem::handleEraseCrdprs(
 			DbsWzem* dbswzem
 		) {
 	bool retval = false;
-	string input;
-	uint iinput;
-
-	CrdWzemPrs* crdprs = NULL;
-
-	cout << "\tjob reference: ";
-	cin >> input;
-	iinput = atoi(input.c_str());
-
-	for (auto it = crdprss.begin(); it != crdprss.end();) {
-		crdprs = *it;
-		if (crdprs->jref == iinput) {
-			it = crdprss.erase(it);
-			delete crdprs;
-			break;
-		} else it++;
-	};
-
+	eraseCrd(crdprss);
 	return retval;
 };
 
@@ -893,24 +846,7 @@ bool SessWzem::handleEraseCrdpst(
 			DbsWzem* dbswzem
 		) {
 	bool retval = false;
-	string input;
-	uint iinput;
-
-	CrdWzemPst* crdpst = NULL;
-
-	cout << "\tjob reference: ";
-	cin >> input;
-	iinput = atoi(input.c_str());
-
-	for (auto it = crdpsts.begin(); it != crdpsts.end();) {
-		crdpst = *it;
-		if (crdpst->jref == iinput) {
-			it = crdpsts.erase(it);
-			delete crdpst;
-			break;
-		} else it++;
-	};
-
+	eraseCrd(crdpsts);
 	return retval;
 };
 
@@ -918,24 +854,7 @@ bool SessWzem::handleEraseCrdusg(
 			DbsWzem* dbswzem
 		) {
 	bool retval = false;
-	string input;
-	uint iinput;
-
-	CrdWzemUsg* crdusg = NULL;
-
-	cout << "\tjob reference: ";
-	cin >> input;
-	iinput = atoi(input.c_str());
-
-	for (auto it = crdusgs.begin(); it != crdusgs.end();) {
-		crdusg = *it;
-		if (crdusg->jref == iinput) {
-			it = crdusgs.erase(it);
-			delete crdusg;
-			break;
-		} else it++;
-	};
-
+	eraseCrd(crdusgs);
 	return retval;
 };
 
@@ -943,24 +862,7 @@ bool SessWzem::handleEraseCrdusr(
 			DbsWzem* dbswzem
 		) {
 	bool retval = false;
-	string input;
-	uint iinput;
-
-	CrdWzemUsr* crdusr = NULL;
-
-	cout << "\tjob reference: ";
-	cin >> input;
-	iinput = atoi(input.c_str());
-
-	for (auto it = crdusrs.begin(); it != crdusrs.end();) {
-		crdusr = *it;
-		if (crdusr->jref == iinput) {
-			it = crdusrs.erase(it);
-			delete crdusr;
-			break;
-		} else it++;
-	};
-
+	eraseCrd(crdusrs);
 	return retval;
 };
 
@@ -974,17 +876,17 @@ void SessWzem::handleDpchAppWzemInit(
 	// resume session
 	xchg->removePreset(VecWzemVPreset::PREWZEMSUSPSESS, jref);
 
-	for (auto it = crdusgs.begin(); it != crdusgs.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble((*it)->jref), "CrdWzemUsg");
-	for (auto it = crdusrs.begin(); it != crdusrs.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble((*it)->jref), "CrdWzemUsr");
-	for (auto it = crdprss.begin(); it != crdprss.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble((*it)->jref), "CrdWzemPrs");
-	for (auto it = crdprds.begin(); it != crdprds.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble((*it)->jref), "CrdWzemPrd");
-	for (auto it = crdevts.begin(); it != crdevts.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble((*it)->jref), "CrdWzemEvt");
-	for (auto it = crdjobs.begin(); it != crdjobs.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble((*it)->jref), "CrdWzemJob");
-	for (auto it = crdcals.begin(); it != crdcals.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble((*it)->jref), "CrdWzemCal");
-	for (auto it = crdclns.begin(); it != crdclns.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble((*it)->jref), "CrdWzemCln");
-	for (auto it = crdopxs.begin(); it != crdopxs.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble((*it)->jref), "CrdWzemOpx");
-	for (auto it = crdpsts.begin(); it != crdpsts.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble((*it)->jref), "CrdWzemPst");
-	for (auto it = crdndes.begin(); it != crdndes.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble((*it)->jref), "CrdWzemNde");
+	for (auto it = crdusgs.begin(); it != crdusgs.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble(it->second->jref), "CrdWzemUsg");
+	for (auto it = crdusrs.begin(); it != crdusrs.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble(it->second->jref), "CrdWzemUsr");
+	for (auto it = crdprss.begin(); it != crdprss.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble(it->second->jref), "CrdWzemPrs");
+	for (auto it = crdprds.begin(); it != crdprds.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble(it->second->jref), "CrdWzemPrd");
+	for (auto it = crdevts.begin(); it != crdevts.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble(it->second->jref), "CrdWzemEvt");
+	for (auto it = crdjobs.begin(); it != crdjobs.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble(it->second->jref), "CrdWzemJob");
+	for (auto it = crdcals.begin(); it != crdcals.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble(it->second->jref), "CrdWzemCal");
+	for (auto it = crdclns.begin(); it != crdclns.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble(it->second->jref), "CrdWzemCln");
+	for (auto it = crdopxs.begin(); it != crdopxs.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble(it->second->jref), "CrdWzemOpx");
+	for (auto it = crdpsts.begin(); it != crdpsts.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble(it->second->jref), "CrdWzemPst");
+	for (auto it = crdndes.begin(); it != crdndes.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble(it->second->jref), "CrdWzemNde");
 
 	*dpcheng = new DpchEngData(jref, &feedFEnsSec, &statshr, {DpchEngData::ALL});
 };
@@ -995,16 +897,16 @@ void SessWzem::handleCall(
 		) {
 	if (call->ixVCall == VecWzemVCall::CALLWZEMREFPRESET) {
 		call->abort = handleCallWzemRefPreSet(dbswzem, call->jref, call->argInv.ix, call->argInv.ref);
-	} else if (call->ixVCall == VecWzemVCall::CALLWZEMRECACCESS) {
-		call->abort = handleCallWzemRecaccess(dbswzem, call->jref, call->argInv.ix, call->argInv.ref, call->argRet.ix);
 	} else if (call->ixVCall == VecWzemVCall::CALLWZEMLOG) {
 		call->abort = handleCallWzemLog(dbswzem, call->jref, call->argInv.ix, call->argInv.ref, call->argInv.sref, call->argInv.intval);
+	} else if (call->ixVCall == VecWzemVCall::CALLWZEMCRDACTIVE) {
+		call->abort = handleCallWzemCrdActive(dbswzem, call->jref, call->argInv.ix, call->argRet.ix);
 	} else if (call->ixVCall == VecWzemVCall::CALLWZEMCRDCLOSE) {
 		call->abort = handleCallWzemCrdClose(dbswzem, call->jref, call->argInv.ix);
 	} else if (call->ixVCall == VecWzemVCall::CALLWZEMCRDOPEN) {
 		call->abort = handleCallWzemCrdOpen(dbswzem, call->jref, call->argInv.ix, call->argInv.ref, call->argInv.sref, call->argInv.intval, call->argRet.ref);
-	} else if (call->ixVCall == VecWzemVCall::CALLWZEMCRDACTIVE) {
-		call->abort = handleCallWzemCrdActive(dbswzem, call->jref, call->argInv.ix, call->argRet.ix);
+	} else if (call->ixVCall == VecWzemVCall::CALLWZEMRECACCESS) {
+		call->abort = handleCallWzemRecaccess(dbswzem, call->jref, call->argInv.ix, call->argInv.ref, call->argRet.ix);
 	};
 };
 
@@ -1015,6 +917,7 @@ bool SessWzem::handleCallWzemRefPreSet(
 			, const ubigint refInv
 		) {
 	bool retval = false;
+// IP handleCallWzemRefPreSet --- BEGIN
 	if (ixInv == VecWzemVPreset::PREWZEMJREFNOTIFY) {
 		ubigint jrefNotify_old = xchg->getRefPreset(VecWzemVPreset::PREWZEMJREFNOTIFY, jref);
 
@@ -1034,18 +937,7 @@ bool SessWzem::handleCallWzemRefPreSet(
 
 		if (crdnav) crdnav->updatePreset(dbswzem, ixInv, jrefTrig, true);
 	};
-	return retval;
-};
-
-bool SessWzem::handleCallWzemRecaccess(
-			DbsWzem* dbswzem
-			, const ubigint jrefTrig
-			, const uint ixInv
-			, const ubigint refInv
-			, uint& ixRet
-		) {
-	bool retval = false;
-	ixRet = checkRecaccess(dbswzem, ixInv, refInv);
+// IP handleCallWzemRefPreSet --- END
 	return retval;
 };
 
@@ -1062,6 +954,17 @@ bool SessWzem::handleCallWzemLog(
 	return retval;
 };
 
+bool SessWzem::handleCallWzemCrdActive(
+			DbsWzem* dbswzem
+			, const ubigint jrefTrig
+			, const uint ixInv
+			, uint& ixRet
+		) {
+	bool retval = false;
+	ixRet = checkCrdActive(ixInv);
+	return retval;
+};
+
 bool SessWzem::handleCallWzemCrdClose(
 			DbsWzem* dbswzem
 			, const ubigint jrefTrig
@@ -1074,134 +977,24 @@ bool SessWzem::handleCallWzemCrdClose(
 	ubigint jrefNotif = xchg->getRefPreset(VecWzemVPreset::PREWZEMJREFNOTIFY, jref);
 	if (jrefNotif == jrefTrig) xchg->removePreset(VecWzemVPreset::PREWZEMJREFNOTIFY, jref);
 
-	if (ixInv == VecWzemVCard::CRDWZEMUSG) {
-		CrdWzemUsg* crdusg = NULL;
-
-		for (auto it = crdusgs.begin(); it != crdusgs.end();) {
-			crdusg = *it;
-			if (crdusg->jref == jrefTrig) {
-				it = crdusgs.erase(it);
-				delete crdusg;
-				break;
-			} else it++;
-		};
-	} else if (ixInv == VecWzemVCard::CRDWZEMUSR) {
-		CrdWzemUsr* crdusr = NULL;
-
-		for (auto it = crdusrs.begin(); it != crdusrs.end();) {
-			crdusr = *it;
-			if (crdusr->jref == jrefTrig) {
-				it = crdusrs.erase(it);
-				delete crdusr;
-				break;
-			} else it++;
-		};
-	} else if (ixInv == VecWzemVCard::CRDWZEMPRS) {
-		CrdWzemPrs* crdprs = NULL;
-
-		for (auto it = crdprss.begin(); it != crdprss.end();) {
-			crdprs = *it;
-			if (crdprs->jref == jrefTrig) {
-				it = crdprss.erase(it);
-				delete crdprs;
-				break;
-			} else it++;
-		};
-	} else if (ixInv == VecWzemVCard::CRDWZEMNAV) {
+	if (ixInv == VecWzemVCard::CRDWZEMUSG) eraseSubjobByJref(crdusgs, jrefTrig);
+	else if (ixInv == VecWzemVCard::CRDWZEMUSR) eraseSubjobByJref(crdusrs, jrefTrig);
+	else if (ixInv == VecWzemVCard::CRDWZEMPRS) eraseSubjobByJref(crdprss, jrefTrig);
+	else if (ixInv == VecWzemVCard::CRDWZEMNAV) {
 		if (crdnav) {
 			delete crdnav;
 			crdnav = NULL;
 		};
 
-	} else if (ixInv == VecWzemVCard::CRDWZEMPRD) {
-		CrdWzemPrd* crdprd = NULL;
-
-		for (auto it = crdprds.begin(); it != crdprds.end();) {
-			crdprd = *it;
-			if (crdprd->jref == jrefTrig) {
-				it = crdprds.erase(it);
-				delete crdprd;
-				break;
-			} else it++;
-		};
-	} else if (ixInv == VecWzemVCard::CRDWZEMEVT) {
-		CrdWzemEvt* crdevt = NULL;
-
-		for (auto it = crdevts.begin(); it != crdevts.end();) {
-			crdevt = *it;
-			if (crdevt->jref == jrefTrig) {
-				it = crdevts.erase(it);
-				delete crdevt;
-				break;
-			} else it++;
-		};
-	} else if (ixInv == VecWzemVCard::CRDWZEMJOB) {
-		CrdWzemJob* crdjob = NULL;
-
-		for (auto it = crdjobs.begin(); it != crdjobs.end();) {
-			crdjob = *it;
-			if (crdjob->jref == jrefTrig) {
-				it = crdjobs.erase(it);
-				delete crdjob;
-				break;
-			} else it++;
-		};
-	} else if (ixInv == VecWzemVCard::CRDWZEMCAL) {
-		CrdWzemCal* crdcal = NULL;
-
-		for (auto it = crdcals.begin(); it != crdcals.end();) {
-			crdcal = *it;
-			if (crdcal->jref == jrefTrig) {
-				it = crdcals.erase(it);
-				delete crdcal;
-				break;
-			} else it++;
-		};
-	} else if (ixInv == VecWzemVCard::CRDWZEMCLN) {
-		CrdWzemCln* crdcln = NULL;
-
-		for (auto it = crdclns.begin(); it != crdclns.end();) {
-			crdcln = *it;
-			if (crdcln->jref == jrefTrig) {
-				it = crdclns.erase(it);
-				delete crdcln;
-				break;
-			} else it++;
-		};
-	} else if (ixInv == VecWzemVCard::CRDWZEMOPX) {
-		CrdWzemOpx* crdopx = NULL;
-
-		for (auto it = crdopxs.begin(); it != crdopxs.end();) {
-			crdopx = *it;
-			if (crdopx->jref == jrefTrig) {
-				it = crdopxs.erase(it);
-				delete crdopx;
-				break;
-			} else it++;
-		};
-	} else if (ixInv == VecWzemVCard::CRDWZEMPST) {
-		CrdWzemPst* crdpst = NULL;
-
-		for (auto it = crdpsts.begin(); it != crdpsts.end();) {
-			crdpst = *it;
-			if (crdpst->jref == jrefTrig) {
-				it = crdpsts.erase(it);
-				delete crdpst;
-				break;
-			} else it++;
-		};
-	} else if (ixInv == VecWzemVCard::CRDWZEMNDE) {
-		CrdWzemNde* crdnde = NULL;
-
-		for (auto it = crdndes.begin(); it != crdndes.end();) {
-			crdnde = *it;
-			if (crdnde->jref == jrefTrig) {
-				it = crdndes.erase(it);
-				delete crdnde;
-				break;
-			} else it++;
-		};
-	};
+	} 
+else if (ixInv == VecWzemVCard::CRDWZEMPRD) eraseSubjobByJref(crdprds, jrefTrig);
+	else if (ixInv == VecWzemVCard::CRDWZEMEVT) eraseSubjobByJref(crdevts, jrefTrig);
+	else if (ixInv == VecWzemVCard::CRDWZEMJOB) eraseSubjobByJref(crdjobs, jrefTrig);
+	else if (ixInv == VecWzemVCard::CRDWZEMCAL) eraseSubjobByJref(crdcals, jrefTrig);
+	else if (ixInv == VecWzemVCard::CRDWZEMCLN) eraseSubjobByJref(crdclns, jrefTrig);
+	else if (ixInv == VecWzemVCard::CRDWZEMOPX) eraseSubjobByJref(crdopxs, jrefTrig);
+	else if (ixInv == VecWzemVCard::CRDWZEMPST) eraseSubjobByJref(crdpsts, jrefTrig);
+	else if (ixInv == VecWzemVCard::CRDWZEMNDE) eraseSubjobByJref(crdndes, jrefTrig);
 	return retval;
 };
 
@@ -1264,108 +1057,30 @@ bool SessWzem::handleCallWzemCrdOpen(
 		refRet = 0;
 
 	} else {
-		if (ixWzemVCard == VecWzemVCard::CRDWZEMUSG) {
-			CrdWzemUsg* crdusg = NULL;
-
-			crdusg = new CrdWzemUsg(xchg, dbswzem, jref, ixWzemVLocale, ref);
-			crdusgs.push_back(crdusg);
-
-			refRet = crdusg->jref;
-
-		} else if (ixWzemVCard == VecWzemVCard::CRDWZEMUSR) {
-			CrdWzemUsr* crdusr = NULL;
-
-			crdusr = new CrdWzemUsr(xchg, dbswzem, jref, ixWzemVLocale, ref);
-			crdusrs.push_back(crdusr);
-
-			refRet = crdusr->jref;
-
-		} else if (ixWzemVCard == VecWzemVCard::CRDWZEMPRS) {
-			CrdWzemPrs* crdprs = NULL;
-
-			crdprs = new CrdWzemPrs(xchg, dbswzem, jref, ixWzemVLocale, ref);
-			crdprss.push_back(crdprs);
-
-			refRet = crdprs->jref;
-
-		} else if (ixWzemVCard == VecWzemVCard::CRDWZEMNAV) {
-		} else if (ixWzemVCard == VecWzemVCard::CRDWZEMPRD) {
-			CrdWzemPrd* crdprd = NULL;
-
-			crdprd = new CrdWzemPrd(xchg, dbswzem, jref, ixWzemVLocale, ref);
-			crdprds.push_back(crdprd);
-
-			refRet = crdprd->jref;
-
-		} else if (ixWzemVCard == VecWzemVCard::CRDWZEMEVT) {
-			CrdWzemEvt* crdevt = NULL;
-
-			crdevt = new CrdWzemEvt(xchg, dbswzem, jref, ixWzemVLocale, ref);
-			crdevts.push_back(crdevt);
-
-			refRet = crdevt->jref;
-
-		} else if (ixWzemVCard == VecWzemVCard::CRDWZEMJOB) {
-			CrdWzemJob* crdjob = NULL;
-
-			crdjob = new CrdWzemJob(xchg, dbswzem, jref, ixWzemVLocale, ref);
-			crdjobs.push_back(crdjob);
-
-			refRet = crdjob->jref;
-
-		} else if (ixWzemVCard == VecWzemVCard::CRDWZEMCAL) {
-			CrdWzemCal* crdcal = NULL;
-
-			crdcal = new CrdWzemCal(xchg, dbswzem, jref, ixWzemVLocale, ref);
-			crdcals.push_back(crdcal);
-
-			refRet = crdcal->jref;
-
-		} else if (ixWzemVCard == VecWzemVCard::CRDWZEMCLN) {
-			CrdWzemCln* crdcln = NULL;
-
-			crdcln = new CrdWzemCln(xchg, dbswzem, jref, ixWzemVLocale, ref);
-			crdclns.push_back(crdcln);
-
-			refRet = crdcln->jref;
-
-		} else if (ixWzemVCard == VecWzemVCard::CRDWZEMOPX) {
-			CrdWzemOpx* crdopx = NULL;
-
-			crdopx = new CrdWzemOpx(xchg, dbswzem, jref, ixWzemVLocale, ref);
-			crdopxs.push_back(crdopx);
-
-			refRet = crdopx->jref;
-
-		} else if (ixWzemVCard == VecWzemVCard::CRDWZEMPST) {
-			CrdWzemPst* crdpst = NULL;
-
-			crdpst = new CrdWzemPst(xchg, dbswzem, jref, ixWzemVLocale, ref);
-			crdpsts.push_back(crdpst);
-
-			refRet = crdpst->jref;
-
-		} else if (ixWzemVCard == VecWzemVCard::CRDWZEMNDE) {
-			CrdWzemNde* crdnde = NULL;
-
-			crdnde = new CrdWzemNde(xchg, dbswzem, jref, ixWzemVLocale, ref);
-			crdndes.push_back(crdnde);
-
-			refRet = crdnde->jref;
-
-		};
+		if (ixWzemVCard == VecWzemVCard::CRDWZEMUSG) refRet = insertSubjob(crdusgs, new CrdWzemUsg(xchg, dbswzem, jref, ixWzemVLocale, ref));
+		else if (ixWzemVCard == VecWzemVCard::CRDWZEMUSR) refRet = insertSubjob(crdusrs, new CrdWzemUsr(xchg, dbswzem, jref, ixWzemVLocale, ref));
+		else if (ixWzemVCard == VecWzemVCard::CRDWZEMPRS) refRet = insertSubjob(crdprss, new CrdWzemPrs(xchg, dbswzem, jref, ixWzemVLocale, ref));
+		else if (ixWzemVCard == VecWzemVCard::CRDWZEMPRD) refRet = insertSubjob(crdprds, new CrdWzemPrd(xchg, dbswzem, jref, ixWzemVLocale, ref));
+		else if (ixWzemVCard == VecWzemVCard::CRDWZEMEVT) refRet = insertSubjob(crdevts, new CrdWzemEvt(xchg, dbswzem, jref, ixWzemVLocale, ref, ixWzemVPreset, preUref));
+		else if (ixWzemVCard == VecWzemVCard::CRDWZEMJOB) refRet = insertSubjob(crdjobs, new CrdWzemJob(xchg, dbswzem, jref, ixWzemVLocale, ref, ixWzemVPreset, preUref));
+		else if (ixWzemVCard == VecWzemVCard::CRDWZEMCAL) refRet = insertSubjob(crdcals, new CrdWzemCal(xchg, dbswzem, jref, ixWzemVLocale, ref, ixWzemVPreset, preUref));
+		else if (ixWzemVCard == VecWzemVCard::CRDWZEMCLN) refRet = insertSubjob(crdclns, new CrdWzemCln(xchg, dbswzem, jref, ixWzemVLocale, ref, ixWzemVPreset, preUref));
+		else if (ixWzemVCard == VecWzemVCard::CRDWZEMOPX) refRet = insertSubjob(crdopxs, new CrdWzemOpx(xchg, dbswzem, jref, ixWzemVLocale, ref, ixWzemVPreset, preUref));
+		else if (ixWzemVCard == VecWzemVCard::CRDWZEMPST) refRet = insertSubjob(crdpsts, new CrdWzemPst(xchg, dbswzem, jref, ixWzemVLocale, ref, ixWzemVPreset, preUref));
+		else if (ixWzemVCard == VecWzemVCard::CRDWZEMNDE) refRet = insertSubjob(crdndes, new CrdWzemNde(xchg, dbswzem, jref, ixWzemVLocale, ref, ixWzemVPreset, preUref));
 	};
 
 	return retval;
 };
 
-bool SessWzem::handleCallWzemCrdActive(
+bool SessWzem::handleCallWzemRecaccess(
 			DbsWzem* dbswzem
 			, const ubigint jrefTrig
 			, const uint ixInv
+			, const ubigint refInv
 			, uint& ixRet
 		) {
 	bool retval = false;
-	ixRet = checkCrdActive(ixInv);
+	ixRet = checkRecaccess(dbswzem, ixInv, refInv);
 	return retval;
 };

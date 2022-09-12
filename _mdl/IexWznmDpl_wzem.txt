@@ -8,6 +8,7 @@ cmbeng	wzemcmbd	WhizniumSBE Engine Monitor combined engine
 	any;yocto;armv7;tdx	wzemcmbd_tdx	stripdbg
 	any;mac	wzemcmbd_mac	stripdbg
 	any;ubuntu	wzemcmbd_ubuntu	stripdbg
+	any;yocto;armv8;pl64	wzemcmbd_pl64	stripdbg
 	ImeIMRelease.end
 dbs	dbswzem	WhizniumSBE Engine Monitor database access library
 	ImeIMRelease.hsrefRefWznmMMachine	sref	srefsKOption	Comment
@@ -17,6 +18,12 @@ dbs	dbswzem	WhizniumSBE Engine Monitor database access library
 	any;yocto;armv7;tdx	dbswzem_tdx
 	any;mac	dbswzem_mac	dynlib
 	any;ubuntu	dbswzem_ubuntu	dynlib
+	any;yocto;armv8;pl64	dbswzem_pl64
+	ImeIMRelease.end
+vueapp	vueappwzem	WhizniumSBE Engine Monitor Vue.js app
+	ImeIMRelease.hsrefRefWznmMMachine	sref	srefsKOption	Comment
+	any	vueappwzem_any
+	any;yocto	vueappwzem_yocto
 	ImeIMRelease.end
 webapp	webappwzem	WhizniumSBE Engine Monitor web app user interface files
 	ImeIMRelease.hsrefRefWznmMMachine	sref	srefsKOption	Comment
@@ -31,5 +38,6 @@ api	apiwzem	WhizniumSBE Engine Monitor API library
 	any;yocto;armv7;tdx	apiwzem_tdx
 	any;mac	apiwzem_mac	dynlib
 	any;ubuntu	apiwzem_ubuntu	dynlib
+	any;yocto;armv8;pl64	apiwzem_pl64
 	ImeIMRelease.end
 ImeIMComponent.end

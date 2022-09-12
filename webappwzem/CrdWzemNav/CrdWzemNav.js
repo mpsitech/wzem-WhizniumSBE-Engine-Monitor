@@ -172,12 +172,19 @@ function initMenCrd() {
 	MspCrd2Avail = (retrieveSi(srcdoc, "StatShrWzemNav", "MspCrd2Avail") == "true");
 	MitCrdPrdAvail = (retrieveSi(srcdoc, "StatShrWzemNav", "MitCrdPrdAvail") == "true");
 	MitCrdEvtAvail = (retrieveSi(srcdoc, "StatShrWzemNav", "MitCrdEvtAvail") == "true");
+	MitCrdEvtActive = (retrieveSi(srcdoc, "StatShrWzemNav", "MitCrdEvtActive") == "true");
 	MitCrdJobAvail = (retrieveSi(srcdoc, "StatShrWzemNav", "MitCrdJobAvail") == "true");
+	MitCrdJobActive = (retrieveSi(srcdoc, "StatShrWzemNav", "MitCrdJobActive") == "true");
 	MitCrdCalAvail = (retrieveSi(srcdoc, "StatShrWzemNav", "MitCrdCalAvail") == "true");
+	MitCrdCalActive = (retrieveSi(srcdoc, "StatShrWzemNav", "MitCrdCalActive") == "true");
 	MitCrdClnAvail = (retrieveSi(srcdoc, "StatShrWzemNav", "MitCrdClnAvail") == "true");
+	MitCrdClnActive = (retrieveSi(srcdoc, "StatShrWzemNav", "MitCrdClnActive") == "true");
 	MitCrdOpxAvail = (retrieveSi(srcdoc, "StatShrWzemNav", "MitCrdOpxAvail") == "true");
+	MitCrdOpxActive = (retrieveSi(srcdoc, "StatShrWzemNav", "MitCrdOpxActive") == "true");
 	MitCrdPstAvail = (retrieveSi(srcdoc, "StatShrWzemNav", "MitCrdPstAvail") == "true");
+	MitCrdPstActive = (retrieveSi(srcdoc, "StatShrWzemNav", "MitCrdPstActive") == "true");
 	MitCrdNdeAvail = (retrieveSi(srcdoc, "StatShrWzemNav", "MitCrdNdeAvail") == "true");
+	MitCrdNdeActive = (retrieveSi(srcdoc, "StatShrWzemNav", "MitCrdNdeActive") == "true");
 
 	mendoc.getElementById("colCont").setAttribute("width", retrieveSi(srcdoc, "StatAppWzemNav", "widthMenu"));
 
@@ -186,12 +193,19 @@ function initMenCrd() {
 	setTextContent(mendoc, mendoc.getElementById("MitCrdPrs"), retrieveTi(srcdoc, "TagWzemNav", "MitCrdPrs"));
 	setTextContent(mendoc, mendoc.getElementById("MitCrdPrd"), retrieveTi(srcdoc, "TagWzemNav", "MitCrdPrd"));
 	setTextContent(mendoc, mendoc.getElementById("MitCrdEvt"), retrieveTi(srcdoc, "TagWzemNav", "MitCrdEvt"));
+	setMitActive("MitCrdEvt", MitCrdEvtActive);
 	setTextContent(mendoc, mendoc.getElementById("MitCrdJob"), retrieveTi(srcdoc, "TagWzemNav", "MitCrdJob"));
+	setMitActive("MitCrdJob", MitCrdJobActive);
 	setTextContent(mendoc, mendoc.getElementById("MitCrdCal"), retrieveTi(srcdoc, "TagWzemNav", "MitCrdCal"));
+	setMitActive("MitCrdCal", MitCrdCalActive);
 	setTextContent(mendoc, mendoc.getElementById("MitCrdCln"), retrieveTi(srcdoc, "TagWzemNav", "MitCrdCln"));
+	setMitActive("MitCrdCln", MitCrdClnActive);
 	setTextContent(mendoc, mendoc.getElementById("MitCrdOpx"), retrieveTi(srcdoc, "TagWzemNav", "MitCrdOpx"));
+	setMitActive("MitCrdOpx", MitCrdOpxActive);
 	setTextContent(mendoc, mendoc.getElementById("MitCrdPst"), retrieveTi(srcdoc, "TagWzemNav", "MitCrdPst"));
+	setMitActive("MitCrdPst", MitCrdPstActive);
 	setTextContent(mendoc, mendoc.getElementById("MitCrdNde"), retrieveTi(srcdoc, "TagWzemNav", "MitCrdNde"));
+	setMitActive("MitCrdNde", MitCrdNdeActive);
 
 	height -= setMitMspAvail("MspCrd1", MspCrd1Avail, 1);
 	height -= setMitMspAvail("MitCrdUsg", MitCrdUsgAvail, 20);

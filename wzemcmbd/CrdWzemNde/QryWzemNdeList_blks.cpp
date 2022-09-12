@@ -20,8 +20,8 @@ uint QryWzemNdeList::VecVOrd::getIx(
 		) {
 	string s = StrMod::lc(sref);
 
-	if (s == "sto") return STO;
 	if (s == "sta") return STA;
+	if (s == "sto") return STO;
 	if (s == "prd") return PRD;
 
 	return(0);
@@ -30,8 +30,8 @@ uint QryWzemNdeList::VecVOrd::getIx(
 string QryWzemNdeList::VecVOrd::getSref(
 			const uint ix
 		) {
-	if (ix == STO) return("sto");
 	if (ix == STA) return("sta");
+	if (ix == STO) return("sto");
 	if (ix == PRD) return("prd");
 
 	return("");
@@ -183,15 +183,14 @@ QryWzemNdeList::StgIac::StgIac(
 };
 
 bool QryWzemNdeList::StgIac::readJSON(
-			Json::Value& sup
+			const Json::Value& sup
 			, bool addbasetag
 		) {
 	clear();
 
 	bool basefound;
 
-	Json::Value& me = sup;
-	if (addbasetag) me = sup["StgIacQryWzemNdeList"];
+	const Json::Value& me = [&]{if (!addbasetag) return sup; return sup["StgIacQryWzemNdeList"];}();
 
 	basefound = (me != Json::nullValue);
 

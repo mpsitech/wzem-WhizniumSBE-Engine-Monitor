@@ -79,9 +79,15 @@ void QryWzemJobList::rerun(
 		) {
 	string sqlstr;
 
-	uint cnt;
+	vector<ubigint> cnts;
+	uint cnt, cntsum;
 
+	vector<ubigint> lims;
+	vector<ubigint> ofss;
+
+	uint preIxPre = xchg->getIxPreset(VecWzemVPreset::PREWZEMIXPRE, jref);
 	uint preIxOrd = xchg->getIxPreset(VecWzemVPreset::PREWZEMIXORD, jref);
+	ubigint preRefPrd = xchg->getRefPreset(VecWzemVPreset::PREWZEMREFPRD, jref);
 	ubigint prePrd = xchg->getRefPreset(VecWzemVPreset::PREWZEMJOBLIST_PRD, jref);
 	double preSta = xchg->getDblvalPreset(VecWzemVPreset::PREWZEMJOBLIST_STA, jref);
 	double preSto = xchg->getDblvalPreset(VecWzemVPreset::PREWZEMJOBLIST_STO, jref);
@@ -90,26 +96,69 @@ void QryWzemJobList::rerun(
 	dbswzem->tblwzemqselect->removeRstByJref(jref);
 	dbswzem->tblwzemqjoblist->removeRstByJref(jref);
 
-	sqlstr = "SELECT COUNT(TblWzemMJob.ref)";
-	sqlstr += " FROM TblWzemMJob";
-	rerun_filtSQL(sqlstr, prePrd, preSta, preSto, preSup, true);
-	dbswzem->loadUintBySQL(sqlstr, cnt);
+	cntsum = 0;
 
-	statshr.ntot = cnt;
+	if (preIxPre == VecWzemVPreset::PREWZEMREFPRD) {
+		sqlstr = "SELECT COUNT(TblWzemMJob.ref)";
+		sqlstr += " FROM TblWzemMJob";
+		sqlstr += " WHERE TblWzemMJob.refWzemMPeriod = " + to_string(preRefPrd) + "";
+		rerun_filtSQL(sqlstr, prePrd, preSta, preSto, preSup, false);
+		dbswzem->loadUintBySQL(sqlstr, cnt);
+		cnts.push_back(cnt); lims.push_back(0); ofss.push_back(0);
+		cntsum += cnt;
+
+	} else {
+		sqlstr = "SELECT COUNT(TblWzemMJob.ref)";
+		sqlstr += " FROM TblWzemMJob";
+		rerun_filtSQL(sqlstr, prePrd, preSta, preSto, preSup, true);
+		dbswzem->loadUintBySQL(sqlstr, cnt);
+		cnts.push_back(cnt); lims.push_back(0); ofss.push_back(0);
+		cntsum += cnt;
+	};
+
+	statshr.ntot = 0;
 	statshr.nload = 0;
 
-	if (stgiac.jnumFirstload > cnt) {
-		if (cnt >= stgiac.nload) stgiac.jnumFirstload = cnt-stgiac.nload+1;
+	if (stgiac.jnumFirstload > cntsum) {
+		if (cntsum >= stgiac.nload) stgiac.jnumFirstload = cntsum-stgiac.nload+1;
 		else stgiac.jnumFirstload = 1;
 	};
 
-	sqlstr = "INSERT INTO TblWzemQJobList(jref, jnum, ref, refWzemMPeriod, srefIxVJob, xjref, x1Startu, x1Stopu, supRefWzemMJob)";
-	sqlstr += " SELECT " + to_string(jref) + ", 0, TblWzemMJob.ref, TblWzemMJob.refWzemMPeriod, TblWzemMJob.srefIxVJob, TblWzemMJob.xjref, TblWzemMJob.x1Startu, TblWzemMJob.x1Stopu, TblWzemMJob.supRefWzemMJob";
-	sqlstr += " FROM TblWzemMJob";
-	rerun_filtSQL(sqlstr, prePrd, preSta, preSto, preSup, true);
-	rerun_orderSQL(sqlstr, preIxOrd);
-	sqlstr += " LIMIT " + to_string(stgiac.nload) + " OFFSET " + to_string(stgiac.jnumFirstload-1);
-	dbswzem->executeQuery(sqlstr);
+	for (unsigned int i = 0; i < cnts.size(); i++) {
+		if (statshr.nload < stgiac.nload) {
+			if ((statshr.ntot+cnts[i]) >= stgiac.jnumFirstload) {
+				if (statshr.ntot >= stgiac.jnumFirstload) {
+					ofss[i] = 0;
+				} else {
+					ofss[i] = stgiac.jnumFirstload-statshr.ntot-1;
+				};
+
+				if ((statshr.nload+cnts[i]-ofss[i]) > stgiac.nload) lims[i] = stgiac.nload-statshr.nload;
+				else lims[i] = cnts[i]-ofss[i];
+			};
+		};
+
+		statshr.ntot += cnts[i];
+		statshr.nload += lims[i];
+	};
+
+	if (preIxPre == VecWzemVPreset::PREWZEMREFPRD) {
+		rerun_baseSQL(sqlstr);
+		sqlstr += " FROM TblWzemMJob";
+		sqlstr += " WHERE TblWzemMJob.refWzemMPeriod = " + to_string(preRefPrd) + "";
+		rerun_filtSQL(sqlstr, prePrd, preSta, preSto, preSup, false);
+		rerun_orderSQL(sqlstr, preIxOrd);
+		sqlstr += " LIMIT " + to_string(lims[0]) + " OFFSET " + to_string(ofss[0]);
+		dbswzem->executeQuery(sqlstr);
+
+	} else {
+		rerun_baseSQL(sqlstr);
+		sqlstr += " FROM TblWzemMJob";
+		rerun_filtSQL(sqlstr, prePrd, preSta, preSto, preSup, true);
+		rerun_orderSQL(sqlstr, preIxOrd);
+		sqlstr += " LIMIT " + to_string(lims[0]) + " OFFSET " + to_string(ofss[0]);
+		dbswzem->executeQuery(sqlstr);
+	};
 
 	sqlstr = "UPDATE TblWzemQJobList SET jnum = qref WHERE jref = " + to_string(jref);
 	dbswzem->executeQuery(sqlstr);
@@ -121,6 +170,13 @@ void QryWzemJobList::rerun(
 
 	if (call) xchg->triggerCall(dbswzem, VecWzemVCall::CALLWZEMSTATCHG, jref);
 
+};
+
+void QryWzemJobList::rerun_baseSQL(
+			string& sqlstr
+		) {
+	sqlstr = "INSERT INTO TblWzemQJobList(jref, jnum, ref, refWzemMPeriod, srefIxVJob, xjref, x1Startu, x1Stopu, supRefWzemMJob)";
+	sqlstr += " SELECT " + to_string(jref) + ", 0, TblWzemMJob.ref, TblWzemMJob.refWzemMPeriod, TblWzemMJob.srefIxVJob, TblWzemMJob.xjref, TblWzemMJob.x1Startu, TblWzemMJob.x1Stopu, TblWzemMJob.supRefWzemMJob";
 };
 
 void QryWzemJobList::rerun_filtSQL(

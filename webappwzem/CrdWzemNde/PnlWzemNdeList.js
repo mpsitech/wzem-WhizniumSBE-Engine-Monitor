@@ -60,7 +60,17 @@ function init() {
 };
 
 function refreshA() {
-	setTextContent(contdoc, contdoc.getElementById("Cpt"), retrieveTi(srcdoc, "TagWzemNdeList", "Cpt") + " (" + retrieveSi(srcdoc, "StatShrQryWzemNdeList", "ntot") + ")");
+	var TxtFor = retrieveCi(srcdoc, "ContInfWzemNdeList", "TxtFor");
+
+	setTextContent(contdoc, contdoc.getElementById("TxtFor"), strFor(retrieveTi(srcdoc, "TagWzemNdeList", "TxtFor"), TxtFor));
+
+	if (TxtFor == "") {
+		setTextContent(contdoc, contdoc.getElementById("Cpt"), retrieveTi(srcdoc, "TagWzemNdeList", "Cpt") + " (" + retrieveSi(srcdoc, "StatShrQryWzemNdeList", "ntot") + ")");
+		clearElem(contdoc.getElementById("TxtPre"));
+	} else {
+		setTextContent(contdoc, contdoc.getElementById("Cpt"), retrieveTi(srcdoc, "TagWzemNdeList", "Cpt"));
+		setTextContent(contdoc, contdoc.getElementById("TxtPre"), retrieveCi(srcdoc, "ContInfWzemNdeList", "TxtPre") + " (" + retrieveSi(srcdoc, "StatShrQryWzemNdeList", "ntot") + ")");
+	};
 };
 
 function refreshB(chgcol) {
@@ -80,6 +90,14 @@ function refreshB(chgcol) {
 	var rownode;
 
 	var height;
+
+	var TxtFor = retrieveCi(srcdoc, "ContInfWzemNdeList", "TxtFor");
+
+	// header row
+	setTextContent(hdrdoc, hdrdoc.getElementById("TxtFor"), strFor(retrieveTi(srcdoc, "TagWzemNdeList", "TxtFor"), TxtFor));
+
+	if (TxtFor == "") clearElem(hdrdoc.getElementById("TxtPre"));
+	else setTextContent(hdrdoc, hdrdoc.getElementById("TxtPre"), retrieveCi(srcdoc, "ContInfWzemNdeList", "TxtPre"));
 
 	// update column characteristics
 	if (chgcol) {
@@ -117,9 +135,9 @@ function refreshB(chgcol) {
 			} else if (i == 3) {
 				doc.cols.push("TcoIp"); doc.widths.push(TcoIpWidth); doc.fs.push("ip"); doc.tos.push(0); wtot += TcoIpWidth;
 			} else if (i == 4) {
-				doc.cols.push("TcoSta"); doc.widths.push(TcoStaWidth); doc.fs.push("sta"); doc.tos.push(2); wtot += TcoStaWidth;
+				doc.cols.push("TcoSta"); doc.widths.push(TcoStaWidth); doc.fs.push("sta"); doc.tos.push(1); wtot += TcoStaWidth;
 			} else if (i == 5) {
-				doc.cols.push("TcoSto"); doc.widths.push(TcoStoWidth); doc.fs.push("sto"); doc.tos.push(1); wtot += TcoStoWidth;
+				doc.cols.push("TcoSto"); doc.widths.push(TcoStoWidth); doc.fs.push("sto"); doc.tos.push(2); wtot += TcoStoWidth;
 			} else if (i == 6) {
 				doc.cols.push("TcoPrt"); doc.widths.push(TcoPrtWidth); doc.fs.push("prt"); doc.tos.push(0); wtot += TcoPrtWidth;
 			} else if (i == 7) {

@@ -149,15 +149,14 @@ QryWzemUsgAAccess::StgIac::StgIac(
 };
 
 bool QryWzemUsgAAccess::StgIac::readJSON(
-			Json::Value& sup
+			const Json::Value& sup
 			, bool addbasetag
 		) {
 	clear();
 
 	bool basefound;
 
-	Json::Value& me = sup;
-	if (addbasetag) me = sup["StgIacQryWzemUsgAAccess"];
+	const Json::Value& me = [&]{if (!addbasetag) return sup; return sup["StgIacQryWzemUsgAAccess"];}();
 
 	basefound = (me != Json::nullValue);
 

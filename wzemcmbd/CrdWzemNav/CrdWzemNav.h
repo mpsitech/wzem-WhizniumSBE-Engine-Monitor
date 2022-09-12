@@ -16,8 +16,8 @@
 
 #include "PnlWzemNavMon.h"
 #include "PnlWzemNavAdmin.h"
-#include "PnlWzemNavPre.h"
 #include "PnlWzemNavHeadbar.h"
+#include "PnlWzemNavPre.h"
 #include "DlgWzemNavLoaini.h"
 
 #define VecVWzemNavDo CrdWzemNav::VecVDo
@@ -141,17 +141,24 @@ public:
 		static const Sbecore::uint MSPCRD2AVAIL = 14;
 		static const Sbecore::uint MITCRDPRDAVAIL = 15;
 		static const Sbecore::uint MITCRDEVTAVAIL = 16;
-		static const Sbecore::uint MITCRDJOBAVAIL = 17;
-		static const Sbecore::uint MITCRDCALAVAIL = 18;
-		static const Sbecore::uint MITCRDCLNAVAIL = 19;
-		static const Sbecore::uint MITCRDOPXAVAIL = 20;
-		static const Sbecore::uint MITCRDPSTAVAIL = 21;
-		static const Sbecore::uint MITCRDNDEAVAIL = 22;
-		static const Sbecore::uint MSPAPP2AVAIL = 23;
-		static const Sbecore::uint MITAPPLOIAVAIL = 24;
+		static const Sbecore::uint MITCRDEVTACTIVE = 17;
+		static const Sbecore::uint MITCRDJOBAVAIL = 18;
+		static const Sbecore::uint MITCRDJOBACTIVE = 19;
+		static const Sbecore::uint MITCRDCALAVAIL = 20;
+		static const Sbecore::uint MITCRDCALACTIVE = 21;
+		static const Sbecore::uint MITCRDCLNAVAIL = 22;
+		static const Sbecore::uint MITCRDCLNACTIVE = 23;
+		static const Sbecore::uint MITCRDOPXAVAIL = 24;
+		static const Sbecore::uint MITCRDOPXACTIVE = 25;
+		static const Sbecore::uint MITCRDPSTAVAIL = 26;
+		static const Sbecore::uint MITCRDPSTACTIVE = 27;
+		static const Sbecore::uint MITCRDNDEAVAIL = 28;
+		static const Sbecore::uint MITCRDNDEACTIVE = 29;
+		static const Sbecore::uint MSPAPP2AVAIL = 30;
+		static const Sbecore::uint MITAPPLOIAVAIL = 31;
 
 	public:
-		StatShr(const Sbecore::ubigint jrefDlgloaini = 0, const Sbecore::ubigint jrefHeadbar = 0, const Sbecore::ubigint jrefPre = 0, const bool pnlpreAvail = false, const Sbecore::ubigint jrefAdmin = 0, const bool pnladminAvail = false, const Sbecore::ubigint jrefMon = 0, const bool pnlmonAvail = false, const bool MitSesSpsAvail = true, const bool MspCrd1Avail = true, const bool MitCrdUsgAvail = true, const bool MitCrdUsrAvail = true, const bool MitCrdPrsAvail = true, const bool MspCrd2Avail = true, const bool MitCrdPrdAvail = true, const bool MitCrdEvtAvail = true, const bool MitCrdJobAvail = true, const bool MitCrdCalAvail = true, const bool MitCrdClnAvail = true, const bool MitCrdOpxAvail = true, const bool MitCrdPstAvail = true, const bool MitCrdNdeAvail = true, const bool MspApp2Avail = true, const bool MitAppLoiAvail = true);
+		StatShr(const Sbecore::ubigint jrefDlgloaini = 0, const Sbecore::ubigint jrefHeadbar = 0, const Sbecore::ubigint jrefPre = 0, const bool pnlpreAvail = false, const Sbecore::ubigint jrefAdmin = 0, const bool pnladminAvail = false, const Sbecore::ubigint jrefMon = 0, const bool pnlmonAvail = false, const bool MitSesSpsAvail = true, const bool MspCrd1Avail = true, const bool MitCrdUsgAvail = true, const bool MitCrdUsrAvail = true, const bool MitCrdPrsAvail = true, const bool MspCrd2Avail = true, const bool MitCrdPrdAvail = true, const bool MitCrdEvtAvail = true, const bool MitCrdEvtActive = true, const bool MitCrdJobAvail = true, const bool MitCrdJobActive = true, const bool MitCrdCalAvail = true, const bool MitCrdCalActive = true, const bool MitCrdClnAvail = true, const bool MitCrdClnActive = true, const bool MitCrdOpxAvail = true, const bool MitCrdOpxActive = true, const bool MitCrdPstAvail = true, const bool MitCrdPstActive = true, const bool MitCrdNdeAvail = true, const bool MitCrdNdeActive = true, const bool MspApp2Avail = true, const bool MitAppLoiAvail = true);
 
 	public:
 		Sbecore::ubigint jrefDlgloaini;
@@ -170,12 +177,19 @@ public:
 		bool MspCrd2Avail;
 		bool MitCrdPrdAvail;
 		bool MitCrdEvtAvail;
+		bool MitCrdEvtActive;
 		bool MitCrdJobAvail;
+		bool MitCrdJobActive;
 		bool MitCrdCalAvail;
+		bool MitCrdCalActive;
 		bool MitCrdClnAvail;
+		bool MitCrdClnActive;
 		bool MitCrdOpxAvail;
+		bool MitCrdOpxActive;
 		bool MitCrdPstAvail;
+		bool MitCrdPstActive;
 		bool MitCrdNdeAvail;
+		bool MitCrdNdeActive;
 		bool MspApp2Avail;
 		bool MitAppLoiAvail;
 
@@ -214,7 +228,7 @@ public:
 	public:
 		std::string getSrefsMask();
 
-		void readJSON(Json::Value& sup, bool addbasetag = false);
+		void readJSON(const Json::Value& sup, bool addbasetag = false);
 		void readXML(xmlXPathContext* docctx, std::string basexpath = "", bool addbasetag = false);
 	};
 
@@ -244,7 +258,7 @@ public:
 		std::string getSrefsMask();
 		void merge(DpchEngWzem* dpcheng);
 
-		void writeJSON(const Sbecore::uint ixWzskVLocale, Json::Value& sup);
+		void writeJSON(const Sbecore::uint ixWzemVLocale, Json::Value& sup);
 		void writeXML(const Sbecore::uint ixWzemVLocale, xmlTextWriter* wr);
 	};
 
@@ -259,12 +273,19 @@ public:
 	bool evalMspCrd2Avail(DbsWzem* dbswzem);
 	bool evalMitCrdPrdAvail(DbsWzem* dbswzem);
 	bool evalMitCrdEvtAvail(DbsWzem* dbswzem);
+	bool evalMitCrdEvtActive(DbsWzem* dbswzem);
 	bool evalMitCrdJobAvail(DbsWzem* dbswzem);
+	bool evalMitCrdJobActive(DbsWzem* dbswzem);
 	bool evalMitCrdCalAvail(DbsWzem* dbswzem);
+	bool evalMitCrdCalActive(DbsWzem* dbswzem);
 	bool evalMitCrdClnAvail(DbsWzem* dbswzem);
+	bool evalMitCrdClnActive(DbsWzem* dbswzem);
 	bool evalMitCrdOpxAvail(DbsWzem* dbswzem);
+	bool evalMitCrdOpxActive(DbsWzem* dbswzem);
 	bool evalMitCrdPstAvail(DbsWzem* dbswzem);
+	bool evalMitCrdPstActive(DbsWzem* dbswzem);
 	bool evalMitCrdNdeAvail(DbsWzem* dbswzem);
+	bool evalMitCrdNdeActive(DbsWzem* dbswzem);
 	bool evalMspApp2Avail(DbsWzem* dbswzem);
 	bool evalMitAppLoiAvail(DbsWzem* dbswzem);
 
@@ -281,8 +302,8 @@ public:
 
 	PnlWzemNavMon* pnlmon;
 	PnlWzemNavAdmin* pnladmin;
-	PnlWzemNavPre* pnlpre;
 	PnlWzemNavHeadbar* pnlheadbar;
+	PnlWzemNavPre* pnlpre;
 	DlgWzemNavLoaini* dlgloaini;
 
 	// IP vars.cust --- INSERT

@@ -44,8 +44,8 @@ CrdWzemNav::CrdWzemNav(
 
 	pnlmon = NULL;
 	pnladmin = NULL;
-	pnlpre = NULL;
 	pnlheadbar = NULL;
+	pnlpre = NULL;
 	dlgloaini = NULL;
 
 	// IP constructor.cust1 --- INSERT
@@ -55,8 +55,8 @@ CrdWzemNav::CrdWzemNav(
 
 	pnlmon = new PnlWzemNavMon(xchg, dbswzem, jref, ixWzemVLocale);
 	pnladmin = new PnlWzemNavAdmin(xchg, dbswzem, jref, ixWzemVLocale);
-	pnlpre = new PnlWzemNavPre(xchg, dbswzem, jref, ixWzemVLocale);
 	pnlheadbar = new PnlWzemNavHeadbar(xchg, dbswzem, jref, ixWzemVLocale);
+	pnlpre = new PnlWzemNavPre(xchg, dbswzem, jref, ixWzemVLocale);
 
 	// IP constructor.cust2 --- INSERT
 
@@ -138,12 +138,19 @@ void CrdWzemNav::refresh(
 	statshr.MspCrd2Avail = evalMspCrd2Avail(dbswzem);
 	statshr.MitCrdPrdAvail = evalMitCrdPrdAvail(dbswzem);
 	statshr.MitCrdEvtAvail = evalMitCrdEvtAvail(dbswzem);
+	statshr.MitCrdEvtActive = evalMitCrdEvtActive(dbswzem);
 	statshr.MitCrdJobAvail = evalMitCrdJobAvail(dbswzem);
+	statshr.MitCrdJobActive = evalMitCrdJobActive(dbswzem);
 	statshr.MitCrdCalAvail = evalMitCrdCalAvail(dbswzem);
+	statshr.MitCrdCalActive = evalMitCrdCalActive(dbswzem);
 	statshr.MitCrdClnAvail = evalMitCrdClnAvail(dbswzem);
+	statshr.MitCrdClnActive = evalMitCrdClnActive(dbswzem);
 	statshr.MitCrdOpxAvail = evalMitCrdOpxAvail(dbswzem);
+	statshr.MitCrdOpxActive = evalMitCrdOpxActive(dbswzem);
 	statshr.MitCrdPstAvail = evalMitCrdPstAvail(dbswzem);
+	statshr.MitCrdPstActive = evalMitCrdPstActive(dbswzem);
 	statshr.MitCrdNdeAvail = evalMitCrdNdeAvail(dbswzem);
+	statshr.MitCrdNdeActive = evalMitCrdNdeActive(dbswzem);
 	statshr.MspApp2Avail = evalMspApp2Avail(dbswzem);
 	statshr.MitAppLoiAvail = evalMitAppLoiAvail(dbswzem);
 

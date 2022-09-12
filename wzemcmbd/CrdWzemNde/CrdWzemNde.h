@@ -14,8 +14,8 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWzemNdeList.h"
 #include "PnlWzemNdeHeadbar.h"
+#include "PnlWzemNdeList.h"
 #include "PnlWzemNdeRec.h"
 
 #define VecVWzemNdeDo CrdWzemNde::VecVDo
@@ -151,7 +151,7 @@ public:
 	public:
 		std::string getSrefsMask();
 
-		void readJSON(Json::Value& sup, bool addbasetag = false);
+		void readJSON(const Json::Value& sup, bool addbasetag = false);
 		void readXML(xmlXPathContext* docctx, std::string basexpath = "", bool addbasetag = false);
 	};
 
@@ -181,12 +181,12 @@ public:
 		std::string getSrefsMask();
 		void merge(DpchEngWzem* dpcheng);
 
-		void writeJSON(const Sbecore::uint ixWzskVLocale, Json::Value& sup);
+		void writeJSON(const Sbecore::uint ixWzemVLocale, Json::Value& sup);
 		void writeXML(const Sbecore::uint ixWzemVLocale, xmlTextWriter* wr);
 	};
 
 public:
-	CrdWzemNde(XchgWzem* xchg, DbsWzem* dbswzem, const Sbecore::ubigint jrefSup, const Sbecore::uint ixWzemVLocale, const Sbecore::ubigint ref = 0);
+	CrdWzemNde(XchgWzem* xchg, DbsWzem* dbswzem, const Sbecore::ubigint jrefSup, const Sbecore::uint ixWzemVLocale, const Sbecore::ubigint ref = 0, const Sbecore::uint ixWzemVPreset = VecWzemVPreset::VOID, const Sbecore::ubigint preUref = 0);
 	~CrdWzemNde();
 
 public:
@@ -196,8 +196,8 @@ public:
 	Sbecore::Feed feedFMcbAlert;
 	Sbecore::Feed feedFSge;
 
-	PnlWzemNdeList* pnllist;
 	PnlWzemNdeHeadbar* pnlheadbar;
+	PnlWzemNdeList* pnllist;
 	PnlWzemNdeRec* pnlrec;
 
 	// IP vars.cust --- INSERT
@@ -229,8 +229,8 @@ public:
 
 private:
 	bool handleCallWzemRefPreSet(DbsWzem* dbswzem, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, const Sbecore::ubigint refInv);
-	bool handleCallWzemStatChg(DbsWzem* dbswzem, const Sbecore::ubigint jrefTrig);
 	bool handleCallWzemDlgClose(DbsWzem* dbswzem, const Sbecore::ubigint jrefTrig);
+	bool handleCallWzemStatChg(DbsWzem* dbswzem, const Sbecore::ubigint jrefTrig);
 
 private:
 	void changeStage(DbsWzem* dbswzem, Sbecore::uint _ixVSge, DpchEngWzem** dpcheng = NULL);

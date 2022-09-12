@@ -79,9 +79,15 @@ void QryWzemNdeList::rerun(
 		) {
 	string sqlstr;
 
-	uint cnt;
+	vector<ubigint> cnts;
+	uint cnt, cntsum;
 
+	vector<ubigint> lims;
+	vector<ubigint> ofss;
+
+	uint preIxPre = xchg->getIxPreset(VecWzemVPreset::PREWZEMIXPRE, jref);
 	uint preIxOrd = xchg->getIxPreset(VecWzemVPreset::PREWZEMIXORD, jref);
+	ubigint preRefPrd = xchg->getRefPreset(VecWzemVPreset::PREWZEMREFPRD, jref);
 	ubigint prePrd = xchg->getRefPreset(VecWzemVPreset::PREWZEMNDELIST_PRD, jref);
 	double preSta = xchg->getDblvalPreset(VecWzemVPreset::PREWZEMNDELIST_STA, jref);
 	double preSto = xchg->getDblvalPreset(VecWzemVPreset::PREWZEMNDELIST_STO, jref);
@@ -89,26 +95,69 @@ void QryWzemNdeList::rerun(
 	dbswzem->tblwzemqselect->removeRstByJref(jref);
 	dbswzem->tblwzemqndelist->removeRstByJref(jref);
 
-	sqlstr = "SELECT COUNT(TblWzemMNode.ref)";
-	sqlstr += " FROM TblWzemMNode";
-	rerun_filtSQL(sqlstr, prePrd, preSta, preSto, true);
-	dbswzem->loadUintBySQL(sqlstr, cnt);
+	cntsum = 0;
 
-	statshr.ntot = cnt;
+	if (preIxPre == VecWzemVPreset::PREWZEMREFPRD) {
+		sqlstr = "SELECT COUNT(TblWzemMNode.ref)";
+		sqlstr += " FROM TblWzemMNode";
+		sqlstr += " WHERE TblWzemMNode.refWzemMPeriod = " + to_string(preRefPrd) + "";
+		rerun_filtSQL(sqlstr, prePrd, preSta, preSto, false);
+		dbswzem->loadUintBySQL(sqlstr, cnt);
+		cnts.push_back(cnt); lims.push_back(0); ofss.push_back(0);
+		cntsum += cnt;
+
+	} else {
+		sqlstr = "SELECT COUNT(TblWzemMNode.ref)";
+		sqlstr += " FROM TblWzemMNode";
+		rerun_filtSQL(sqlstr, prePrd, preSta, preSto, true);
+		dbswzem->loadUintBySQL(sqlstr, cnt);
+		cnts.push_back(cnt); lims.push_back(0); ofss.push_back(0);
+		cntsum += cnt;
+	};
+
+	statshr.ntot = 0;
 	statshr.nload = 0;
 
-	if (stgiac.jnumFirstload > cnt) {
-		if (cnt >= stgiac.nload) stgiac.jnumFirstload = cnt-stgiac.nload+1;
+	if (stgiac.jnumFirstload > cntsum) {
+		if (cntsum >= stgiac.nload) stgiac.jnumFirstload = cntsum-stgiac.nload+1;
 		else stgiac.jnumFirstload = 1;
 	};
 
-	sqlstr = "INSERT INTO TblWzemQNdeList(jref, jnum, ref, refWzemMPeriod, xnref, Ip, x1Startu, x1Stopu, Port, Opprcn)";
-	sqlstr += " SELECT " + to_string(jref) + ", 0, TblWzemMNode.ref, TblWzemMNode.refWzemMPeriod, TblWzemMNode.xnref, TblWzemMNode.Ip, TblWzemMNode.x1Startu, TblWzemMNode.x1Stopu, TblWzemMNode.Port, TblWzemMNode.Opprcn";
-	sqlstr += " FROM TblWzemMNode";
-	rerun_filtSQL(sqlstr, prePrd, preSta, preSto, true);
-	rerun_orderSQL(sqlstr, preIxOrd);
-	sqlstr += " LIMIT " + to_string(stgiac.nload) + " OFFSET " + to_string(stgiac.jnumFirstload-1);
-	dbswzem->executeQuery(sqlstr);
+	for (unsigned int i = 0; i < cnts.size(); i++) {
+		if (statshr.nload < stgiac.nload) {
+			if ((statshr.ntot+cnts[i]) >= stgiac.jnumFirstload) {
+				if (statshr.ntot >= stgiac.jnumFirstload) {
+					ofss[i] = 0;
+				} else {
+					ofss[i] = stgiac.jnumFirstload-statshr.ntot-1;
+				};
+
+				if ((statshr.nload+cnts[i]-ofss[i]) > stgiac.nload) lims[i] = stgiac.nload-statshr.nload;
+				else lims[i] = cnts[i]-ofss[i];
+			};
+		};
+
+		statshr.ntot += cnts[i];
+		statshr.nload += lims[i];
+	};
+
+	if (preIxPre == VecWzemVPreset::PREWZEMREFPRD) {
+		rerun_baseSQL(sqlstr);
+		sqlstr += " FROM TblWzemMNode";
+		sqlstr += " WHERE TblWzemMNode.refWzemMPeriod = " + to_string(preRefPrd) + "";
+		rerun_filtSQL(sqlstr, prePrd, preSta, preSto, false);
+		rerun_orderSQL(sqlstr, preIxOrd);
+		sqlstr += " LIMIT " + to_string(lims[0]) + " OFFSET " + to_string(ofss[0]);
+		dbswzem->executeQuery(sqlstr);
+
+	} else {
+		rerun_baseSQL(sqlstr);
+		sqlstr += " FROM TblWzemMNode";
+		rerun_filtSQL(sqlstr, prePrd, preSta, preSto, true);
+		rerun_orderSQL(sqlstr, preIxOrd);
+		sqlstr += " LIMIT " + to_string(lims[0]) + " OFFSET " + to_string(ofss[0]);
+		dbswzem->executeQuery(sqlstr);
+	};
 
 	sqlstr = "UPDATE TblWzemQNdeList SET jnum = qref WHERE jref = " + to_string(jref);
 	dbswzem->executeQuery(sqlstr);
@@ -120,6 +169,13 @@ void QryWzemNdeList::rerun(
 
 	if (call) xchg->triggerCall(dbswzem, VecWzemVCall::CALLWZEMSTATCHG, jref);
 
+};
+
+void QryWzemNdeList::rerun_baseSQL(
+			string& sqlstr
+		) {
+	sqlstr = "INSERT INTO TblWzemQNdeList(jref, jnum, ref, refWzemMPeriod, xnref, Ip, x1Startu, x1Stopu, Port, Opprcn)";
+	sqlstr += " SELECT " + to_string(jref) + ", 0, TblWzemMNode.ref, TblWzemMNode.refWzemMPeriod, TblWzemMNode.xnref, TblWzemMNode.Ip, TblWzemMNode.x1Startu, TblWzemMNode.x1Stopu, TblWzemMNode.Port, TblWzemMNode.Opprcn";
 };
 
 void QryWzemNdeList::rerun_filtSQL(
@@ -161,8 +217,8 @@ void QryWzemNdeList::rerun_orderSQL(
 			string& sqlstr
 			, const uint preIxOrd
 		) {
-	if (preIxOrd == VecVOrd::STO) sqlstr += " ORDER BY TblWzemMNode.x1Stopu ASC";
-	else if (preIxOrd == VecVOrd::STA) sqlstr += " ORDER BY TblWzemMNode.x1Startu ASC";
+	if (preIxOrd == VecVOrd::STA) sqlstr += " ORDER BY TblWzemMNode.x1Startu ASC";
+	else if (preIxOrd == VecVOrd::STO) sqlstr += " ORDER BY TblWzemMNode.x1Stopu ASC";
 	else if (preIxOrd == VecVOrd::PRD) sqlstr += " ORDER BY TblWzemMNode.refWzemMPeriod ASC";
 };
 

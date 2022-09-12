@@ -224,6 +224,19 @@ bool RootWzem::authenticate(
 	return valid;
 };
 
+void RootWzem::termSess(
+			DbsWzem* dbswzem
+			, const ubigint jref
+		) {
+	JobWzem* job = NULL;
+
+	job = xchg->getJobByJref(jref);
+
+	if (job) {
+		if (job->ixWzemVJob == VecWzemVJob::SESSWZEM) ((SessWzem*) job)->term(dbswzem);
+	};
+};
+
 void RootWzem::handleRequest(
 			DbsWzem* dbswzem
 			, ReqWzem* req
@@ -278,8 +291,6 @@ bool RootWzem::handleCreateSess(
 
 	ubigint refUsr;
 
-	SessWzem* sess = NULL;
-
 	cout << "\tuser name: ";
 	cin >> input;
 	cout << "\tpassword: ";
@@ -287,11 +298,8 @@ bool RootWzem::handleCreateSess(
 
 	// verify password and create a session
 	if (authenticate(dbswzem, input, input2, refUsr)) {
-		sess = new SessWzem(xchg, dbswzem, jref, refUsr, "127.0.0.1");
-		sesss.push_back(sess);
-
-		cout << "\tjob reference: " << sess->jref << endl;
-		xchg->jrefCmd = sess->jref;
+		xchg->jrefCmd = insertSubjob(sesss, new SessWzem(xchg, dbswzem, jref, refUsr, "127.0.0.1"));
+		cout << "\tjob reference: " << xchg->jrefCmd << endl;
 
 		if ((xchg->stgwzemappearance.sesstterm != 0) && (sesss.size() == 1)) wrefLast = xchg->addWakeup(jref, "warnterm", 1e6 * (xchg->stgwzemappearance.sesstterm - xchg->stgwzemappearance.sesstwarn));
 
@@ -310,25 +318,19 @@ bool RootWzem::handleEraseSess(
 			DbsWzem* dbswzem
 		) {
 	bool retval = false;
-	string input;
-	uint iinput;
 
-	SessWzem* sess = NULL;
+	string input;
+	ubigint iinput;
 
 	cout << "\tjob reference: ";
 	cin >> input;
 	iinput = atoi(input.c_str());
 
-	for (auto it = sesss.begin(); it != sesss.end();) {
-		sess = *it;
-		if (sess->jref == iinput) {
-			it = sesss.erase(it);
-			delete sess;
-			break;
-		} else it++;
-	};
+	termSess(dbswzem, iinput);
 
-	return false;
+	if (!eraseSubjobByJref(sesss, iinput)) cout << "\tjob reference doesn't exist!" << endl;
+	else cout << "\tsession erased." << endl;
+
 	return retval;
 };
 
@@ -340,7 +342,7 @@ void RootWzem::handleDpchAppLogin(
 		) {
 	ubigint refUsr;
 
-	SessWzem* sess = NULL;
+	ubigint jrefSess;
 
 	Feed feedFEnsSps("FeedFEnsSps");
 
@@ -350,12 +352,12 @@ void RootWzem::handleDpchAppLogin(
 			if (xchg->stgwzemappearance.suspsess && dpchapplogin->chksuspsess) {
 				// look for suspended sessions
 				for (auto it = sesss.begin(); it != sesss.end(); it++) {
-					sess = *it;
+					jrefSess = it->second->jref;
 
-					if (xchg->getRefPreset(VecWzemVPreset::PREWZEMOWNER, sess->jref) == refUsr) {
-						if (xchg->getBoolvalPreset(VecWzemVPreset::PREWZEMSUSPSESS, sess->jref)) {
-							xchg->addTxtvalPreset(VecWzemVPreset::PREWZEMIP, sess->jref, ip);
-							feedFEnsSps.appendIxSrefTitles(0, Scr::scramble(sess->jref), StubWzem::getStubSesStd(dbswzem, xchg->getRefPreset(VecWzemVPreset::PREWZEMSESS, sess->jref)));
+					if (xchg->getRefPreset(VecWzemVPreset::PREWZEMOWNER, jrefSess) == refUsr) {
+						if (xchg->getBoolvalPreset(VecWzemVPreset::PREWZEMSUSPSESS, jrefSess)) {
+							xchg->addTxtvalPreset(VecWzemVPreset::PREWZEMIP, jrefSess, ip);
+							feedFEnsSps.appendIxSrefTitles(0, Scr::scramble(jrefSess), StubWzem::getStubSesStd(dbswzem, xchg->getRefPreset(VecWzemVPreset::PREWZEMSESS, jrefSess)));
 						};
 					};
 				};
@@ -363,14 +365,13 @@ void RootWzem::handleDpchAppLogin(
 
 			if (feedFEnsSps.size() == 0) {
 				// start new session
-				sess = new SessWzem(xchg, dbswzem, jref, refUsr, ip);
-				sesss.push_back(sess);
+				jrefSess = insertSubjob(sesss, new SessWzem(xchg, dbswzem, jref, refUsr, ip));
 
 				if ((xchg->stgwzemappearance.sesstterm != 0) && (sesss.size() == 1)) wrefLast = xchg->addWakeup(jref, "warnterm", 1e6 * (xchg->stgwzemappearance.sesstterm - xchg->stgwzemappearance.sesstwarn));
 
 				xchg->appendToLogfile("session created for user '" + dpchapplogin->username + "' from IP " + ip);
 
-				*dpcheng = new DpchEngWzemConfirm(true, sess->jref, "");
+				*dpcheng = new DpchEngWzemConfirm(true, jrefSess, "");
 
 			} else {
 				// return suspended sessions
@@ -401,7 +402,7 @@ void RootWzem::handleTimerWithSrefWarnterm(
 
 	if (xchg->stgwzemappearance.sesstterm != 0) {
 		for (auto it = sesss.begin(); it != sesss.end();) {
-			sess = *it;
+			sess = (SessWzem*) it->second;
 
 			term = false;
 
@@ -485,21 +486,12 @@ bool RootWzem::handleCallWzemLogout(
 		) {
 	bool retval = false;
 
-	SessWzem* sess = NULL;
-
 	time_t rawtime;
 
-	if (!boolvalInv) {
-		for (auto it = sesss.begin(); it != sesss.end();) {
-			sess = *it;
-			if (sess->jref == jrefTrig) {
-				sess->term(dbswzem);
-				it = sesss.erase(it);
+	termSess(dbswzem, jrefTrig);
 
-				delete sess;
-				break;
-			} else it++;
-		};
+	if (!boolvalInv) {
+		eraseSubjobByJref(sesss, jrefTrig);
 
 		if (xchg->stgwzemappearance.roottterm) {
 			time(&rawtime);

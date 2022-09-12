@@ -33,6 +33,8 @@ CrdWzemOpx::CrdWzemOpx(
 			, const ubigint jrefSup
 			, const uint ixWzemVLocale
 			, const ubigint ref
+			, const uint ixWzemVPreset
+			, const ubigint preUref
 		) :
 			JobWzem(xchg, VecWzemVJob::CRDWZEMOPX, jrefSup, ixWzemVLocale)
 		{
@@ -47,6 +49,9 @@ CrdWzemOpx::CrdWzemOpx(
 	pnlrec = NULL;
 
 	// IP constructor.cust1 --- INSERT
+
+	xchg->addIxPreset(VecWzemVPreset::PREWZEMIXPRE, jref, ixWzemVPreset);
+	if (ixWzemVPreset != VecWzemVPreset::VOID) xchg->addRefPreset(ixWzemVPreset, jref, preUref);
 
 	if ((ref + 1) != 0) xchg->triggerIxRefCall(dbswzem, VecWzemVCall::CALLWZEMREFPRESET, jref, VecWzemVPreset::PREWZEMREFOPX, ref);
 
@@ -69,8 +74,8 @@ CrdWzemOpx::CrdWzemOpx(
 	changeStage(dbswzem, VecVSge::IDLE);
 
 	xchg->addClstn(VecWzemVCall::CALLWZEMREFPRESET, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
-	xchg->addClstn(VecWzemVCall::CALLWZEMSTATCHG, jref, Clstn::VecVJobmask::IMM, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 	xchg->addClstn(VecWzemVCall::CALLWZEMDLGCLOSE, jref, Clstn::VecVJobmask::IMM, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
+	xchg->addClstn(VecWzemVCall::CALLWZEMSTATCHG, jref, Clstn::VecVJobmask::IMM, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 
 	// IP constructor.cust3 --- INSERT
 
@@ -131,7 +136,9 @@ void CrdWzemOpx::changeRef(
 		) {
 	set<uint> moditems;
 
-	if (ref != 0) xchg->triggerIxRefSrefIntvalCall(dbswzem, VecWzemVCall::CALLWZEMLOG, jref, VecWzemVPreset::VOID, 0, "CrdWzemOpx", ref);
+	uint ixWzemVPreset = xchg->getIxPreset(VecWzemVPreset::PREWZEMIXPRE, jref);
+
+	if (ref != 0) xchg->triggerIxRefSrefIntvalCall(dbswzem, VecWzemVCall::CALLWZEMLOG, jref, ixWzemVPreset, xchg->getRefPreset(ixWzemVPreset, jref), "CrdWzemOpx", ref);
 	xchg->addRefPreset(VecWzemVPreset::PREWZEMREFOPX, jref, ref);
 
 	if (pnllist) pnllist->updatePreset(dbswzem, VecWzemVPreset::PREWZEMREFOPX, jrefTrig, notif);
@@ -235,10 +242,10 @@ void CrdWzemOpx::handleCall(
 		) {
 	if (call->ixVCall == VecWzemVCall::CALLWZEMREFPRESET) {
 		call->abort = handleCallWzemRefPreSet(dbswzem, call->jref, call->argInv.ix, call->argInv.ref);
-	} else if (call->ixVCall == VecWzemVCall::CALLWZEMSTATCHG) {
-		call->abort = handleCallWzemStatChg(dbswzem, call->jref);
 	} else if (call->ixVCall == VecWzemVCall::CALLWZEMDLGCLOSE) {
 		call->abort = handleCallWzemDlgClose(dbswzem, call->jref);
+	} else if (call->ixVCall == VecWzemVCall::CALLWZEMSTATCHG) {
+		call->abort = handleCallWzemStatChg(dbswzem, call->jref);
 	};
 };
 
@@ -259,21 +266,21 @@ bool CrdWzemOpx::handleCallWzemRefPreSet(
 	return retval;
 };
 
-bool CrdWzemOpx::handleCallWzemStatChg(
-			DbsWzem* dbswzem
-			, const ubigint jrefTrig
-		) {
-	bool retval = false;
-	if (jrefTrig == pnlrec->jref) if ((pnllist->statshr.ixWzemVExpstate == VecWzemVExpstate::REGD) && (pnlrec->statshr.ixWzemVExpstate == VecWzemVExpstate::REGD)) pnllist->minimize(dbswzem, true);
-	return retval;
-};
-
 bool CrdWzemOpx::handleCallWzemDlgClose(
 			DbsWzem* dbswzem
 			, const ubigint jrefTrig
 		) {
 	bool retval = false;
 	// IP handleCallWzemDlgClose --- INSERT
+	return retval;
+};
+
+bool CrdWzemOpx::handleCallWzemStatChg(
+			DbsWzem* dbswzem
+			, const ubigint jrefTrig
+		) {
+	bool retval = false;
+	if (jrefTrig == pnlrec->jref) if ((pnllist->statshr.ixWzemVExpstate == VecWzemVExpstate::REGD) && (pnlrec->statshr.ixWzemVExpstate == VecWzemVExpstate::REGD)) pnllist->minimize(dbswzem, true);
 	return retval;
 };
 

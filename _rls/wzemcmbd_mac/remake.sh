@@ -3,7 +3,7 @@
 # re-make script for Wzem combined daemon, release wzemcmbd_mac
 # copyright: (C) 2016-2020 MPSI Technologies GmbH
 # author: Alexander Wirthmueller (auto-generation)
-# date created: 3 May 2021
+# date created: 11 Sep 2022
 # IP header --- ABOVE
 
 if [ -z ${WHIZROOT+x} ]; then

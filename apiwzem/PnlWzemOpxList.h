@@ -76,13 +76,17 @@ namespace PnlWzemOpxList {
 	class ContInf : public Sbecore::Block {
 
 	public:
-		static const Sbecore::uint BUTFILTERON = 1;
-		static const Sbecore::uint NUMFCSIQST = 2;
+		static const Sbecore::uint TXTFOR = 1;
+		static const Sbecore::uint TXTPRE = 2;
+		static const Sbecore::uint BUTFILTERON = 3;
+		static const Sbecore::uint NUMFCSIQST = 4;
 
 	public:
-		ContInf(const bool ButFilterOn = false, const Sbecore::uint numFCsiQst = 1);
+		ContInf(const std::string& TxtFor = "", const std::string& TxtPre = "", const bool ButFilterOn = false, const Sbecore::uint numFCsiQst = 1);
 
 	public:
+		std::string TxtFor;
+		std::string TxtPre;
 		bool ButFilterOn;
 		Sbecore::uint numFCsiQst;
 
@@ -148,21 +152,23 @@ namespace PnlWzemOpxList {
 
 	public:
 		static const Sbecore::uint CPT = 1;
-		static const Sbecore::uint TXTRECORD1 = 2;
-		static const Sbecore::uint TXTRECORD2 = 3;
-		static const Sbecore::uint TRS = 4;
-		static const Sbecore::uint TXTSHOWING1 = 5;
-		static const Sbecore::uint TXTSHOWING2 = 6;
-		static const Sbecore::uint TCOJOB = 7;
-		static const Sbecore::uint TCOXOR = 8;
-		static const Sbecore::uint TCOSTA = 9;
-		static const Sbecore::uint TCOSTO = 10;
+		static const Sbecore::uint TXTFOR = 2;
+		static const Sbecore::uint TXTRECORD1 = 3;
+		static const Sbecore::uint TXTRECORD2 = 4;
+		static const Sbecore::uint TRS = 5;
+		static const Sbecore::uint TXTSHOWING1 = 6;
+		static const Sbecore::uint TXTSHOWING2 = 7;
+		static const Sbecore::uint TCOJOB = 8;
+		static const Sbecore::uint TCOXOR = 9;
+		static const Sbecore::uint TCOSTA = 10;
+		static const Sbecore::uint TCOSTO = 11;
 
 	public:
-		Tag(const std::string& Cpt = "", const std::string& TxtRecord1 = "", const std::string& TxtRecord2 = "", const std::string& Trs = "", const std::string& TxtShowing1 = "", const std::string& TxtShowing2 = "", const std::string& TcoJob = "", const std::string& TcoXor = "", const std::string& TcoSta = "", const std::string& TcoSto = "");
+		Tag(const std::string& Cpt = "", const std::string& TxtFor = "", const std::string& TxtRecord1 = "", const std::string& TxtRecord2 = "", const std::string& Trs = "", const std::string& TxtShowing1 = "", const std::string& TxtShowing2 = "", const std::string& TcoJob = "", const std::string& TcoXor = "", const std::string& TcoSta = "", const std::string& TcoSto = "");
 
 	public:
 		std::string Cpt;
+		std::string TxtFor;
 		std::string TxtRecord1;
 		std::string TxtRecord2;
 		std::string Trs;

@@ -14,7 +14,7 @@ using namespace Xmlio;
 bool PnlWzemJob1NCall::evalButViewAvail(
 			DbsWzem* dbswzem
 		) {
-	// !sel()|(pre.ixCrdaccCal())
+	// !sel()|(pre.ixCrdaccCal()&pre.refPrd())
 
 	vector<bool> args;
 	bool a, b;
@@ -25,6 +25,11 @@ bool PnlWzemJob1NCall::evalButViewAvail(
 	args.push_back(!a);
 	a = false; a = (xchg->getIxPreset(VecWzemVPreset::PREWZEMIXCRDACCCAL, jref) != 0);
 	args.push_back(a);
+	a = false; a = (xchg->getRefPreset(VecWzemVPreset::PREWZEMREFPRD, jref) != 0);
+	args.push_back(a);
+	b = args.back(); args.pop_back();
+	a = args.back(); args.pop_back();
+	args.push_back(a && b);
 	b = args.back(); args.pop_back();
 	a = args.back(); args.pop_back();
 	args.push_back(a || b);
@@ -49,13 +54,18 @@ bool PnlWzemJob1NCall::evalButViewActive(
 bool PnlWzemJob1NCall::evalButNewAvail(
 			DbsWzem* dbswzem
 		) {
-	// pre.ixCrdaccCalIncl(edit)
+	// pre.ixCrdaccCalIncl(edit)&pre.refPrd()
 
 	vector<bool> args;
-	bool a;
+	bool a, b;
 
 	a = false; a = (xchg->getIxPreset(VecWzemVPreset::PREWZEMIXCRDACCCAL, jref) & VecWzemWAccess::EDIT);
 	args.push_back(a);
+	a = false; a = (xchg->getRefPreset(VecWzemVPreset::PREWZEMREFPRD, jref) != 0);
+	args.push_back(a);
+	b = args.back(); args.pop_back();
+	a = args.back(); args.pop_back();
+	args.push_back(a && b);
 
 	return(args.back());
 };

@@ -33,6 +33,8 @@ CrdWzemEvt::CrdWzemEvt(
 			, const ubigint jrefSup
 			, const uint ixWzemVLocale
 			, const ubigint ref
+			, const uint ixWzemVPreset
+			, const ubigint preUref
 		) :
 			JobWzem(xchg, VecWzemVJob::CRDWZEMEVT, jrefSup, ixWzemVLocale)
 		{
@@ -47,6 +49,9 @@ CrdWzemEvt::CrdWzemEvt(
 	pnlrec = NULL;
 
 	// IP constructor.cust1 --- INSERT
+
+	xchg->addIxPreset(VecWzemVPreset::PREWZEMIXPRE, jref, ixWzemVPreset);
+	if (ixWzemVPreset != VecWzemVPreset::VOID) xchg->addRefPreset(ixWzemVPreset, jref, preUref);
 
 	if ((ref + 1) != 0) xchg->triggerIxRefCall(dbswzem, VecWzemVCall::CALLWZEMREFPRESET, jref, VecWzemVPreset::PREWZEMREFEVT, ref);
 
@@ -133,7 +138,9 @@ void CrdWzemEvt::changeRef(
 
 	WzemMEvent* rec = NULL;
 
-	if (ref != 0) xchg->triggerIxRefSrefIntvalCall(dbswzem, VecWzemVCall::CALLWZEMLOG, jref, VecWzemVPreset::VOID, 0, "CrdWzemEvt", ref);
+	uint ixWzemVPreset = xchg->getIxPreset(VecWzemVPreset::PREWZEMIXPRE, jref);
+
+	if (ref != 0) xchg->triggerIxRefSrefIntvalCall(dbswzem, VecWzemVCall::CALLWZEMLOG, jref, ixWzemVPreset, xchg->getRefPreset(ixWzemVPreset, jref), "CrdWzemEvt", ref);
 	xchg->addRefPreset(VecWzemVPreset::PREWZEMREFEVT, jref, ref);
 
 	if (dbswzem->tblwzemmevent->loadRecByRef(ref, &rec)) {

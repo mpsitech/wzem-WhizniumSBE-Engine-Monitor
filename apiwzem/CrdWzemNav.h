@@ -152,17 +152,24 @@ namespace CrdWzemNav {
 		static const Sbecore::uint MSPCRD2AVAIL = 14;
 		static const Sbecore::uint MITCRDPRDAVAIL = 15;
 		static const Sbecore::uint MITCRDEVTAVAIL = 16;
-		static const Sbecore::uint MITCRDJOBAVAIL = 17;
-		static const Sbecore::uint MITCRDCALAVAIL = 18;
-		static const Sbecore::uint MITCRDCLNAVAIL = 19;
-		static const Sbecore::uint MITCRDOPXAVAIL = 20;
-		static const Sbecore::uint MITCRDPSTAVAIL = 21;
-		static const Sbecore::uint MITCRDNDEAVAIL = 22;
-		static const Sbecore::uint MSPAPP2AVAIL = 23;
-		static const Sbecore::uint MITAPPLOIAVAIL = 24;
+		static const Sbecore::uint MITCRDEVTACTIVE = 17;
+		static const Sbecore::uint MITCRDJOBAVAIL = 18;
+		static const Sbecore::uint MITCRDJOBACTIVE = 19;
+		static const Sbecore::uint MITCRDCALAVAIL = 20;
+		static const Sbecore::uint MITCRDCALACTIVE = 21;
+		static const Sbecore::uint MITCRDCLNAVAIL = 22;
+		static const Sbecore::uint MITCRDCLNACTIVE = 23;
+		static const Sbecore::uint MITCRDOPXAVAIL = 24;
+		static const Sbecore::uint MITCRDOPXACTIVE = 25;
+		static const Sbecore::uint MITCRDPSTAVAIL = 26;
+		static const Sbecore::uint MITCRDPSTACTIVE = 27;
+		static const Sbecore::uint MITCRDNDEAVAIL = 28;
+		static const Sbecore::uint MITCRDNDEACTIVE = 29;
+		static const Sbecore::uint MSPAPP2AVAIL = 30;
+		static const Sbecore::uint MITAPPLOIAVAIL = 31;
 
 	public:
-		StatShr(const std::string& scrJrefDlgloaini = "", const std::string& scrJrefHeadbar = "", const std::string& scrJrefPre = "", const bool pnlpreAvail = false, const std::string& scrJrefAdmin = "", const bool pnladminAvail = false, const std::string& scrJrefMon = "", const bool pnlmonAvail = false, const bool MitSesSpsAvail = true, const bool MspCrd1Avail = true, const bool MitCrdUsgAvail = true, const bool MitCrdUsrAvail = true, const bool MitCrdPrsAvail = true, const bool MspCrd2Avail = true, const bool MitCrdPrdAvail = true, const bool MitCrdEvtAvail = true, const bool MitCrdJobAvail = true, const bool MitCrdCalAvail = true, const bool MitCrdClnAvail = true, const bool MitCrdOpxAvail = true, const bool MitCrdPstAvail = true, const bool MitCrdNdeAvail = true, const bool MspApp2Avail = true, const bool MitAppLoiAvail = true);
+		StatShr(const std::string& scrJrefDlgloaini = "", const std::string& scrJrefHeadbar = "", const std::string& scrJrefPre = "", const bool pnlpreAvail = false, const std::string& scrJrefAdmin = "", const bool pnladminAvail = false, const std::string& scrJrefMon = "", const bool pnlmonAvail = false, const bool MitSesSpsAvail = true, const bool MspCrd1Avail = true, const bool MitCrdUsgAvail = true, const bool MitCrdUsrAvail = true, const bool MitCrdPrsAvail = true, const bool MspCrd2Avail = true, const bool MitCrdPrdAvail = true, const bool MitCrdEvtAvail = true, const bool MitCrdEvtActive = true, const bool MitCrdJobAvail = true, const bool MitCrdJobActive = true, const bool MitCrdCalAvail = true, const bool MitCrdCalActive = true, const bool MitCrdClnAvail = true, const bool MitCrdClnActive = true, const bool MitCrdOpxAvail = true, const bool MitCrdOpxActive = true, const bool MitCrdPstAvail = true, const bool MitCrdPstActive = true, const bool MitCrdNdeAvail = true, const bool MitCrdNdeActive = true, const bool MspApp2Avail = true, const bool MitAppLoiAvail = true);
 
 	public:
 		std::string scrJrefDlgloaini;
@@ -181,12 +188,19 @@ namespace CrdWzemNav {
 		bool MspCrd2Avail;
 		bool MitCrdPrdAvail;
 		bool MitCrdEvtAvail;
+		bool MitCrdEvtActive;
 		bool MitCrdJobAvail;
+		bool MitCrdJobActive;
 		bool MitCrdCalAvail;
+		bool MitCrdCalActive;
 		bool MitCrdClnAvail;
+		bool MitCrdClnActive;
 		bool MitCrdOpxAvail;
+		bool MitCrdOpxActive;
 		bool MitCrdPstAvail;
+		bool MitCrdPstActive;
 		bool MitCrdNdeAvail;
+		bool MitCrdNdeActive;
 		bool MspApp2Avail;
 		bool MitAppLoiAvail;
 

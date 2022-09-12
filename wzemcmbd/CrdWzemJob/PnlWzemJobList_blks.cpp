@@ -58,15 +58,14 @@ PnlWzemJobList::ContIac::ContIac(
 };
 
 bool PnlWzemJobList::ContIac::readJSON(
-			Json::Value& sup
+			const Json::Value& sup
 			, bool addbasetag
 		) {
 	clear();
 
 	bool basefound;
 
-	Json::Value& me = sup;
-	if (addbasetag) me = sup["ContIacWzemJobList"];
+	const Json::Value& me = [&]{if (!addbasetag) return sup; return sup["ContIacWzemJobList"];}();
 
 	basefound = (me != Json::nullValue);
 
@@ -156,15 +155,19 @@ set<uint> PnlWzemJobList::ContIac::diff(
  ******************************************************************************/
 
 PnlWzemJobList::ContInf::ContInf(
-			const bool ButFilterOn
+			const string& TxtFor
+			, const string& TxtPre
+			, const bool ButFilterOn
 			, const uint numFCsiQst
 		) :
 			Block()
 		{
+	this->TxtFor = TxtFor;
+	this->TxtPre = TxtPre;
 	this->ButFilterOn = ButFilterOn;
 	this->numFCsiQst = numFCsiQst;
 
-	mask = {BUTFILTERON, NUMFCSIQST};
+	mask = {TXTFOR, TXTPRE, BUTFILTERON, NUMFCSIQST};
 };
 
 void PnlWzemJobList::ContInf::writeJSON(
@@ -175,6 +178,8 @@ void PnlWzemJobList::ContInf::writeJSON(
 
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
+	me["TxtFor"] = TxtFor;
+	me["TxtPre"] = TxtPre;
 	me["ButFilterOn"] = ButFilterOn;
 	me["numFCsiQst"] = numFCsiQst;
 };
@@ -191,6 +196,8 @@ void PnlWzemJobList::ContInf::writeXML(
 	else itemtag = "ContitemInfWzemJobList";
 
 	xmlTextWriterStartElement(wr, BAD_CAST difftag.c_str());
+		writeStringAttr(wr, itemtag, "sref", "TxtFor", TxtFor);
+		writeStringAttr(wr, itemtag, "sref", "TxtPre", TxtPre);
 		writeBoolAttr(wr, itemtag, "sref", "ButFilterOn", ButFilterOn);
 		writeUintAttr(wr, itemtag, "sref", "numFCsiQst", numFCsiQst);
 	xmlTextWriterEndElement(wr);
@@ -201,6 +208,8 @@ set<uint> PnlWzemJobList::ContInf::comm(
 		) {
 	set<uint> items;
 
+	if (TxtFor == comp->TxtFor) insert(items, TXTFOR);
+	if (TxtPre == comp->TxtPre) insert(items, TXTPRE);
 	if (ButFilterOn == comp->ButFilterOn) insert(items, BUTFILTERON);
 	if (numFCsiQst == comp->numFCsiQst) insert(items, NUMFCSIQST);
 
@@ -215,7 +224,7 @@ set<uint> PnlWzemJobList::ContInf::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {BUTFILTERON, NUMFCSIQST};
+	diffitems = {TXTFOR, TXTPRE, BUTFILTERON, NUMFCSIQST};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);
@@ -315,15 +324,14 @@ PnlWzemJobList::StgIac::StgIac(
 };
 
 bool PnlWzemJobList::StgIac::readJSON(
-			Json::Value& sup
+			const Json::Value& sup
 			, bool addbasetag
 		) {
 	clear();
 
 	bool basefound;
 
-	Json::Value& me = sup;
-	if (addbasetag) me = sup["StgIacWzemJobList"];
+	const Json::Value& me = [&]{if (!addbasetag) return sup; return sup["StgIacWzemJobList"];}();
 
 	basefound = (me != Json::nullValue);
 
@@ -455,6 +463,7 @@ void PnlWzemJobList::Tag::writeJSON(
 		me["TcoSto"] = "Removed";
 		me["TcoSup"] = "Super job";
 	};
+	me["TxtFor"] = VecWzemVTag::getTitle(VecWzemVTag::FOR, ixWzemVLocale);
 	me["TxtRecord1"] = StrMod::cap(VecWzemVTag::getTitle(VecWzemVTag::REC, ixWzemVLocale));
 	me["TxtRecord2"] = StrMod::cap(VecWzemVTag::getTitle(VecWzemVTag::EMPLONG, ixWzemVLocale));
 	me["Trs"] = StrMod::cap(VecWzemVTag::getTitle(VecWzemVTag::GOTO, ixWzemVLocale)) + " ...";
@@ -484,6 +493,7 @@ void PnlWzemJobList::Tag::writeXML(
 			writeStringAttr(wr, itemtag, "sref", "TcoSto", "Removed");
 			writeStringAttr(wr, itemtag, "sref", "TcoSup", "Super job");
 		};
+		writeStringAttr(wr, itemtag, "sref", "TxtFor", VecWzemVTag::getTitle(VecWzemVTag::FOR, ixWzemVLocale));
 		writeStringAttr(wr, itemtag, "sref", "TxtRecord1", StrMod::cap(VecWzemVTag::getTitle(VecWzemVTag::REC, ixWzemVLocale)));
 		writeStringAttr(wr, itemtag, "sref", "TxtRecord2", StrMod::cap(VecWzemVTag::getTitle(VecWzemVTag::EMPLONG, ixWzemVLocale)));
 		writeStringAttr(wr, itemtag, "sref", "Trs", StrMod::cap(VecWzemVTag::getTitle(VecWzemVTag::GOTO, ixWzemVLocale)) + " ...");
@@ -516,15 +526,14 @@ string PnlWzemJobList::DpchAppData::getSrefsMask() {
 };
 
 void PnlWzemJobList::DpchAppData::readJSON(
-			Json::Value& sup
+			const Json::Value& sup
 			, bool addbasetag
 		) {
 	clear();
 
 	bool basefound;
 
-	Json::Value& me = sup;
-	if (addbasetag) me = sup["DpchAppWzemJobListData"];
+	const Json::Value& me = [&]{if (!addbasetag) return sup; return sup["DpchAppWzemJobListData"];}();
 
 	basefound = (me != Json::nullValue);
 
@@ -594,15 +603,14 @@ string PnlWzemJobList::DpchAppDo::getSrefsMask() {
 };
 
 void PnlWzemJobList::DpchAppDo::readJSON(
-			Json::Value& sup
+			const Json::Value& sup
 			, bool addbasetag
 		) {
 	clear();
 
 	bool basefound;
 
-	Json::Value& me = sup;
-	if (addbasetag) me = sup["DpchAppWzemJobListDo"];
+	const Json::Value& me = [&]{if (!addbasetag) return sup; return sup["DpchAppWzemJobListDo"];}();
 
 	basefound = (me != Json::nullValue);
 

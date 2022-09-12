@@ -270,10 +270,12 @@ void PnlWzemPrd1NEvent::handleDpchAppDoButViewClick(
 	ubigint jrefNew = 0;
 	string sref;
 
+	ubigint refPrd = xchg->getRefPreset(VecWzemVPreset::PREWZEMREFPRD, jref);
+
 	if (statshr.ButViewAvail && statshr.ButViewActive) {
-		if (xchg->getIxPreset(VecWzemVPreset::PREWZEMIXCRDACCEVT, jref)) {
+		if (xchg->getIxPreset(VecWzemVPreset::PREWZEMIXCRDACCEVT, jref)) if (refPrd != 0) {
 			sref = "CrdWzemEvt";
-			xchg->triggerIxRefSrefIntvalToRefCall(dbswzem, VecWzemVCall::CALLWZEMCRDOPEN, jref, 0, 0, sref, recEvt.ref, jrefNew);
+			xchg->triggerIxRefSrefIntvalToRefCall(dbswzem, VecWzemVCall::CALLWZEMCRDOPEN, jref, VecWzemVPreset::PREWZEMREFPRD, refPrd, sref, recEvt.ref, jrefNew);
 		};
 
 		if (jrefNew == 0) *dpcheng = new DpchEngWzemConfirm(false, 0, "");
@@ -288,10 +290,12 @@ void PnlWzemPrd1NEvent::handleDpchAppDoButNewClick(
 	ubigint jrefNew = 0;
 	string sref;
 
+	ubigint refPrd = xchg->getRefPreset(VecWzemVPreset::PREWZEMREFPRD, jref);
+
 	if (statshr.ButNewAvail) {
-		if ((xchg->getIxPreset(VecWzemVPreset::PREWZEMIXCRDACCEVT, jref) & VecWzemWAccess::EDIT) != 0) {
+		if ((xchg->getIxPreset(VecWzemVPreset::PREWZEMIXCRDACCEVT, jref) & VecWzemWAccess::EDIT) != 0) if (refPrd != 0) {
 			sref = "CrdWzemEvt";
-			xchg->triggerIxRefSrefIntvalToRefCall(dbswzem, VecWzemVCall::CALLWZEMCRDOPEN, jref, 0, 0, sref, -1, jrefNew);
+			xchg->triggerIxRefSrefIntvalToRefCall(dbswzem, VecWzemVCall::CALLWZEMCRDOPEN, jref, VecWzemVPreset::PREWZEMREFPRD, refPrd, sref, -1, jrefNew);
 		};
 
 		if (jrefNew == 0) *dpcheng = new DpchEngWzemConfirm(false, 0, "");

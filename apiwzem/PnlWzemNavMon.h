@@ -151,39 +151,53 @@ namespace PnlWzemNavMon {
 		static const Sbecore::uint BUTPRDVIEWACTIVE = 2;
 		static const Sbecore::uint LSTEVTAVAIL = 3;
 		static const Sbecore::uint BUTEVTVIEWACTIVE = 4;
-		static const Sbecore::uint LSTJOBAVAIL = 5;
-		static const Sbecore::uint BUTJOBVIEWACTIVE = 6;
-		static const Sbecore::uint LSTCALAVAIL = 7;
-		static const Sbecore::uint BUTCALVIEWACTIVE = 8;
-		static const Sbecore::uint LSTCLNAVAIL = 9;
-		static const Sbecore::uint BUTCLNVIEWACTIVE = 10;
-		static const Sbecore::uint LSTOPXAVAIL = 11;
-		static const Sbecore::uint BUTOPXVIEWACTIVE = 12;
-		static const Sbecore::uint LSTPSTAVAIL = 13;
-		static const Sbecore::uint BUTPSTVIEWACTIVE = 14;
-		static const Sbecore::uint LSTNDEAVAIL = 15;
-		static const Sbecore::uint BUTNDEVIEWACTIVE = 16;
+		static const Sbecore::uint BUTEVTNEWCRDACTIVE = 5;
+		static const Sbecore::uint LSTJOBAVAIL = 6;
+		static const Sbecore::uint BUTJOBVIEWACTIVE = 7;
+		static const Sbecore::uint BUTJOBNEWCRDACTIVE = 8;
+		static const Sbecore::uint LSTCALAVAIL = 9;
+		static const Sbecore::uint BUTCALVIEWACTIVE = 10;
+		static const Sbecore::uint BUTCALNEWCRDACTIVE = 11;
+		static const Sbecore::uint LSTCLNAVAIL = 12;
+		static const Sbecore::uint BUTCLNVIEWACTIVE = 13;
+		static const Sbecore::uint BUTCLNNEWCRDACTIVE = 14;
+		static const Sbecore::uint LSTOPXAVAIL = 15;
+		static const Sbecore::uint BUTOPXVIEWACTIVE = 16;
+		static const Sbecore::uint BUTOPXNEWCRDACTIVE = 17;
+		static const Sbecore::uint LSTPSTAVAIL = 18;
+		static const Sbecore::uint BUTPSTVIEWACTIVE = 19;
+		static const Sbecore::uint BUTPSTNEWCRDACTIVE = 20;
+		static const Sbecore::uint LSTNDEAVAIL = 21;
+		static const Sbecore::uint BUTNDEVIEWACTIVE = 22;
+		static const Sbecore::uint BUTNDENEWCRDACTIVE = 23;
 
 	public:
-		StatShr(const bool LstPrdAvail = true, const bool ButPrdViewActive = true, const bool LstEvtAvail = true, const bool ButEvtViewActive = true, const bool LstJobAvail = true, const bool ButJobViewActive = true, const bool LstCalAvail = true, const bool ButCalViewActive = true, const bool LstClnAvail = true, const bool ButClnViewActive = true, const bool LstOpxAvail = true, const bool ButOpxViewActive = true, const bool LstPstAvail = true, const bool ButPstViewActive = true, const bool LstNdeAvail = true, const bool ButNdeViewActive = true);
+		StatShr(const bool LstPrdAvail = true, const bool ButPrdViewActive = true, const bool LstEvtAvail = true, const bool ButEvtViewActive = true, const bool ButEvtNewcrdActive = true, const bool LstJobAvail = true, const bool ButJobViewActive = true, const bool ButJobNewcrdActive = true, const bool LstCalAvail = true, const bool ButCalViewActive = true, const bool ButCalNewcrdActive = true, const bool LstClnAvail = true, const bool ButClnViewActive = true, const bool ButClnNewcrdActive = true, const bool LstOpxAvail = true, const bool ButOpxViewActive = true, const bool ButOpxNewcrdActive = true, const bool LstPstAvail = true, const bool ButPstViewActive = true, const bool ButPstNewcrdActive = true, const bool LstNdeAvail = true, const bool ButNdeViewActive = true, const bool ButNdeNewcrdActive = true);
 
 	public:
 		bool LstPrdAvail;
 		bool ButPrdViewActive;
 		bool LstEvtAvail;
 		bool ButEvtViewActive;
+		bool ButEvtNewcrdActive;
 		bool LstJobAvail;
 		bool ButJobViewActive;
+		bool ButJobNewcrdActive;
 		bool LstCalAvail;
 		bool ButCalViewActive;
+		bool ButCalNewcrdActive;
 		bool LstClnAvail;
 		bool ButClnViewActive;
+		bool ButClnNewcrdActive;
 		bool LstOpxAvail;
 		bool ButOpxViewActive;
+		bool ButOpxNewcrdActive;
 		bool LstPstAvail;
 		bool ButPstViewActive;
+		bool ButPstNewcrdActive;
 		bool LstNdeAvail;
 		bool ButNdeViewActive;
+		bool ButNdeNewcrdActive;
 
 	public:
 		bool readXML(xmlXPathContext* docctx, std::string basexpath = "", bool addbasetag = false);

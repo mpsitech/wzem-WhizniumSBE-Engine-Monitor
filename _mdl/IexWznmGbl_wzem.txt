@@ -1,4 +1,4 @@
-IexWznmGbl v0.9.29
+IexWznmGbl v1.1.7
 ImeIMCapability.srefTplRefWznmMCapability	sref	Title
 arm	Arm
 dlgloaini	DlgWzemNavLoaini

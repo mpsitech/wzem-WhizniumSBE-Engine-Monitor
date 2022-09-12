@@ -33,6 +33,8 @@ CrdWzemCln::CrdWzemCln(
 			, const ubigint jrefSup
 			, const uint ixWzemVLocale
 			, const ubigint ref
+			, const uint ixWzemVPreset
+			, const ubigint preUref
 		) :
 			JobWzem(xchg, VecWzemVJob::CRDWZEMCLN, jrefSup, ixWzemVLocale)
 		{
@@ -42,20 +44,23 @@ CrdWzemCln::CrdWzemCln(
 	feedFSge.tag = "FeedFSge";
 	VecVSge::fillFeed(feedFSge);
 
-	pnllist = NULL;
-	pnlheadbar = NULL;
 	pnlrec = NULL;
+	pnlheadbar = NULL;
+	pnllist = NULL;
 
 	// IP constructor.cust1 --- INSERT
+
+	xchg->addIxPreset(VecWzemVPreset::PREWZEMIXPRE, jref, ixWzemVPreset);
+	if (ixWzemVPreset != VecWzemVPreset::VOID) xchg->addRefPreset(ixWzemVPreset, jref, preUref);
 
 	if ((ref + 1) != 0) xchg->triggerIxRefCall(dbswzem, VecWzemVCall::CALLWZEMREFPRESET, jref, VecWzemVPreset::PREWZEMREFCLN, ref);
 
 	// initialize according to ref
 	changeRef(dbswzem, jref, ((ref + 1) == 0) ? 0 : ref, false);
 
-	pnllist = new PnlWzemClnList(xchg, dbswzem, jref, ixWzemVLocale);
-	pnlheadbar = new PnlWzemClnHeadbar(xchg, dbswzem, jref, ixWzemVLocale);
 	pnlrec = new PnlWzemClnRec(xchg, dbswzem, jref, ixWzemVLocale);
+	pnlheadbar = new PnlWzemClnHeadbar(xchg, dbswzem, jref, ixWzemVLocale);
+	pnllist = new PnlWzemClnList(xchg, dbswzem, jref, ixWzemVLocale);
 
 	// IP constructor.cust2 --- INSERT
 
@@ -69,8 +74,8 @@ CrdWzemCln::CrdWzemCln(
 	changeStage(dbswzem, VecVSge::IDLE);
 
 	xchg->addClstn(VecWzemVCall::CALLWZEMREFPRESET, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
-	xchg->addClstn(VecWzemVCall::CALLWZEMSTATCHG, jref, Clstn::VecVJobmask::IMM, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 	xchg->addClstn(VecWzemVCall::CALLWZEMDLGCLOSE, jref, Clstn::VecVJobmask::IMM, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
+	xchg->addClstn(VecWzemVCall::CALLWZEMSTATCHG, jref, Clstn::VecVJobmask::IMM, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 
 	// IP constructor.cust3 --- INSERT
 
@@ -131,7 +136,9 @@ void CrdWzemCln::changeRef(
 		) {
 	set<uint> moditems;
 
-	if (ref != 0) xchg->triggerIxRefSrefIntvalCall(dbswzem, VecWzemVCall::CALLWZEMLOG, jref, VecWzemVPreset::VOID, 0, "CrdWzemCln", ref);
+	uint ixWzemVPreset = xchg->getIxPreset(VecWzemVPreset::PREWZEMIXPRE, jref);
+
+	if (ref != 0) xchg->triggerIxRefSrefIntvalCall(dbswzem, VecWzemVCall::CALLWZEMLOG, jref, ixWzemVPreset, xchg->getRefPreset(ixWzemVPreset, jref), "CrdWzemCln", ref);
 	xchg->addRefPreset(VecWzemVPreset::PREWZEMREFCLN, jref, ref);
 
 	if (pnllist) pnllist->updatePreset(dbswzem, VecWzemVPreset::PREWZEMREFCLN, jrefTrig, notif);
@@ -235,10 +242,10 @@ void CrdWzemCln::handleCall(
 		) {
 	if (call->ixVCall == VecWzemVCall::CALLWZEMREFPRESET) {
 		call->abort = handleCallWzemRefPreSet(dbswzem, call->jref, call->argInv.ix, call->argInv.ref);
-	} else if (call->ixVCall == VecWzemVCall::CALLWZEMSTATCHG) {
-		call->abort = handleCallWzemStatChg(dbswzem, call->jref);
 	} else if (call->ixVCall == VecWzemVCall::CALLWZEMDLGCLOSE) {
 		call->abort = handleCallWzemDlgClose(dbswzem, call->jref);
+	} else if (call->ixVCall == VecWzemVCall::CALLWZEMSTATCHG) {
+		call->abort = handleCallWzemStatChg(dbswzem, call->jref);
 	};
 };
 
@@ -259,21 +266,21 @@ bool CrdWzemCln::handleCallWzemRefPreSet(
 	return retval;
 };
 
-bool CrdWzemCln::handleCallWzemStatChg(
-			DbsWzem* dbswzem
-			, const ubigint jrefTrig
-		) {
-	bool retval = false;
-	if (jrefTrig == pnlrec->jref) if ((pnllist->statshr.ixWzemVExpstate == VecWzemVExpstate::REGD) && (pnlrec->statshr.ixWzemVExpstate == VecWzemVExpstate::REGD)) pnllist->minimize(dbswzem, true);
-	return retval;
-};
-
 bool CrdWzemCln::handleCallWzemDlgClose(
 			DbsWzem* dbswzem
 			, const ubigint jrefTrig
 		) {
 	bool retval = false;
 	// IP handleCallWzemDlgClose --- INSERT
+	return retval;
+};
+
+bool CrdWzemCln::handleCallWzemStatChg(
+			DbsWzem* dbswzem
+			, const ubigint jrefTrig
+		) {
+	bool retval = false;
+	if (jrefTrig == pnlrec->jref) if ((pnllist->statshr.ixWzemVExpstate == VecWzemVExpstate::REGD) && (pnlrec->statshr.ixWzemVExpstate == VecWzemVExpstate::REGD)) pnllist->minimize(dbswzem, true);
 	return retval;
 };
 

@@ -260,10 +260,13 @@ void PnlWzemCalDetail::handleDpchAppDoButJobViewClick(
 	ubigint jrefNew = 0;
 	string sref;
 
+	uint ixPre = xchg->getIxPreset(VecWzemVPreset::PREWZEMIXPRE, jref);
+	ubigint refPre = ((ixPre) ? xchg->getRefPreset(ixPre, jref) : 0);
+
 	if (statshr.ButJobViewAvail && statshr.ButJobViewActive) {
-		if (xchg->getIxPreset(VecWzemVPreset::PREWZEMIXCRDACCJOB, jref)) {
+		if (xchg->getIxPreset(VecWzemVPreset::PREWZEMIXCRDACCJOB, jref)) if (ixPre == VecWzemVPreset::PREWZEMREFPRD) {
 			sref = "CrdWzemJob";
-			xchg->triggerIxRefSrefIntvalToRefCall(dbswzem, VecWzemVCall::CALLWZEMCRDOPEN, jref, 0, 0, sref, recCal.refWzemMJob, jrefNew);
+			xchg->triggerIxRefSrefIntvalToRefCall(dbswzem, VecWzemVCall::CALLWZEMCRDOPEN, jref, ixPre, refPre, sref, recCal.refWzemMJob, jrefNew);
 		};
 
 		if (jrefNew == 0) *dpcheng = new DpchEngWzemConfirm(false, 0, "");

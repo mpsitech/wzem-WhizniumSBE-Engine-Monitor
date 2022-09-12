@@ -14,7 +14,7 @@ using namespace Xmlio;
 bool PnlWzemPrd1NEvent::evalButViewAvail(
 			DbsWzem* dbswzem
 		) {
-	// !sel()|(pre.ixCrdaccEvt())
+	// !sel()|(pre.ixCrdaccEvt()&pre.refPrd())
 
 	vector<bool> args;
 	bool a, b;
@@ -25,6 +25,11 @@ bool PnlWzemPrd1NEvent::evalButViewAvail(
 	args.push_back(!a);
 	a = false; a = (xchg->getIxPreset(VecWzemVPreset::PREWZEMIXCRDACCEVT, jref) != 0);
 	args.push_back(a);
+	a = false; a = (xchg->getRefPreset(VecWzemVPreset::PREWZEMREFPRD, jref) != 0);
+	args.push_back(a);
+	b = args.back(); args.pop_back();
+	a = args.back(); args.pop_back();
+	args.push_back(a && b);
 	b = args.back(); args.pop_back();
 	a = args.back(); args.pop_back();
 	args.push_back(a || b);
@@ -49,13 +54,18 @@ bool PnlWzemPrd1NEvent::evalButViewActive(
 bool PnlWzemPrd1NEvent::evalButNewAvail(
 			DbsWzem* dbswzem
 		) {
-	// pre.ixCrdaccEvtIncl(edit)
+	// pre.ixCrdaccEvtIncl(edit)&pre.refPrd()
 
 	vector<bool> args;
-	bool a;
+	bool a, b;
 
 	a = false; a = (xchg->getIxPreset(VecWzemVPreset::PREWZEMIXCRDACCEVT, jref) & VecWzemWAccess::EDIT);
 	args.push_back(a);
+	a = false; a = (xchg->getRefPreset(VecWzemVPreset::PREWZEMREFPRD, jref) != 0);
+	args.push_back(a);
+	b = args.back(); args.pop_back();
+	a = args.back(); args.pop_back();
+	args.push_back(a && b);
 
 	return(args.back());
 };

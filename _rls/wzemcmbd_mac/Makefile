@@ -2,7 +2,7 @@
 # make file for Wzem combined daemon, release wzemcmbd_mac
 # copyright: (C) 2016-2020 MPSI Technologies GmbH
 # author: Alexander Wirthmueller (auto-generation)
-# date created: 3 May 2021
+# date created: 11 Sep 2022
 # IP header --- ABOVE
 
 include Makefile.inc
@@ -15,7 +15,7 @@ LINKFLAGS = -s
 
 INCPATH = -I$(BUILDROOT)/dbswzem -I$(BUILDROOT)/wzemcmbd/VecWzem -I$(BUILDROOT)/wzemcmbd/IexWzem -I$(BUILDROOT)/wzemcmbd
 INCPATH += -I$(BUILDROOT)/wzemcmbd/CrdWzemUsg -I$(BUILDROOT)/wzemcmbd/CrdWzemUsr -I$(BUILDROOT)/wzemcmbd/CrdWzemPrs -I$(BUILDROOT)/wzemcmbd/CrdWzemNav -I$(BUILDROOT)/wzemcmbd/CrdWzemPrd -I$(BUILDROOT)/wzemcmbd/CrdWzemEvt -I$(BUILDROOT)/wzemcmbd/CrdWzemJob -I$(BUILDROOT)/wzemcmbd/CrdWzemCal -I$(BUILDROOT)/wzemcmbd/CrdWzemCln -I$(BUILDROOT)/wzemcmbd/CrdWzemOpx -I$(BUILDROOT)/wzemcmbd/CrdWzemPst -I$(BUILDROOT)/wzemcmbd/CrdWzemNde
-INCPATH += -I${WHIZSDKROOT}/build -I/usr/local/include -I/usr/local/include/libxml2 -I/usr/local/mysql/include -I/usr/local/opt/sqlite/include
+INCPATH += -I${WHIZSDKROOT}/build -I/opt/homebrew/include -I/opt/homebrew/opt/libmicrohttpd/include -I/opt/homebrew/opt/libxml2/include -I/opt/homebrew/opt/sqlite3/include -I/usr/local/mysql/include
 
 PCHS = Wzemcmbd.h.gch
 
@@ -25,7 +25,7 @@ OBJS += Wzemcmbd_exe.o
 
 LIBPATH = -L$(LIBROOT)
 LIBPATH += -L$(LIBROOT)/wzemcmbd
-LIBPATH += -L${WHIZSDKROOT}/lib -L/usr/local/lib -L/usr/local/mysql/lib -L/usr/local/opt/sqlite/lib
+LIBPATH += -L${WHIZSDKROOT}/lib -L/opt/homebrew/lib -L/opt/homebrew/opt/libmicrohttpd/lib -L/opt/homebrew/opt/libxml2/include -L/opt/homebrew/opt/sqlite3/lib -L/usr/local/mysql/lib
 
 LIBS = -lcrdwzemusg -lcrdwzemusr -lcrdwzemprs -lcrdwzemnav -lcrdwzemprd -lcrdwzemevt -lcrdwzemjob -lcrdwzemcal -lcrdwzemcln -lcrdwzemopx -lcrdwzempst -lcrdwzemnde
 LIBS += -liexwzem -lvecwzem -ldbswzem
@@ -48,7 +48,6 @@ all:	$(PCHS) $(EXE)
 
 $(EXE):	$(OBJS)
 	$(LINK) $(LINKFLAGS) $(OBJS) $(LIBPATH) $(LIBS) -o $(EXE)
-	rm -f *.o
 
 pch:	$(PCHS)
 

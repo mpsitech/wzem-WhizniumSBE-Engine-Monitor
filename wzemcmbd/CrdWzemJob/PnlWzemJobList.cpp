@@ -107,6 +107,16 @@ void PnlWzemJobList::refresh(
 	// continf
 	continf.numFCsiQst = feedFCsiQst.getNumByIx(qry->ixWzemVQrystate);
 
+	uint ixPre = xchg->getIxPreset(VecWzemVPreset::PREWZEMIXPRE, jref);
+	if ((ixPre != 0) && (ixPre != VecWzemVPreset::VOID)) {
+		continf.TxtFor = VecWzemVPreset::getTitle(ixPre, ixWzemVLocale);
+
+		if (ixPre == VecWzemVPreset::PREWZEMREFPRD) continf.TxtPre = StubWzem::getStubPrdStd(dbswzem, xchg->getRefPreset(ixPre, jref), ixWzemVLocale, Stub::VecVNonetype::FULL);
+
+	} else {
+		continf.TxtFor = "";
+	};
+
 	// contiac
 	contiac.numFTos = xchg->getIxPreset(VecWzemVPreset::PREWZEMIXORD, jref);
 

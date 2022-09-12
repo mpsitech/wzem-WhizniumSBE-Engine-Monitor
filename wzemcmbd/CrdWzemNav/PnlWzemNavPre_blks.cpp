@@ -223,15 +223,14 @@ string PnlWzemNavPre::DpchAppDo::getSrefsMask() {
 };
 
 void PnlWzemNavPre::DpchAppDo::readJSON(
-			Json::Value& sup
+			const Json::Value& sup
 			, bool addbasetag
 		) {
 	clear();
 
 	bool basefound;
 
-	Json::Value& me = sup;
-	if (addbasetag) me = sup["DpchAppWzemNavPreDo"];
+	const Json::Value& me = [&]{if (!addbasetag) return sup; return sup["DpchAppWzemNavPreDo"];}();
 
 	basefound = (me != Json::nullValue);
 

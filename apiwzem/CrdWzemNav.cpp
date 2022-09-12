@@ -283,12 +283,19 @@ CrdWzemNav::StatShr::StatShr(
 			, const bool MspCrd2Avail
 			, const bool MitCrdPrdAvail
 			, const bool MitCrdEvtAvail
+			, const bool MitCrdEvtActive
 			, const bool MitCrdJobAvail
+			, const bool MitCrdJobActive
 			, const bool MitCrdCalAvail
+			, const bool MitCrdCalActive
 			, const bool MitCrdClnAvail
+			, const bool MitCrdClnActive
 			, const bool MitCrdOpxAvail
+			, const bool MitCrdOpxActive
 			, const bool MitCrdPstAvail
+			, const bool MitCrdPstActive
 			, const bool MitCrdNdeAvail
+			, const bool MitCrdNdeActive
 			, const bool MspApp2Avail
 			, const bool MitAppLoiAvail
 		) :
@@ -310,16 +317,23 @@ CrdWzemNav::StatShr::StatShr(
 	this->MspCrd2Avail = MspCrd2Avail;
 	this->MitCrdPrdAvail = MitCrdPrdAvail;
 	this->MitCrdEvtAvail = MitCrdEvtAvail;
+	this->MitCrdEvtActive = MitCrdEvtActive;
 	this->MitCrdJobAvail = MitCrdJobAvail;
+	this->MitCrdJobActive = MitCrdJobActive;
 	this->MitCrdCalAvail = MitCrdCalAvail;
+	this->MitCrdCalActive = MitCrdCalActive;
 	this->MitCrdClnAvail = MitCrdClnAvail;
+	this->MitCrdClnActive = MitCrdClnActive;
 	this->MitCrdOpxAvail = MitCrdOpxAvail;
+	this->MitCrdOpxActive = MitCrdOpxActive;
 	this->MitCrdPstAvail = MitCrdPstAvail;
+	this->MitCrdPstActive = MitCrdPstActive;
 	this->MitCrdNdeAvail = MitCrdNdeAvail;
+	this->MitCrdNdeActive = MitCrdNdeActive;
 	this->MspApp2Avail = MspApp2Avail;
 	this->MitAppLoiAvail = MitAppLoiAvail;
 
-	mask = {SCRJREFDLGLOAINI, SCRJREFHEADBAR, SCRJREFPRE, PNLPREAVAIL, SCRJREFADMIN, PNLADMINAVAIL, SCRJREFMON, PNLMONAVAIL, MITSESSPSAVAIL, MSPCRD1AVAIL, MITCRDUSGAVAIL, MITCRDUSRAVAIL, MITCRDPRSAVAIL, MSPCRD2AVAIL, MITCRDPRDAVAIL, MITCRDEVTAVAIL, MITCRDJOBAVAIL, MITCRDCALAVAIL, MITCRDCLNAVAIL, MITCRDOPXAVAIL, MITCRDPSTAVAIL, MITCRDNDEAVAIL, MSPAPP2AVAIL, MITAPPLOIAVAIL};
+	mask = {SCRJREFDLGLOAINI, SCRJREFHEADBAR, SCRJREFPRE, PNLPREAVAIL, SCRJREFADMIN, PNLADMINAVAIL, SCRJREFMON, PNLMONAVAIL, MITSESSPSAVAIL, MSPCRD1AVAIL, MITCRDUSGAVAIL, MITCRDUSRAVAIL, MITCRDPRSAVAIL, MSPCRD2AVAIL, MITCRDPRDAVAIL, MITCRDEVTAVAIL, MITCRDEVTACTIVE, MITCRDJOBAVAIL, MITCRDJOBACTIVE, MITCRDCALAVAIL, MITCRDCALACTIVE, MITCRDCLNAVAIL, MITCRDCLNACTIVE, MITCRDOPXAVAIL, MITCRDOPXACTIVE, MITCRDPSTAVAIL, MITCRDPSTACTIVE, MITCRDNDEAVAIL, MITCRDNDEACTIVE, MSPAPP2AVAIL, MITAPPLOIAVAIL};
 };
 
 bool CrdWzemNav::StatShr::readXML(
@@ -355,12 +369,19 @@ bool CrdWzemNav::StatShr::readXML(
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "MspCrd2Avail", MspCrd2Avail)) add(MSPCRD2AVAIL);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "MitCrdPrdAvail", MitCrdPrdAvail)) add(MITCRDPRDAVAIL);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "MitCrdEvtAvail", MitCrdEvtAvail)) add(MITCRDEVTAVAIL);
+		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "MitCrdEvtActive", MitCrdEvtActive)) add(MITCRDEVTACTIVE);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "MitCrdJobAvail", MitCrdJobAvail)) add(MITCRDJOBAVAIL);
+		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "MitCrdJobActive", MitCrdJobActive)) add(MITCRDJOBACTIVE);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "MitCrdCalAvail", MitCrdCalAvail)) add(MITCRDCALAVAIL);
+		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "MitCrdCalActive", MitCrdCalActive)) add(MITCRDCALACTIVE);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "MitCrdClnAvail", MitCrdClnAvail)) add(MITCRDCLNAVAIL);
+		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "MitCrdClnActive", MitCrdClnActive)) add(MITCRDCLNACTIVE);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "MitCrdOpxAvail", MitCrdOpxAvail)) add(MITCRDOPXAVAIL);
+		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "MitCrdOpxActive", MitCrdOpxActive)) add(MITCRDOPXACTIVE);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "MitCrdPstAvail", MitCrdPstAvail)) add(MITCRDPSTAVAIL);
+		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "MitCrdPstActive", MitCrdPstActive)) add(MITCRDPSTACTIVE);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "MitCrdNdeAvail", MitCrdNdeAvail)) add(MITCRDNDEAVAIL);
+		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "MitCrdNdeActive", MitCrdNdeActive)) add(MITCRDNDEACTIVE);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "MspApp2Avail", MspApp2Avail)) add(MSPAPP2AVAIL);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "MitAppLoiAvail", MitAppLoiAvail)) add(MITAPPLOIAVAIL);
 	};
@@ -389,12 +410,19 @@ set<uint> CrdWzemNav::StatShr::comm(
 	if (MspCrd2Avail == comp->MspCrd2Avail) insert(items, MSPCRD2AVAIL);
 	if (MitCrdPrdAvail == comp->MitCrdPrdAvail) insert(items, MITCRDPRDAVAIL);
 	if (MitCrdEvtAvail == comp->MitCrdEvtAvail) insert(items, MITCRDEVTAVAIL);
+	if (MitCrdEvtActive == comp->MitCrdEvtActive) insert(items, MITCRDEVTACTIVE);
 	if (MitCrdJobAvail == comp->MitCrdJobAvail) insert(items, MITCRDJOBAVAIL);
+	if (MitCrdJobActive == comp->MitCrdJobActive) insert(items, MITCRDJOBACTIVE);
 	if (MitCrdCalAvail == comp->MitCrdCalAvail) insert(items, MITCRDCALAVAIL);
+	if (MitCrdCalActive == comp->MitCrdCalActive) insert(items, MITCRDCALACTIVE);
 	if (MitCrdClnAvail == comp->MitCrdClnAvail) insert(items, MITCRDCLNAVAIL);
+	if (MitCrdClnActive == comp->MitCrdClnActive) insert(items, MITCRDCLNACTIVE);
 	if (MitCrdOpxAvail == comp->MitCrdOpxAvail) insert(items, MITCRDOPXAVAIL);
+	if (MitCrdOpxActive == comp->MitCrdOpxActive) insert(items, MITCRDOPXACTIVE);
 	if (MitCrdPstAvail == comp->MitCrdPstAvail) insert(items, MITCRDPSTAVAIL);
+	if (MitCrdPstActive == comp->MitCrdPstActive) insert(items, MITCRDPSTACTIVE);
 	if (MitCrdNdeAvail == comp->MitCrdNdeAvail) insert(items, MITCRDNDEAVAIL);
+	if (MitCrdNdeActive == comp->MitCrdNdeActive) insert(items, MITCRDNDEACTIVE);
 	if (MspApp2Avail == comp->MspApp2Avail) insert(items, MSPAPP2AVAIL);
 	if (MitAppLoiAvail == comp->MitAppLoiAvail) insert(items, MITAPPLOIAVAIL);
 
@@ -409,7 +437,7 @@ set<uint> CrdWzemNav::StatShr::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {SCRJREFDLGLOAINI, SCRJREFHEADBAR, SCRJREFPRE, PNLPREAVAIL, SCRJREFADMIN, PNLADMINAVAIL, SCRJREFMON, PNLMONAVAIL, MITSESSPSAVAIL, MSPCRD1AVAIL, MITCRDUSGAVAIL, MITCRDUSRAVAIL, MITCRDPRSAVAIL, MSPCRD2AVAIL, MITCRDPRDAVAIL, MITCRDEVTAVAIL, MITCRDJOBAVAIL, MITCRDCALAVAIL, MITCRDCLNAVAIL, MITCRDOPXAVAIL, MITCRDPSTAVAIL, MITCRDNDEAVAIL, MSPAPP2AVAIL, MITAPPLOIAVAIL};
+	diffitems = {SCRJREFDLGLOAINI, SCRJREFHEADBAR, SCRJREFPRE, PNLPREAVAIL, SCRJREFADMIN, PNLADMINAVAIL, SCRJREFMON, PNLMONAVAIL, MITSESSPSAVAIL, MSPCRD1AVAIL, MITCRDUSGAVAIL, MITCRDUSRAVAIL, MITCRDPRSAVAIL, MSPCRD2AVAIL, MITCRDPRDAVAIL, MITCRDEVTAVAIL, MITCRDEVTACTIVE, MITCRDJOBAVAIL, MITCRDJOBACTIVE, MITCRDCALAVAIL, MITCRDCALACTIVE, MITCRDCLNAVAIL, MITCRDCLNACTIVE, MITCRDOPXAVAIL, MITCRDOPXACTIVE, MITCRDPSTAVAIL, MITCRDPSTACTIVE, MITCRDNDEAVAIL, MITCRDNDEACTIVE, MSPAPP2AVAIL, MITAPPLOIAVAIL};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);

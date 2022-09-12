@@ -446,10 +446,13 @@ void PnlWzemEvtDetail::handleDpchAppDoButCalViewClick(
 	ubigint jrefNew = 0;
 	string sref;
 
+	uint ixPre = xchg->getIxPreset(VecWzemVPreset::PREWZEMIXPRE, jref);
+	ubigint refPre = ((ixPre) ? xchg->getRefPreset(ixPre, jref) : 0);
+
 	if (statshr.ButCalViewAvail && statshr.ButCalViewActive) {
-		if (xchg->getIxPreset(VecWzemVPreset::PREWZEMIXCRDACCCAL, jref)) {
+		if (xchg->getIxPreset(VecWzemVPreset::PREWZEMIXCRDACCCAL, jref)) if (ixPre == VecWzemVPreset::PREWZEMREFPRD) {
 			sref = "CrdWzemCal";
-			xchg->triggerIxRefSrefIntvalToRefCall(dbswzem, VecWzemVCall::CALLWZEMCRDOPEN, jref, 0, 0, sref, recEvt.refWzemMCall, jrefNew);
+			xchg->triggerIxRefSrefIntvalToRefCall(dbswzem, VecWzemVCall::CALLWZEMCRDOPEN, jref, ixPre, refPre, sref, recEvt.refWzemMCall, jrefNew);
 		};
 
 		if (jrefNew == 0) *dpcheng = new DpchEngWzemConfirm(false, 0, "");
@@ -464,10 +467,13 @@ void PnlWzemEvtDetail::handleDpchAppDoButClnViewClick(
 	ubigint jrefNew = 0;
 	string sref;
 
+	uint ixPre = xchg->getIxPreset(VecWzemVPreset::PREWZEMIXPRE, jref);
+	ubigint refPre = ((ixPre) ? xchg->getRefPreset(ixPre, jref) : 0);
+
 	if (statshr.ButClnViewAvail && statshr.ButClnViewActive) {
-		if (xchg->getIxPreset(VecWzemVPreset::PREWZEMIXCRDACCCLN, jref)) {
+		if (xchg->getIxPreset(VecWzemVPreset::PREWZEMIXCRDACCCLN, jref)) if (ixPre == VecWzemVPreset::PREWZEMREFPRD) {
 			sref = "CrdWzemCln";
-			xchg->triggerIxRefSrefIntvalToRefCall(dbswzem, VecWzemVCall::CALLWZEMCRDOPEN, jref, 0, 0, sref, recEvt.refWzemMClstn, jrefNew);
+			xchg->triggerIxRefSrefIntvalToRefCall(dbswzem, VecWzemVCall::CALLWZEMCRDOPEN, jref, ixPre, refPre, sref, recEvt.refWzemMClstn, jrefNew);
 		};
 
 		if (jrefNew == 0) *dpcheng = new DpchEngWzemConfirm(false, 0, "");
@@ -482,10 +488,13 @@ void PnlWzemEvtDetail::handleDpchAppDoButJobViewClick(
 	ubigint jrefNew = 0;
 	string sref;
 
+	uint ixPre = xchg->getIxPreset(VecWzemVPreset::PREWZEMIXPRE, jref);
+	ubigint refPre = ((ixPre) ? xchg->getRefPreset(ixPre, jref) : 0);
+
 	if (statshr.ButJobViewAvail && statshr.ButJobViewActive) {
-		if (xchg->getIxPreset(VecWzemVPreset::PREWZEMIXCRDACCJOB, jref)) {
+		if (xchg->getIxPreset(VecWzemVPreset::PREWZEMIXCRDACCJOB, jref)) if (ixPre == VecWzemVPreset::PREWZEMREFPRD) {
 			sref = "CrdWzemJob";
-			xchg->triggerIxRefSrefIntvalToRefCall(dbswzem, VecWzemVCall::CALLWZEMCRDOPEN, jref, 0, 0, sref, recEvt.refWzemMJob, jrefNew);
+			xchg->triggerIxRefSrefIntvalToRefCall(dbswzem, VecWzemVCall::CALLWZEMCRDOPEN, jref, ixPre, refPre, sref, recEvt.refWzemMJob, jrefNew);
 		};
 
 		if (jrefNew == 0) *dpcheng = new DpchEngWzemConfirm(false, 0, "");
@@ -500,10 +509,13 @@ void PnlWzemEvtDetail::handleDpchAppDoButNdeViewClick(
 	ubigint jrefNew = 0;
 	string sref;
 
+	uint ixPre = xchg->getIxPreset(VecWzemVPreset::PREWZEMIXPRE, jref);
+	ubigint refPre = ((ixPre) ? xchg->getRefPreset(ixPre, jref) : 0);
+
 	if (statshr.ButNdeViewAvail && statshr.ButNdeViewActive) {
-		if (xchg->getIxPreset(VecWzemVPreset::PREWZEMIXCRDACCNDE, jref)) {
+		if (xchg->getIxPreset(VecWzemVPreset::PREWZEMIXCRDACCNDE, jref)) if (ixPre == VecWzemVPreset::PREWZEMREFPRD) {
 			sref = "CrdWzemNde";
-			xchg->triggerIxRefSrefIntvalToRefCall(dbswzem, VecWzemVCall::CALLWZEMCRDOPEN, jref, 0, 0, sref, recEvt.refWzemMNode, jrefNew);
+			xchg->triggerIxRefSrefIntvalToRefCall(dbswzem, VecWzemVCall::CALLWZEMCRDOPEN, jref, ixPre, refPre, sref, recEvt.refWzemMNode, jrefNew);
 		};
 
 		if (jrefNew == 0) *dpcheng = new DpchEngWzemConfirm(false, 0, "");
@@ -518,10 +530,13 @@ void PnlWzemEvtDetail::handleDpchAppDoButOpxViewClick(
 	ubigint jrefNew = 0;
 	string sref;
 
+	uint ixPre = xchg->getIxPreset(VecWzemVPreset::PREWZEMIXPRE, jref);
+	ubigint refPre = ((ixPre) ? xchg->getRefPreset(ixPre, jref) : 0);
+
 	if (statshr.ButOpxViewAvail && statshr.ButOpxViewActive) {
-		if (xchg->getIxPreset(VecWzemVPreset::PREWZEMIXCRDACCOPX, jref)) {
+		if (xchg->getIxPreset(VecWzemVPreset::PREWZEMIXCRDACCOPX, jref)) if (ixPre == VecWzemVPreset::PREWZEMREFPRD) {
 			sref = "CrdWzemOpx";
-			xchg->triggerIxRefSrefIntvalToRefCall(dbswzem, VecWzemVCall::CALLWZEMCRDOPEN, jref, 0, 0, sref, recEvt.refWzemMOp, jrefNew);
+			xchg->triggerIxRefSrefIntvalToRefCall(dbswzem, VecWzemVCall::CALLWZEMCRDOPEN, jref, ixPre, refPre, sref, recEvt.refWzemMOp, jrefNew);
 		};
 
 		if (jrefNew == 0) *dpcheng = new DpchEngWzemConfirm(false, 0, "");
@@ -536,10 +551,13 @@ void PnlWzemEvtDetail::handleDpchAppDoButPstViewClick(
 	ubigint jrefNew = 0;
 	string sref;
 
+	uint ixPre = xchg->getIxPreset(VecWzemVPreset::PREWZEMIXPRE, jref);
+	ubigint refPre = ((ixPre) ? xchg->getRefPreset(ixPre, jref) : 0);
+
 	if (statshr.ButPstViewAvail && statshr.ButPstViewActive) {
-		if (xchg->getIxPreset(VecWzemVPreset::PREWZEMIXCRDACCPST, jref)) {
+		if (xchg->getIxPreset(VecWzemVPreset::PREWZEMIXCRDACCPST, jref)) if (ixPre == VecWzemVPreset::PREWZEMREFPRD) {
 			sref = "CrdWzemPst";
-			xchg->triggerIxRefSrefIntvalToRefCall(dbswzem, VecWzemVCall::CALLWZEMCRDOPEN, jref, 0, 0, sref, recEvt.refWzemMPreset, jrefNew);
+			xchg->triggerIxRefSrefIntvalToRefCall(dbswzem, VecWzemVCall::CALLWZEMCRDOPEN, jref, ixPre, refPre, sref, recEvt.refWzemMPreset, jrefNew);
 		};
 
 		if (jrefNew == 0) *dpcheng = new DpchEngWzemConfirm(false, 0, "");

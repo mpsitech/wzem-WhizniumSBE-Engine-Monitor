@@ -149,6 +149,7 @@ void PnlWzemNavMon::refreshLstEvt(
 
 	statshr.LstEvtAvail = evalLstEvtAvail(dbswzem);
 	statshr.ButEvtViewActive = evalButEvtViewActive(dbswzem);
+	statshr.ButEvtNewcrdActive = evalButEvtNewcrdActive(dbswzem);
 
 	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
 };
@@ -189,6 +190,7 @@ void PnlWzemNavMon::refreshLstJob(
 
 	statshr.LstJobAvail = evalLstJobAvail(dbswzem);
 	statshr.ButJobViewActive = evalButJobViewActive(dbswzem);
+	statshr.ButJobNewcrdActive = evalButJobNewcrdActive(dbswzem);
 
 	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
 };
@@ -229,6 +231,7 @@ void PnlWzemNavMon::refreshLstCal(
 
 	statshr.LstCalAvail = evalLstCalAvail(dbswzem);
 	statshr.ButCalViewActive = evalButCalViewActive(dbswzem);
+	statshr.ButCalNewcrdActive = evalButCalNewcrdActive(dbswzem);
 
 	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
 };
@@ -269,6 +272,7 @@ void PnlWzemNavMon::refreshLstCln(
 
 	statshr.LstClnAvail = evalLstClnAvail(dbswzem);
 	statshr.ButClnViewActive = evalButClnViewActive(dbswzem);
+	statshr.ButClnNewcrdActive = evalButClnNewcrdActive(dbswzem);
 
 	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
 };
@@ -309,6 +313,7 @@ void PnlWzemNavMon::refreshLstOpx(
 
 	statshr.LstOpxAvail = evalLstOpxAvail(dbswzem);
 	statshr.ButOpxViewActive = evalButOpxViewActive(dbswzem);
+	statshr.ButOpxNewcrdActive = evalButOpxNewcrdActive(dbswzem);
 
 	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
 };
@@ -349,6 +354,7 @@ void PnlWzemNavMon::refreshLstPst(
 
 	statshr.LstPstAvail = evalLstPstAvail(dbswzem);
 	statshr.ButPstViewActive = evalButPstViewActive(dbswzem);
+	statshr.ButPstNewcrdActive = evalButPstNewcrdActive(dbswzem);
 
 	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
 };
@@ -389,6 +395,7 @@ void PnlWzemNavMon::refreshLstNde(
 
 	statshr.LstNdeAvail = evalLstNdeAvail(dbswzem);
 	statshr.ButNdeViewActive = evalButNdeViewActive(dbswzem);
+	statshr.ButNdeNewcrdActive = evalButNdeNewcrdActive(dbswzem);
 
 	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
 };
@@ -646,10 +653,12 @@ void PnlWzemNavMon::handleDpchAppDoButEvtNewcrdClick(
 		) {
 	ubigint jrefNew = 0;
 
-	xchg->triggerIxRefSrefIntvalToRefCall(dbswzem, VecWzemVCall::CALLWZEMCRDOPEN, jref, 0, 0, "CrdWzemEvt", 0, jrefNew);
+	if (statshr.ButEvtNewcrdActive) {
+		xchg->triggerIxRefSrefIntvalToRefCall(dbswzem, VecWzemVCall::CALLWZEMCRDOPEN, jref, 0, 0, "CrdWzemEvt", 0, jrefNew);
 
-	if (jrefNew == 0) *dpcheng = new DpchEngWzemConfirm(false, 0, "");
-	else *dpcheng = new DpchEngWzemConfirm(true, jrefNew, "CrdWzemEvt");
+		if (jrefNew == 0) *dpcheng = new DpchEngWzemConfirm(false, 0, "");
+		else *dpcheng = new DpchEngWzemConfirm(true, jrefNew, "CrdWzemEvt");
+	};
 };
 
 void PnlWzemNavMon::handleDpchAppDoButJobViewClick(
@@ -676,10 +685,12 @@ void PnlWzemNavMon::handleDpchAppDoButJobNewcrdClick(
 		) {
 	ubigint jrefNew = 0;
 
-	xchg->triggerIxRefSrefIntvalToRefCall(dbswzem, VecWzemVCall::CALLWZEMCRDOPEN, jref, 0, 0, "CrdWzemJob", 0, jrefNew);
+	if (statshr.ButJobNewcrdActive) {
+		xchg->triggerIxRefSrefIntvalToRefCall(dbswzem, VecWzemVCall::CALLWZEMCRDOPEN, jref, 0, 0, "CrdWzemJob", 0, jrefNew);
 
-	if (jrefNew == 0) *dpcheng = new DpchEngWzemConfirm(false, 0, "");
-	else *dpcheng = new DpchEngWzemConfirm(true, jrefNew, "CrdWzemJob");
+		if (jrefNew == 0) *dpcheng = new DpchEngWzemConfirm(false, 0, "");
+		else *dpcheng = new DpchEngWzemConfirm(true, jrefNew, "CrdWzemJob");
+	};
 };
 
 void PnlWzemNavMon::handleDpchAppDoButCalViewClick(
@@ -706,10 +717,12 @@ void PnlWzemNavMon::handleDpchAppDoButCalNewcrdClick(
 		) {
 	ubigint jrefNew = 0;
 
-	xchg->triggerIxRefSrefIntvalToRefCall(dbswzem, VecWzemVCall::CALLWZEMCRDOPEN, jref, 0, 0, "CrdWzemCal", 0, jrefNew);
+	if (statshr.ButCalNewcrdActive) {
+		xchg->triggerIxRefSrefIntvalToRefCall(dbswzem, VecWzemVCall::CALLWZEMCRDOPEN, jref, 0, 0, "CrdWzemCal", 0, jrefNew);
 
-	if (jrefNew == 0) *dpcheng = new DpchEngWzemConfirm(false, 0, "");
-	else *dpcheng = new DpchEngWzemConfirm(true, jrefNew, "CrdWzemCal");
+		if (jrefNew == 0) *dpcheng = new DpchEngWzemConfirm(false, 0, "");
+		else *dpcheng = new DpchEngWzemConfirm(true, jrefNew, "CrdWzemCal");
+	};
 };
 
 void PnlWzemNavMon::handleDpchAppDoButClnViewClick(
@@ -736,10 +749,12 @@ void PnlWzemNavMon::handleDpchAppDoButClnNewcrdClick(
 		) {
 	ubigint jrefNew = 0;
 
-	xchg->triggerIxRefSrefIntvalToRefCall(dbswzem, VecWzemVCall::CALLWZEMCRDOPEN, jref, 0, 0, "CrdWzemCln", 0, jrefNew);
+	if (statshr.ButClnNewcrdActive) {
+		xchg->triggerIxRefSrefIntvalToRefCall(dbswzem, VecWzemVCall::CALLWZEMCRDOPEN, jref, 0, 0, "CrdWzemCln", 0, jrefNew);
 
-	if (jrefNew == 0) *dpcheng = new DpchEngWzemConfirm(false, 0, "");
-	else *dpcheng = new DpchEngWzemConfirm(true, jrefNew, "CrdWzemCln");
+		if (jrefNew == 0) *dpcheng = new DpchEngWzemConfirm(false, 0, "");
+		else *dpcheng = new DpchEngWzemConfirm(true, jrefNew, "CrdWzemCln");
+	};
 };
 
 void PnlWzemNavMon::handleDpchAppDoButOpxViewClick(
@@ -766,10 +781,12 @@ void PnlWzemNavMon::handleDpchAppDoButOpxNewcrdClick(
 		) {
 	ubigint jrefNew = 0;
 
-	xchg->triggerIxRefSrefIntvalToRefCall(dbswzem, VecWzemVCall::CALLWZEMCRDOPEN, jref, 0, 0, "CrdWzemOpx", 0, jrefNew);
+	if (statshr.ButOpxNewcrdActive) {
+		xchg->triggerIxRefSrefIntvalToRefCall(dbswzem, VecWzemVCall::CALLWZEMCRDOPEN, jref, 0, 0, "CrdWzemOpx", 0, jrefNew);
 
-	if (jrefNew == 0) *dpcheng = new DpchEngWzemConfirm(false, 0, "");
-	else *dpcheng = new DpchEngWzemConfirm(true, jrefNew, "CrdWzemOpx");
+		if (jrefNew == 0) *dpcheng = new DpchEngWzemConfirm(false, 0, "");
+		else *dpcheng = new DpchEngWzemConfirm(true, jrefNew, "CrdWzemOpx");
+	};
 };
 
 void PnlWzemNavMon::handleDpchAppDoButPstViewClick(
@@ -796,10 +813,12 @@ void PnlWzemNavMon::handleDpchAppDoButPstNewcrdClick(
 		) {
 	ubigint jrefNew = 0;
 
-	xchg->triggerIxRefSrefIntvalToRefCall(dbswzem, VecWzemVCall::CALLWZEMCRDOPEN, jref, 0, 0, "CrdWzemPst", 0, jrefNew);
+	if (statshr.ButPstNewcrdActive) {
+		xchg->triggerIxRefSrefIntvalToRefCall(dbswzem, VecWzemVCall::CALLWZEMCRDOPEN, jref, 0, 0, "CrdWzemPst", 0, jrefNew);
 
-	if (jrefNew == 0) *dpcheng = new DpchEngWzemConfirm(false, 0, "");
-	else *dpcheng = new DpchEngWzemConfirm(true, jrefNew, "CrdWzemPst");
+		if (jrefNew == 0) *dpcheng = new DpchEngWzemConfirm(false, 0, "");
+		else *dpcheng = new DpchEngWzemConfirm(true, jrefNew, "CrdWzemPst");
+	};
 };
 
 void PnlWzemNavMon::handleDpchAppDoButNdeViewClick(
@@ -826,10 +845,12 @@ void PnlWzemNavMon::handleDpchAppDoButNdeNewcrdClick(
 		) {
 	ubigint jrefNew = 0;
 
-	xchg->triggerIxRefSrefIntvalToRefCall(dbswzem, VecWzemVCall::CALLWZEMCRDOPEN, jref, 0, 0, "CrdWzemNde", 0, jrefNew);
+	if (statshr.ButNdeNewcrdActive) {
+		xchg->triggerIxRefSrefIntvalToRefCall(dbswzem, VecWzemVCall::CALLWZEMCRDOPEN, jref, 0, 0, "CrdWzemNde", 0, jrefNew);
 
-	if (jrefNew == 0) *dpcheng = new DpchEngWzemConfirm(false, 0, "");
-	else *dpcheng = new DpchEngWzemConfirm(true, jrefNew, "CrdWzemNde");
+		if (jrefNew == 0) *dpcheng = new DpchEngWzemConfirm(false, 0, "");
+		else *dpcheng = new DpchEngWzemConfirm(true, jrefNew, "CrdWzemNde");
+	};
 };
 
 void PnlWzemNavMon::handleCall(

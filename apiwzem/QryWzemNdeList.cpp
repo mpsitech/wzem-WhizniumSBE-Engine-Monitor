@@ -22,8 +22,8 @@ uint QryWzemNdeList::VecVOrd::getIx(
 		) {
 	string s = StrMod::lc(sref);
 
-	if (s == "sto") return STO;
 	if (s == "sta") return STA;
+	if (s == "sto") return STO;
 	if (s == "prd") return PRD;
 
 	return(0);
@@ -32,8 +32,8 @@ uint QryWzemNdeList::VecVOrd::getIx(
 string QryWzemNdeList::VecVOrd::getSref(
 			const uint ix
 		) {
-	if (ix == STO) return("sto");
 	if (ix == STA) return("sta");
+	if (ix == STO) return("sto");
 	if (ix == PRD) return("prd");
 
 	return("");

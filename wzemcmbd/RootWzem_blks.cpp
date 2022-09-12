@@ -38,15 +38,14 @@ string RootWzem::DpchAppLogin::getSrefsMask() {
 };
 
 void RootWzem::DpchAppLogin::readJSON(
-			Json::Value& sup
+			const Json::Value& sup
 			, bool addbasetag
 		) {
 	clear();
 
 	bool basefound;
 
-	Json::Value& me = sup;
-	if (addbasetag) me = sup["DpchAppRootWzemLogin"];
+	const Json::Value& me = [&]{if (!addbasetag) return sup; return sup["DpchAppRootWzemLogin"];}();
 
 	basefound = (me != Json::nullValue);
 

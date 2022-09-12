@@ -62,15 +62,14 @@ PnlWzemNavAdmin::ContIac::ContIac(
 };
 
 bool PnlWzemNavAdmin::ContIac::readJSON(
-			Json::Value& sup
+			const Json::Value& sup
 			, bool addbasetag
 		) {
 	clear();
 
 	bool basefound;
 
-	Json::Value& me = sup;
-	if (addbasetag) me = sup["ContIacWzemNavAdmin"];
+	const Json::Value& me = [&]{if (!addbasetag) return sup; return sup["ContIacWzemNavAdmin"];}();
 
 	basefound = (me != Json::nullValue);
 
@@ -377,15 +376,14 @@ string PnlWzemNavAdmin::DpchAppData::getSrefsMask() {
 };
 
 void PnlWzemNavAdmin::DpchAppData::readJSON(
-			Json::Value& sup
+			const Json::Value& sup
 			, bool addbasetag
 		) {
 	clear();
 
 	bool basefound;
 
-	Json::Value& me = sup;
-	if (addbasetag) me = sup["DpchAppWzemNavAdminData"];
+	const Json::Value& me = [&]{if (!addbasetag) return sup; return sup["DpchAppWzemNavAdminData"];}();
 
 	basefound = (me != Json::nullValue);
 
@@ -447,15 +445,14 @@ string PnlWzemNavAdmin::DpchAppDo::getSrefsMask() {
 };
 
 void PnlWzemNavAdmin::DpchAppDo::readJSON(
-			Json::Value& sup
+			const Json::Value& sup
 			, bool addbasetag
 		) {
 	clear();
 
 	bool basefound;
 
-	Json::Value& me = sup;
-	if (addbasetag) me = sup["DpchAppWzemNavAdminDo"];
+	const Json::Value& me = [&]{if (!addbasetag) return sup; return sup["DpchAppWzemNavAdminDo"];}();
 
 	basefound = (me != Json::nullValue);
 

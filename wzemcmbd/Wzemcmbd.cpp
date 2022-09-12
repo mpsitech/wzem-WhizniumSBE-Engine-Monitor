@@ -42,15 +42,14 @@ string DpchAppWzem::getSrefsMask() {
 };
 
 void DpchAppWzem::readJSON(
-			Json::Value& sup
+			const Json::Value& sup
 			, bool addbasetag
 		) {
 	clear();
 
 	bool basefound;
 
-	Json::Value& me = sup;
-	if (addbasetag) me = sup[VecWzemVDpch::getSref(ixWzemVDpch)];
+	const Json::Value& me = [&]{if (!addbasetag) return sup; return sup[VecWzemVDpch::getSref(ixWzemVDpch)];}();
 
 	basefound = (me != Json::nullValue);
 
@@ -117,15 +116,14 @@ string DpchAppWzemAlert::getSrefsMask() {
 };
 
 void DpchAppWzemAlert::readJSON(
-			Json::Value& sup
+			const Json::Value& sup
 			, bool addbasetag
 		) {
 	clear();
 
 	bool basefound;
 
-	Json::Value& me = sup;
-	if (addbasetag) me = sup["DpchAppWzemAlert"];
+	const Json::Value& me = [&]{if (!addbasetag) return sup; return sup["DpchAppWzemAlert"];}();
 
 	basefound = (me != Json::nullValue);
 
@@ -518,12 +516,14 @@ set<uint> StgWzemAppearance::diff(
 StgWzemAppsrv::StgWzemAppsrv(
 			const usmallint port
 			, const bool https
+			, const string& cors
 		) :
 			Block()
 		{
 	this->port = port;
 	this->https = https;
-	mask = {PORT, HTTPS};
+	this->cors = cors;
+	mask = {PORT, HTTPS, CORS};
 };
 
 bool StgWzemAppsrv::readXML(
@@ -545,6 +545,7 @@ bool StgWzemAppsrv::readXML(
 	if (basefound) {
 		if (extractUsmallintAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "port", port)) add(PORT);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "https", https)) add(HTTPS);
+		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "cors", cors)) add(CORS);
 	};
 
 	return basefound;
@@ -564,6 +565,7 @@ void StgWzemAppsrv::writeXML(
 	xmlTextWriterStartElement(wr, BAD_CAST difftag.c_str());
 		writeUsmallintAttr(wr, itemtag, "sref", "port", port);
 		writeBoolAttr(wr, itemtag, "sref", "https", https);
+		writeStringAttr(wr, itemtag, "sref", "cors", cors);
 	xmlTextWriterEndElement(wr);
 };
 
@@ -574,6 +576,7 @@ set<uint> StgWzemAppsrv::comm(
 
 	if (port == comp->port) insert(items, PORT);
 	if (https == comp->https) insert(items, HTTPS);
+	if (cors == comp->cors) insert(items, CORS);
 
 	return(items);
 };
@@ -586,7 +589,7 @@ set<uint> StgWzemAppsrv::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {PORT, HTTPS};
+	diffitems = {PORT, HTTPS, CORS};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);
@@ -905,7 +908,7 @@ DpchEngWzemAlert* AlrWzem::prepareAlrAbt(
 	continf.TxtCpt = StrMod::cap(continf.TxtCpt);
 
 	if (ixWzemVLocale == VecWzemVLocale::ENUS) {
-		continf.TxtMsg1 = "WhizniumSBE Engine Monitor version v1.0.6 released on 3-5-2021";
+		continf.TxtMsg1 = "WhizniumSBE Engine Monitor version v1.0.7 released on 11-9-2022";
 		continf.TxtMsg2 = "\\u00a9 MPSI Technologies GmbH";
 		continf.TxtMsg4 = "contributors: Alexander Wirthmueller";
 		continf.TxtMsg6 = "WhizniumSBE Engine Monitor serves as a debugging tool for projects developed with WhizniumSBE.";
@@ -1208,6 +1211,31 @@ JobWzem::~JobWzem() {
 
 	mAccess.lock(VecWzemVJob::getSref(ixWzemVJob), "~" + VecWzemVJob::getSref(ixWzemVJob), "jref=" + to_string(jref));
 	mAccess.unlock(VecWzemVJob::getSref(ixWzemVJob), "~" + VecWzemVJob::getSref(ixWzemVJob), "jref=" + to_string(jref));
+};
+
+ubigint JobWzem::insertSubjob(
+			map<ubigint, JobWzem*>& subjobs
+			, JobWzem* subjob
+		) {
+	subjobs[subjob->jref] = subjob;
+
+	return subjob->jref;
+};
+
+bool JobWzem::eraseSubjobByJref(
+			map<ubigint, JobWzem*>& subjobs
+			, const ubigint _jref
+		) {
+	auto it = subjobs.find(_jref);
+
+	if (it != subjobs.end()) {
+		delete it->second;
+		subjobs.erase(it);
+
+		return true;
+	};
+
+	return false;
 };
 
 DpchEngWzem* JobWzem::getNewDpchEng(
@@ -1585,8 +1613,8 @@ void StmgrWzem::handleCall(
 	} else if (call->ixVCall == VecWzemVCall::CALLWZEMEVTUPD_REFEQ) {
 		insert(icsWzemVStub, VecWzemVStub::STUBWZEMEVTSTD);
 	} else if (call->ixVCall == VecWzemVCall::CALLWZEMJOBUPD_REFEQ) {
-		insert(icsWzemVStub, VecWzemVStub::STUBWZEMJOBXJREF);
 		insert(icsWzemVStub, VecWzemVStub::STUBWZEMJOBSTD);
+		insert(icsWzemVStub, VecWzemVStub::STUBWZEMJOBXJREF);
 	} else if (call->ixVCall == VecWzemVCall::CALLWZEMNDEUPD_REFEQ) {
 		insert(icsWzemVStub, VecWzemVStub::STUBWZEMNDEXNREF);
 		insert(icsWzemVStub, VecWzemVStub::STUBWZEMNDESTD);
@@ -1840,7 +1868,7 @@ void XchgWzemcmbd::startMon() {
 	Clstn* clstn = NULL;
 	Preset* preset = NULL;
 
-	mon.start("WhizniumSBE Engine Monitor v1.0.6", stgwzempath.monpath);
+	mon.start("WhizniumSBE Engine Monitor v1.0.7", stgwzempath.monpath);
 
 	rwmJobs.rlock("XchgWzemcmbd", "startMon");
 	for (auto it = jobs.begin(); it != jobs.end(); it++) {

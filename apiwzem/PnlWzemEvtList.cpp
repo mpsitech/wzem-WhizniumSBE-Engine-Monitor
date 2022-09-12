@@ -127,15 +127,19 @@ set<uint> PnlWzemEvtList::ContIac::diff(
  ******************************************************************************/
 
 PnlWzemEvtList::ContInf::ContInf(
-			const bool ButFilterOn
+			const string& TxtFor
+			, const string& TxtPre
+			, const bool ButFilterOn
 			, const uint numFCsiQst
 		) :
 			Block()
 		{
+	this->TxtFor = TxtFor;
+	this->TxtPre = TxtPre;
 	this->ButFilterOn = ButFilterOn;
 	this->numFCsiQst = numFCsiQst;
 
-	mask = {BUTFILTERON, NUMFCSIQST};
+	mask = {TXTFOR, TXTPRE, BUTFILTERON, NUMFCSIQST};
 };
 
 bool PnlWzemEvtList::ContInf::readXML(
@@ -155,6 +159,8 @@ bool PnlWzemEvtList::ContInf::readXML(
 	string itemtag = "ContitemInfWzemEvtList";
 
 	if (basefound) {
+		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Ci", "sref", "TxtFor", TxtFor)) add(TXTFOR);
+		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Ci", "sref", "TxtPre", TxtPre)) add(TXTPRE);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Ci", "sref", "ButFilterOn", ButFilterOn)) add(BUTFILTERON);
 		if (extractUintAttrUclc(docctx, basexpath, itemtag, "Ci", "sref", "numFCsiQst", numFCsiQst)) add(NUMFCSIQST);
 	};
@@ -167,6 +173,8 @@ set<uint> PnlWzemEvtList::ContInf::comm(
 		) {
 	set<uint> items;
 
+	if (TxtFor == comp->TxtFor) insert(items, TXTFOR);
+	if (TxtPre == comp->TxtPre) insert(items, TXTPRE);
 	if (ButFilterOn == comp->ButFilterOn) insert(items, BUTFILTERON);
 	if (numFCsiQst == comp->numFCsiQst) insert(items, NUMFCSIQST);
 
@@ -181,7 +189,7 @@ set<uint> PnlWzemEvtList::ContInf::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {BUTFILTERON, NUMFCSIQST};
+	diffitems = {TXTFOR, TXTPRE, BUTFILTERON, NUMFCSIQST};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);
@@ -370,6 +378,7 @@ set<uint> PnlWzemEvtList::StgIac::diff(
 
 PnlWzemEvtList::Tag::Tag(
 			const string& Cpt
+			, const string& TxtFor
 			, const string& TxtRecord1
 			, const string& TxtRecord2
 			, const string& Trs
@@ -386,6 +395,7 @@ PnlWzemEvtList::Tag::Tag(
 			Block()
 		{
 	this->Cpt = Cpt;
+	this->TxtFor = TxtFor;
 	this->TxtRecord1 = TxtRecord1;
 	this->TxtRecord2 = TxtRecord2;
 	this->Trs = Trs;
@@ -399,7 +409,7 @@ PnlWzemEvtList::Tag::Tag(
 	this->TcoMtd = TcoMtd;
 	this->TcoXsr = TcoXsr;
 
-	mask = {CPT, TXTRECORD1, TXTRECORD2, TRS, TXTSHOWING1, TXTSHOWING2, TCOTYP, TCOPRD, TCOSTA, TCOCMD, TCOFEG, TCOMTD, TCOXSR};
+	mask = {CPT, TXTFOR, TXTRECORD1, TXTRECORD2, TRS, TXTSHOWING1, TXTSHOWING2, TCOTYP, TCOPRD, TCOSTA, TCOCMD, TCOFEG, TCOMTD, TCOXSR};
 };
 
 bool PnlWzemEvtList::Tag::readXML(
@@ -420,6 +430,7 @@ bool PnlWzemEvtList::Tag::readXML(
 
 	if (basefound) {
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Ti", "sref", "Cpt", Cpt)) add(CPT);
+		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Ti", "sref", "TxtFor", TxtFor)) add(TXTFOR);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Ti", "sref", "TxtRecord1", TxtRecord1)) add(TXTRECORD1);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Ti", "sref", "TxtRecord2", TxtRecord2)) add(TXTRECORD2);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Ti", "sref", "Trs", Trs)) add(TRS);

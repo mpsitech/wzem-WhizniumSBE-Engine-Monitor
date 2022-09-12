@@ -2,7 +2,7 @@
 # make file for Wzem database access library, release dbswzem_ubuntu
 # copyright: (C) 2016-2020 MPSI Technologies GmbH
 # author: Alexander Wirthmueller (auto-generation)
-# date created: 3 May 2021
+# date created: 11 Sep 2022
 # IP header --- ABOVE
 
 LIBROOT = ${WHIZSDKROOT}/lib
@@ -40,7 +40,6 @@ all:	$(LIB)
 $(LIB):	$(PCHS) $(OBJS)
 	$(STATLIB) $(STATLIBFLAGS) $(LIB).a $(OBJS)
 	$(DYNLIB) $(DYNLIBFLAGS) $(OBJS) -o $(LIB).$(DYNLIBEXT)
-	rm -f *.o
 
 install:
 	mv $(LIB).a $(LIBROOT)/

@@ -97,7 +97,7 @@ public:
 		Sbecore::uint nload;
 
 	public:
-		bool readJSON(Json::Value& sup, bool addbasetag = false);
+		bool readJSON(const Json::Value& sup, bool addbasetag = false);
 		bool readXML(xmlXPathContext* docctx, std::string basexpath = "", bool addbasetag = false);
 		void writeJSON(Json::Value& sup, std::string difftag = "");
 		void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true);
@@ -126,6 +126,7 @@ public:
 	void refreshJnum();
 
 	void rerun(DbsWzem* dbswzem, const bool call = false);
+	void rerun_baseSQL(std::string& sqlstr);
 	void rerun_filtSQL(std::string& sqlstr, const Sbecore::ubigint prePrd, const double preSta, const double preSto, const Sbecore::ubigint preSup, const bool addwhere);
 	void rerun_filtSQL_append(std::string& sqlstr, bool& first);
 	void rerun_orderSQL(std::string& sqlstr, const Sbecore::uint preIxOrd);

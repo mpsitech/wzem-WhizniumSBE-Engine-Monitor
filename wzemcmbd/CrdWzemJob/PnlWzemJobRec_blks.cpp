@@ -313,15 +313,14 @@ string PnlWzemJobRec::DpchAppDo::getSrefsMask() {
 };
 
 void PnlWzemJobRec::DpchAppDo::readJSON(
-			Json::Value& sup
+			const Json::Value& sup
 			, bool addbasetag
 		) {
 	clear();
 
 	bool basefound;
 
-	Json::Value& me = sup;
-	if (addbasetag) me = sup["DpchAppWzemJobRecDo"];
+	const Json::Value& me = [&]{if (!addbasetag) return sup; return sup["DpchAppWzemJobRecDo"];}();
 
 	basefound = (me != Json::nullValue);
 

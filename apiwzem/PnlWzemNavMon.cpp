@@ -316,18 +316,25 @@ PnlWzemNavMon::StatShr::StatShr(
 			, const bool ButPrdViewActive
 			, const bool LstEvtAvail
 			, const bool ButEvtViewActive
+			, const bool ButEvtNewcrdActive
 			, const bool LstJobAvail
 			, const bool ButJobViewActive
+			, const bool ButJobNewcrdActive
 			, const bool LstCalAvail
 			, const bool ButCalViewActive
+			, const bool ButCalNewcrdActive
 			, const bool LstClnAvail
 			, const bool ButClnViewActive
+			, const bool ButClnNewcrdActive
 			, const bool LstOpxAvail
 			, const bool ButOpxViewActive
+			, const bool ButOpxNewcrdActive
 			, const bool LstPstAvail
 			, const bool ButPstViewActive
+			, const bool ButPstNewcrdActive
 			, const bool LstNdeAvail
 			, const bool ButNdeViewActive
+			, const bool ButNdeNewcrdActive
 		) :
 			Block()
 		{
@@ -335,20 +342,27 @@ PnlWzemNavMon::StatShr::StatShr(
 	this->ButPrdViewActive = ButPrdViewActive;
 	this->LstEvtAvail = LstEvtAvail;
 	this->ButEvtViewActive = ButEvtViewActive;
+	this->ButEvtNewcrdActive = ButEvtNewcrdActive;
 	this->LstJobAvail = LstJobAvail;
 	this->ButJobViewActive = ButJobViewActive;
+	this->ButJobNewcrdActive = ButJobNewcrdActive;
 	this->LstCalAvail = LstCalAvail;
 	this->ButCalViewActive = ButCalViewActive;
+	this->ButCalNewcrdActive = ButCalNewcrdActive;
 	this->LstClnAvail = LstClnAvail;
 	this->ButClnViewActive = ButClnViewActive;
+	this->ButClnNewcrdActive = ButClnNewcrdActive;
 	this->LstOpxAvail = LstOpxAvail;
 	this->ButOpxViewActive = ButOpxViewActive;
+	this->ButOpxNewcrdActive = ButOpxNewcrdActive;
 	this->LstPstAvail = LstPstAvail;
 	this->ButPstViewActive = ButPstViewActive;
+	this->ButPstNewcrdActive = ButPstNewcrdActive;
 	this->LstNdeAvail = LstNdeAvail;
 	this->ButNdeViewActive = ButNdeViewActive;
+	this->ButNdeNewcrdActive = ButNdeNewcrdActive;
 
-	mask = {LSTPRDAVAIL, BUTPRDVIEWACTIVE, LSTEVTAVAIL, BUTEVTVIEWACTIVE, LSTJOBAVAIL, BUTJOBVIEWACTIVE, LSTCALAVAIL, BUTCALVIEWACTIVE, LSTCLNAVAIL, BUTCLNVIEWACTIVE, LSTOPXAVAIL, BUTOPXVIEWACTIVE, LSTPSTAVAIL, BUTPSTVIEWACTIVE, LSTNDEAVAIL, BUTNDEVIEWACTIVE};
+	mask = {LSTPRDAVAIL, BUTPRDVIEWACTIVE, LSTEVTAVAIL, BUTEVTVIEWACTIVE, BUTEVTNEWCRDACTIVE, LSTJOBAVAIL, BUTJOBVIEWACTIVE, BUTJOBNEWCRDACTIVE, LSTCALAVAIL, BUTCALVIEWACTIVE, BUTCALNEWCRDACTIVE, LSTCLNAVAIL, BUTCLNVIEWACTIVE, BUTCLNNEWCRDACTIVE, LSTOPXAVAIL, BUTOPXVIEWACTIVE, BUTOPXNEWCRDACTIVE, LSTPSTAVAIL, BUTPSTVIEWACTIVE, BUTPSTNEWCRDACTIVE, LSTNDEAVAIL, BUTNDEVIEWACTIVE, BUTNDENEWCRDACTIVE};
 };
 
 bool PnlWzemNavMon::StatShr::readXML(
@@ -372,18 +386,25 @@ bool PnlWzemNavMon::StatShr::readXML(
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "ButPrdViewActive", ButPrdViewActive)) add(BUTPRDVIEWACTIVE);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "LstEvtAvail", LstEvtAvail)) add(LSTEVTAVAIL);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "ButEvtViewActive", ButEvtViewActive)) add(BUTEVTVIEWACTIVE);
+		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "ButEvtNewcrdActive", ButEvtNewcrdActive)) add(BUTEVTNEWCRDACTIVE);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "LstJobAvail", LstJobAvail)) add(LSTJOBAVAIL);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "ButJobViewActive", ButJobViewActive)) add(BUTJOBVIEWACTIVE);
+		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "ButJobNewcrdActive", ButJobNewcrdActive)) add(BUTJOBNEWCRDACTIVE);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "LstCalAvail", LstCalAvail)) add(LSTCALAVAIL);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "ButCalViewActive", ButCalViewActive)) add(BUTCALVIEWACTIVE);
+		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "ButCalNewcrdActive", ButCalNewcrdActive)) add(BUTCALNEWCRDACTIVE);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "LstClnAvail", LstClnAvail)) add(LSTCLNAVAIL);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "ButClnViewActive", ButClnViewActive)) add(BUTCLNVIEWACTIVE);
+		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "ButClnNewcrdActive", ButClnNewcrdActive)) add(BUTCLNNEWCRDACTIVE);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "LstOpxAvail", LstOpxAvail)) add(LSTOPXAVAIL);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "ButOpxViewActive", ButOpxViewActive)) add(BUTOPXVIEWACTIVE);
+		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "ButOpxNewcrdActive", ButOpxNewcrdActive)) add(BUTOPXNEWCRDACTIVE);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "LstPstAvail", LstPstAvail)) add(LSTPSTAVAIL);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "ButPstViewActive", ButPstViewActive)) add(BUTPSTVIEWACTIVE);
+		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "ButPstNewcrdActive", ButPstNewcrdActive)) add(BUTPSTNEWCRDACTIVE);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "LstNdeAvail", LstNdeAvail)) add(LSTNDEAVAIL);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "ButNdeViewActive", ButNdeViewActive)) add(BUTNDEVIEWACTIVE);
+		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "ButNdeNewcrdActive", ButNdeNewcrdActive)) add(BUTNDENEWCRDACTIVE);
 	};
 
 	return basefound;
@@ -398,18 +419,25 @@ set<uint> PnlWzemNavMon::StatShr::comm(
 	if (ButPrdViewActive == comp->ButPrdViewActive) insert(items, BUTPRDVIEWACTIVE);
 	if (LstEvtAvail == comp->LstEvtAvail) insert(items, LSTEVTAVAIL);
 	if (ButEvtViewActive == comp->ButEvtViewActive) insert(items, BUTEVTVIEWACTIVE);
+	if (ButEvtNewcrdActive == comp->ButEvtNewcrdActive) insert(items, BUTEVTNEWCRDACTIVE);
 	if (LstJobAvail == comp->LstJobAvail) insert(items, LSTJOBAVAIL);
 	if (ButJobViewActive == comp->ButJobViewActive) insert(items, BUTJOBVIEWACTIVE);
+	if (ButJobNewcrdActive == comp->ButJobNewcrdActive) insert(items, BUTJOBNEWCRDACTIVE);
 	if (LstCalAvail == comp->LstCalAvail) insert(items, LSTCALAVAIL);
 	if (ButCalViewActive == comp->ButCalViewActive) insert(items, BUTCALVIEWACTIVE);
+	if (ButCalNewcrdActive == comp->ButCalNewcrdActive) insert(items, BUTCALNEWCRDACTIVE);
 	if (LstClnAvail == comp->LstClnAvail) insert(items, LSTCLNAVAIL);
 	if (ButClnViewActive == comp->ButClnViewActive) insert(items, BUTCLNVIEWACTIVE);
+	if (ButClnNewcrdActive == comp->ButClnNewcrdActive) insert(items, BUTCLNNEWCRDACTIVE);
 	if (LstOpxAvail == comp->LstOpxAvail) insert(items, LSTOPXAVAIL);
 	if (ButOpxViewActive == comp->ButOpxViewActive) insert(items, BUTOPXVIEWACTIVE);
+	if (ButOpxNewcrdActive == comp->ButOpxNewcrdActive) insert(items, BUTOPXNEWCRDACTIVE);
 	if (LstPstAvail == comp->LstPstAvail) insert(items, LSTPSTAVAIL);
 	if (ButPstViewActive == comp->ButPstViewActive) insert(items, BUTPSTVIEWACTIVE);
+	if (ButPstNewcrdActive == comp->ButPstNewcrdActive) insert(items, BUTPSTNEWCRDACTIVE);
 	if (LstNdeAvail == comp->LstNdeAvail) insert(items, LSTNDEAVAIL);
 	if (ButNdeViewActive == comp->ButNdeViewActive) insert(items, BUTNDEVIEWACTIVE);
+	if (ButNdeNewcrdActive == comp->ButNdeNewcrdActive) insert(items, BUTNDENEWCRDACTIVE);
 
 	return(items);
 };
@@ -422,7 +450,7 @@ set<uint> PnlWzemNavMon::StatShr::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {LSTPRDAVAIL, BUTPRDVIEWACTIVE, LSTEVTAVAIL, BUTEVTVIEWACTIVE, LSTJOBAVAIL, BUTJOBVIEWACTIVE, LSTCALAVAIL, BUTCALVIEWACTIVE, LSTCLNAVAIL, BUTCLNVIEWACTIVE, LSTOPXAVAIL, BUTOPXVIEWACTIVE, LSTPSTAVAIL, BUTPSTVIEWACTIVE, LSTNDEAVAIL, BUTNDEVIEWACTIVE};
+	diffitems = {LSTPRDAVAIL, BUTPRDVIEWACTIVE, LSTEVTAVAIL, BUTEVTVIEWACTIVE, BUTEVTNEWCRDACTIVE, LSTJOBAVAIL, BUTJOBVIEWACTIVE, BUTJOBNEWCRDACTIVE, LSTCALAVAIL, BUTCALVIEWACTIVE, BUTCALNEWCRDACTIVE, LSTCLNAVAIL, BUTCLNVIEWACTIVE, BUTCLNNEWCRDACTIVE, LSTOPXAVAIL, BUTOPXVIEWACTIVE, BUTOPXNEWCRDACTIVE, LSTPSTAVAIL, BUTPSTVIEWACTIVE, BUTPSTNEWCRDACTIVE, LSTNDEAVAIL, BUTNDEVIEWACTIVE, BUTNDENEWCRDACTIVE};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);

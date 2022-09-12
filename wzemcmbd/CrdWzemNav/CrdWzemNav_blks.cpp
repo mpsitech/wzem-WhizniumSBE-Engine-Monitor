@@ -264,12 +264,19 @@ CrdWzemNav::StatShr::StatShr(
 			, const bool MspCrd2Avail
 			, const bool MitCrdPrdAvail
 			, const bool MitCrdEvtAvail
+			, const bool MitCrdEvtActive
 			, const bool MitCrdJobAvail
+			, const bool MitCrdJobActive
 			, const bool MitCrdCalAvail
+			, const bool MitCrdCalActive
 			, const bool MitCrdClnAvail
+			, const bool MitCrdClnActive
 			, const bool MitCrdOpxAvail
+			, const bool MitCrdOpxActive
 			, const bool MitCrdPstAvail
+			, const bool MitCrdPstActive
 			, const bool MitCrdNdeAvail
+			, const bool MitCrdNdeActive
 			, const bool MspApp2Avail
 			, const bool MitAppLoiAvail
 		) :
@@ -291,16 +298,23 @@ CrdWzemNav::StatShr::StatShr(
 	this->MspCrd2Avail = MspCrd2Avail;
 	this->MitCrdPrdAvail = MitCrdPrdAvail;
 	this->MitCrdEvtAvail = MitCrdEvtAvail;
+	this->MitCrdEvtActive = MitCrdEvtActive;
 	this->MitCrdJobAvail = MitCrdJobAvail;
+	this->MitCrdJobActive = MitCrdJobActive;
 	this->MitCrdCalAvail = MitCrdCalAvail;
+	this->MitCrdCalActive = MitCrdCalActive;
 	this->MitCrdClnAvail = MitCrdClnAvail;
+	this->MitCrdClnActive = MitCrdClnActive;
 	this->MitCrdOpxAvail = MitCrdOpxAvail;
+	this->MitCrdOpxActive = MitCrdOpxActive;
 	this->MitCrdPstAvail = MitCrdPstAvail;
+	this->MitCrdPstActive = MitCrdPstActive;
 	this->MitCrdNdeAvail = MitCrdNdeAvail;
+	this->MitCrdNdeActive = MitCrdNdeActive;
 	this->MspApp2Avail = MspApp2Avail;
 	this->MitAppLoiAvail = MitAppLoiAvail;
 
-	mask = {JREFDLGLOAINI, JREFHEADBAR, JREFPRE, PNLPREAVAIL, JREFADMIN, PNLADMINAVAIL, JREFMON, PNLMONAVAIL, MITSESSPSAVAIL, MSPCRD1AVAIL, MITCRDUSGAVAIL, MITCRDUSRAVAIL, MITCRDPRSAVAIL, MSPCRD2AVAIL, MITCRDPRDAVAIL, MITCRDEVTAVAIL, MITCRDJOBAVAIL, MITCRDCALAVAIL, MITCRDCLNAVAIL, MITCRDOPXAVAIL, MITCRDPSTAVAIL, MITCRDNDEAVAIL, MSPAPP2AVAIL, MITAPPLOIAVAIL};
+	mask = {JREFDLGLOAINI, JREFHEADBAR, JREFPRE, PNLPREAVAIL, JREFADMIN, PNLADMINAVAIL, JREFMON, PNLMONAVAIL, MITSESSPSAVAIL, MSPCRD1AVAIL, MITCRDUSGAVAIL, MITCRDUSRAVAIL, MITCRDPRSAVAIL, MSPCRD2AVAIL, MITCRDPRDAVAIL, MITCRDEVTAVAIL, MITCRDEVTACTIVE, MITCRDJOBAVAIL, MITCRDJOBACTIVE, MITCRDCALAVAIL, MITCRDCALACTIVE, MITCRDCLNAVAIL, MITCRDCLNACTIVE, MITCRDOPXAVAIL, MITCRDOPXACTIVE, MITCRDPSTAVAIL, MITCRDPSTACTIVE, MITCRDNDEAVAIL, MITCRDNDEACTIVE, MSPAPP2AVAIL, MITAPPLOIAVAIL};
 };
 
 void CrdWzemNav::StatShr::writeJSON(
@@ -327,12 +341,19 @@ void CrdWzemNav::StatShr::writeJSON(
 	me["MspCrd2Avail"] = MspCrd2Avail;
 	me["MitCrdPrdAvail"] = MitCrdPrdAvail;
 	me["MitCrdEvtAvail"] = MitCrdEvtAvail;
+	me["MitCrdEvtActive"] = MitCrdEvtActive;
 	me["MitCrdJobAvail"] = MitCrdJobAvail;
+	me["MitCrdJobActive"] = MitCrdJobActive;
 	me["MitCrdCalAvail"] = MitCrdCalAvail;
+	me["MitCrdCalActive"] = MitCrdCalActive;
 	me["MitCrdClnAvail"] = MitCrdClnAvail;
+	me["MitCrdClnActive"] = MitCrdClnActive;
 	me["MitCrdOpxAvail"] = MitCrdOpxAvail;
+	me["MitCrdOpxActive"] = MitCrdOpxActive;
 	me["MitCrdPstAvail"] = MitCrdPstAvail;
+	me["MitCrdPstActive"] = MitCrdPstActive;
 	me["MitCrdNdeAvail"] = MitCrdNdeAvail;
+	me["MitCrdNdeActive"] = MitCrdNdeActive;
 	me["MspApp2Avail"] = MspApp2Avail;
 	me["MitAppLoiAvail"] = MitAppLoiAvail;
 };
@@ -365,12 +386,19 @@ void CrdWzemNav::StatShr::writeXML(
 		writeBoolAttr(wr, itemtag, "sref", "MspCrd2Avail", MspCrd2Avail);
 		writeBoolAttr(wr, itemtag, "sref", "MitCrdPrdAvail", MitCrdPrdAvail);
 		writeBoolAttr(wr, itemtag, "sref", "MitCrdEvtAvail", MitCrdEvtAvail);
+		writeBoolAttr(wr, itemtag, "sref", "MitCrdEvtActive", MitCrdEvtActive);
 		writeBoolAttr(wr, itemtag, "sref", "MitCrdJobAvail", MitCrdJobAvail);
+		writeBoolAttr(wr, itemtag, "sref", "MitCrdJobActive", MitCrdJobActive);
 		writeBoolAttr(wr, itemtag, "sref", "MitCrdCalAvail", MitCrdCalAvail);
+		writeBoolAttr(wr, itemtag, "sref", "MitCrdCalActive", MitCrdCalActive);
 		writeBoolAttr(wr, itemtag, "sref", "MitCrdClnAvail", MitCrdClnAvail);
+		writeBoolAttr(wr, itemtag, "sref", "MitCrdClnActive", MitCrdClnActive);
 		writeBoolAttr(wr, itemtag, "sref", "MitCrdOpxAvail", MitCrdOpxAvail);
+		writeBoolAttr(wr, itemtag, "sref", "MitCrdOpxActive", MitCrdOpxActive);
 		writeBoolAttr(wr, itemtag, "sref", "MitCrdPstAvail", MitCrdPstAvail);
+		writeBoolAttr(wr, itemtag, "sref", "MitCrdPstActive", MitCrdPstActive);
 		writeBoolAttr(wr, itemtag, "sref", "MitCrdNdeAvail", MitCrdNdeAvail);
+		writeBoolAttr(wr, itemtag, "sref", "MitCrdNdeActive", MitCrdNdeActive);
 		writeBoolAttr(wr, itemtag, "sref", "MspApp2Avail", MspApp2Avail);
 		writeBoolAttr(wr, itemtag, "sref", "MitAppLoiAvail", MitAppLoiAvail);
 	xmlTextWriterEndElement(wr);
@@ -397,12 +425,19 @@ set<uint> CrdWzemNav::StatShr::comm(
 	if (MspCrd2Avail == comp->MspCrd2Avail) insert(items, MSPCRD2AVAIL);
 	if (MitCrdPrdAvail == comp->MitCrdPrdAvail) insert(items, MITCRDPRDAVAIL);
 	if (MitCrdEvtAvail == comp->MitCrdEvtAvail) insert(items, MITCRDEVTAVAIL);
+	if (MitCrdEvtActive == comp->MitCrdEvtActive) insert(items, MITCRDEVTACTIVE);
 	if (MitCrdJobAvail == comp->MitCrdJobAvail) insert(items, MITCRDJOBAVAIL);
+	if (MitCrdJobActive == comp->MitCrdJobActive) insert(items, MITCRDJOBACTIVE);
 	if (MitCrdCalAvail == comp->MitCrdCalAvail) insert(items, MITCRDCALAVAIL);
+	if (MitCrdCalActive == comp->MitCrdCalActive) insert(items, MITCRDCALACTIVE);
 	if (MitCrdClnAvail == comp->MitCrdClnAvail) insert(items, MITCRDCLNAVAIL);
+	if (MitCrdClnActive == comp->MitCrdClnActive) insert(items, MITCRDCLNACTIVE);
 	if (MitCrdOpxAvail == comp->MitCrdOpxAvail) insert(items, MITCRDOPXAVAIL);
+	if (MitCrdOpxActive == comp->MitCrdOpxActive) insert(items, MITCRDOPXACTIVE);
 	if (MitCrdPstAvail == comp->MitCrdPstAvail) insert(items, MITCRDPSTAVAIL);
+	if (MitCrdPstActive == comp->MitCrdPstActive) insert(items, MITCRDPSTACTIVE);
 	if (MitCrdNdeAvail == comp->MitCrdNdeAvail) insert(items, MITCRDNDEAVAIL);
+	if (MitCrdNdeActive == comp->MitCrdNdeActive) insert(items, MITCRDNDEACTIVE);
 	if (MspApp2Avail == comp->MspApp2Avail) insert(items, MSPAPP2AVAIL);
 	if (MitAppLoiAvail == comp->MitAppLoiAvail) insert(items, MITAPPLOIAVAIL);
 
@@ -417,7 +452,7 @@ set<uint> CrdWzemNav::StatShr::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {JREFDLGLOAINI, JREFHEADBAR, JREFPRE, PNLPREAVAIL, JREFADMIN, PNLADMINAVAIL, JREFMON, PNLMONAVAIL, MITSESSPSAVAIL, MSPCRD1AVAIL, MITCRDUSGAVAIL, MITCRDUSRAVAIL, MITCRDPRSAVAIL, MSPCRD2AVAIL, MITCRDPRDAVAIL, MITCRDEVTAVAIL, MITCRDJOBAVAIL, MITCRDCALAVAIL, MITCRDCLNAVAIL, MITCRDOPXAVAIL, MITCRDPSTAVAIL, MITCRDNDEAVAIL, MSPAPP2AVAIL, MITAPPLOIAVAIL};
+	diffitems = {JREFDLGLOAINI, JREFHEADBAR, JREFPRE, PNLPREAVAIL, JREFADMIN, PNLADMINAVAIL, JREFMON, PNLMONAVAIL, MITSESSPSAVAIL, MSPCRD1AVAIL, MITCRDUSGAVAIL, MITCRDUSRAVAIL, MITCRDPRSAVAIL, MSPCRD2AVAIL, MITCRDPRDAVAIL, MITCRDEVTAVAIL, MITCRDEVTACTIVE, MITCRDJOBAVAIL, MITCRDJOBACTIVE, MITCRDCALAVAIL, MITCRDCALACTIVE, MITCRDCLNAVAIL, MITCRDCLNACTIVE, MITCRDOPXAVAIL, MITCRDOPXACTIVE, MITCRDPSTAVAIL, MITCRDPSTACTIVE, MITCRDNDEAVAIL, MITCRDNDEACTIVE, MSPAPP2AVAIL, MITAPPLOIAVAIL};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);
@@ -513,15 +548,14 @@ string CrdWzemNav::DpchAppDo::getSrefsMask() {
 };
 
 void CrdWzemNav::DpchAppDo::readJSON(
-			Json::Value& sup
+			const Json::Value& sup
 			, bool addbasetag
 		) {
 	clear();
 
 	bool basefound;
 
-	Json::Value& me = sup;
-	if (addbasetag) me = sup["DpchAppWzemNavDo"];
+	const Json::Value& me = [&]{if (!addbasetag) return sup; return sup["DpchAppWzemNavDo"];}();
 
 	basefound = (me != Json::nullValue);
 

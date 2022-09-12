@@ -10,10 +10,10 @@
 #ifndef DBSWZEM_H
 #define DBSWZEM_H
 
-#define WZEM_VERSION "1.0.6"
+#define WZEM_VERSION "1.0.7"
 #define WZEM_VERSION_MAJOR 1
 #define WZEM_VERSION_MINOR 0
-#define WZEM_VERSION_SUB 6
+#define WZEM_VERSION_SUB 7
 
 #include <sbecore/Types.h>
 
@@ -179,9 +179,9 @@ public:
 		static const Sbecore::uint PNLWZEMPRDLIST_TCOVER = 35;
 		static const Sbecore::uint PNLWZEMPRDLIST_TCOSTA = 36;
 		static const Sbecore::uint PNLWZEMPRDLIST_TCOSTO = 37;
-		static const Sbecore::uint PNLWZEMPRD1NNODE_TCOREF = 38;
-		static const Sbecore::uint PNLWZEMPRD1NJOB_TCOREF = 39;
-		static const Sbecore::uint PNLWZEMPRD1NEVENT_TCOREF = 40;
+		static const Sbecore::uint PNLWZEMPRD1NEVENT_TCOREF = 38;
+		static const Sbecore::uint PNLWZEMPRD1NNODE_TCOREF = 39;
+		static const Sbecore::uint PNLWZEMPRD1NJOB_TCOREF = 40;
 		static const Sbecore::uint PNLWZEMEVTLIST_TCOTYP = 41;
 		static const Sbecore::uint PNLWZEMEVTLIST_TCOPRD = 42;
 		static const Sbecore::uint PNLWZEMEVTLIST_TCOSTA = 43;

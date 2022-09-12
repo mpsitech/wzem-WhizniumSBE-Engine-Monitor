@@ -49,12 +49,12 @@ void WzemQOpxList::writeJSON(
 	if (jnumattr) me["jnum"] = jnum;
 	if (shorttags) {
 		me["job"] = stubRefWzemMJob;
-		me["xor"] = Json::Value::UInt64(xoref);
+		me["xor"] = xoref;
 		me["sta"] = x1Startu;
 		me["sto"] = x1Stopu;
 	} else {
 		me["stubRefWzemMJob"] = stubRefWzemMJob;
-		me["xoref"] = Json::Value::UInt64(xoref);
+		me["xoref"] = xoref;
 		me["x1Startu"] = x1Startu;
 		me["x1Stopu"] = x1Stopu;
 	};

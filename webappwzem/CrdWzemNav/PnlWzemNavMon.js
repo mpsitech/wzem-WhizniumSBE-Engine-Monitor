@@ -87,36 +87,43 @@ function refreshBD(bNotD) {
 	var LstEvtAvail = (retrieveSi(srcdoc, "StatShrWzemNavMon", "LstEvtAvail") == "true");
 	var ButEvtViewAvail = !LstEvtAlt;
 	var ButEvtViewActive = (retrieveSi(srcdoc, "StatShrWzemNavMon", "ButEvtViewActive") == "true");
+	var ButEvtNewcrdActive = (retrieveSi(srcdoc, "StatShrWzemNavMon", "ButEvtNewcrdActive") == "true");
 
 	var LstJobAlt = (retrieveSi(srcdoc, "StatAppWzemNavMon", "LstJobAlt") == "true");
 	var LstJobAvail = (retrieveSi(srcdoc, "StatShrWzemNavMon", "LstJobAvail") == "true");
 	var ButJobViewAvail = !LstJobAlt;
 	var ButJobViewActive = (retrieveSi(srcdoc, "StatShrWzemNavMon", "ButJobViewActive") == "true");
+	var ButJobNewcrdActive = (retrieveSi(srcdoc, "StatShrWzemNavMon", "ButJobNewcrdActive") == "true");
 
 	var LstCalAlt = (retrieveSi(srcdoc, "StatAppWzemNavMon", "LstCalAlt") == "true");
 	var LstCalAvail = (retrieveSi(srcdoc, "StatShrWzemNavMon", "LstCalAvail") == "true");
 	var ButCalViewAvail = !LstCalAlt;
 	var ButCalViewActive = (retrieveSi(srcdoc, "StatShrWzemNavMon", "ButCalViewActive") == "true");
+	var ButCalNewcrdActive = (retrieveSi(srcdoc, "StatShrWzemNavMon", "ButCalNewcrdActive") == "true");
 
 	var LstClnAlt = (retrieveSi(srcdoc, "StatAppWzemNavMon", "LstClnAlt") == "true");
 	var LstClnAvail = (retrieveSi(srcdoc, "StatShrWzemNavMon", "LstClnAvail") == "true");
 	var ButClnViewAvail = !LstClnAlt;
 	var ButClnViewActive = (retrieveSi(srcdoc, "StatShrWzemNavMon", "ButClnViewActive") == "true");
+	var ButClnNewcrdActive = (retrieveSi(srcdoc, "StatShrWzemNavMon", "ButClnNewcrdActive") == "true");
 
 	var LstOpxAlt = (retrieveSi(srcdoc, "StatAppWzemNavMon", "LstOpxAlt") == "true");
 	var LstOpxAvail = (retrieveSi(srcdoc, "StatShrWzemNavMon", "LstOpxAvail") == "true");
 	var ButOpxViewAvail = !LstOpxAlt;
 	var ButOpxViewActive = (retrieveSi(srcdoc, "StatShrWzemNavMon", "ButOpxViewActive") == "true");
+	var ButOpxNewcrdActive = (retrieveSi(srcdoc, "StatShrWzemNavMon", "ButOpxNewcrdActive") == "true");
 
 	var LstPstAlt = (retrieveSi(srcdoc, "StatAppWzemNavMon", "LstPstAlt") == "true");
 	var LstPstAvail = (retrieveSi(srcdoc, "StatShrWzemNavMon", "LstPstAvail") == "true");
 	var ButPstViewAvail = !LstPstAlt;
 	var ButPstViewActive = (retrieveSi(srcdoc, "StatShrWzemNavMon", "ButPstViewActive") == "true");
+	var ButPstNewcrdActive = (retrieveSi(srcdoc, "StatShrWzemNavMon", "ButPstNewcrdActive") == "true");
 
 	var LstNdeAlt = (retrieveSi(srcdoc, "StatAppWzemNavMon", "LstNdeAlt") == "true");
 	var LstNdeAvail = (retrieveSi(srcdoc, "StatShrWzemNavMon", "LstNdeAvail") == "true");
 	var ButNdeViewAvail = !LstNdeAlt;
 	var ButNdeViewActive = (retrieveSi(srcdoc, "StatShrWzemNavMon", "ButNdeViewActive") == "true");
+	var ButNdeNewcrdActive = (retrieveSi(srcdoc, "StatShrWzemNavMon", "ButNdeNewcrdActive") == "true");
 
 	var mytd, first;
 	// IP refreshBD.vars --- END
@@ -227,6 +234,7 @@ function refreshBD(bNotD) {
 		};
 
 		if (ButEvtViewAvail) refreshButicon(contcontdoc, "ButEvtView", "icon/view", ButEvtViewActive, false);
+		refreshButicon(contcontdoc, "ButEvtNewcrd", "icon/newcrd", ButEvtNewcrdActive, false);
 
 	} else setCtlAvail(contcontdoc, "Evt2", false, 0);
 
@@ -281,6 +289,7 @@ function refreshBD(bNotD) {
 		};
 
 		if (ButJobViewAvail) refreshButicon(contcontdoc, "ButJobView", "icon/view", ButJobViewActive, false);
+		refreshButicon(contcontdoc, "ButJobNewcrd", "icon/newcrd", ButJobNewcrdActive, false);
 
 	} else setCtlAvail(contcontdoc, "Job2", false, 0);
 
@@ -335,6 +344,7 @@ function refreshBD(bNotD) {
 		};
 
 		if (ButCalViewAvail) refreshButicon(contcontdoc, "ButCalView", "icon/view", ButCalViewActive, false);
+		refreshButicon(contcontdoc, "ButCalNewcrd", "icon/newcrd", ButCalNewcrdActive, false);
 
 	} else setCtlAvail(contcontdoc, "Cal2", false, 0);
 
@@ -389,6 +399,7 @@ function refreshBD(bNotD) {
 		};
 
 		if (ButClnViewAvail) refreshButicon(contcontdoc, "ButClnView", "icon/view", ButClnViewActive, false);
+		refreshButicon(contcontdoc, "ButClnNewcrd", "icon/newcrd", ButClnNewcrdActive, false);
 
 	} else setCtlAvail(contcontdoc, "Cln2", false, 0);
 
@@ -443,6 +454,7 @@ function refreshBD(bNotD) {
 		};
 
 		if (ButOpxViewAvail) refreshButicon(contcontdoc, "ButOpxView", "icon/view", ButOpxViewActive, false);
+		refreshButicon(contcontdoc, "ButOpxNewcrd", "icon/newcrd", ButOpxNewcrdActive, false);
 
 	} else setCtlAvail(contcontdoc, "Opx2", false, 0);
 
@@ -497,6 +509,7 @@ function refreshBD(bNotD) {
 		};
 
 		if (ButPstViewAvail) refreshButicon(contcontdoc, "ButPstView", "icon/view", ButPstViewActive, false);
+		refreshButicon(contcontdoc, "ButPstNewcrd", "icon/newcrd", ButPstNewcrdActive, false);
 
 	} else setCtlAvail(contcontdoc, "Pst2", false, 0);
 
@@ -551,6 +564,7 @@ function refreshBD(bNotD) {
 		};
 
 		if (ButNdeViewAvail) refreshButicon(contcontdoc, "ButNdeView", "icon/view", ButNdeViewActive, false);
+		refreshButicon(contcontdoc, "ButNdeNewcrd", "icon/newcrd", ButNdeNewcrdActive, false);
 
 	} else setCtlAvail(contcontdoc, "Nde2", false, 0);
 

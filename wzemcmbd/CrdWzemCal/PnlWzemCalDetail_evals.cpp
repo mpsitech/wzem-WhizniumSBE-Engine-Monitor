@@ -56,7 +56,7 @@ bool PnlWzemCalDetail::evalTxtJobActive(
 bool PnlWzemCalDetail::evalButJobViewAvail(
 			DbsWzem* dbswzem
 		) {
-	// cal.jobEq(0)|(pre.ixCrdaccJob())
+	// cal.jobEq(0)|(pre.ixCrdaccJob()&pre.refPrd())
 
 	vector<bool> args;
 	bool a, b;
@@ -65,6 +65,11 @@ bool PnlWzemCalDetail::evalButJobViewAvail(
 	args.push_back(a);
 	a = false; a = (xchg->getIxPreset(VecWzemVPreset::PREWZEMIXCRDACCJOB, jref) != 0);
 	args.push_back(a);
+	a = false; a = (xchg->getRefPreset(VecWzemVPreset::PREWZEMREFPRD, jref) != 0);
+	args.push_back(a);
+	b = args.back(); args.pop_back();
+	a = args.back(); args.pop_back();
+	args.push_back(a && b);
 	b = args.back(); args.pop_back();
 	a = args.back(); args.pop_back();
 	args.push_back(a || b);
