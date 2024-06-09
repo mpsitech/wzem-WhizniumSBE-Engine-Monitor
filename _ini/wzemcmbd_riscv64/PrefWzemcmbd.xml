@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PrefWzemcmbd>
+	<StgWzemAppearance>
+		<Si sref="histlength">20</Si>
+		<Si sref="suspsess">true</Si>
+		<Si sref="sesstterm">0</Si>
+		<Si sref="sesstwarn">0</Si>
+		<Si sref="roottterm">0</Si>
+	</StgWzemAppearance>
+	<StgWzemAppsrv>
+		<Si sref="port">13100</Si>
+		<Si sref="https">false</Si>
+		<Si sref="cors"></Si>
+	</StgWzemAppsrv>
+	<StgWzemcmbd>
+		<Si sref="jobprcn">4</Si>
+		<Si sref="opprcn">1</Si>
+		<Si sref="appsrv">true</Si>
+	</StgWzemcmbd>
+	<StgWzemDatabase>
+		<Si sref="srefIxDbsVDbstype">lite</Si>
+		<Si sref="dbspath">./DbsWzem.sql</Si>
+		<Si sref="dbsname">DbsWzem</Si>
+		<Si sref="username">default</Si>
+		<Si sref="password">asdf1234</Si>
+		<Si sref="ip">127.0.0.1</Si>
+		<Si sref="port">3306</Si>
+	</StgWzemDatabase>
+	<StgWzemPath>
+		<Si sref="acvpath">${WHIZROOT}/acv/wzem</Si>
+		<Si sref="keypath"></Si>
+		<Si sref="monpath">${WHIZROOT}/mon/wzem</Si>
+		<Si sref="tmppath">${WHIZROOT}/tmp/wzem</Si>
+		<Si sref="webpath">${WHIZROOT}/web/appwzem</Si>
+		<Si sref="helpurl">/wzem</Si>
+	</StgWzemPath>
+</PrefWzemcmbd>

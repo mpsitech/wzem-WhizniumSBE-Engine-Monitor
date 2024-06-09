@@ -22,10 +22,6 @@ uint VecWzemVStub::getIx(
 		) {
 	string s = StrMod::lc(sref);
 
-	if (s == "stubwzemcalstd") return STUBWZEMCALSTD;
-	if (s == "stubwzemclnstd") return STUBWZEMCLNSTD;
-	if (s == "stubwzemdchstd") return STUBWZEMDCHSTD;
-	if (s == "stubwzemevtstd") return STUBWZEMEVTSTD;
 	if (s == "stubwzemjobstd") return STUBWZEMJOBSTD;
 	if (s == "stubwzemjobxjref") return STUBWZEMJOBXJREF;
 	if (s == "stubwzemopxstd") return STUBWZEMOPXSTD;
@@ -40,6 +36,10 @@ uint VecWzemVStub::getIx(
 	if (s == "stubwzemusrstd") return STUBWZEMUSRSTD;
 	if (s == "stubwzemgroup") return STUBWZEMGROUP;
 	if (s == "stubwzemusgstd") return STUBWZEMUSGSTD;
+	if (s == "stubwzemevtstd") return STUBWZEMEVTSTD;
+	if (s == "stubwzemdchstd") return STUBWZEMDCHSTD;
+	if (s == "stubwzemclnstd") return STUBWZEMCLNSTD;
+	if (s == "stubwzemcalstd") return STUBWZEMCALSTD;
 
 	return(0);
 };
@@ -47,10 +47,6 @@ uint VecWzemVStub::getIx(
 string VecWzemVStub::getSref(
 			const uint ix
 		) {
-	if (ix == STUBWZEMCALSTD) return("StubWzemCalStd");
-	if (ix == STUBWZEMCLNSTD) return("StubWzemClnStd");
-	if (ix == STUBWZEMDCHSTD) return("StubWzemDchStd");
-	if (ix == STUBWZEMEVTSTD) return("StubWzemEvtStd");
 	if (ix == STUBWZEMJOBSTD) return("StubWzemJobStd");
 	if (ix == STUBWZEMJOBXJREF) return("StubWzemJobXjref");
 	if (ix == STUBWZEMOPXSTD) return("StubWzemOpxStd");
@@ -65,6 +61,10 @@ string VecWzemVStub::getSref(
 	if (ix == STUBWZEMUSRSTD) return("StubWzemUsrStd");
 	if (ix == STUBWZEMGROUP) return("StubWzemGroup");
 	if (ix == STUBWZEMUSGSTD) return("StubWzemUsgStd");
+	if (ix == STUBWZEMEVTSTD) return("StubWzemEvtStd");
+	if (ix == STUBWZEMDCHSTD) return("StubWzemDchStd");
+	if (ix == STUBWZEMCLNSTD) return("StubWzemClnStd");
+	if (ix == STUBWZEMCALSTD) return("StubWzemCalStd");
 
 	return("");
 };

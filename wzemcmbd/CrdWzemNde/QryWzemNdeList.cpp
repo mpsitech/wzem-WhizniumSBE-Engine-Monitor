@@ -217,8 +217,8 @@ void QryWzemNdeList::rerun_orderSQL(
 			string& sqlstr
 			, const uint preIxOrd
 		) {
-	if (preIxOrd == VecVOrd::STA) sqlstr += " ORDER BY TblWzemMNode.x1Startu ASC";
-	else if (preIxOrd == VecVOrd::STO) sqlstr += " ORDER BY TblWzemMNode.x1Stopu ASC";
+	if (preIxOrd == VecVOrd::STO) sqlstr += " ORDER BY TblWzemMNode.x1Stopu ASC";
+	else if (preIxOrd == VecVOrd::STA) sqlstr += " ORDER BY TblWzemMNode.x1Startu ASC";
 	else if (preIxOrd == VecVOrd::PRD) sqlstr += " ORDER BY TblWzemMNode.refWzemMPeriod ASC";
 };
 

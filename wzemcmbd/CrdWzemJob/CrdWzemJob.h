@@ -15,8 +15,8 @@
 // IP include.cust --- INSERT
 
 #include "PnlWzemJobList.h"
-#include "PnlWzemJobRec.h"
 #include "PnlWzemJobHeadbar.h"
+#include "PnlWzemJobRec.h"
 
 #define VecVWzemJobDo CrdWzemJob::VecVDo
 #define VecVWzemJobSge CrdWzemJob::VecVSge
@@ -197,8 +197,8 @@ public:
 	Sbecore::Feed feedFSge;
 
 	PnlWzemJobList* pnllist;
-	PnlWzemJobRec* pnlrec;
 	PnlWzemJobHeadbar* pnlheadbar;
+	PnlWzemJobRec* pnlrec;
 
 	// IP vars.cust --- INSERT
 
@@ -229,8 +229,8 @@ public:
 
 private:
 	bool handleCallWzemRefPreSet(DbsWzem* dbswzem, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, const Sbecore::ubigint refInv);
-	bool handleCallWzemDlgClose(DbsWzem* dbswzem, const Sbecore::ubigint jrefTrig);
 	bool handleCallWzemStatChg(DbsWzem* dbswzem, const Sbecore::ubigint jrefTrig);
+	bool handleCallWzemDlgClose(DbsWzem* dbswzem, const Sbecore::ubigint jrefTrig);
 
 private:
 	void changeStage(DbsWzem* dbswzem, Sbecore::uint _ixVSge, DpchEngWzem** dpcheng = NULL);

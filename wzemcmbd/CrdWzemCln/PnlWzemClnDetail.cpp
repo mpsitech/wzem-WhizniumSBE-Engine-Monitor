@@ -53,8 +53,8 @@ PnlWzemClnDetail::PnlWzemClnDetail(
 
 	// IP constructor.cust2 --- INSERT
 
-	xchg->addClstn(VecWzemVCall::CALLWZEMCLN_TJBEQ, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 	xchg->addClstn(VecWzemVCall::CALLWZEMCLN_JOBEQ, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
+	xchg->addClstn(VecWzemVCall::CALLWZEMCLN_TJBEQ, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 
 	// IP constructor.cust3 --- INSERT
 
@@ -357,10 +357,10 @@ void PnlWzemClnDetail::handleCall(
 		call->abort = handleCallWzemClnJMod_clnEq(dbswzem, call->jref);
 	} else if (call->ixVCall == VecWzemVCall::CALLWZEMCLNUPD_REFEQ) {
 		call->abort = handleCallWzemClnUpd_refEq(dbswzem, call->jref);
-	} else if (call->ixVCall == VecWzemVCall::CALLWZEMCLN_TJBEQ) {
-		call->abort = handleCallWzemCln_tjbEq(dbswzem, call->jref, call->argInv.ref, call->argRet.boolval);
 	} else if (call->ixVCall == VecWzemVCall::CALLWZEMCLN_JOBEQ) {
 		call->abort = handleCallWzemCln_jobEq(dbswzem, call->jref, call->argInv.ref, call->argRet.boolval);
+	} else if (call->ixVCall == VecWzemVCall::CALLWZEMCLN_TJBEQ) {
+		call->abort = handleCallWzemCln_tjbEq(dbswzem, call->jref, call->argInv.ref, call->argRet.boolval);
 	};
 };
 
@@ -382,17 +382,6 @@ bool PnlWzemClnDetail::handleCallWzemClnUpd_refEq(
 	return retval;
 };
 
-bool PnlWzemClnDetail::handleCallWzemCln_tjbEq(
-			DbsWzem* dbswzem
-			, const ubigint jrefTrig
-			, const ubigint refInv
-			, bool& boolvalRet
-		) {
-	bool retval = false;
-	boolvalRet = (recCln.tjbRefWzemMJob == refInv); // IP handleCallWzemCln_tjbEq --- LINE
-	return retval;
-};
-
 bool PnlWzemClnDetail::handleCallWzemCln_jobEq(
 			DbsWzem* dbswzem
 			, const ubigint jrefTrig
@@ -401,5 +390,16 @@ bool PnlWzemClnDetail::handleCallWzemCln_jobEq(
 		) {
 	bool retval = false;
 	boolvalRet = (recCln.refWzemMJob == refInv); // IP handleCallWzemCln_jobEq --- LINE
+	return retval;
+};
+
+bool PnlWzemClnDetail::handleCallWzemCln_tjbEq(
+			DbsWzem* dbswzem
+			, const ubigint jrefTrig
+			, const ubigint refInv
+			, bool& boolvalRet
+		) {
+	bool retval = false;
+	boolvalRet = (recCln.tjbRefWzemMJob == refInv); // IP handleCallWzemCln_tjbEq --- LINE
 	return retval;
 };

@@ -425,10 +425,10 @@ public:
 		void writeXML(const Sbecore::uint ixWzemVLocale, xmlTextWriter* wr);
 	};
 
-	bool evalImpButRunActive(DbsWzem* dbswzem);
-	bool evalImpButStoActive(DbsWzem* dbswzem);
 	bool evalButDneActive(DbsWzem* dbswzem);
 	bool evalLfiDldActive(DbsWzem* dbswzem);
+	bool evalImpButRunActive(DbsWzem* dbswzem);
+	bool evalImpButStoActive(DbsWzem* dbswzem);
 	bool evalIfiUldActive(DbsWzem* dbswzem);
 
 public:
@@ -489,9 +489,9 @@ private:
 
 	std::string handleDownloadInSgeDone(DbsWzem* dbswzem);
 
+	void handleTimerInSgeImpidle(DbsWzem* dbswzem, const std::string& sref);
 	void handleTimerInSgePrsidle(DbsWzem* dbswzem, const std::string& sref);
 	void handleTimerWithSrefMonInSgeImport(DbsWzem* dbswzem);
-	void handleTimerInSgeImpidle(DbsWzem* dbswzem, const std::string& sref);
 
 private:
 	void changeStage(DbsWzem* dbswzem, Sbecore::uint _ixVSge, DpchEngWzem** dpcheng = NULL);

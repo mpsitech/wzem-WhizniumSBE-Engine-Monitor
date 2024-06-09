@@ -908,7 +908,7 @@ DpchEngWzemAlert* AlrWzem::prepareAlrAbt(
 	continf.TxtCpt = StrMod::cap(continf.TxtCpt);
 
 	if (ixWzemVLocale == VecWzemVLocale::ENUS) {
-		continf.TxtMsg1 = "WhizniumSBE Engine Monitor version v1.0.7 released on 11-9-2022";
+		continf.TxtMsg1 = "WhizniumSBE Engine Monitor version v1.0.8 released on 21-4-2023";
 		continf.TxtMsg2 = "\\u00a9 MPSI Technologies GmbH";
 		continf.TxtMsg4 = "contributors: Alexander Wirthmueller";
 		continf.TxtMsg6 = "WhizniumSBE Engine Monitor serves as a debugging tool for projects developed with WhizniumSBE.";
@@ -1868,7 +1868,7 @@ void XchgWzemcmbd::startMon() {
 	Clstn* clstn = NULL;
 	Preset* preset = NULL;
 
-	mon.start("WhizniumSBE Engine Monitor v1.0.7", stgwzempath.monpath);
+	mon.start("WhizniumSBE Engine Monitor v1.0.8", stgwzempath.monpath);
 
 	rwmJobs.rlock("XchgWzemcmbd", "startMon");
 	for (auto it = jobs.begin(); it != jobs.end(); it++) {

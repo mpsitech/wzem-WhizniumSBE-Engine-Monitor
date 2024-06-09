@@ -2,7 +2,7 @@
 # make file for CrdWzemPrd card job handler, release wzemcmbd_plnx (ubuntu cross-compilation)
 # copyright: (C) 2016-2020 MPSI Technologies GmbH
 # author: Alexander Wirthmueller (auto-generation)
-# date created: 11 Sep 2022
+# date created: 21 Apr 2023
 # IP header --- ABOVE
 
 include ../Makefile.inc
@@ -16,7 +16,7 @@ STATLIBFLAGS = rcs
 INCPATH = -I=$(BUILDROOT)/dbswzem -I=$(BUILDROOT)/wzemcmbd/VecWzem -I=$(BUILDROOT)/wzemcmbd/IexWzem -I=$(BUILDROOT)/wzemcmbd
 INCPATH += -I=${WHIZSDKROOT}/build -I=/usr/include -I=/usr/include/libxml2
 
-OBJS = CrdWzemPrd.o PnlWzemPrdList.o QryWzemPrdList.o PnlWzemPrdHeadbar.o PnlWzemPrdRec.o PnlWzemPrd1NJob.o QryWzemPrd1NJob.o PnlWzemPrd1NNode.o QryWzemPrd1NNode.o PnlWzemPrd1NEvent.o QryWzemPrd1NEvent.o PnlWzemPrdDetail.o
+OBJS = CrdWzemPrd.o PnlWzemPrdList.o QryWzemPrdList.o PnlWzemPrdHeadbar.o PnlWzemPrdRec.o PnlWzemPrd1NEvent.o QryWzemPrd1NEvent.o PnlWzemPrd1NJob.o QryWzemPrd1NJob.o PnlWzemPrd1NNode.o QryWzemPrd1NNode.o PnlWzemPrdDetail.o
 
 LIB = libcrdwzemprd
 

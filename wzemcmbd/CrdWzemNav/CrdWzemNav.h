@@ -16,8 +16,8 @@
 
 #include "PnlWzemNavMon.h"
 #include "PnlWzemNavAdmin.h"
-#include "PnlWzemNavHeadbar.h"
 #include "PnlWzemNavPre.h"
+#include "PnlWzemNavHeadbar.h"
 #include "DlgWzemNavLoaini.h"
 
 #define VecVWzemNavDo CrdWzemNav::VecVDo
@@ -302,8 +302,8 @@ public:
 
 	PnlWzemNavMon* pnlmon;
 	PnlWzemNavAdmin* pnladmin;
-	PnlWzemNavHeadbar* pnlheadbar;
 	PnlWzemNavPre* pnlpre;
+	PnlWzemNavHeadbar* pnlheadbar;
 	DlgWzemNavLoaini* dlgloaini;
 
 	// IP vars.cust --- INSERT

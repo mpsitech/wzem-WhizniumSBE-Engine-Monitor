@@ -22,10 +22,10 @@ uint QryWzemUsrList::VecVOrd::getIx(
 		) {
 	string s = StrMod::lc(sref);
 
-	if (s == "usg") return USG;
 	if (s == "ste") return STE;
-	if (s == "srf") return SRF;
+	if (s == "usg") return USG;
 	if (s == "prs") return PRS;
+	if (s == "srf") return SRF;
 	if (s == "own") return OWN;
 	if (s == "grp") return GRP;
 
@@ -35,10 +35,10 @@ uint QryWzemUsrList::VecVOrd::getIx(
 string QryWzemUsrList::VecVOrd::getSref(
 			const uint ix
 		) {
-	if (ix == USG) return("usg");
 	if (ix == STE) return("ste");
-	if (ix == SRF) return("srf");
+	if (ix == USG) return("usg");
 	if (ix == PRS) return("prs");
+	if (ix == SRF) return("srf");
 	if (ix == OWN) return("own");
 	if (ix == GRP) return("grp");
 

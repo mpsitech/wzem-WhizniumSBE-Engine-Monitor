@@ -48,19 +48,19 @@
 			<v-divider/>
 			<v-row>
 				<v-col cols="12" md="6">
+					<PnlWzemJob1NOp
+						v-on:crdopen="handleCrdopen"
+						v-on:request="handleRequest"
+						ref="PnlWzemJob1NOp"
+						:scrJref=statshr.scrJref1NOp
+					/>
+				</v-col>
+				<v-col cols="12" md="6">
 					<PnlWzemJob1NClstn
 						v-on:crdopen="handleCrdopen"
 						v-on:request="handleRequest"
 						ref="PnlWzemJob1NClstn"
 						:scrJref=statshr.scrJref1NClstn
-					/>
-				</v-col>
-				<v-col cols="12" md="6">
-					<PnlWzemJob1NPreset
-						v-on:crdopen="handleCrdopen"
-						v-on:request="handleRequest"
-						ref="PnlWzemJob1NPreset"
-						:scrJref=statshr.scrJref1NPreset
 					/>
 				</v-col>
 				<v-col cols="12" md="6">
@@ -72,11 +72,11 @@
 					/>
 				</v-col>
 				<v-col cols="12" md="6">
-					<PnlWzemJob1NOp
+					<PnlWzemJob1NPreset
 						v-on:crdopen="handleCrdopen"
 						v-on:request="handleRequest"
-						ref="PnlWzemJob1NOp"
-						:scrJref=statshr.scrJref1NOp
+						ref="PnlWzemJob1NPreset"
+						:scrJref=statshr.scrJref1NPreset
 					/>
 				</v-col>
 				<v-col cols="12" md="6">
@@ -98,10 +98,10 @@
 	/*
 	*/
 	import PnlWzemJobDetail from './PnlWzemJobDetail';
-	import PnlWzemJob1NClstn from './PnlWzemJob1NClstn';
-	import PnlWzemJob1NPreset from './PnlWzemJob1NPreset';
-	import PnlWzemJob1NCall from './PnlWzemJob1NCall';
 	import PnlWzemJob1NOp from './PnlWzemJob1NOp';
+	import PnlWzemJob1NClstn from './PnlWzemJob1NClstn';
+	import PnlWzemJob1NCall from './PnlWzemJob1NCall';
+	import PnlWzemJob1NPreset from './PnlWzemJob1NPreset';
 	import PnlWzemJobSup1NJob from './PnlWzemJobSup1NJob';
 	/*
 	*/
@@ -121,10 +121,10 @@
 			/*
 			*/
 			PnlWzemJobDetail,
-			PnlWzemJob1NClstn,
-			PnlWzemJob1NPreset,
-			PnlWzemJob1NCall,
 			PnlWzemJob1NOp,
+			PnlWzemJob1NClstn,
+			PnlWzemJob1NCall,
+			PnlWzemJob1NPreset,
 			PnlWzemJobSup1NJob
 			/*
 			*/
@@ -187,10 +187,10 @@
 						/*
 						*/
 						if (obj.scrJref == this.statshr.scrJrefDetail) this.$refs.PnlWzemJobDetail.handleReply(obj);
-						else if (obj.scrJref == this.statshr.scrJref1NClstn) this.$refs.PnlWzemJob1NClstn.handleReply(obj);
-						else if (obj.scrJref == this.statshr.scrJref1NPreset) this.$refs.PnlWzemJob1NPreset.handleReply(obj);
-						else if (obj.scrJref == this.statshr.scrJref1NCall) this.$refs.PnlWzemJob1NCall.handleReply(obj);
 						else if (obj.scrJref == this.statshr.scrJref1NOp) this.$refs.PnlWzemJob1NOp.handleReply(obj);
+						else if (obj.scrJref == this.statshr.scrJref1NClstn) this.$refs.PnlWzemJob1NClstn.handleReply(obj);
+						else if (obj.scrJref == this.statshr.scrJref1NCall) this.$refs.PnlWzemJob1NCall.handleReply(obj);
+						else if (obj.scrJref == this.statshr.scrJref1NPreset) this.$refs.PnlWzemJob1NPreset.handleReply(obj);
 						else if (obj.scrJref == this.statshr.scrJrefSup1NJob) this.$refs.PnlWzemJobSup1NJob.handleReply(obj);
 						/*
 						*/
@@ -222,10 +222,10 @@
 						/*
 						*/
 						if (obj.dpcheng.scrJref == this.statshr.scrJrefDetail) this.$refs.PnlWzemJobDetail.handleUpdate(obj);
-						else if (obj.dpcheng.scrJref == this.statshr.scrJref1NClstn) this.$refs.PnlWzemJob1NClstn.handleUpdate(obj);
-						else if (obj.dpcheng.scrJref == this.statshr.scrJref1NPreset) this.$refs.PnlWzemJob1NPreset.handleUpdate(obj);
-						else if (obj.dpcheng.scrJref == this.statshr.scrJref1NCall) this.$refs.PnlWzemJob1NCall.handleUpdate(obj);
 						else if (obj.dpcheng.scrJref == this.statshr.scrJref1NOp) this.$refs.PnlWzemJob1NOp.handleUpdate(obj);
+						else if (obj.dpcheng.scrJref == this.statshr.scrJref1NClstn) this.$refs.PnlWzemJob1NClstn.handleUpdate(obj);
+						else if (obj.dpcheng.scrJref == this.statshr.scrJref1NCall) this.$refs.PnlWzemJob1NCall.handleUpdate(obj);
+						else if (obj.dpcheng.scrJref == this.statshr.scrJref1NPreset) this.$refs.PnlWzemJob1NPreset.handleUpdate(obj);
 						else if (obj.dpcheng.scrJref == this.statshr.scrJrefSup1NJob) this.$refs.PnlWzemJobSup1NJob.handleUpdate(obj);
 						/*
 						*/

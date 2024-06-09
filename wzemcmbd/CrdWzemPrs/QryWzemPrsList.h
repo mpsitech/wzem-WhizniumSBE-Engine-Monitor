@@ -148,8 +148,8 @@ public:
 	void handleCall(DbsWzem* dbswzem, Sbecore::Call* call);
 
 private:
-	bool handleCallWzemPrsUpd_refEq(DbsWzem* dbswzem, const Sbecore::ubigint jrefTrig);
 	bool handleCallWzemPrsMod(DbsWzem* dbswzem, const Sbecore::ubigint jrefTrig);
+	bool handleCallWzemPrsUpd_refEq(DbsWzem* dbswzem, const Sbecore::ubigint jrefTrig);
 	bool handleCallWzemStubChgFromSelf(DbsWzem* dbswzem);
 
 };

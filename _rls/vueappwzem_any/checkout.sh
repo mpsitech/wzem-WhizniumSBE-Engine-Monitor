@@ -3,7 +3,7 @@
 # checkout script for Wzem Vue.js UI, release vueappwzem_any
 # copyright: (C) 2022 MPSI Technologies GmbH
 # author: Alexander Wirthmueller (auto-generation)
-# date created: 11 Sep 2022
+# date created: 21 Apr 2023
 # IP header --- ABOVE
 
 if [ -z ${WHIZROOT+x} ]; then

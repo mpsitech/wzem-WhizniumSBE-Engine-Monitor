@@ -14,9 +14,9 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWzemClnRec.h"
-#include "PnlWzemClnHeadbar.h"
 #include "PnlWzemClnList.h"
+#include "PnlWzemClnHeadbar.h"
+#include "PnlWzemClnRec.h"
 
 #define VecVWzemClnDo CrdWzemCln::VecVDo
 #define VecVWzemClnSge CrdWzemCln::VecVSge
@@ -196,9 +196,9 @@ public:
 	Sbecore::Feed feedFMcbAlert;
 	Sbecore::Feed feedFSge;
 
-	PnlWzemClnRec* pnlrec;
-	PnlWzemClnHeadbar* pnlheadbar;
 	PnlWzemClnList* pnllist;
+	PnlWzemClnHeadbar* pnlheadbar;
+	PnlWzemClnRec* pnlrec;
 
 	// IP vars.cust --- INSERT
 
@@ -229,8 +229,8 @@ public:
 
 private:
 	bool handleCallWzemRefPreSet(DbsWzem* dbswzem, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, const Sbecore::ubigint refInv);
-	bool handleCallWzemDlgClose(DbsWzem* dbswzem, const Sbecore::ubigint jrefTrig);
 	bool handleCallWzemStatChg(DbsWzem* dbswzem, const Sbecore::ubigint jrefTrig);
+	bool handleCallWzemDlgClose(DbsWzem* dbswzem, const Sbecore::ubigint jrefTrig);
 
 private:
 	void changeStage(DbsWzem* dbswzem, Sbecore::uint _ixVSge, DpchEngWzem** dpcheng = NULL);

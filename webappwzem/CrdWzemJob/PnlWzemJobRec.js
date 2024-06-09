@@ -1,27 +1,27 @@
 function updateScrJrefs() {
 	scrJrefDetail = retrieveSi(srcdoc, "StatShrWzemJobRec", "scrJrefDetail");
-	scrJref1NClstn = retrieveSi(srcdoc, "StatShrWzemJobRec", "scrJref1NClstn");
-	scrJref1NPreset = retrieveSi(srcdoc, "StatShrWzemJobRec", "scrJref1NPreset");
-	scrJref1NCall = retrieveSi(srcdoc, "StatShrWzemJobRec", "scrJref1NCall");
 	scrJref1NOp = retrieveSi(srcdoc, "StatShrWzemJobRec", "scrJref1NOp");
+	scrJref1NClstn = retrieveSi(srcdoc, "StatShrWzemJobRec", "scrJref1NClstn");
+	scrJref1NCall = retrieveSi(srcdoc, "StatShrWzemJobRec", "scrJref1NCall");
+	scrJref1NPreset = retrieveSi(srcdoc, "StatShrWzemJobRec", "scrJref1NPreset");
 	scrJrefSup1NJob = retrieveSi(srcdoc, "StatShrWzemJobRec", "scrJrefSup1NJob");
 };
 
 function resetInitdones() {
 	setSi(srcdoc, "StatAppWzemJobRec", "initdoneDetail", "false");
-	setSi(srcdoc, "StatAppWzemJobRec", "initdone1NClstn", "false");
-	setSi(srcdoc, "StatAppWzemJobRec", "initdone1NPreset", "false");
-	setSi(srcdoc, "StatAppWzemJobRec", "initdone1NCall", "false");
 	setSi(srcdoc, "StatAppWzemJobRec", "initdone1NOp", "false");
+	setSi(srcdoc, "StatAppWzemJobRec", "initdone1NClstn", "false");
+	setSi(srcdoc, "StatAppWzemJobRec", "initdone1NCall", "false");
+	setSi(srcdoc, "StatAppWzemJobRec", "initdone1NPreset", "false");
 	setSi(srcdoc, "StatAppWzemJobRec", "initdoneSup1NJob", "false");
 };
 
 function resetHeights() {
 	heightDetail = 30;
-	height1NClstn = 30;
-	height1NPreset = 30;
-	height1NCall = 30;
 	height1NOp = 30;
+	height1NClstn = 30;
+	height1NCall = 30;
+	height1NPreset = 30;
 	heightSup1NJob = 30;
 };
 
@@ -41,22 +41,22 @@ function checkInitdone() {
 	var initdone1NRelease = (retrieveSi(srcdoc, "StatAppWzemJobRec", "initdone1NRelease") == "true");
 
 	var initdoneDetail = (retrieveSi(srcdoc, "StatAppWzemJobRec", "initdoneDetail") == "true");
-	var initdone1NClstn = (retrieveSi(srcdoc, "StatAppWzemJobRec", "initdone1NClstn") == "true");
-	var initdone1NPreset = (retrieveSi(srcdoc, "StatAppWzemJobRec", "initdone1NPreset") == "true");
-	var initdone1NCall = (retrieveSi(srcdoc, "StatAppWzemJobRec", "initdone1NCall") == "true");
 	var initdone1NOp = (retrieveSi(srcdoc, "StatAppWzemJobRec", "initdone1NOp") == "true");
+	var initdone1NClstn = (retrieveSi(srcdoc, "StatAppWzemJobRec", "initdone1NClstn") == "true");
+	var initdone1NCall = (retrieveSi(srcdoc, "StatAppWzemJobRec", "initdone1NCall") == "true");
+	var initdone1NPreset = (retrieveSi(srcdoc, "StatAppWzemJobRec", "initdone1NPreset") == "true");
 	var initdoneSup1NJob = (retrieveSi(srcdoc, "StatAppWzemJobRec", "initdoneSup1NJob") == "true");
 
 	if (!initdoneDetail) {
 		lhsdoc.getElementById("Detail").src = "./PnlWzemJobDetail.html?scrJref=" + scrJrefDetail;
-	} else if (!initdone1NClstn) {
-		rhsdoc.getElementById("1NClstn").src = "./PnlWzemJob1NClstn.html?scrJref=" + scrJref1NClstn;
-	} else if (!initdone1NPreset) {
-		rhsdoc.getElementById("1NPreset").src = "./PnlWzemJob1NPreset.html?scrJref=" + scrJref1NPreset;
-	} else if (!initdone1NCall) {
-		rhsdoc.getElementById("1NCall").src = "./PnlWzemJob1NCall.html?scrJref=" + scrJref1NCall;
 	} else if (!initdone1NOp) {
 		rhsdoc.getElementById("1NOp").src = "./PnlWzemJob1NOp.html?scrJref=" + scrJref1NOp;
+	} else if (!initdone1NClstn) {
+		rhsdoc.getElementById("1NClstn").src = "./PnlWzemJob1NClstn.html?scrJref=" + scrJref1NClstn;
+	} else if (!initdone1NCall) {
+		rhsdoc.getElementById("1NCall").src = "./PnlWzemJob1NCall.html?scrJref=" + scrJref1NCall;
+	} else if (!initdone1NPreset) {
+		rhsdoc.getElementById("1NPreset").src = "./PnlWzemJob1NPreset.html?scrJref=" + scrJref1NPreset;
 	} else if (!initdoneSup1NJob) {
 		rhsdoc.getElementById("Sup1NJob").src = "./PnlWzemJobSup1NJob.html?scrJref=" + scrJrefSup1NJob;
 
@@ -98,10 +98,10 @@ function setPnlAvail(short, avail) {
 		else if (short == "List") heightList = height;
 		else if (short == "Rec") heightRec = height;
 		else if (short == "Detail") heightDetail = height;
-		else if (short == "1NClstn") height1NClstn = height;
-		else if (short == "1NPreset") height1NPreset = height;
-		else if (short == "1NCall") height1NCall = height;
 		else if (short == "1NOp") height1NOp = height;
+		else if (short == "1NClstn") height1NClstn = height;
+		else if (short == "1NCall") height1NCall = height;
+		else if (short == "1NPreset") height1NPreset = height;
 		else if (short == "Sup1NJob") heightSup1NJob = height;
 	};
 
@@ -146,10 +146,10 @@ function changeHeight(pnlshort, height, update) {
 	else if (pnlshort == "List") heightList = height;
 	else if (pnlshort == "Rec") heightRec = height;
 	else if (pnlshort == "Detail") heightDetail = height;
-	else if (pnlshort == "1NClstn") height1NClstn = height;
-	else if (pnlshort == "1NPreset") height1NPreset = height;
-	else if (pnlshort == "1NCall") height1NCall = height;
 	else if (pnlshort == "1NOp") height1NOp = height;
+	else if (pnlshort == "1NClstn") height1NClstn = height;
+	else if (pnlshort == "1NCall") height1NCall = height;
+	else if (pnlshort == "1NPreset") height1NPreset = height;
 	else if (pnlshort == "Sup1NJob") heightSup1NJob = height;
 
 	if (update) updateHeight();
@@ -159,7 +159,7 @@ function updateHeight() {
 	var heightLhs, heightRhs, heightGt;
 
 	heightLhs = heightDetail+13 + 5;
-	heightRhs = height1NClstn+13 + height1NPreset+13 + height1NCall+13 + height1NOp+13 + heightSup1NJob+13 + 5;
+	heightRhs = height1NOp+13 + height1NClstn+13 + height1NCall+13 + height1NPreset+13 + heightSup1NJob+13 + 5;
 
 	if (heightLhs > heightRhs) {
 		lhsdoc.getElementById("tdFill").setAttribute("height", "5");
@@ -350,14 +350,14 @@ function handleDpchEng(dom, dpch) {
 
 			if (_scrJref == scrJrefDetail) {
 				if (getInitdone("Detail")) lhsdoc.getElementById("Detail").contentWindow.handleDpchEng(dom, dpch);
-			} else if (_scrJref == scrJref1NClstn) {
-				if (getInitdone("1NClstn")) rhsdoc.getElementById("1NClstn").contentWindow.handleDpchEng(dom, dpch);
-			} else if (_scrJref == scrJref1NPreset) {
-				if (getInitdone("1NPreset")) rhsdoc.getElementById("1NPreset").contentWindow.handleDpchEng(dom, dpch);
-			} else if (_scrJref == scrJref1NCall) {
-				if (getInitdone("1NCall")) rhsdoc.getElementById("1NCall").contentWindow.handleDpchEng(dom, dpch);
 			} else if (_scrJref == scrJref1NOp) {
 				if (getInitdone("1NOp")) rhsdoc.getElementById("1NOp").contentWindow.handleDpchEng(dom, dpch);
+			} else if (_scrJref == scrJref1NClstn) {
+				if (getInitdone("1NClstn")) rhsdoc.getElementById("1NClstn").contentWindow.handleDpchEng(dom, dpch);
+			} else if (_scrJref == scrJref1NCall) {
+				if (getInitdone("1NCall")) rhsdoc.getElementById("1NCall").contentWindow.handleDpchEng(dom, dpch);
+			} else if (_scrJref == scrJref1NPreset) {
+				if (getInitdone("1NPreset")) rhsdoc.getElementById("1NPreset").contentWindow.handleDpchEng(dom, dpch);
 			} else if (_scrJref == scrJrefSup1NJob) {
 				if (getInitdone("Sup1NJob")) rhsdoc.getElementById("Sup1NJob").contentWindow.handleDpchEng(dom, dpch);
 			} else {

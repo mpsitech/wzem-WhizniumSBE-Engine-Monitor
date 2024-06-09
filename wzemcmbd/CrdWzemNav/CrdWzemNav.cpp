@@ -44,8 +44,8 @@ CrdWzemNav::CrdWzemNav(
 
 	pnlmon = NULL;
 	pnladmin = NULL;
-	pnlheadbar = NULL;
 	pnlpre = NULL;
+	pnlheadbar = NULL;
 	dlgloaini = NULL;
 
 	// IP constructor.cust1 --- INSERT
@@ -55,8 +55,8 @@ CrdWzemNav::CrdWzemNav(
 
 	pnlmon = new PnlWzemNavMon(xchg, dbswzem, jref, ixWzemVLocale);
 	pnladmin = new PnlWzemNavAdmin(xchg, dbswzem, jref, ixWzemVLocale);
-	pnlheadbar = new PnlWzemNavHeadbar(xchg, dbswzem, jref, ixWzemVLocale);
 	pnlpre = new PnlWzemNavPre(xchg, dbswzem, jref, ixWzemVLocale);
+	pnlheadbar = new PnlWzemNavHeadbar(xchg, dbswzem, jref, ixWzemVLocale);
 
 	// IP constructor.cust2 --- INSERT
 

@@ -10,10 +10,10 @@
 #ifndef DBSWZEM_H
 #define DBSWZEM_H
 
-#define WZEM_VERSION "1.0.7"
+#define WZEM_VERSION "1.0.8"
 #define WZEM_VERSION_MAJOR 1
 #define WZEM_VERSION_MINOR 0
-#define WZEM_VERSION_SUB 7
+#define WZEM_VERSION_SUB 8
 
 #include <sbecore/Types.h>
 
@@ -179,9 +179,9 @@ public:
 		static const Sbecore::uint PNLWZEMPRDLIST_TCOVER = 35;
 		static const Sbecore::uint PNLWZEMPRDLIST_TCOSTA = 36;
 		static const Sbecore::uint PNLWZEMPRDLIST_TCOSTO = 37;
-		static const Sbecore::uint PNLWZEMPRD1NEVENT_TCOREF = 38;
-		static const Sbecore::uint PNLWZEMPRD1NNODE_TCOREF = 39;
-		static const Sbecore::uint PNLWZEMPRD1NJOB_TCOREF = 40;
+		static const Sbecore::uint PNLWZEMPRD1NNODE_TCOREF = 38;
+		static const Sbecore::uint PNLWZEMPRD1NJOB_TCOREF = 39;
+		static const Sbecore::uint PNLWZEMPRD1NEVENT_TCOREF = 40;
 		static const Sbecore::uint PNLWZEMEVTLIST_TCOTYP = 41;
 		static const Sbecore::uint PNLWZEMEVTLIST_TCOPRD = 42;
 		static const Sbecore::uint PNLWZEMEVTLIST_TCOSTA = 43;
@@ -195,10 +195,10 @@ public:
 		static const Sbecore::uint PNLWZEMJOBLIST_TCOSTA = 51;
 		static const Sbecore::uint PNLWZEMJOBLIST_TCOSTO = 52;
 		static const Sbecore::uint PNLWZEMJOBLIST_TCOSUP = 53;
-		static const Sbecore::uint PNLWZEMJOB1NCLSTN_TCOREF = 54;
-		static const Sbecore::uint PNLWZEMJOB1NPRESET_TCOREF = 55;
+		static const Sbecore::uint PNLWZEMJOB1NOP_TCOREF = 54;
+		static const Sbecore::uint PNLWZEMJOB1NCLSTN_TCOREF = 55;
 		static const Sbecore::uint PNLWZEMJOB1NCALL_TCOREF = 56;
-		static const Sbecore::uint PNLWZEMJOB1NOP_TCOREF = 57;
+		static const Sbecore::uint PNLWZEMJOB1NPRESET_TCOREF = 57;
 		static const Sbecore::uint PNLWZEMJOBSUP1NJOB_TCOREF = 58;
 		static const Sbecore::uint PNLWZEMCALLIST_TCOJOB = 59;
 		static const Sbecore::uint PNLWZEMCALLIST_TCOCAL = 60;

@@ -4,14 +4,14 @@
 			<v-select
 				class="my-1"
 				v-model="contapp.fiFPupTyp"
+				return-object
 				:items="feedFPupTyp"
-				:label='tag.CptTyp'
-				v-on:change="handlePupChange('numFPupTyp', contapp.fiFPupTyp)"
+				item-value="num"
+				item-text="tit1"
+				:label="tag.CptTyp"
+				v-on:change="handleFiChange('numFPupTyp', contapp.fiFPupTyp)"
 				:disabled="!statshr.PupTypActive"
-			>
-				<template v-slot:selection="{item}">{{item.tit1}}</template>
-				<template v-slot:item="{item}">{{item.tit1}}</template>
-			</v-select>
+			/>
 
 			<v-text-field
 				class="my-1"
@@ -30,11 +30,17 @@
 
 			<v-divider/>
 
-			<div
+			<v-select
 				class="my-1"
-			>
-				<!-- IP divClu - INSERT -->
-			</div>
+				v-model="contapp.fiFLstClu"
+				return-object
+				:items="feedFLstClu"
+				item-value="num"
+				item-text="tit1"
+				:label="tag.CptClu"
+				v-on:change="handleFiChange('numFLstClu', contapp.fiFLstClu)"
+				:disabled="!statshr.LstCluActive"
+			/>
 
 			<v-text-field
 				class="my-1"
@@ -197,7 +203,7 @@
 				this.$emit("request", {scrJref: this.scrJref, dpchapp: dpchapp, then: "handleDpchAppDataDoReply"});
 			},
 
-			handlePupChange: function(cisref, fi) {
+			handleFiChange: function(cisref, fi) {
 				this.contiac[cisref] = fi.num;
 
 				this.updateEng(["contiac"]);

@@ -47,14 +47,6 @@
 			<v-divider/>
 			<v-row>
 				<v-col cols="12" md="6">
-					<PnlWzemPrd1NEvent
-						v-on:crdopen="handleCrdopen"
-						v-on:request="handleRequest"
-						ref="PnlWzemPrd1NEvent"
-						:scrJref=statshr.scrJref1NEvent
-					/>
-				</v-col>
-				<v-col cols="12" md="6">
 					<PnlWzemPrd1NNode
 						v-on:crdopen="handleCrdopen"
 						v-on:request="handleRequest"
@@ -70,6 +62,14 @@
 						:scrJref=statshr.scrJref1NJob
 					/>
 				</v-col>
+				<v-col cols="12" md="6">
+					<PnlWzemPrd1NEvent
+						v-on:crdopen="handleCrdopen"
+						v-on:request="handleRequest"
+						ref="PnlWzemPrd1NEvent"
+						:scrJref=statshr.scrJref1NEvent
+					/>
+				</v-col>
 			</v-row>
 		</v-card-text>
 	</v-card>
@@ -81,9 +81,9 @@
 	/*
 	*/
 	import PnlWzemPrdDetail from './PnlWzemPrdDetail';
-	import PnlWzemPrd1NEvent from './PnlWzemPrd1NEvent';
 	import PnlWzemPrd1NNode from './PnlWzemPrd1NNode';
 	import PnlWzemPrd1NJob from './PnlWzemPrd1NJob';
+	import PnlWzemPrd1NEvent from './PnlWzemPrd1NEvent';
 	/*
 	*/
 
@@ -102,9 +102,9 @@
 			/*
 			*/
 			PnlWzemPrdDetail,
-			PnlWzemPrd1NEvent,
 			PnlWzemPrd1NNode,
-			PnlWzemPrd1NJob
+			PnlWzemPrd1NJob,
+			PnlWzemPrd1NEvent
 			/*
 			*/
 		},
@@ -166,9 +166,9 @@
 						/*
 						*/
 						if (obj.scrJref == this.statshr.scrJrefDetail) this.$refs.PnlWzemPrdDetail.handleReply(obj);
-						else if (obj.scrJref == this.statshr.scrJref1NEvent) this.$refs.PnlWzemPrd1NEvent.handleReply(obj);
 						else if (obj.scrJref == this.statshr.scrJref1NNode) this.$refs.PnlWzemPrd1NNode.handleReply(obj);
 						else if (obj.scrJref == this.statshr.scrJref1NJob) this.$refs.PnlWzemPrd1NJob.handleReply(obj);
+						else if (obj.scrJref == this.statshr.scrJref1NEvent) this.$refs.PnlWzemPrd1NEvent.handleReply(obj);
 						/*
 						*/
 					}
@@ -199,9 +199,9 @@
 						/*
 						*/
 						if (obj.dpcheng.scrJref == this.statshr.scrJrefDetail) this.$refs.PnlWzemPrdDetail.handleUpdate(obj);
-						else if (obj.dpcheng.scrJref == this.statshr.scrJref1NEvent) this.$refs.PnlWzemPrd1NEvent.handleUpdate(obj);
 						else if (obj.dpcheng.scrJref == this.statshr.scrJref1NNode) this.$refs.PnlWzemPrd1NNode.handleUpdate(obj);
 						else if (obj.dpcheng.scrJref == this.statshr.scrJref1NJob) this.$refs.PnlWzemPrd1NJob.handleUpdate(obj);
+						else if (obj.dpcheng.scrJref == this.statshr.scrJref1NEvent) this.$refs.PnlWzemPrd1NEvent.handleUpdate(obj);
 						/*
 						*/
 						else processed = false;

@@ -56,14 +56,14 @@ void WzemQJobList::writeJSON(
 	if (shorttags) {
 		me["prd"] = stubRefWzemMPeriod;
 		me["job"] = srefIxVJob;
-		me["xjr"] = xjref;
+		me["xjr"] = (Json::Value::UInt64) xjref;
 		me["sta"] = x1Startu;
 		me["sto"] = x1Stopu;
 		me["sup"] = stubSupRefWzemMJob;
 	} else {
 		me["stubRefWzemMPeriod"] = stubRefWzemMPeriod;
 		me["srefIxVJob"] = srefIxVJob;
-		me["xjref"] = xjref;
+		me["xjref"] = (Json::Value::UInt64) xjref;
 		me["x1Startu"] = x1Startu;
 		me["x1Stopu"] = x1Stopu;
 		me["stubSupRefWzemMJob"] = stubSupRefWzemMJob;

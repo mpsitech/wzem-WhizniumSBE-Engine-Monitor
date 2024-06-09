@@ -2,7 +2,7 @@
 -- SQLite database create script
 -- copyright: (C) 2016-2020 MPSI Technologies GmbH
 -- author: Alexander Wirthmueller (auto-generation)
--- date created: 11 Sep 2022
+-- date created: 21 Apr 2023
 -- IP header --- ABOVE
 
 DROP TABLE IF EXISTS TblWzemAccRMUserUniversal;
